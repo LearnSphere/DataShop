@@ -1,0 +1,18 @@
+<div class="topic" id="help-login">
+
+<h3>If you've logged in to DataShop before ...</h3>
+
+<h4>... and you've linked your DataShop account with your university id</h4>
+<p>Sign in with InCommon. Start typing your institution's name (or click on the school's image if it is present). You will be logged into DataShop after authenticating.</p>   
+
+<h4>... and you've linked your DataShop account with your Google account</h4>
+<p>Use the 'Sign in with Google' option. You will be logged into DataShop after authenticating.</p>   
+
+<h3>If you've never logged in to DataShop before ...</h3>
+<h4>... and you want to use your university account to authenticate</h4>
+<p>DataShop supports <a target=\"_blank\" href=\"http://incommon.org\">InCommon</a> single sign-on (SSO). Start typing your institution's name in the box (or click on the school's image if it is present). After authenticating with your university, you will be asked to create a DataShop account. Complete the registration form to link your university identity with DataShop. The next time you log in, you will only need to authenticate with your university.</p>
+
+<h4>... and you want to use your Google account to authenticate</h4>
+<p>DataShop supports Google SSO. Use the 'Sign in with Google' option and then you will be directed to the registration page. Complete the form to link your Google identity with your DataShop account. The next time you log in, you will only need to authenticate with Google.</p>
+
+</div>

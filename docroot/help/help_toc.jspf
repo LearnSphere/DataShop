@@ -1,0 +1,88 @@
+<% String datasetIdString = (datasetId != null) ? "&datasetId=" + datasetId : ""; %>
+
+<h2>Table of Contents</h2>
+<ol>
+    <li><a href="help<%=(datasetId != null) ? "?datasetId=" + datasetId : "" %>">What is DataShop?</a></li>
+    <li><a href="help?page=getting-data-in<%=datasetIdString %>">Getting Data In</a>
+        <ol>
+            <li><a href="help?page=logging<%=datasetIdString %>">Logging New Data</a></li>
+            <li><a href="help?page=import<%=datasetIdString %>">Importing New Data</a>
+            <ol>
+                <li><a href="help?page=importFormatTd<%=datasetIdString %>">Tab-delimited format</a></li>
+                <li><a href="help?page=importFormatXml<%=datasetIdString %>">XML format</a></li>
+            </ol>
+            </li>
+        </ol>
+    </li>
+    <li><a href="help?page=access<%=datasetIdString %>">Accessing DataShop</a>
+        <ol>
+            <li><a href="help?page=requesting-access<%=datasetIdString %>">Requesting Dataset Access</a></li>
+        </ol>
+    <li><a href="help?page=administration<%=datasetIdString %>">Project / Dataset Administration</a>
+        <ol>
+            <li><a href="help?page=irb<%=datasetIdString %>">IRB &amp; Data Shareability</a></li>
+            <li><a href="help?page=sampletodataset<%=datasetIdString %>">Creating new Datasets from
+            <img src="images/trans_spacer.gif" height="1" width="10" class="icon" /> existing Samples</a></li>
+        </ol>
+    </li>
+    <li><a href="help?page=citing<%=datasetIdString %>">Citing DataShop and Datasets</a></li>
+    <li><a href="help?page=terms<%=datasetIdString %>">Glossary</a></li>
+    <li><a href="help?page=reports<%=datasetIdString %>">Reports</a>
+    <ol>
+        <li><a href="help?page=datasetInfo<%=datasetIdString %>">Dataset Info</a>
+        <ol>
+            <li><a href="help?page=datasetInfo#overview<%=datasetIdString %>">Overview</a></li>
+            <li><a href="help?page=samples<%=datasetIdString %>">Samples</a></li>
+            <li><a href="help?page=kcm<%=datasetIdString %>">KC Models</a></li>
+            <li><a href="help?page=customFields<%=datasetIdString %>">Custom Fields</a></li>
+            <li><a href="help?page=problemList<%=datasetIdString %>">Problem List</a></li>
+            <li><a href="help?page=stepList<%=datasetIdString %>">Step List</a></li>
+            <li><a href="help?page=problemContent<%=datasetIdString %>">Problem Content</a></li>
+        </ol>
+        </li>
+        <li><a href="help?page=files<%=datasetIdString %>">Files</a>
+        <li><a href="help?page=perfProfiler<%=datasetIdString %>">Performance Profiler</a></li>
+        <li><a href="help?page=errorReport<%=datasetIdString %>">Error Report</a></li>
+        <li><a href="help?page=learningCurve<%=datasetIdString %>">Learning Curve</a>
+        <ol>
+            <li><a href="help?page=learningCurveExamples<%=datasetIdString %>">Examples</a></li>
+            <li><a href="help?page=learningCurveAlgorithm<%=datasetIdString %>">Algorithm</a></li>
+            <li><a href="help?page=stepRollup<%=datasetIdString %>">Student-Step Rollup</a></li>
+            <li><a href="help?page=modelValues<%=datasetIdString %>">Model Values</a></li>
+        </ol>
+        </li>
+        <li><a href="help?page=workflows<%=datasetIdString %>">Workflows</a>
+    </ol>
+    </li>
+    <li><a href="help?page=filteringData<%=datasetIdString %>">Filtering Data</a>
+    <ol>
+        <li><a href="help?page=filteringData<%=datasetIdString %>">By student, KC, and problem</a></li>
+        <li><a href="help?page=sampleSelector<%=datasetIdString %>">Sample Selector</a></li>
+    </ol>
+    </li>
+    <li><a href="help?page=export<%=datasetIdString %>">Export: Getting Data Out</a>
+    <ol>
+        <li><a href="help?page=exportFormatHistory<%=datasetIdString %>">Export Format History</a></li>
+    </ol>
+    <li><a href="help?page=usingOtherTools<%=datasetIdString %>">Using Other Tools</a>
+    <ol>
+        <li><a href="help?page=externalTools<%=datasetIdString %>">External Tools</a></li>
+        <li><a href="help?page=rSoftware<%=datasetIdString %>">R (software)</a></li>
+        <li><a href="help?page=pivotTable<%=datasetIdString %>">Excel PivotTables</a></li>
+    </ol>
+    </li>
+    <li><a href="help?page=advanced<%=datasetIdString %>">Advanced</a>
+    <ol>
+        <li><a href="help?page=webServicesCredentials<%=datasetIdString %>">Web Services Credentials</a>
+        <ol>
+            <li><a href="help?page=webServicesUserAgreement<%=datasetIdString %>">User Agreement</a></li>
+        </ol>
+        </li>
+        <li><a href="help?page=loggingActivity<%=datasetIdString %>">Logging Activity</a>
+        </li>
+         <li><a href="help?page=metricsReport<%=datasetIdString %>">Metrics</a>
+        </li>
+    </ol>
+    <li><a href="help?page=examples<%=datasetIdString %>">Examples</a></li>
+    <li><a href="help?page=contact<%=datasetIdString %>">Contact Us</a></li>
+</ol>

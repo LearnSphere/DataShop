@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2009
+ All Rights Reserved
+
+ $Revision: 5516 $
+ Author: Kyle Cunningham
+ Last modified by - $Author: kcunning $
+ Last modified on - $Date: 2009-06-11 13:55:15 -0400 (Thu, 11 Jun 2009) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.TransactionSkillEventItem" table="transaction_skill_event">
+        <meta attribute="class-description">Represents a TransactionSkillEvent in the system.  This class
+            is essentially a mapping table with additional properties, so in order to get Hibernate to 
+            play nicely, we create a surrogate id object, called TransactionSkillEventItemId.  It holds
+            the two members that form the composite key.  This item is then used to access TransactionSkillEvent
+            Items, as opposed to passing a transaction and skill item.
+        </meta>
+
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.TransactionSkillEventId">
+            <key-property name="transactionId" type="long">
+                <meta attribute="field-description">Part of the composite key - FK into
+                    tutor_transaction
+                </meta>
+                <column name="transaction_id"/>
+            </key-property>
+            <key-property name="skillId" type="long">
+                <meta attribute="field-description">Part of the composite key - FK into skill</meta>
+                <column name="skill_id"/>
+            </key-property>
+        </composite-id>
+         
+        <many-to-one name="transaction" class="edu.cmu.pslc.datashop.item.TransactionItem"
+        	insert="false" update="false">
+            <meta attribute="field-description">Transaction associated with this item.</meta>
+            <column name="transaction_id" not-null="true"/>
+        </many-to-one>
+        
+        <many-to-one name="skill" class="edu.cmu.pslc.datashop.item.SkillItem"
+        	insert="false" update="false">
+            <meta attribute="field-description">Skill associated with this item.</meta>
+            <column name="skill_id" not-null="true" />
+        </many-to-one>
+        
+        <property name="initialPKnown" type="double">
+            <meta attribute="field-description">The initial pKnown for this TransactionSkillEvent.</meta>
+            <column name="initial_p_known"/>
+        </property>
+	
+        <property name="resultingPKnown" type="double">
+            <meta attribute="field-description">The resulting pKnown for this TransactionSkillEvent.</meta>
+            <column name="resulting_p_known" not-null="true"/>
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 15865 $
+ Last modified by - $Author: mkomisin $
+ Last modified on - $Date: 2019-03-01 07:30:42 -0500 (Fri, 01 Mar 2019) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.PaperItem" table="paper">
+        <meta attribute="class-description">An academic publication.</meta>
+        <id name="id" type="integer">
+            <meta attribute="field-description">Database generated unique Id for this paper.</meta>
+            <column name="paper_id" />
+            <generator class="native" />
+        </id>
+        <property name="title" type="string">
+            <meta attribute="field-description">The title of this publication.</meta>
+            <column name="title" not-null="true" />
+        </property>
+        <property name="authorNames" type="string">
+            <meta attribute="field-description">The names of the authors for this publication as a string.</meta>
+            <column name="author_names" not-null="true" />
+        </property>
+        <property name="citation" type="string">
+            <meta attribute="field-description">The full citation of the paper (includes HTML).</meta>
+            <column name="citation" not-null="true" />
+        </property>
+        <property name="paperYear" type="integer">
+            <meta attribute="field-description">Year of the paper.</meta>
+            <column name="paper_year" not-null="true" />
+        </property>
+        <property name="paperAbstract" type="string">
+            <meta attribute="field-description">Abstract of the paper.</meta>
+            <column name="abstract" />
+        </property>
+        <property name="addedTime" type="timestamp">
+            <meta attribute="field-description">The timestamp for when this paper was added.</meta>
+            <column name="added_time" length="19" not-null="true" />
+        </property>
+
+        <many-to-one name="owner" class="edu.cmu.pslc.datashop.item.UserItem">
+            <meta attribute="field-description">The id of the user that is the owner of this entry.</meta>
+            <column name="owner" length="250" not-null="true" />
+        </many-to-one>
+
+        <many-to-one name="file" class="edu.cmu.pslc.datashop.item.FileItem">
+            <meta attribute="field-description">The id of the file associated with this paper.</meta>
+            <column name="file_id" />
+        </many-to-one>
+
+        <set name="datasets" table="paper_dataset_map">
+            <meta attribute="field-description">Collection of datasets this paper is associated with.</meta>
+            <key>
+                <column name="paper_id"/>
+            </key>
+            <many-to-many column="dataset_id" class="edu.cmu.pslc.datashop.item.DatasetItem" />
+        </set>
+    </class>
+</hibernate-mapping>

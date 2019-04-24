@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 15738 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2018-12-04 16:35:34 -0500 (Tue, 04 Dec 2018) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.DataShopInstanceItem" table="datashop_instance">
+        <meta attribute="class-description">Represents a single DataShop Instance.</meta>
+        <id name="id" type="long">
+            <column name="datashop_instance_id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="configuredBy" type="string">
+            <column name="configured_by" length="250" />
+        </property>
+        <property name="configuredTime" type="timestamp">
+            <column name="configured_time" length="19" />
+        </property>
+        <property name="datashopUrl" type="string">
+            <column name="datashop_url" length="128" />
+        </property>
+
+        <!-- instance properties -->
+
+        <property name="isSlave" type="boolean">
+            <column name="is_slave" not-null="true" />
+        </property>
+        <property name="slaveId" type="string">
+            <column name="slave_id" length="32" />
+        </property>
+        <property name="masterSchema" type="string">
+            <column name="master_schema" length="128" />
+        </property>
+        <property name="masterUrl" type="string">
+            <column name="master_url" length="128" />
+        </property>
+        <property name="slaveApiToken" type="string">
+            <column name="slave_api_token" length="20" />
+        </property>
+        <property name="slaveSecret" type="string">
+            <column name="slave_secret" length="40" />
+        </property>
+
+        <!-- email properties -->
+
+        <property name="isSendmailActive" type="boolean">
+            <column name="is_sendmail_active" not-null="true" />
+        </property>
+        <property name="datashopHelpEmail" type="string">
+            <column name="datashop_help_email" length="32" />
+        </property>
+        <property name="datashopRmEmail" type="string">
+            <column name="datashop_rm_email" length="32" />
+        </property>
+        <property name="datashopBucketEmail" type="string">
+            <column name="datashop_bucket_email" length="32" />
+        </property>
+        <property name="datashopSmtpHost" type="string">
+            <column name="datashop_smtp_host" length="32" />
+        </property>
+        <property name="datashopSmtpPort" type="integer">
+            <column name="datashop_smtp_port" />
+        </property>
+        <property name="useSslSmtp" type="boolean">
+            <column name="use_ssl_smtp" />
+        </property>
+        <property name="datashopSmtpUser" type="string">
+            <column name="datashop_smtp_user" length="250" />
+        </property>
+        <property name="datashopSmtpPassword" type="string">
+            <column name="datashop_smtp_password" length="32" />
+        </property>
+
+        <!-- GitHub properties -->
+
+        <property name="githubClientId" type="string">
+            <column name="github_client_id" length="32" />
+        </property>
+        <property name="githubClientSecret" type="string">
+            <column name="github_client_secret" length="64" />
+        </property>
+
+        <!-- workflow properties -->
+
+        <property name="wfcDir" type="string">
+            <column name="wfc_dir" length="1024" />
+        </property>
+
+        <property name="wfcRemote" type="string">
+            <column name="wfc_remote" length="1024" />
+        </property>
+
+        <property name="wfcHeapSize" type="long">
+            <column name="wfc_heap_size" />
+        </property>
+
+        <property name="remoteInstanceId" type="long">
+            <column name="remote_instance_id" />
+        </property>
+
+        <many-to-one name="masterUser" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="master_user" />
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

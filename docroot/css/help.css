@@ -1,0 +1,383 @@
+/****************************************
+*               HELP PAGES
+****************************************/
+#help {
+	background-color:#fff;
+	margin:0;
+	color:#333;
+	padding:0;
+	min-width:57em;
+}
+#layout #nav {
+	display:none;
+}
+#help h1, #help h2 {
+	font-weight:normal;
+}
+#help a:link {
+	color:#333;
+	text-decoration:underline;
+}
+#help a:visited {
+	color:#333;
+	text-decoration:underline;
+}
+#help a:hover {
+	color:#fff;
+	background-color:#333;
+	text-decoration:none;
+}
+#help a:active {
+}
+#backToApp {
+	margin-top:0;
+}
+#backToApp a {
+	font-size:.8em;
+	color:#37567f;
+	font-weight:bold;
+}
+#backToApp a:visited {
+	color:#37567f;
+}
+#backToApp a:hover {
+	text-decoration:none;
+}
+#toc {
+	float:left;
+	width:13em;
+	margin-top:0;
+}
+#toc h2 {
+	font-size:.7em;
+	font-weight:bold;
+	margin-left:2em;
+}
+#toc ol {
+	font-size:.7em;
+	line-height:1.6em;
+}
+#toc ol ol {
+	list-style:none;
+	padding-left:1em;
+	font-size:1em;
+	margin-left:0;
+}
+#helpcontents {
+	margin-left:14em;
+	padding-bottom:4em;
+	padding-right:1em;
+}
+#helpcontents h2 {
+	font-size:1.4em;
+}
+#helpcontents h3 {
+	font-size:1.1em;
+	font-weight:normal;
+}
+#helpcontents h4 {
+	font-size:.9em;
+}
+#helpcontents dt {
+	font-weight:bold;
+	font-size:.8em;
+	color:#333;
+}
+#helpcontents dd {
+	margin-top:.4em;
+	margin-bottom:1em;
+	margin-left:1.2em;
+	font-size:.75em;
+	line-height:1.4em;
+}
+#helpcontents dd p {
+	line-height:1.4em;
+	margin-top:0;
+	font-size:1em;
+}
+#helpcontents dd ul {
+	font-size:1em;
+}
+#helpcontents img {
+	border:1px solid #333;	
+}
+#helpcontents .movie img {
+	border: none;
+	vertical-align: top;
+}
+#helpcontents ol {
+	font-size:12px;
+}
+#helpcontents ol li {
+	line-height:1.4em;
+	margin-bottom:.3em;
+}
+#helpcontents ol ol {
+	font-size:1em;	
+}
+#helpcontents p {
+	font-size:.75em;
+	margin-right:1em;
+	line-height:1.4em;
+}
+#helpcontents code, #helpcontents pre {
+	font-family:Monaco,Courier,monospace;
+	/*background-color:#f8f8ff;*/
+	margin:1em 0 1em .3em;
+	font-size:12px; /* Safari needs this; otherwise will be small */
+	line-height:1.2em;
+}
+#helpcontents ul {
+	list-style-type: circle;
+	margin-right: 2em;
+	font-size: 12px;
+}
+#helpcontents ul li {
+	margin-bottom:1em;
+}
+#helpcontents ol ul {
+	font-size:inherit;
+}
+#helpcontents ul li p{
+	font-size:1.0em;
+	line-height:1.2em;
+}
+#helpcontents ul.concise {
+	list-style-type: square;	
+	margin-bottom: 1em;
+}
+#helpcontents ul.concise li {
+	margin-bottom:.2em;
+}
+#helpcontents ul.concise ul {
+        font-size:1em;
+        list-style-type:square;
+        margin: .2em 0;
+        padding-left:1.5em;
+}
+#helpcontents table ul {
+        font-size:inherit;
+        list-style-type:square;
+        padding-left:2em;
+        margin-top:.5em;
+        margin-bottom:.5em;
+}
+#helpcontents table ul li {
+        margin-bottom:.1em;   
+}
+#helpcontents table {
+	font-size:.75em;
+	margin-left:0;
+	border-collapse:collapse;
+}
+#helpcontents table thead th {
+	font-size:1em;
+	text-align:center;
+}
+#helpcontents table tbody th {
+	text-align:right;
+	font-size:1em;
+	padding-right:1em;
+	padding-bottom:.3em;
+	padding-top:.3em;
+	width:12em;
+	padding-left:0;
+	border-bottom:1px solid gray;
+}
+#helpcontents table tbody td {
+	border-bottom:1px solid gray;
+	padding:.3em
+}
+#helpcontents div.scenario {
+	padding:.1em 1em .1em 1em;
+	background-color:#fffeef;
+	margin-left:1em;
+	margin-right:5em;
+}
+#helpcontents a.clickableImage img {
+	border: 6px solid #e0e7ef;
+	text-decoration:none;
+}
+#helpcontents a.clickableImage:hover img{
+	border:6px solid #d1d8df;
+	background-color:none;
+	text-decoration:none;
+}
+#helpcontents #table-logging-urls {
+	width:90%; 
+	margin:1em 0 1em 1em;
+}
+#helpcontents #table-logging-urls thead th {
+	border-bottom:1px solid #333;
+}
+#helpcontents #import-columns th {
+    text-align: left;
+    padding-right: 20px
+}
+#helpcontents #time-format-table {
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+#helpcontents #td_format_button, 
+#helpcontents #xml_format_button,
+#helpcontents #export_format_button {
+    font-size: 15px;
+    float: left;
+}
+#helpcontents #td_format_button:hover, 
+#helpcontents #xml_format_button:hover,
+#helpcontents #export_format_button:hover {
+    border: 1px solid #999999;
+    color: #212121;
+}
+#helpcontents #xml_format_button,
+#helpcontents #export_format_button {
+    margin-left: 10px;
+}
+#helpcontents #format_buttons_div {
+    margin: 9px auto 8px 18px;
+    width: 475px;
+}
+
+div.figure {
+	float:right;
+	margin: 0 .5em 0 .1em;
+	padding: .2em .2em 0 .2em;
+	text-align:right;
+}
+div.figure img, div.figure-gutter img, div.figure-center img {
+	border:thin gray solid;
+	text-align:right;
+}
+div.figure-center {
+	position:relative;
+	margin:0 auto;
+}
+p.imgcaption {
+	font-size:.9em;
+	text-align:left;
+	font-style: italic;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	margin-top:.2em;
+}
+div.warning {
+	background-color:#ffcccc;
+	border:1px solid #cc0000;
+	padding:0 1em;
+	margin-left:.5em;
+	margin-right:.5em;
+}
+#helpcontents p.footnote {
+	font-size:.75em;
+}
+#helpcontents img.icon {
+	border:none;
+	vertical-align:middle;
+}
+#helpcontents img.external {border:none;vertical-align:top}
+#helpcontents a.jargon {
+	text-decoration:none;
+	border-bottom:1px dotted #333;
+}
+#helpcontents a.figure {
+	font-weight:bold;
+}
+
+#help .clearFloat {
+	clear:both;
+}
+
+#helpcontents .short-tx-table {
+	width:35em;
+	margin-left:2em;
+	margin-bottom:1em;
+}
+#helpcontents .short-tx-table caption {
+	font-size:1em;
+	margin-top:.5em;
+	margin-bottom:.5em;
+}
+#helpcontents .short-tx-table th {
+        text-align:left;
+        padding-left:.3em;
+}
+#helpcontents th.header-align {
+	text-align:left;
+}
+#helpcontents .format-history .date {
+	font-size:.8em;
+	margin-bottom:0;
+}
+#helpcontents .format-history ul {
+	list-style-type: square;
+}
+#helpcontents .format-history ul li {
+	margin-top:0;
+	margin-bottom:.2em;
+}
+#helpcontents #ws_user_agreement h1 {
+    font-size:1.4em;
+}
+#helpcontents #ws_user_agreement h2 {
+    font-size:1.1em;
+}
+#helpcontents #auth-level-desc-table {
+    width: 500px;
+    font-size: 80%;
+    border-collapse: collapse;
+    margin-left: 5px;
+}
+#helpcontents #auth-level-desc-div img {
+	border:0px;
+}
+#helpcontents #auth-level-desc-div table th {
+    padding: 4px 10px;
+    text-align:center;
+}
+#helpcontents #auth-level-desc-div table td {
+    padding: 7px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+#helpcontents #auth-level-desc-div table th {
+    width: auto;
+}
+#helpcontents #auth-level-desc-div table em {
+	color: gray;
+}
+#helpcontents .offending {
+	color: red;
+}
+
+/****************************************
+*      DATASHOP TERMS OF USE
+****************************************/
+#datashop-terms {
+    width: 75%;
+    padding: 0;
+    margin: 0;
+}
+#datashop-terms h1 {
+    font-size:1.6em; 
+    font-weight:normal;
+}
+#datashop-terms p {
+    font-size:.9em;
+    line-height: 1.3em;
+}
+#datashop-terms a {
+    color:#37567F;
+    text-decoration:underline
+}
+#datashop-terms li {
+    font-size:.9em;
+    margin-bottom: .2em;
+}
+
+#wf-videos table tbody td {
+    border-bottom: 0;
+    padding:0.5em;
+    font-size: 13px;
+    text-align: center;
+    font-weight: bold;
+}

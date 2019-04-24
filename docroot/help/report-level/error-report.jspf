@@ -1,0 +1,42 @@
+<div class="topic" id="help-error-report">
+    <h2>Error Report</h2>
+
+    <p>To simplify analysis, the Error Report examines data from student
+    <strong>first attempts only</strong>.</p>
+    
+    <p>In the Error Report, you can view information aggregated by
+    <strong>problem step</strong> or <strong>knowledge component</strong>.</p> 
+
+    <p>The Error Report provides:</p>
+    <ul>
+        <li>summaries of student performance by step or knowledge component</li>
+        <li>actual values students entered and the feedback they received</li>
+        <li>at-a-glance information on problem coverage&mdash;the number of students exposed to a
+        particular step or knowledge component, the knowledge components associated with each step, and
+        the the problems that contain each knowledge component.</li>
+    </ul>
+        
+    <h3>Viewing by problem</h3>
+    <p>When viewing by problem, you can view only one problem at a time.
+    Change the problem by clicking a problem's name from the scrollable
+    list in the navigation sidebar.</p>
+    <p>The current problem is broken down by step, and lists the various
+    attempts students made.</p>
+    <p><a href="help?page=errorReport#viewing-by-problem">Read more about the 
+    Error Report's problem view</a></p>
+    
+    <h3>Viewing by knowledge component</h3>
+    <p>When viewing by knowledge component, you can select multiple
+    knowledge components, but each will be shown in its own table row.</p>
+    <p>Values shown are aggregates by knowledge component. From these
+    you can tell, for instance, the more difficult knowledge components
+    by examining the percentages on corrects, errors, and hints. You can also
+    see the list of problems associated with the current knowledge component.</p>
+    <p><a href="help?page=errorReport#viewing-by-kc">Read more about the Error 
+    Report's knowledge component view</a></p>
+    
+    <span style="display:none" class="helpTopicLink"><a href="help?page=errorReport"><img src="images/page_white_text.png" /> <span>Read 
+    more about the Error Report.</span></a></span>
+
+    
+</div>

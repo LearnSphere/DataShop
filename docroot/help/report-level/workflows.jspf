@@ -1,0 +1,18 @@
+<div class="topic" id="help-workflows">
+    <h2>Workflow Edit</h2>
+
+    <p>A workflow is a component-based process model that can be used to analyze, manipulate, or visualize data. Each component acts as a standalone program with its own inputs, options, and outputs. The inputs to each component can be data or files, and the output of each component is made available after the workflow has been run. A generic workflow might consist of the following steps.</p>
+    <ol class="concise">
+        <li><b><i>import</i></b> a tab-delimited file</li>
+        <li><b><i>analyze</i></b> the file</li>
+        <li><b><i>visualize</i></b> the results of the analysis component</li>
+    </ol>
+
+    <p>Users create a workflow by dragging and dropping components into the tool and making connections between components. Clicking on the gear icon <img src="css/images/gear.svg" style="width:5%" /> of any component allows the user to specify the component's options, e.g., the file location for an Import component.</p>
+
+    <p>Once the user has configured the components and connections, the workflow can be run and the results viewed by clicking on the magnifying glass <img src="css/images/glass.svg" style="width:5%" /> -- either for the workflow itself or for any particular component. The results will open in a separate tab in the user's browser.</p>
+
+    <span class="helpTopicLink" style="display:none"><a href="help?page=workflows"><img src="images/page_white_text.png" /> <span>Read more 
+    about Workflows</span></a></span>
+
+</div>

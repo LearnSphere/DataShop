@@ -1,0 +1,283 @@
+#external-tools-div {
+    position: relative;
+    min-width: 900px; /* issue with index page? */
+}
+#external-tools-div h1 {
+    margin-top: 15px;
+    font-size:1.2em;
+}
+
+#freeToolsTxt {
+    margin-right: 120px;
+    font-size: 0.9em;
+}
+#toolPageIndexDiv {
+    font-size: 1.2em;
+    margin-top: 15px;
+}
+#toolPageIndexDiv #indexLink {
+    color: #37567F;
+}
+#toolPageEditNameLink, #toolPageEditDescriptionLink,
+#toolPageEditLanguageLink, #toolPageEditHomePageLink {
+    font-size: 12px;
+    color: #37567F;
+    padding-left: 3px;
+    text-decoration: underline;
+}
+#toolPageEditNameDiv #toolNameField {
+    width: 450px;
+    font-size: 20px;
+}
+#toolPageLeftDiv {
+    float: left;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+.toolPageLeftSubDivs .label {
+    float: left;
+    width: 130px;
+    margin-bottom: 9px;
+    clear: left;
+}
+.toolPageLeftSubDivs #toolPageViewDescriptionDiv,
+.toolPageLeftSubDivs #toolPageViewLanguageDiv,
+.toolPageLeftSubDivs #toolPageViewHomePageDiv {
+    float: left;
+    width: 74%;
+    margin-bottom: 9px;
+}
+.externalToolsDescSpan {
+    display: block;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.externalToolsDescSpan  a{
+    color: #37567F;
+    text-decoration: underline;
+}
+
+.toolPageLeftSubDivs.clear {
+    clear: left;
+}
+#toolPageViewHomePageSpan a, #toolDeleteSureDiv a {
+    color: #37567F;
+    text-decoration: underline;
+}
+#toolPageRightDiv {
+    float: left;
+    width: 40%;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-top: 14px;
+}
+#toolPageRightDiv .rightRow {
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+#toolPageRightDiv .rightRow div {
+    float: left;
+    width: 30px;
+    width: 114px;
+}
+#toolPageRightDiv .rightRow.clear {
+    clear: left;
+}
+
+#toolPageBottomHalfDiv {
+    margin-top: 0;
+    clear: left;
+}
+#toolPageBottomHalfDiv h2 {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+#toolPageLeftDiv, #toolPageLeftDiv p, #toolPageRightDiv p {
+    font-size: 14px;
+}
+.toolPageLeftSubDivs {
+    margin-top: 14px;
+}
+#toolPageReadmeTipDiv {
+    margin-top: 20px;
+    clear: left;
+    background-color: #FFF9D7;
+    border: 1px solid #E2C822;
+    width: 60%;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+#addToolButton, #deleteThisToolDiv {
+    position: absolute;
+    top: -7px;
+    right: 0;
+}
+#downloadAllFilesButton {
+    position: relative;
+    width: 130px;
+    float: left;
+}
+#uploadFileButton {
+    position: relative;
+    width: 150px;
+    float: left;
+}
+#downloadAllFilesLink {
+    padding: .5em 16px .5em 10px;
+    position: relative;
+    color: #636363;
+}
+
+#addToolLink, #uploadToolFileLink {
+    padding: .5em 16px .5em 30px;
+    position: relative;
+    color: #636363;
+    background-image: url('../images/add.png');
+    background-repeat: no-repeat;
+    background-position: 7px center ;
+}
+#addToolLink:hover, #downloadAllFilesLink:hover, #uploadToolFileLink:hover {
+    text-decoration: none;
+    border: 1px solid #999999;
+    color: #212121;
+}
+#indexLink:link, #deleteToolLink:link {
+    text-decoration: underline;
+}
+#deleteToolLink {
+    padding: .5em 16px .5em 30px;
+    position: relative;
+    color: #636363;
+    background-image: url('../images/delete.gif');
+    background-repeat: no-repeat;
+    background-position: 7px center ;
+}
+#addToolDialog p, #uploadToolFileDialog p {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
+}
+#addToolDialog #toolDescMaxLen, #addToolDialog #toolNameMaxLen {
+    font-size: .8em;
+    margin-top: 2px;
+}
+#addToolDialog .addFilesNote {
+    font-weight: normal;
+    margin-top: 27px;
+}
+#addToolForm textarea, #addToolDialog textarea {
+    width: 99%;
+    height: 100px;
+    font-family: Arial, Verdana, sans-serif;
+}
+#uploadToolFileForm textarea, #uploadToolFileDialog textarea {
+    width: 99%;
+    height: 50px;
+    font-family: Arial, Verdana, sans-serif;
+}
+#addToolDialog label, #uploadToolFileDialog label {
+    font-size: 0.8em;
+}
+
+/* Hide the 'less' divs initially */
+.name_less_div, .desc_less_div {
+    display: none;
+}
+
+/* Hide the 'are you sure' divs initially */
+.fileDeleteSureDiv, .toolDeleteSureDiv,
+#toolPageEditNameDiv,
+#toolPageEditDescriptionDiv,
+#toolPageEditLanguageDiv,
+#toolPageEditHomePageDiv {
+    display: none;
+}
+#toolPageViewNameDiv,
+#toolPageViewDescriptionDiv,
+#toolPageViewLanguageDiv,
+#toolPageViewHomePageDiv {
+    display: inline;
+}
+
+#toolPageEditDescriptionDiv {
+    float: left;
+    width: 74%;
+    margin-bottom: 9px;
+}
+#toolPageEditDescriptionDiv textarea {
+    font-family: Arial, sans-serif;
+    width: 100%
+}
+
+/* Tool Table */
+
+#externalToolsTable {
+    clear: left;
+    margin: 1.5em 0 1.5em;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+#externalToolsTable td {
+    border-bottom: 1px solid #E0E0E0;
+    font-size: 90%;
+    padding: 8px 10px 8px 0;
+}
+#externalToolsTable td span {
+    /*font-size: 80%;*/
+}
+#externalToolsTable span.bTitle {
+    font-weight:bold;
+}
+#externalToolsTable span.bTitle .control {
+    font-weight:normal;
+}
+#externalToolsTable th {
+    text-align: left;
+    padding-left: 0;
+}
+#externalToolsTable th img {
+    vertical-align: middle;
+}
+#externalToolsTable th a {
+    color: #37567F;
+    background-color: inherit;
+    font-size: 90%;
+    text-decoration: none;
+    border-bottom: 1px solid #37567F;;
+}
+#externalToolsTable td a {
+    color:#37567F;
+    background-color: inherit;
+    text-decoration: underline;
+}
+#externalToolsTable caption {
+    font-size:.8em;
+    text-align:left;
+    margin-bottom:.5em;
+    padding-bottom:0;
+    border:none;
+    font-weight:bold;
+}
+#externalToolsFilesTable {
+    clear: left;
+}
+#externalToolsFilesTable .even {
+    background-color: #EFEFEF;
+}
+#externalToolsFilesTable td {
+    font-size: 75%;
+}
+
+#requestRoleDialog p {
+    font-size: 0.9em;
+}
+#requestRoleDialog p a {
+    text-decoration: underline;
+    color: #37567F;
+}
+
+#reasonMaxLen {
+    font-size: 75%;
+}

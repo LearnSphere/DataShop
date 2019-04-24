@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 14294 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-09-29 09:42:01 -0400 (Fri, 29 Sep 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.StudentItem" table="student">
+    	<meta attribute="class-description">A single student.</meta>
+
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique Id for this student.</meta>
+            <column name="student_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="actualUserId" type="string">
+        	<meta attribute="field-description">Actual user id of this student as a string.  Must be unique.</meta>
+            <column name="actual_user_id" length="55" not-null="false" unique="true" />
+        </property>
+
+        <property name="anonymousUserId" type="string">
+        	<meta attribute="field-description">Anonymized user id for this student (from OLI db).</meta>
+            <column name="anon_user_id" length="55" not-null="true" unique="false" />
+        </property>
+
+        <set name="alphaScores" inverse="true">
+        	<meta attribute="field-description">Collection of alpha scores associated with this student.</meta>
+            <key>
+                <column name="student_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.AlphaScoreItem" />
+        </set>
+
+        <set name="classes" inverse="true" table="roster">
+            <meta attribute="field-description">Collection of classes in which this student is enrolled.</meta>
+            <key>
+                <column name="student_id" not-null="true" />
+            </key>
+            <many-to-many column="class_id" class="edu.cmu.pslc.datashop.item.ClassItem" />
+        </set>
+
+
+
+        <!-- [20/4/8 - ysahn] Maps to student not to session_student_map -->
+        <set name="sessions" inverse="true" table="session">
+			<meta attribute="field-description">Collection of sessions in which this student is part of.</meta>
+			<key>
+				<column name="student_id" not-null="true" />
+			</key>
+			<one-to-many class="edu.cmu.pslc.datashop.item.SessionItem" />
+		</set>
+
+    </class>
+</hibernate-mapping>

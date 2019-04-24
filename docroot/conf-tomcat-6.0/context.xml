@@ -1,0 +1,147 @@
+<!-- The contents of this file will be loaded for each web application -->
+<Context path="/" docBase="ROOT" debug="5" reloadable="true" crossContext="true">
+
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+	
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+    <!--
+    <Manager pathname="" />
+    -->
+
+    <!-- Uncomment this to enable Comet connection tacking (provides events
+         on session expiration as well as webapp lifecycle) -->
+    <!--
+    <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
+    -->
+    <Logger className="org.apache.catalina.logger.FileLogger"
+    prefix="localhost_analysis." suffix=".log"
+                      timestamp="true"/>
+
+              <Resource name="jdbc/DatashopDS"
+                        auth="Container"
+                        type="javax.sql.DataSource"
+                        maxActive="100" maxIdle="30" maxWait="10000"
+                        username="datashop" password="datashop"
+                        driverClassName="com.mysql.jdbc.Driver"
+                        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+                        removeAbandoned="true" removeAbandonedTimeout="120"
+                        logAbandoned="true"
+                        testOnBorrow="true"
+                        connectionProperties="useUnicode=yes;characterEncoding=utf8;"
+                        validationQuery="SELECT 1"
+                        url="jdbc:mysql://localhost:3306/analysis_db" />
+
+              <Resource name="jdbc/LoggingActivityLogDS"
+                        auth="Container"
+                        type="javax.sql.DataSource"
+                        maxActive="100" maxIdle="30" maxWait="10000"
+                        username="datashop" password="datashop"
+                        driverClassName="com.mysql.jdbc.Driver"
+                        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+                        removeAbandoned="true" removeAbandonedTimeout="120"
+                        logAbandoned="true"
+                        testOnBorrow="true"
+                        connectionProperties="useUnicode=yes;characterEncoding=utf8;"
+                        validationQuery="SELECT 1"
+                        url="jdbc:mysql://localhost:3306/log" />
+
+              <Resource name="jdbc/ImportDS"
+                        auth="Container"
+                        type="javax.sql.DataSource"
+                        maxActive="100" maxIdle="30" maxWait="10000"
+                        username="datashop" password="datashop"
+                        driverClassName="com.mysql.jdbc.Driver"
+                        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+                        removeAbandoned="true" removeAbandonedTimeout="120"
+                        logAbandoned="true"
+                        testOnBorrow="true"
+                        connectionProperties="useUnicode=yes;characterEncoding=utf8;"
+                        validationQuery="SELECT 1"
+                        url="jdbc:mysql://localhost:3306/import_db" />
+
+              <Resource name="jdbc/SourceDS"
+                        auth="Container"
+                        type="javax.sql.DataSource"
+                        maxActive="100" maxIdle="30" maxWait="10000"
+                        username="datashop" password="datashop"
+                        driverClassName="com.mysql.jdbc.Driver"
+                        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+                        removeAbandoned="true" removeAbandonedTimeout="120"
+                        logAbandoned="true"
+                        testOnBorrow="true"
+                        connectionProperties="useUnicode=yes;characterEncoding=utf8;"
+                        validationQuery="SELECT 1"
+                        url="jdbc:mysql://localhost:3306/adb_source" />
+
+              <Resource name="jdbc/DiscourseDS"
+                        auth="Container"
+                        type="javax.sql.DataSource"
+                        maxActive="100" maxIdle="30" maxWait="10000"
+                        username="datashop" password="datashop"
+                        driverClassName="com.mysql.jdbc.Driver"
+                        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+                        removeAbandoned="true" removeAbandonedTimeout="120"
+                        logAbandoned="true"
+                        testOnBorrow="true"
+                        connectionProperties="useUnicode=yes;characterEncoding=utf8;"
+                        validationQuery="SELECT 1"
+                        url="jdbc:mysql://localhost:3306/discoursedb" />
+
+              <Resource name="jdbc/Pl2DS"
+                        auth="Container"
+                        type="javax.sql.DataSource"
+                        maxActive="100" maxIdle="30" maxWait="10000"
+                        username="datashop" password="datashop"
+                        driverClassName="com.mysql.jdbc.Driver"
+                        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+                        removeAbandoned="true" removeAbandonedTimeout="120"
+                        logAbandoned="true"
+                        testOnBorrow="true"
+                        connectionProperties="useUnicode=yes;characterEncoding=utf8;"
+                        validationQuery="SELECT 1"
+                        url="jdbc:mysql://localhost:3306/pl2_db" />
+
+              <Resource name="jdbc/DiscourseSrcDS"
+                        auth="Container"
+                        type="javax.sql.DataSource"
+                        maxActive="100" maxIdle="30" maxWait="10000"
+                        username="datashop" password="datashop"
+                        driverClassName="com.mysql.jdbc.Driver"
+                        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+                        removeAbandoned="true" removeAbandonedTimeout="120"
+                        logAbandoned="true"
+                        testOnBorrow="true"
+                        connectionProperties="useUnicode=yes;characterEncoding=utf8;"
+                        validationQuery="SELECT 1"
+                        url="jdbc:mysql://localhost:3306/discoursedb_source" />
+
+              <Resource name="jdbc/CourseraDS"
+                        auth="Container"
+                        type="javax.sql.DataSource"
+                        maxActive="100" maxIdle="30" maxWait="10000"
+                        username="datashop" password="datashop"
+                        driverClassName="com.mysql.jdbc.Driver"
+                        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+                        removeAbandoned="true" removeAbandonedTimeout="120"
+                        logAbandoned="true"
+                        testOnBorrow="true"
+                        connectionProperties="useUnicode=yes;characterEncoding=utf8;"
+                        validationQuery="SELECT 1"
+                        url="jdbc:mysql://localhost:3306/coursera_mooc_psych" />
+
+              <Resource name="jdbc/MappingDS"
+                        auth="Container"
+                        type="javax.sql.DataSource"
+                        maxActive="100" maxIdle="30" maxWait="10000"
+                        username="datashop" password="datashop"
+                        driverClassName="com.mysql.jdbc.Driver"
+                        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+                        removeAbandoned="true" removeAbandonedTimeout="120"
+                        logAbandoned="true"
+                        testOnBorrow="true"
+                        connectionProperties="useUnicode=yes;characterEncoding=utf8;"
+                        validationQuery="SELECT 1"
+                        url="jdbc:mysql://localhost:3306/mapping_db" />
+
+</Context>

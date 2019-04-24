@@ -1,0 +1,122 @@
+/** Manage KC Sets **/
+
+#manageKCsets {
+	width:36em;
+	z-index: 200;
+}
+#manageKCsetsContent {
+	padding: 0 .5em;
+}
+#manageKCsetsExistingSetsList table {
+	width:100%;
+}
+#manageKCsetsContent .setLink {
+	text-decoration:underline;
+	color:#37567F;
+	cursor:pointer;
+}
+
+#manageKCsetsName {
+	margin-bottom:.5em;
+}
+#manageKCsetsSaveButton {
+	margin-left:.5em;
+	margin-bottom:.5em;
+	font-size:1em;
+}
+#manageKCsetsSaveButtonCell {
+	width:17em;
+}
+#manageKCsets h1 {
+	font-size:.75em;
+	margin:0 0 .5em;
+	color:#333;
+	font-weight:bold;
+	background-color:#ece9d8;
+	padding:.3em .5em;
+	border-bottom:1px solid #cfcbb5;
+}
+#manageKCsets h2 {
+	font-size:.75em;
+	background-color:#efefef;
+	border-bottom:1px solid gray;
+	padding:.2em 0;
+}
+#manageKCsets h3 {
+	font-size:.9em;
+}
+
+#manageKCsets p, #manageKCsets li, #manageKCsets table {
+	font-size:.8em;
+}
+#kcSetLoadCol {width:3.5em}
+#kcSetRenameCol {width:5em}
+#kcSetDeleteCol {width:4em}
+#manageKCsets table tbody th {  /* This set does nothing because there is no tbody or th!*/
+	text-align: right;
+	padding-right:1em;
+	vertical-align:top;
+	padding-bottom:1em;
+}
+#manageKCsets .hover {
+	background-color:#efefef;
+}
+#manageKCsets .selected {
+	background-color:#efefef;
+}
+#manageKCsets .screen-item {
+	font-weight:bold;
+}
+#manageKCsets a:link {
+	text-decoration:underline;
+	color:#304b6f;
+}
+#manageKCsets a:visited {
+	text-decoration:underline;
+	color:#304b6f;
+}
+#manageKCsets .topic {
+	padding:0 1em 1em 1em;
+}
+
+#manageKCsetsHeader.hover {
+	cursor:pointer;
+}
+#manageKCsetsCloseImage {
+	float:right;
+	margin:.2em;
+}
+#manageKCsetsCloseImage:hover {
+	background-color:transparent;
+	cursor:pointer;
+}
+#manageKCsetsHelpImage {
+	float:right;
+	margin:.2em
+}
+#manageKCsetsHelpImage:hover {
+	background-color:transparent;
+	cursor:pointer
+}
+#manageKCsetsCloseImage img {
+	border:none;
+	width:16px;
+	height:16px;
+}
+#manageKCsetsInfo p {
+	margin:0 0 .5em .7em;
+	color:#666;
+}
+#manageKCsetsCloseButton {
+	margin:.8em auto 0 auto;
+	width:5em;
+	display:block;
+}
+#manageKCsetsExistingSetsList .rename-field {
+	display:block;
+	margin-bottom:0;
+	padding-bottom:0;
+}
+#manageKCsetsExistingSetsList input {
+	margin-top:0;
+}

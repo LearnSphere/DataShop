@@ -1,0 +1,66 @@
+<%@ include file="/doctype.jspf" %>
+<!--
+  Carnegie Mellon University, Human Computer Interaction Institute
+  Copyright 2012
+  All Rights Reserved
+-->
+<%
+// Author: Alida Skogsholm
+// Version: $Revision: 14003 $
+// Last modified by: $Author: ctipper $
+// Last modified on: $Date: 2017-03-14 10:39:37 -0400 (Tue, 14 Mar 2017) $
+// $KeyWordsOff: $
+//
+%>
+<%@page contentType="text/html"%>
+<div id="auth-level-desc-div">
+<table id="auth-level-desc-table">
+<tbody>
+<tr>
+<th>Permission</th>
+<th>Edit</th>
+<th>View</th>
+</tr>
+<tr>
+<td>View existing samples</td>
+<td><img src="images/tick.png" alt="yes" /></td>
+<td><img src="images/tick.png" alt="yes" /></td>
+</tr>
+<tr>
+<td>Export data, use analysis tools, and download files</td>
+<td><img src="images/tick.png" alt="yes" /></td>
+<td><img src="images/tick.png" alt="yes" /></td>
+</tr>
+<tr>
+<td>Use data in workflows</td>
+<td><img src="images/tick.png" alt="yes" /></td>
+<td><img src="images/tick.png" alt="yes" /></td>
+</tr>
+<tr>
+<td>Create samples</td>
+<td><img src="images/tick.png" alt="yes" /></td>
+<td><img src="images/cross.png" alt="no" /></td>
+</tr>
+<tr>
+<td>Add knowledge component models</td>
+<td><img src="images/tick.png" alt="yes" /></td>
+<td><img src="images/cross.png" alt="no" /></td>
+</tr>
+<tr>
+<td>Add papers, external analyses, and other types of files</td>
+<td><img src="images/tick.png" alt="yes" /></td>
+<td><img src="images/cross.png" alt="no" /></td>
+</tr>
+<tr>
+<td>Add custom fields</td>
+<td><img src="images/tick.png" alt="yes" /></td>
+<td><img src="images/cross.png" alt="no" /></td>
+</tr>
+<tr>
+<td>Create KC sets</td>
+<td><img src="images/tick.png" alt="yes" /></td>
+<td><img src="images/cross.png" alt="no" /></td>
+</tr>
+</tbody>
+</table>
+</div>

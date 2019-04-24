@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2011
+ All Rights Reserved
+
+ Author: Shanwen Yu
+ $Revision: 7200 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2011-11-03 11:33:08 -0400 (Thu, 03 Nov 2011) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.TermsOfUseVersionItem" table="terms_of_use_version">
+        <meta attribute="class-description">A term of use.</meta>
+        <id name="id" type="integer">
+        	<meta attribute="field-description">Database generated unique Id for this version.</meta>
+            <column name="terms_of_use_version_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="termsOfUse" class="edu.cmu.pslc.datashop.item.TermsOfUseItem">
+                <meta attribute="field-description">Terms of Use associated with this version.</meta>
+            <column name="terms_of_use_id" />
+        </many-to-one>
+        <property name="version" type="integer">
+        	<meta attribute="field-description">The version number of the terms.</meta>
+            <column name="version" not-null="true" />
+        </property> 
+        <property name="terms" type="string">
+                <meta attribute="field-description">The terms of use text.</meta>
+            <column name="terms" not-null="true" />
+        </property> 
+        <property name="status" type="string">
+                <meta attribute="field-description">The status of the terms.</meta>
+            <column name="status" not-null="true" />
+        </property>         
+        <property name="savedDate" type="timestamp">
+        	<meta attribute="field-description">The timestamp for when this version was saved.</meta>
+            <column name="saved_date" length="19" not-null="true" />
+        </property>
+        <property name="appliedDate" type="timestamp">
+                <meta attribute="field-description">The timestamp for when this version was applied.</meta>
+            <column name="applied_date" length="19" />
+        </property> 
+        <property name="archivedDate" type="timestamp">
+                <meta attribute="field-description">The timestamp for when this version was archived.</meta>
+            <column name="archived_date" length="19" />
+        </property>         
+    </class>
+</hibernate-mapping>

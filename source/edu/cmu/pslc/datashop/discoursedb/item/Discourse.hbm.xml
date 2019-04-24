@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 14293 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-09-28 14:12:25 -0400 (Thu, 28 Sep 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.discoursedb.item.DiscourseItem" table="discourse">
+        <id name="id" type="long">
+          <column name="id_discourse" />
+          <generator class="edu.cmu.pslc.datashop.dao.hibernate.UpdatableIdentityGenerator" />
+        </id>
+        <!-- 'name' column is of type TEXT -->
+        <property name="name" type="string">
+          <column name="name" length="255" />
+        </property>
+        <property name="projectId" type="integer">
+            <meta attribute="field-description">Id of project associated with this dataset.</meta>
+            <column name="project_id" />
+        </property>
+        <property name="created" type="timestamp">
+          <column name="entity_created" length="19"/>
+        </property>
+        <property name="modified" type="timestamp">
+          <column name="entity_modified" length="19"/>
+        </property>
+        <property name="version" type="long">
+          <column name="entity_version" length="20"/>
+        </property>
+        <property name="deletedFlag" type="boolean">
+            <column name="deleted_flag" default="false"/>
+        </property>
+        <property name="sourceId" type="long">
+          <column name="source_id" length="20"/>
+        </property>
+    </class>
+</hibernate-mapping>

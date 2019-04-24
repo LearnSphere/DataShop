@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.DatasetUsageItem" table="dataset_usage">
+    	<meta attribute="class-description">A collection of usage information for a user on a dataset.</meta>
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.DatasetUsageId">
+            <key-property name="userId" type="string">
+                <column name="user_id" length="250" />
+            </key-property>
+            <key-property name="datasetId" type="integer">
+                <column name="dataset_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="user" class="edu.cmu.pslc.datashop.item.UserItem" update="false" insert="false">
+        	<meta attribute="field-description">The user of the dataset.</meta>
+            <column name="user_id" length="250" not-null="true" />
+        </many-to-one>
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem" update="false" insert="false">
+        	<meta attribute="field-description">Dataset being used.</meta>
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+        <property name="lastViewedTime" type="timestamp">
+        	<meta attribute="field-description">Timestamp of the last time this user accessed the dataset.</meta>
+            <column name="last_viewed_time" length="19" />
+        </property>
+        <property name="numTimesViewed" type="integer">
+        	<meta attribute="field-description">Total number of times the user has accessed the dataset.</meta>
+            <column name="num_times_viewed" />
+        </property>
+        <property name="lastExportedTime" type="timestamp">
+            <meta attribute="field-description">Timestamp of the last time this user exported the dataset.</meta>
+            <column name="last_exported_time" length="19" />
+        </property>
+        <property name="numTimesExported" type="integer">
+            <meta attribute="field-description">Total number of times the user has exported the dataset.</meta>
+            <column name="num_times_exported" />
+        </property>
+    </class>
+</hibernate-mapping>

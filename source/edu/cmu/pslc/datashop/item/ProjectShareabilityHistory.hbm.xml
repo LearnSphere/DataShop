@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2012
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ProjectShareabilityHistoryItem" table="project_shareability_history">
+
+        <id name="id" type="integer">
+            <column name="project_shareability_history_id" />
+            <generator class="native" />
+        </id>
+
+        <many-to-one name="project" class="edu.cmu.pslc.datashop.item.ProjectItem">
+            <column name="project_id" not-null="true" />
+        </many-to-one>
+
+        <many-to-one name="updatedBy" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="updated_by" length="250" />
+        </many-to-one>
+
+        <property name="updatedTime" type="timestamp">
+                <column name="updated_time" length="19" not-null="true" />
+        </property>
+
+        <property name="shareableStatus" type="string">
+                <column name="shareable_status" length="32" not-null="true" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

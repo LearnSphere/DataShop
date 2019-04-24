@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.AuthorizationItem" table="authorization">
+    	<meta attribute="class-description">Authorization maps a user to a project.  In addition it contains their
+autorization level which indicates the amount of
+access they have to a dataset.</meta>
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.AuthorizationId">
+            <key-property name="userId" type="string">
+            	<meta attribute="field-description">Part of the composite key - FK to the user table.</meta>
+                <column name="user_id" length="250" />
+            </key-property>
+            <key-property name="projectId" type="integer">
+            	<meta attribute="field-description">Part of the composite key - FK to the project table.</meta>
+                <column name="project_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="user" class="edu.cmu.pslc.datashop.item.UserItem" update="false" insert="false">
+            <meta attribute="field-description">Part of the composite key - FK to the user table.</meta>
+            <column name="user_id" length="32" not-null="true" />
+        </many-to-one>
+        <many-to-one name="project" class="edu.cmu.pslc.datashop.item.ProjectItem" update="false" insert="false">
+        	<meta attribute="field-description">Part of the composite key - FK to the project table.</meta>
+            <column name="project_id" not-null="true" />
+        </many-to-one>
+        <property name="level" type="string">
+        	<meta attribute="field-description">The level of authorizaion for the user on this project.</meta>
+            <column name="level" length="5" />
+        </property>
+    </class>
+</hibernate-mapping>

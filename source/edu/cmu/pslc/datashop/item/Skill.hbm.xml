@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 4494 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2008-02-20 10:52:25 -0500 (Wed, 20 Feb 2008) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.SkillItem" table="skill">
+    	<meta attribute="class-description">The knowledge component (skill) that is being employed.</meta>
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique Id for this selection.</meta>
+            <column name="skill_id" />
+            <generator class="native" />
+        </id>
+        
+        <many-to-one name="skillModel" class="edu.cmu.pslc.datashop.item.SkillModelItem">
+        	<meta attribute="field-description">Skill model that this skill is associated with.</meta>
+            <column name="skill_model_id" />
+        </many-to-one>
+        
+        <property name="skillName" type="string">
+        	<meta attribute="field-description">Name of this skill as a string.</meta>
+            <column name="skill_name" not-null="true" length="65535" />
+        </property>
+        
+        <property name="category" type="string">
+        	<meta attribute="field-description">Category as a string that this skill is part of.</meta>
+            <column name="category" length="50" />
+        </property>
+        
+        <property name="beta" type="double">
+        	<meta attribute="field-description">Beta score for this skill.</meta>
+            <column name="beta" precision="22" scale="0" />
+        </property>
+        
+        <property name="gamma" type="double">
+        	<meta attribute="field-description">Gamma score for this skill.</meta>
+            <column name="gamma" precision="22" scale="0" />
+        </property>
+
+        <set name="subgoals" inverse="true" table="subgoal_skill_map" batch-size="100">
+        	<meta attribute="field-description">Collection of subgoals associated with this skill.</meta>
+            <key>
+                <column name="skill_id" not-null="true" />
+            </key>
+            <many-to-many column="subgoal_id" class="edu.cmu.pslc.datashop.item.SubgoalItem" />
+
+        </set>
+
+        <set name="sets" inverse="true" table="ds_set_skill_map" batch-size="100">
+        	<meta attribute="field-description">Collection of sets associated with this skill.</meta>
+            <key>
+                <column name="skill_id" not-null="true" />
+            </key>
+            <many-to-many column="ds_set_id" class="edu.cmu.pslc.datashop.item.SetItem" />
+
+        </set>
+
+    </class>
+</hibernate-mapping>

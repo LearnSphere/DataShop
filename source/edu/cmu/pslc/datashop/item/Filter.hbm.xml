@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 1777 $
+ Last modified by - $Author: bkb $
+ Last modified on - $Date: 2005-11-16 11:32:37 -0500 (Wed, 16 Nov 2005) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.FilterItem" table="filter">
+    	<meta attribute="class-description">Filter on a column.</meta>
+        <id name="id" type="integer">
+        	<meta attribute="field-description">Database generated unique Id for this filter.</meta>
+            <column name="filter_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="sample" class="edu.cmu.pslc.datashop.item.SampleItem">
+        	<meta attribute="field-description">The sample this filter is associated with.</meta>
+            <column name="sample_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="parent" class="edu.cmu.pslc.datashop.item.FilterItem">
+        	<meta attribute="field-description">Parent of this filter for complex operand building.</meta>
+            <column name="parent_id" />
+        </many-to-one>
+        <property name="clazz" type="string">
+        	<meta attribute="field-description">Class this database is building a filter on.</meta>
+            <column name="class" length="50" not-null="true" />
+        </property>
+        <property name="attribute" type="string">
+        	<meta attribute="field-description">Attribute that is being filtered on.</meta>
+            <column name="attribute" length="50" not-null="true" />
+        </property>
+        <property name="filterString" type="string">
+        	<meta attribute="field-description">string of the filter.</meta>
+            <column name="filter_string" />
+        </property>
+        <property name="operator" type="string">
+        	<meta attribute="field-description">The type of operator this filter is employing.</meta>
+            <column name="operator" length="10" not-null="true" />
+        </property>
+        <property name="position" type="integer">
+        	<meta attribute="field-description">Position of the attribute/column when using this filter as an export.</meta>
+            <column name="position" />
+        </property>
+        <set name="children" inverse="true">
+        	<meta attribute="field-description">Collection of children for this filter.</meta>
+            <key>
+                <column name="parent_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.FilterItem" />
+        </set>
+    </class>
+</hibernate-mapping>

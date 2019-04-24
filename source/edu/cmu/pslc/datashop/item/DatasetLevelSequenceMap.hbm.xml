@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2009
+ All Rights Reserved
+
+ $Revision: 5516 $
+ Author: Kyle Cunningham
+ Last modified by - $Author: kcunning $
+ Last modified on - $Date: 2009-06-11 13:55:15 -0400 (Thu, 11 Jun 2009) $
+ $KeyWordsOff: $
+-->
+
+  <class name="edu.cmu.pslc.datashop.item.DatasetLevelSequenceMapItem" table="dataset_level_sequence_map">
+  	<meta attribute="class-description">Represents a DatasetLevelSequenceMapItem in the system.  This class
+            is essentially a mapping table with additional properties, so in order to get Hibernate to 
+            play nicely, we create a surrogate id object, called DatasetLevelSequenceMapId.  It holds
+            the two members that form the composite key.  This item is then used to access DatasetLevelSequenceMapItem
+            , as opposed to passing a datasetLevelSequence and datasetLevel item.
+        </meta>
+
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.DatasetLevelSequenceMapId">
+            <key-property name="datasetLevelSequenceId" type="integer">
+                <meta attribute="field-description">Part of the composite key - FK into
+                    dataset_level_sequence.
+                </meta>
+                <column name="dataset_level_sequence_id"/>
+            </key-property>
+            <key-property name="datasetLevelId" type="integer">
+                <meta attribute="field-description">Part of the composite key - FK into dataset_level</meta>
+                <column name="dataset_level_id"/>
+            </key-property>
+        </composite-id>
+        
+        <many-to-one name="datasetLevelSequence" class="edu.cmu.pslc.datashop.item.DatasetLevelSequenceItem"
+        	insert="false" update="false">
+            <meta attribute="field-description">DatasetLevelSequence associated with this item.</meta>
+            <column name="dataset_level_sequence_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="datasetLevel" class="edu.cmu.pslc.datashop.item.DatasetLevelItem"
+        	insert="false" update="false">
+            <meta attribute="field-description">DatasetLevel associated with this item.</meta>
+            <column name="dataset_level_id" not-null="true" />
+        </many-to-one>
+        
+        <property name="sequence" type="integer">
+            <meta attribute="field-description">The sequence for this items DatasetLevel within the
+               given DatasetLevelSequence.</meta>
+            <column name="sequence"/>
+        </property>
+  </class>
+</hibernate-mapping>

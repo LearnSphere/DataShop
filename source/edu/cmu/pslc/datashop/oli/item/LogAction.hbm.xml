@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 2696 $
+ Last modified by - $Author: bkb $
+ Last modified on - $Date: 2006-03-28 15:05:52 -0500 (Tue, 28 Mar 2006) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.oli.item.LogActionItem" table="log_act">
+        <meta attribute="class-description">OLI Log Action Table.</meta>
+        <id name="id" type="string">
+            <meta attribute="field-description">Database generated unique Id for this item.</meta>
+            <column name="guid" />
+            <generator class="assigned" />
+        </id>
+        <property name="sessionId" type="string">
+            <meta attribute="field-description">The session id of this action.</meta>
+            <column name="sess_ref" length="250"/>
+        </property>
+        <property name="time" type="timestamp">
+            <meta attribute="field-description">The timestamp of this action.</meta>
+            <column name="time" length="19"/>
+        </property>
+        <property name="timeZone" type="string">
+            <meta attribute="field-description">The time zone the timestamp was taken in.</meta>
+            <column name="timezone" length="250" />
+        </property>
+        <property name="source" type="string">
+            <meta attribute="field-description">The source of this action.</meta>
+            <column name="source" length="250" />
+        </property>
+        <property name="action" type="string">
+            <meta attribute="field-description">The action of this action.</meta>
+            <column name="action" length="250" />
+        </property>
+        <property name="extObjId" type="string">
+            <meta attribute="field-description">The external object id of this action.</meta>
+            <column name="external_object_id" length="250" />
+        </property>
+        <property name="container" type="string">
+            <meta attribute="field-description">The external object id of this action.</meta>
+            <column name="container" length="250" />
+        </property>
+        <property name="infoType" type="string">
+            <meta attribute="field-description">The external object id of this action.</meta>
+            <column name="info_type" length="250" />
+        </property>
+        <property name="serverReceiptTime" type="timestamp">
+            <meta attribute="field-description">The server receipt time of this action.</meta>
+            <column name="server_receipt_time" length="19"/>
+        </property>
+<!-- TODO this should be a blob. -->
+        <property name="info" type="string">
+            <meta attribute="field-description">The external object id of this action.</meta>
+            <column name="info" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

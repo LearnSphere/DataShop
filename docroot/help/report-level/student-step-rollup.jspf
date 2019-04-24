@@ -1,0 +1,55 @@
+<div class="topic" id="help-student-step-rollup" >
+    <h2>Student-Step Rollup Table </h2>
+    <p>The student-step rollup table aggregates data by student-step: each row
+    represents a student attempting to complete a step. Rows are ordered
+    by student, problem, then step, so all steps attempted by a student for 
+    a problem are listed together.</p>
+    
+    <p>Knowledge components are not shown by default. To include them,
+    click the checkbox "Knowledge Components" at the left of the
+    screen.</p>
+    
+    <p><a href="help?page=stepRollup#column-desc">Read column descriptions</a></p>
+    
+    <p>A student-step pair can appear on more than one row. This can
+    happen if the step has more than one knowledge component associated
+    with it, in which case the row is a duplicate except for the
+    knowledge component field; or if the student saw the same problem more
+    than once&mdash;there you would see the Problem View number
+    increase.</p>
+
+    <h3>What can you do with a student-step rollup?</h3>
+
+    <p>Export the step breakdown table by clicking the <span class="button">Export 
+    Step Rollup</span> button. Then using Excel or another spreadsheet editor 
+    to manipulate your data, you could:</p>
+
+    <ul>
+        <li>Create a KC rollup from the student-step rollup using an <a 
+            href="help?page=pivotTable">Excel PivotTable</a>.</li>
+        <li>Compare the step rollup with learning curves in DataShop to 
+        investigate the causes of spikes and dips in the learning 
+        curve. (Requires exporting knowledge components, which includes
+        the "opportunities" column.)</li>
+    </ul>
+    
+    <h3>Export checklist:</h3>
+    <ul>
+        <li>Select samples to include</li>
+        <li>Select a knowledge component model</li>
+        <!-- <li>Set the empty fields character, useful if data will be
+        imported into SPSS or other statistics package</li>  -->
+        <li>Include KCs?</li>
+        <li>Include steps without KCs?</li>
+        <li>Customize the selected KCs, Students, or Problems included
+        in the export</li>
+    </ul>
+    
+    <p><strong>You can lose precision in your data when opening data in
+    Microsoft Excel!</strong><br /> <a
+    href="help?page=export">Read
+    our recommended method for opening exported data in Excel</a>.</p>    
+    
+    <span style="display:none" class="helpTopicLink"><a href="help?page=stepRollup"><img src="images/page_white_text.png" /> <span>Read 
+    more about the student-step rollup.</span></a></span>  
+</div>

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 13095 $
+ Last modified by - $Author: hcheng $
+ Last modified on - $Date: 2016-04-14 11:35:29 -0400 (Thu, 14 Apr 2016) $
+ $KeyWordsOff: $
+-->
+
+    <class name="edu.cmu.pslc.learnsphere.analysis.resourceuse.coursera.item.CourseraClickstreamVideoItem" table="coursera_clickstream_video">
+    <meta attribute="class-description">Represents a record in coursera_clickstream_video.</meta>
+        <id name="id" type="long">
+        <meta attribute="field-description">Database generated unique Id.</meta>
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="currentTime" type="double">
+            <meta attribute="field-description">currentTime.</meta>
+            <column name="currentTime" />
+        </property>
+        <property name="error" type="string">
+            <meta attribute="field-description">error</meta>
+            <column name="error"/>
+        </property>
+        <property name="eventTimestamp" type="long">
+            <meta attribute="field-description">eventTimestamp.</meta>
+            <column name="eventTimestamp"/>
+        </property>
+        <property name="fragment" type="string">
+            <meta attribute="field-description">fragment</meta>
+            <column name="fragment"/>
+        </property>
+        <property name="initTimestamp" type="long">
+            <meta attribute="field-description">initTimestamp.</meta>
+            <column name="initTimestamp"/>
+        </property>
+        <property name="lectureId" type="integer">
+        <meta attribute="field-description">lectureID</meta>
+            <column name="lectureID" />
+        </property>
+        <property name="networkState" type="integer">
+        <meta attribute="field-description">networkState</meta>
+            <column name="networkState" />
+        </property>
+        <property name="paused" type="string">
+        <meta attribute="field-description">paused.</meta>
+            <column name="paused"/>
+        </property>
+        <property name="playbackRate" type="double">
+            <meta attribute="field-description">playbackRate.</meta>
+            <column name="playbackRate" />
+        </property>
+        <property name="prevTime" type="double">
+            <meta attribute="field-description">prevTime.</meta>
+            <column name="prevTime" />
+        </property>
+        <property name="readyState" type="integer">
+        <meta attribute="field-description">readyState</meta>
+            <column name="readyState" />
+        </property>
+        <property name="type" type="string">
+            <meta attribute="field-description">type.</meta>
+            <column name="type"/>
+        </property>
+        
+    </class>
+</hibernate-mapping>

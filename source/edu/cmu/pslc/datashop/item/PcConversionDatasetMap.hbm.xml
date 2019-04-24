@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2014
+ All Rights Reserved
+
+ Author: Cindy Tipper
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+
+  <class name="edu.cmu.pslc.datashop.item.PcConversionDatasetMapItem" table="pc_conversion_dataset_map">
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.PcConversionDatasetMapId">
+            <key-property name="pcConversionId" type="long">
+                <column name="pc_conversion_id"/>
+            </key-property>
+            <key-property name="datasetId" type="integer">
+                <column name="dataset_id"/>
+            </key-property>
+        </composite-id>
+        
+        <many-to-one name="pcConversion" class="edu.cmu.pslc.datashop.item.PcConversionItem"
+        	insert="false" update="false">
+            <column name="pc_conversion_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem"
+        	insert="false" update="false">
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+        
+        <property name="status" type="string">
+            <column name="status" length="8" />
+        </property>
+
+        <property name="numProblemsMapped" type="long">
+            <column name="num_problems_mapped" />
+        </property>
+
+        <many-to-one name="mappedBy" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="mapped_by" length="250" />
+        </many-to-one>
+
+        <property name="mappedTime" type="timestamp">
+            <column name="mapped_time" length="19" />
+        </property>
+  </class>
+</hibernate-mapping>

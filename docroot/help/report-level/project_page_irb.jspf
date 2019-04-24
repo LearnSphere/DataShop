@@ -1,0 +1,43 @@
+
+<div class="topic" id="help-project-page">
+    <h2>IRB</h2>
+    <h3>Requirements for all projects</h3>
+    
+    <p>When you add a dataset to DataShop, you must complete the following steps on the IRB sub-tab
+    of your project page. These requirements, specified in the latest IRB for DataShop, apply to 
+    all datasets added to DataShop after April 2012.</p> 
+    
+    <ol>
+        <li><strong>Specify the "data collection type"</strong>, which describes what type of IRB 
+        (if any) applies to the data. The three options are:
+        <ul>
+            <li><strong>Not human subjects data (not originally collected for research purposes)</strong> 
+            This includes data from a private company, which has no IRB governing how data can be 
+            collected and shared.</li>
+            <li><strong>Study data collected under an IRB where consent was not required (IRB approval 
+            letter required)</strong> This is human subjects data. Please upload the IRB approval letter.</li>
+            <li><strong>Study data collected under an IRB where consent was required (IRB approval letter 
+            and consent form required)</strong> This is human subjects data. Please upload the IRB approval 
+            letter and consent form to DataShop so that we have these on file.</li>
+        </ul>
+        <li><strong>Upload IRB documentation to the project</strong>, if the data was collected under an IRB.</li>
+    </ol>    
+    
+    <h3>Additional requirement for projects where you would like to share your data with others</h3>
+
+    <p>If you would also like to share the data in your project with others outside of your immediate 
+    research team, you will need to complete steps 1 and 2 as described above, as well as an additional 
+    step 3 (see below).  On the IRB sub-tab of your project page:</p>
+    
+    <ol>
+        <li><strong>Specify the "data collection type"</strong>, described above</li>
+        <li><strong>Upload IRB documentation to the project</strong>, if the data was collected under an IRB.</li>
+        <li><strong>Submit the project for a review of its "shareability"</strong> by clicking "Submit project 
+        for review". The research manager will review your project and respond either through email or DataShop.
+        </li>
+    </ol>
+    
+    <span style="display:none" class="helpTopicLink"><a href="help?page=irb"><img src="images/page_white_text.png" /> <span>Read 
+    more about IRB and data shareability</span></a></span>
+</div>
+    

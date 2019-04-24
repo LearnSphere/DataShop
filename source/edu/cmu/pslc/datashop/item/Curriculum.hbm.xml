@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 1967 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2005-12-09 15:14:07 -0500 (Fri, 09 Dec 2005) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.CurriculumItem" table="curriculum">
+    	<meta attribute="class-description">A collection of datasets that all fall under the same curricula (aka AlgerbraI).
+Datasets should be similar enough that comparisons across datasets makes sense.</meta>
+        <id name="id" type="integer">
+        	<meta attribute="field-description">Database generated unique Id for this curriculum.</meta>
+            <column name="curriculum_id" />
+            <generator class="native" />
+        </id>
+        <property name="curriculumName" type="string">
+        	<meta attribute="field-description">Name of this curriculum as a string.</meta>
+            <column name="curriculum_name" length="60" not-null="true" unique="true" />
+        </property>
+        <set name="datasets" inverse="true">
+        	<meta attribute="field-description">Datasets under this curriculum.</meta>
+            <key>
+                <column name="curriculum_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.DatasetItem" />
+        </set>
+    </class>
+</hibernate-mapping>

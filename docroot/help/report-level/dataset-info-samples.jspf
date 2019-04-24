@@ -1,0 +1,74 @@
+<div class="topic" id="help-dataset-info-samples">
+
+    <h2>Dataset Info / Samples</h2>
+
+    <p>A sample is a proper subset of a dataset and is composed of one or more <strong>filters</strong>, specific
+    conditions that narrow down your sample. This page lists samples shared by others, as well as those owned by you.</p>
+
+    <p>You can use samples to:</p>
+    <ul>
+        <li>Compare across conditions</li>
+        <li>Narrow the scope of data analysis to a specific time range,
+        set of students, problem category, or unit of a curriculum (for example)
+        </li>
+    </ul>
+
+    <h3>Creating a new dataset from an existing sample <img src="images/table_add.png" alt="Save" title="Save Sample as Dataset"></h3>
+    <p>A new dataset can be created from an existing sample by clicking on the
+    Save as Dataset icon next to a sample.
+    Creating a dataset from an existing sample will place the new dataset
+    into the same project as the source dataset, thus, inheriting the same permissions, IRB attributes,
+    Principal Investigator, and Data Provider as the parent project.</p>
+    <p>The general process for creating a new dataset from an existing sample is to:</p>
+    <ul>
+        <li>Choose a unique name for the new dataset</li>
+        <li>Decide whether or not to include user-created KC models in your new dataset. If you choose to include them,
+        they will be copied to the new dataset. If you choose to exclude them, your new dataset will still contain
+        the 'default' KC model, if one was included in the original data.</li>
+        <li>Save the Dataset</li>
+        <li>Your new dataset will be added to the Import Queue. The system will send an email
+                once the new dataset has been loaded.</li>
+    </ul>
+
+    <h3>Creating a new sample <img src="images/edit.gif" alt="Edit" title="Edit Sample"></h3>
+    <p>The general process for creating a sample is to:</p>
+    <ul>
+        <li>Click the edit sample icon next to the
+        <strong>All Data</strong> sample.</li>
+        <li>Choose a unique sample name.</li>
+        <li>Add or modify an existing filter to select the subset of data you're interested
+        in, saving the filter when done.</li>
+        <li>View the sample preview table to see the effect of adding your filter,
+        making sure you don't have an empty set (ie, a filter or combination
+        of filters that exclude all transactions).</li>
+        <li>Decide whether to share the sample with others who can view the
+        dataset</li>
+        <li>Save as New</li>
+    </ul>
+
+    <h3>Modifying an existing sample <img src="images/edit.gif" alt="Edit" title="Edit Sample"> </h3>
+    <p>The general process for modifying a sample is to:</p>
+    <ul>
+        <li>Click the edit sample icon next to the
+        desired sample.</li>
+        <li>Choose a unique sample name.</li>
+        <li>Add or modify an existing filter to select the subset of data you're interested
+        in, saving the filter when done.</li>
+        <li>View the sample preview table to see the effect of adding your filter,
+        making sure you don't have an empty set (ie, a filter or combination
+        of filters that exclude all transactions).</li>
+        <li>Decide whether to share the sample with others who can view the
+        dataset</li>
+        <li>Save the sample</li>
+    </ul>
+
+    <h3>Deleting a sample <img src="images/delete.gif" alt="Delete" title="Delete Sample"></h3>
+    <p>Once a sample has been deleted, it cannot be recovered.</p>
+
+    <h3>The effect of multiple filters on samples</h3>
+    <p>DataShop interprets each filter after the first as an additional
+    restriction on the data that is included in the sample. This is also known
+    as a logical "AND". You can see the results of multiple filters in the
+    sample preview as soon as all filters are "saved". </p>
+
+</div>

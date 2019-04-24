@@ -1,0 +1,39 @@
+div.autocomplete {
+	position: absolute;
+	width: 350px; /* will be adjusted by script.aculo.us */
+	background-color: white;
+	border: 1px solid #888 ;
+	margin: 0px;
+	padding: 0px;
+}
+
+div.autocomplete ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+div.autocomplete ul li.selected { 
+	background-color: #ff9;
+}
+
+div.autocomplete ul strong.highlight {
+    color: #800; 
+    margin:0;
+    padding:0;
+}
+
+div.autocomplete ul li {
+	list-style-type: none;
+	display: block;
+	font-family: sans-serif;
+	font-size: smaller;
+	color: #444 ;
+	margin: 0;
+	padding: 0.1em;
+	height: 1.5em;
+	line-height: 1.5em;
+	cursor: pointer;
+	overflow:hidden;
+}

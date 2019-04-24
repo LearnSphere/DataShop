@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 3218 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2006-07-20 17:42:15 -0400 (Thu, 20 Jul 2006) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.SchoolItem" table="school">
+    	<meta attribute="class-description">A school in which a dataset was recorded.</meta>
+        <id name="id" type="integer">
+        	<meta attribute="field-description">Database generated unique Id for this school.</meta>
+            <column name="school_id" />
+            <generator class="native" />
+        </id>
+        <property name="schoolName" type="string">
+        	<meta attribute="field-description">The name of this school as a string.</meta>
+            <column name="school_name" length="100" not-null="true" unique="true" />
+        </property>
+        <set name="instructors" inverse="true">
+        	<meta attribute="field-description">Collection of instructors in this school.</meta>
+            <key>
+                <column name="school_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.InstructorItem" />
+        </set>
+        <set name="classes" inverse="true">
+        	<meta attribute="field-description">Collection of classes taught at this school.</meta>
+            <key>
+                <column name="school_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ClassItem" />
+        </set>
+        <set name="tutorTransactions" inverse="true">
+        	<meta attribute="field-description">Collection of transactions associated with this school.</meta> 
+            <key>
+                <column name="school_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.TransactionItem" />
+        </set>
+    </class>
+</hibernate-mapping>

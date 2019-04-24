@@ -1,0 +1,526 @@
+<% // start new namespace
+{
+    String td_class_name_odd = "cell";
+    String td_class_name_even = "cell even";
+    String td_class_name = td_class_name_odd;
+    int idx = 1;
+
+    // Possible values for iqTableViewType are:
+    // my_datasets_queue, project_queue, admin_queue, admin_recent, admin_nodata
+%>
+
+<table id="importQueueTable_<%=iqTableViewType%>" class="importQueueTableClass">
+    <colgroup>
+        <% if (iqTableViewType.equals("admin_queue")) { %>
+        <col style="width:2%" />
+        <% } %>
+        <col style="width:40%" />
+        <col style="width:20%" />
+        <col style="width:20%" />
+        <col style="width:16%" />
+        <col style="width:2%" />
+    </colgroup>
+    <tr>
+        <% if (iqTableViewType.equals("admin_queue")) { %>
+        <th></th>
+        <% } %>
+        <th>
+        <%=datasetColumnHeader %>
+        </th>
+
+        <% if (!iqTableViewType.equals("my_datasets_queue")) { %>
+        <th>
+        <%=userColumnHeader %>
+        </th>
+        <% } %>
+
+        <% if (!iqTableViewType.equals("admin_nodata")) { %>
+        <th>
+        <%=statusColumnHeader %>
+        </th>
+        <% } %>
+
+        <th>
+        <%=lastUpdateColumnHeader %>
+        </th>
+        <th></th>
+    </tr>
+
+    <%
+    idx = 1;
+    if (importQueueList != null && importQueueList.size() > 0) {
+        Date today = new Date();
+        for (Iterator iter = importQueueList.iterator(); iter.hasNext();) {
+            ImportQueueDto dto = (ImportQueueDto)iter.next();
+            boolean isReleased = false;
+            boolean allowDelete = true;
+            if (dto.getReleasedFlag() != null && dto.getReleasedFlag()) {
+                allowDelete = false;
+
+                if (remoteUser != null && dto.getProjectId() != null
+                        && !remoteUser.equals(UserItem.DEFAULT_USER)
+                        && !adminUserFlag ) {
+
+                    Boolean isProjectAdmin =
+                        DaoFactory.DEFAULT.getAuthorizationDao().isProjectAdmin(remoteUser, dto.getProjectId());
+                    if (isProjectAdmin) {
+                        allowDelete = true;
+                    }
+                } else if (adminUserFlag) {
+                    allowDelete = true;
+                }
+                isReleased = true;
+            }
+            boolean hasResults = false;
+            if (dto.getVerificationResults() != null && dto.getVerificationResults().length() > 0) {
+                hasResults = true;
+            }
+            Integer importQueueId = dto.getImportQueueId();
+            String fileName = dto.getDisplayFileName();
+            if (idx % 2 == 0) {
+                td_class_name = td_class_name_even;
+            } else {
+                td_class_name = td_class_name_odd;
+            }
+            String anonString = "";
+            if (dto.getAnonFlag() != null && dto.getAnonFlag()) {
+                anonString = "anonymized";
+            } else {
+                anonString = "not anonymized";
+            }
+            String domainName = "";
+            if (dto.getDomainName() != null) {
+                domainName = dto.getDomainName();
+            }
+            String learnlabName = "";
+            if (dto.getLearnlabName() != null) {
+                learnlabName = dto.getLearnlabName();
+            }
+            String domainLearnlabStr = null;
+            if ((domainName.length() > 0) && (learnlabName.length() > 0)) {
+                domainLearnlabStr = domainName + "/" + learnlabName;
+            }
+            boolean hasDesc = false;
+            String iqDesc = "";
+            if (dto.getDescription() != null && dto.getDescription().length() > 0) {
+                iqDesc = dto.getDescription();
+                hasDesc = true;
+            }
+
+            Integer formatCode = 1; // for xml
+            if (dto.getFormatString().indexOf("tab") >= 0) {
+                formatCode = 2; //for tab
+            } else if (dto.getFormatString().indexOf("discourse") >= 0) {
+                formatCode = 3; //for discoursedb
+            }
+
+            boolean showQueuePosition = false;
+            if ((dto.getFormatString().indexOf("tab") >= 0)
+                || (((dto.getFormatString().indexOf("xml") >= 0)
+                      || (dto.getFormatString().indexOf("discourse") >= 0))
+                    && (dto.getEstImportDate() == null))) {
+                if ((dto.getStatus().equals("queued")
+                     || dto.getStatus().equals("passed")
+                     || dto.getStatus().equals("issues"))) {
+                    showQueuePosition = true;
+                }
+            }
+            boolean showEstImportDate = false;
+            if (((dto.getFormatString().indexOf("xml") >= 0)
+                  || (dto.getFormatString().indexOf("discourse") >= 0))
+                && (dto.getEstImportDate() != null)) {
+                showEstImportDate = true;
+            }
+            %>
+            <tr id="iqrow_<%=dto.getImportQueueId()%>" name="iqrow">
+            <% if (iqTableViewType.equals("admin_queue")) { %>
+            <td>
+            <a href="javascript:moveItemUp(<%=dto.getImportQueueId()%>)">
+            <img title="Move this item up." src="images/grid/up.gif">
+            </a>
+            <br>
+            <a href="javascript:moveItemDown(<%=dto.getImportQueueId()%>)">
+            <img title="Move this item down." src="images/grid/down.gif">
+            </a>
+            </td>
+            <% } %>
+            <td class="<%=td_class_name%>">
+            <input type="hidden" id="datasetName_<%=dto.getImportQueueId()%>"
+                                value="<%=dto.getDatasetName()%>">
+            <input type="hidden" id="format_<%=dto.getImportQueueId()%>"
+                                value="<%=dto.getFormatString()%>">
+            <% if (iqTableViewType.equals("admin_queue")
+                   || iqTableViewType.equals("admin_recent")) {
+                String estImportDateString = dto.getEstImportDate() == null
+                        ? "" : dto.getEstImportDateFormatted();
+                String errorsString = dto.getNumErrors() == null
+                        ? "" : dto.getNumErrors().toString();
+                String issuesString = dto.getNumIssues() == null
+                        ? "" : dto.getNumIssues().toString();
+                %>
+            <input type="hidden" id="fileName_<%=dto.getImportQueueId()%>"
+                                value="<%=fileName%>">
+            <input type="hidden" id="projectName_<%=dto.getImportQueueId()%>"
+                                value="<%=dto.getProjectName()%>">
+            <input type="hidden" id="userName_<%=dto.getImportQueueId()%>"
+                                value="<%=dto.getUploadedByName()%>">
+            <input type="hidden" id="status_<%=dto.getImportQueueId()%>"
+                                value="<%=dto.getStatus()%>">
+            <input type="hidden" id="est_<%=dto.getImportQueueId()%>"
+                                value="<%=estImportDateString%>">
+            <input type="hidden" id="errors_<%=dto.getImportQueueId()%>"
+                                value="<%=errorsString%>">
+            <input type="hidden" id="issues_<%=dto.getImportQueueId()%>"
+                                value="<%=issuesString%>">
+            <% } %>
+            <% if (iqTableViewType.equals("admin_queue")) { %>
+                <%=dto.getOrder()%>.&nbsp;
+            <% } %>
+            <% if (dto.getDatasetId() != null) { %>
+                <span class="dataset-name"
+                         id="datasetNameSpan_<%=dto.getImportQueueId()%>">
+                <a href="DatasetInfo?datasetId=<%=dto.getDatasetId()%>"><%=dto.getDatasetName()%></a>
+                </span><br>
+            <% } else if (dto.getDiscourseId() != null) {%>
+                <span class="dataset-name"
+                         id="datasetNameSpan_<%=dto.getImportQueueId()%>">
+                <a href="DiscourseInfo?discourseId=<%=dto.getDiscourseId()%>"><%=dto.getDatasetName()%></a>
+                </span><br>
+            <% } else {%>
+                <span class="dataset-name"
+                         id="datasetNameSpan_<%=dto.getImportQueueId()%>"><%=dto.getDatasetName()%></span><br>
+            <% } %>
+            <% if (!iqTableViewType.equals("admin_nodata")) { %>
+            &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:downloadFile(<%=dto.getImportQueueId()%>)"><%=fileName%></a>
+
+            <%
+            String withKCMs = "";
+            if (dto.getFromSampleWithUserKCs() != null && dto.getFromSampleWithUserKCs()) {
+                withKCMs = "with";
+            } else {
+                withKCMs = "without";
+            }
+
+            if (dto.getSrcSampleId() != null) {
+                String tableIconString =
+                    "Created from dataset '" + dto.getSrcDatasetName()
+                        + "' [" + dto.getSrcDatasetId() + "] "
+                    + "and sample '" + dto.getSrcSampleName() + "' "
+                    + withKCMs + " user-created KC Models";
+                %><img src="images/table.png"
+                    alt="<%=tableIconString %>"
+                    title="<%=tableIconString %>" /><%
+            }
+            %>
+            <br>
+            <% } %>
+            <div id="project-name-div" name="<%=dto.getImportQueueId() %>">
+            <% if (!iqTableViewType.equals("project_queue")) { %>
+                <% if (dto.getProjectId() == null)  { %>
+                &nbsp;&nbsp;&nbsp;&nbsp;Dataset not yet in a project<br>
+                <% } else { %>
+                &nbsp;&nbsp;&nbsp;&nbsp;Project: <a href="Project?id=<%=dto.getProjectId()%>">
+                <%=dto.getProjectName()%></a><br>
+                <% } %>
+            <% } %>
+            </div>
+            <% if (!iqTableViewType.equals("admin_nodata")) { %>
+            &nbsp;&nbsp;&nbsp;&nbsp;<%=dto.getFormatString()%>,&nbsp;<%=anonString%>
+            <% if (domainLearnlabStr != null) { %>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<%=domainLearnlabStr %>
+            <br>
+            <% } %>
+                <% if (hasDesc) { %>
+                <span id="datasetDescShow_<%=dto.getImportQueueId()%>">
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:showDescription(<%=dto.getImportQueueId()%>)">show description</a>
+                </span>
+                <span id="datasetDescHide_<%=dto.getImportQueueId()%>" style="display:none">
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:hideDescription(<%=dto.getImportQueueId()%>)">hide description</a>
+                <br>
+                <%=iqDesc%>
+                </span>
+                <% } %>
+            <% } %>
+            </td>
+
+            <% if (!iqTableViewType.equals("my_datasets_queue")) {
+                String userField = dto.getUploadedByName();
+                String userEmail = dto.getEmail();
+                if ((userEmail != null) && !userEmail.equals("")
+                    && (!remoteUser.equals(dto.getUploadedByUserName()))) {
+                    userField = "<a href=\"mailto:" + dto.getEmail() + "\">" + userField + "</a>";
+                }
+            %>
+            <td class="<%=td_class_name%>"><%=userField%>
+            </td>
+            <% } %>
+
+            <% if (!iqTableViewType.equals("admin_nodata")) { %>
+            <td class="<%=td_class_name%>">
+            <div id="iqStatusViewDiv_<%=dto.getImportQueueId()%>">
+            <img src="<%=dto.getImageName()%>"><%=dto.getStatusMessage()%>&nbsp;
+                <% if (showQueuePosition) { %>
+                    <%=dto.getQueuePosition()%>
+                <% } %>
+                <% if ( (iqTableViewType.equals("admin_queue")
+                         && (dto.getStatus().equals("queued")
+                          || dto.getStatus().equals("passed")
+                          || dto.getStatus().equals("issues")
+                          || dto.getStatus().equals("errors")))
+                     || (iqTableViewType.equals("admin_recent")
+                         && (dto.getStatus().equals("errors"))))
+                   { %>
+                        <a id="iqEditLink_<%=dto.getImportQueueId() %>" class="iqEditLink"
+                          href="javascript:openIqEditStatusDialog(<%=dto.getImportQueueId()%>,<%=formatCode%>)"
+                          >edit</a>
+                <% } %>
+            <div class="status-description">
+            <%
+                if (dto.getStatus().equals("queued")) {
+                    %>
+                    <% if (showEstImportDate) { %>
+                    Estimated import date: <%=dto.getEstImportDateFormatted()%>
+                    <% } %>
+                    <% if (dto.getFormatString().indexOf("tab") >= 0) { %>
+                    <br>
+                        <% if (hasResults) { %>
+                        <a href="javascript:showDetails(<%=dto.getImportQueueId()%>)"
+                             id="showDetails_<%=dto.getImportQueueId()%>">Show details</a>
+                        <a href="javascript:hideDetails(<%=dto.getImportQueueId()%>)"
+                          class="hidden"
+                             id="hideDetails_<%=dto.getImportQueueId()%>">Hide details</a>
+                        <% } %>
+                    <% }
+                } else if (dto.getStatus().equals("passed")) {
+                    %>
+                    <% if (showEstImportDate) { %>
+                    Estimated import date: <%=dto.getEstImportDateFormatted()%>
+                    <% } %>
+                    <%
+                } else if (dto.getStatus().equals("errors")) {
+                    if (dto.getNumIssues() != null) { %>
+                    <%=dto.getNumIssues()%> potential issues found
+                    <% } %>
+                    <br>
+                        <% if (hasResults) { %>
+                        <a href="javascript:showDetails(<%=dto.getImportQueueId()%>)"
+                             id="showDetails_<%=dto.getImportQueueId()%>">Show details</a>
+                        <a href="javascript:hideDetails(<%=dto.getImportQueueId()%>)"
+                          class="hidden"
+                             id="hideDetails_<%=dto.getImportQueueId()%>">Hide details</a>
+                        <% } %>
+                    <%
+                } else if (dto.getStatus().equals("issues")) {
+                    if (showEstImportDate) { %>
+                        <br>Estimated import date: <%=dto.getEstImportDateFormatted()%>
+                    <% } %>
+                    <br>
+                        <% if (hasResults) { %>
+                        <a href="javascript:showDetails(<%=dto.getImportQueueId()%>)"
+                             id="showDetails_<%=dto.getImportQueueId()%>">Show details</a>
+                        <a href="javascript:hideDetails(<%=dto.getImportQueueId()%>)"
+                          class="hidden"
+                             id="hideDetails_<%=dto.getImportQueueId()%>">Hide details</a>
+                        <% } %>
+                    <%
+                } else if (dto.getStatus().equals("loaded")) {
+                    %>
+                    <% if (formatCode != 3) { // formatCode 3 is Discourse %>
+                    <br><%=dto.getNumTransactionsFormatted()%> transactions
+                    <%
+                    if (dto.getProjectId() != null) {
+                        if (isReleased) {
+                            // show no button at all
+                        } else {
+                            // show Release to Project button for uploader
+                            if (dto.getUploadedByUserName().equals(remoteUser)) {
+                            %>
+                            <div class="release-dataset-div" id="<%=dto.getDatasetId()%>">
+                                <input id="releaseDataset_<%=dto.getDatasetId()%>"
+                                   type="button" value="Release to project"></div>
+                            <%
+                            }
+                        }
+                    } else {
+                        // show Move to Project button
+                        %>
+                        <div class="move-dataset-div" id="<%=dto.getImportQueueId()%>">
+                        <input id="moveDataset_<%=dto.getDatasetId()%>"
+                               type="button" value="Move to Project"></div>
+                        <%
+                    }
+                    %>
+                    <% }  // if formatCode != 3 %>
+
+                    <% if (hasResults) { %>
+                    <a href="javascript:showDetails(<%=dto.getImportQueueId()%>)"
+                       id="showDetails_<%=dto.getImportQueueId()%>">Show details</a>
+                    <a href="javascript:hideDetails(<%=dto.getImportQueueId()%>)"
+                       class="hidden" id="hideDetails_<%=dto.getImportQueueId()%>">Hide details</a>
+                    <% } %>
+                    <%
+                } else if (dto.getStatus().equals("canceled")) {
+                    if (dto.getShowUndoFlag()) {
+                    %>
+                        <a href="javascript:undoCancel(<%=importQueueId%>)">Undo</a>
+                    <%
+                    }
+                } else {
+                    // do nothing if status is unknown
+                }
+            %>
+                </div>
+            </div>
+            </td>
+            <% } %>
+            <td class="<%=td_class_name%>">
+            <span id="lastUpdateSpan_<%=dto.getImportQueueId()%>"
+               class="date"><%=dto.getLastUpdateString()%></span>
+            </td>
+            <td>
+            <% if (dto.getStatus().equals("canceled") ||
+                   dto.getStatus().equals("errors")) { %>
+                <% if (!iqTableViewType.equals("admin_recent")) { %>
+                <a href="javascript:hideRow(<%=importQueueId%>)">
+                <img id "deleteImage" title="Remove this file from the import queue." src="images/delete.gif">
+                </a>
+                <% } %>
+            <% } else {
+
+            String notDisabledConstant = "";
+            String yesDisabledConstant = "_disabled disabledLink";
+            String isDisabled = notDisabledConstant;
+
+            if (remoteUser == null) {
+                isDisabled = yesDisabledConstant;
+
+            } else if (remoteUser != null
+                    && !remoteUser.equals(dto.getUploadedByUserName())
+                    && !adminUserFlag) {
+                isDisabled = yesDisabledConstant;
+            }
+
+            if (dto.getStatus().equals("loading")
+                    || dto.getStatus().equals("generating")
+                    || dto.getStatus().equals("aggregating")) {
+                isDisabled = yesDisabledConstant;
+            }
+
+            %>
+            <div id="gearDropdown_<%=importQueueId%>" class="gearDropdown">
+                <a id="gearAnchor_<%=importQueueId%>" class="gearAnchor">
+                    <img id="gearImage" alt="Gear" src="images/gear-arrow-down.png">
+                </a>
+                <div id="gearSubmenu_<%=importQueueId%>" class="gearSubmenu">
+                <ul class="gearUl">
+
+                <% if (formatCode != 3) { // formatCode 3 is Discourse %>
+                <% if ((dto.getStatus().equals("loaded")) && !isReleased) { %>
+                       <li><a id="releaseDatasetLink_<%=dto.getDatasetId()%>"
+                              class="release_dataset_link">Release to project</a></li>
+                <% } %>
+
+
+                <% if (dto.getProjectId() == null) {
+                       if (!dto.getStatus().equals("loaded")) { %>
+                           <li><a id="moveDatasetLink_<%=dto.getImportQueueId()%>"
+                               class="move_dataset_link<%=isDisabled%>">Move to project</a></li>
+                       <% } // else do not show this link %>
+                <% } else { %>
+                        <li><a id="moveDatasetLink_<%=dto.getImportQueueId()%>"
+                            class="move_dataset_link<%=isDisabled%>">Move to another project</a></li>
+                <% } %>
+                <% }  // formatCode != 3 %>
+
+                <li><a id="renameDatasetLink_<%=dto.getImportQueueId()%>"
+                     name="<%=dto.getDatasetName()%>"
+                    class="rename_dataset_link<%=isDisabled%>">Rename</a></li>
+
+                <%
+                String deleteDisable = isDisabled;
+                if (dto.getStatus().equals("loaded")
+                    || dto.getStatus().equals("no_data")) {
+
+                    if (allowDelete && isDisabled.equals(notDisabledConstant)) {
+                        deleteDisable = "";
+                    }
+                    %>
+                    <li><a id="deleteDatasetLink_<%=dto.getImportQueueId()%>"
+                        class="delete_dataset_link<%=deleteDisable%>">Delete</a></li>
+                <% } else { %>
+                    <li><a id="cancelImportLink_<%=dto.getImportQueueId()%>"
+                        class="cancel_import_link<%=isDisabled%>">Cancel import</a></li>
+                <% } %>
+
+                </ul>
+                </div>
+            </div>
+            <% } %>
+            </td>
+            </tr>
+
+            <% if (dto.getStatus().equals("queued")
+                    && (dto.getFormatString().indexOf("tab") >= 0)) { %>
+            <tr id="resultsRow_<%=dto.getImportQueueId()%>"
+             class="hidden resultsRow">
+                <% if (iqTableViewType.equals("admin_queue")) { %>
+                <td></td>
+                <% } %>
+                <td colspan=3>
+                <div>
+                <%
+                String results = dto.getVerificationResults();
+                if (results != null && results.equals(ImportQueueServlet.FIRST_100_PASSED_MSG)) {
+                %>
+                    <h4><%=results%>
+                <% } else { %>
+                    <h4>Verification Results (first 100 lines)</h4>
+                    <p id="resultsText_<%=dto.getImportQueueId()%>"><%=results%></p>
+                <% } %>
+                </div>
+                </td>
+            </tr>
+
+            <% } else if (dto.getStatus().equals("issues")
+                       || dto.getStatus().equals("errors")
+                       || dto.getStatus().equals("loaded")) { %>
+            <tr id="resultsRow_<%=dto.getImportQueueId()%>"
+             class="hidden resultsRow">
+            <% if (iqTableViewType.equals("admin_queue")) { %>
+            <td></td>
+            <% } %>
+            <td colspan=3>
+                <div>
+                <h4>Verification Results</h4>
+                <p id="resultsText_<%=dto.getImportQueueId()%>"><%=dto.getVerificationResults()%></p>
+                </div>
+            </td>
+            </tr>
+            <% } %>
+
+            <%
+            idx++;
+        } // end for loop
+
+    } else {
+        %>
+            <tr>
+                <% if (iqTableViewType.equals("admin_queue")) { %>
+                <td class="<%=td_class_name%>"></td>
+                <% } %>
+
+                <td class="<%=td_class_name%>" style="font-style:oblique">No items found.</td>
+
+                <% if (!iqTableViewType.equals("my_datasets_queue")) { %>
+                <td class="<%=td_class_name%>"></td>
+                <% } %>
+
+                <td class="<%=td_class_name%>"></td>
+                <td class="<%=td_class_name%>"></td>
+            </tr>
+        <%
+    }
+    %>
+</table>
+<% } // end new namespace %>

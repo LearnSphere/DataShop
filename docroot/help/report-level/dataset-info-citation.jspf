@@ -1,0 +1,11 @@
+<div class="topic" id="help-dataset-info-citation">
+    <h2>Dataset Info / Citation</h2>
+    <p>This page displays dataset-specific citation guidance. This information is taken from the <strong>Dataset Info</strong> 
+    fields "Acknowledgement for Secondary Analysis" and "Preferred Citation for Secondary Analysis",
+    which are settable by researchers who have edit access to the dataset.</p>
+    
+    <p>More general citation guidance is available at the link below.</p>
+    
+    <span class="helpTopicLink" style="display:none"><a href="help?page=citing"><img src="images/page_white_text.png" /> <span>Read more 
+    about citing DataShop and datasets</span></a></span>
+</div>

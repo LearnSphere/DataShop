@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.SampleItem" table="sample">
+        <meta attribute="class-description">A sample is a way of selecting a subset of transations
+from a dataset via filters.</meta>
+        <id name="id" type="integer">
+            <meta attribute="field-description">Database generated unique Id for this sample.</meta>
+            <column name="sample_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="owner" class="edu.cmu.pslc.datashop.item.UserItem">
+            <meta attribute="field-description">The id of the user that created this sample.</meta>
+            <column name="owner" length="250" not-null="true" />
+        </many-to-one>
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+            <meta attribute="field-description">Dataset this sample is associated to.</meta>
+            <column name="dataset_id" />
+        </many-to-one>
+        <property name="sampleName" type="string">
+            <meta attribute="field-description">Name of this sample as a string.</meta>
+            <column name="sample_name" length="100" not-null="true" />
+        </property>
+        <property name="globalFlag" type="boolean">
+            <meta attribute="field-description">Flag indicating whether this sample is viewable by more than just the owner.</meta>
+            <column name="global_flag" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <meta attribute="field-description">Description of this sample as a string.</meta>
+            <column name="description" />
+        </property>
+        <set name="filters" inverse="true">
+            <meta attribute="field-description">Collection of filters associated with this sample.</meta>
+            <key>
+                <column name="sample_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.FilterItem" />
+        </set>
+        <set name="sampleHistory" inverse="true" cascade="delete" >
+            <meta attribute="field-description">The set of history items associated with this sample.</meta>
+            <key>
+                <column name="sample_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SampleHistoryItem" />
+        </set>
+        <property name="filePath" type="string">
+            <meta attribute="field-description">File path for caches tx exports for this sample.</meta>
+            <column name="file_path"/>
+        </property>
+    </class>
+</hibernate-mapping>

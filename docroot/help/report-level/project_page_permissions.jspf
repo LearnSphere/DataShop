@@ -1,0 +1,16 @@
+<div class="topic" id="help-project-page">
+    <h2>Permissions</h2>
+    <p>On the permissions page, you can view your current permissions level for the project, as well
+    as request access for a greater permissions level. If you have "view" access, for example, you can
+    request "edit" access from the project's principal investigator.</p>
+    <p>If you are a project admin for this project, you can make the 
+    project public (or vote to do so), as well as grant access to new users or modify access for
+    existing users.</p>
+    
+    <h3>Granting project access to users</h3>
+    <p>You can grant access to users from the Permissions page of a project for which you're the admin. 
+    Enter the DataShop username of the user, select the level of access you would like to grant them, and click <strong>Add</strong>.</p>
+    
+    <span style="display:none" class="helpTopicLink"><a href="help?page=administration"><img src="images/page_white_text.png" /> <span>Read 
+    more about project / dataset administration</span></a></span>
+</div>

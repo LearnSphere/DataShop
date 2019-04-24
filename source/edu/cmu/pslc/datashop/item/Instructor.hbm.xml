@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 1706 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2005-11-10 11:42:17 -0500 (Thu, 10 Nov 2005) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.InstructorItem" table="instructor">
+    	<meta attribute="class-description">The instructor/teacher of a class.</meta>
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique Id for this instructor.</meta>
+            <column name="instructor_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="school" class="edu.cmu.pslc.datashop.item.SchoolItem">
+        	<meta attribute="field-description">School which this instructor is part of.</meta>
+            <column name="school_id" />
+        </many-to-one>
+        <property name="instructorName" type="string">
+        	<meta attribute="field-description">Name of the instructor as a string.</meta>
+            <column name="instructor_name" length="55" not-null="true" />
+        </property>
+        <set name="classes" inverse="true">
+        	<meta attribute="field-description">Classes for which this instructor is a teacher.</meta>
+            <key>
+                <column name="instructor_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ClassItem" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2010
+ All Rights Reserved
+
+ $Revision: 6101 $
+ Last modified by - $Author: shanwen $
+ Last modified on - $Date: 2010-05-21 15:42:54 -0400 (Fri, 21 May 2010) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.LearnlabItem" table="learnlab" >
+    	<meta attribute="class-description">A single learnlab represents table learnlab in the database.</meta>
+        <id name="id" type="integer">
+        	<meta attribute="field-description">Database generated unique Id for this domain.</meta>
+            <column name="learnlab_id" />
+            <generator class="native" />
+        </id>        
+        <property name="name" type="string">
+        	<meta attribute="field-description">The name of the learnlab as a string.</meta>
+            <column name="name" not-null="true" />
+        </property>
+        <set name="domains" table="domain_learnlab_map" batch-size="50">
+            <meta attribute="field-description">Collection of domains associated with this learnlab.</meta>
+            <key>
+                <column name="learnlab_id" not-null="true" />
+            </key>
+            <many-to-many column="domain_id" class="edu.cmu.pslc.datashop.item.DomainItem" />
+        </set>
+    </class>
+</hibernate-mapping>

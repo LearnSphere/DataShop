@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 1790 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2005-11-17 14:18:52 -0500 (Thu, 17 Nov 2005) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ClassItem" table="class">
+    	    	<meta attribute="class-description">A single class which contains students.</meta>
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique Id for a class.</meta>
+            <column name="class_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="school" class="edu.cmu.pslc.datashop.item.SchoolItem">
+        	<meta attribute="field-description">(FK) The school this class is in.</meta>
+            <column name="school_id" />
+        </many-to-one>
+        <many-to-one name="instructor" class="edu.cmu.pslc.datashop.item.InstructorItem">
+        	<meta attribute="field-description">(FK) The instructor of this class.</meta>
+            <column name="instructor_id" />
+        </many-to-one>
+        <property name="className" type="string">
+        	<meta attribute="field-description">Name of the class as a string.</meta>
+            <column name="class_name" length="55" not-null="true" />
+        </property>
+        <property name="period" type="string">
+        	<meta attribute="field-description">Period of this class.</meta>
+            <column name="period" length="26" />
+        </property>
+        <property name="description" type="string">
+        	<meta attribute="field-description">Description of this class as a string.</meta>
+            <column name="description" length="50" />
+        </property>
+        <set name="datasets" table="class_dataset_map">
+        	<meta attribute="field-description">Collection of datasets this class is part of.</meta>
+            <key>
+                <column name="class_id" not-null="true" />
+            </key>
+            <many-to-many column="dataset_id" class="edu.cmu.pslc.datashop.item.DatasetItem" />
+        </set>
+        <set name="students" table="roster">
+        	<meta attribute="field-description">Collection of all students in this class.</meta>
+            <key>
+                <column name="class_id" not-null="true" />
+            </key>
+            <many-to-many column="student_id" class="edu.cmu.pslc.datashop.item.StudentItem" />
+        </set>
+        <set name="tutorTransactions" inverse="true">
+        	<meta attribute="field-description">Collection of tutor transactions that this class is associated with.</meta>
+            <key>
+                <column name="class_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.TransactionItem" />
+        </set>
+    </class>
+</hibernate-mapping>

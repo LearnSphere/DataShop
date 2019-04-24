@@ -1,0 +1,997 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+
+    <display-name>Welcome to DataShop</display-name>
+    <description>DataShop - a data analysis service for the learning science community</description>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/classes/applicationContext.xml</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Default maximum transaction count for immediate dataset deletion (import queue).
+        </description>
+        <param-name>numTransactionsImmediateDelete</param-name>
+        <param-value>10000</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Default number of lines for FFI to verify during ImportQueue upload.
+        </description>
+        <param-name>numFFIVerifyLines</param-name>
+        <param-value>100</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Base directory in the file system where papers, files and cached tx export
+            are stored.  Used by multiple servlets.
+        </description>
+        <param-name>baseDir</param-name>
+        <param-value>@base.files.dir@</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Location of the aggregator_sp.sql file.  When a sample is created/aggregator is run
+            through the web app we must first customize the table names within this stored procedure file to
+            preempt table collisions if another aggregator process is spawned.
+        </description>
+        <param-name>aggregator_sp_filepath</param-name>
+        <param-value>@local.stored_procedures@/aggregator_sp.sql</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Location of the aggregator_sp.sql file.  When a sample is created/aggregator is run
+            through the web app we must first customize the table names within this stored procedure file to
+            preempt table collisions if another aggregator process is spawned.
+        </description>
+        <param-name>tx_export_sp_filepath</param-name>
+        <param-value>@local.stored_procedures@/tx_export_sp.sql</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+        <!--
+        <init-param>
+            <param-name>logLevel</param-name>
+            <param-value>DEBUG</param-value>
+        </init-param>
+        -->
+    </filter>
+
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>hibernateFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>accessFilter</filter-name>
+        <filter-class>edu.cmu.pslc.datashop.servlet.auth.AccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>accessFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/DatashopDS</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/LoggingActivityLogDS</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/ImportDS</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/SourceDS</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
+<!-- JSPC servlet mappings start, please keep this alphabetical, and in sync with jboss/web.xml. -->
+    <servlet>
+        <servlet-name>AccessRequestServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.accessrequest.AccessRequestServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AccountProfileServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.auth.AccountProfileServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AdminDomainLearnLabServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.admin.AdminDomainLearnLabServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.auth.ChangePasswordServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CustomFieldServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.customfield.CustomFieldServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DatasetInfoServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.datasetinfo.DatasetInfoReportServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DatasetInfoEditServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.datasetinfo.DatasetInfoEditServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DisplayChart</servlet-name>
+        <servlet-class>org.jfree.chart.servlet.DisplayChart</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DownloadPaperServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.filesinfo.DownloadPaperServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ErrorServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.ErrorServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ErrorReportServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.errorreport.ErrorReportServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ExportServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.export.ExportServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ExternalToolsServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.exttools.ExternalToolsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FileServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.datasetinfo.FileServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FilesInfoServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.filesinfo.FilesInfoServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ForgotPasswordServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.auth.ForgotPasswordServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>gaexclude</servlet-name>
+        <jsp-file>/ga_exclude.jsp</jsp-file>
+    </servlet>
+
+    <servlet>
+        <servlet-name>HelpServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.HelpServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>HideShowServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.learningcurve.HideShowServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ImportQueueServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.importqueue.ImportQueueServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>KCModelServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.kcmodel.KCModelServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LCPIDServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.learningcurve.LCPIDServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LearningCurveServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.learningcurve.LearningCurveServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LearningCurveContentServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.learningcurve.LearningCurveContentServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LearningCurvePointInfoServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.learningcurve.LearningCurvePointInfoServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LfaValuesServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.learningcurve.LfaValuesServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LoggingActivityServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.LoggingActivityServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.auth.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.auth.LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>GitHubLoginServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.auth.GitHubLoginServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LinkedInLoginServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.auth.LinkedInLoginServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CreateProjectServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.project.CreateProjectServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ManageInstanceServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.admin.ManageInstanceServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ManageComponentsServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.admin.ManageComponentsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ManageProblemContentServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.admin.ManageProblemContentServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ManageUsersServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.admin.ManageUsersServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>MetricsReportServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.MetricsReportServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>NavigationServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.NavigationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PasswordResetServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.auth.PasswordResetServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PerformanceProfilerServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.performanceprofiler.PerformanceProfilerServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>IrbReviewServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.irb.IrbReviewServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>IrbServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.irb.IrbServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ProblemContentServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.problemcontent.ProblemContentServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ProblemListServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.problemcontent.ProblemListServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DisplayResourcesServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.problemcontent.DisplayResourcesServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ProjectPageServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.project.ProjectPageServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ProjectPageEditServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.project.ProjectPageEditServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ProjectPermissionsServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.project.ProjectPermissionsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ProjectTermsServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.project.ProjectTermsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ProjectServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.ProjectServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ResearchGoalsServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.research.ResearchGoalsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ResearchGoalsEditServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.research.ResearchGoalsEditServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.auth.RegistrationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SetServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.SetServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SiteMapServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.admin.SiteMapServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>StepRollupExportServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.export.StepRollupExportServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>StudentProblemExportServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.export.StudentProblemExportServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>TermsAgreeServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.tou.TermsAgreeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>TermsServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.tou.TermsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ManageTermsServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.tou.ManageTermsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>TextSuggestServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.TextSuggestServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>UploadDatasetServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.importqueue.UploadDatasetServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>WebServicesCredentialsServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.webservices.WebServicesCredentialsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>WebServicesServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.webservices.WebServicesServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SamplesServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.sampletodataset.SamplesServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SampleToDatasetServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.sampletodataset.SampleToDatasetServlet</servlet-class>
+    </servlet>
+
+    <!-- DataLab -->
+    <servlet>
+        <servlet-name>DatalabServlet</servlet-name>
+        <servlet-class>edu.cmu.datalab.servlet.DatalabServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DatalabLoginServlet</servlet-name>
+        <servlet-class>edu.cmu.datalab.servlet.auth.DatalabLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DatalabLogoutServlet</servlet-name>
+        <servlet-class>edu.cmu.datalab.servlet.auth.DatalabLogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DatalabRegistrationServlet</servlet-name>
+        <servlet-class>edu.cmu.datalab.servlet.auth.DatalabRegistrationServlet</servlet-class>
+    </servlet>
+
+    <!-- PL2 -->
+    <servlet>
+        <servlet-name>PL2Servlet</servlet-name>
+        <servlet-class>edu.cmu.pl2.servlet.PL2Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PL2LoginServlet</servlet-name>
+        <servlet-class>edu.cmu.pl2.servlet.auth.PL2LoginServlet</servlet-class>
+    </servlet>
+
+    <!-- Workflows -->
+    <servlet>
+        <servlet-name>LearnSphereServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.workflows.LearnSphereServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>WorkflowEditorServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.workflows.WorkflowEditorServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>WorkflowAttributesServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.workflows.WorkflowAttributesServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>WorkflowResultsServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.workflows.WorkflowResultsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>WorkflowUserFeedbackServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.workflows.WorkflowUserFeedbackServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LearnSphereLoginServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.workflows.auth.LearnSphereLoginServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LearnSphereLogoutServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.workflows.auth.LearnSphereLogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LearnSphereRegistrationServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.servlet.workflows.auth.LearnSphereRegistrationServlet</servlet-class>
+    </servlet>
+
+    <!-- DiscourseDB -->
+    <servlet>
+        <servlet-name>DiscourseDbServlet</servlet-name>
+        <servlet-class>edu.cmu.pslc.datashop.discoursedb.servlet.DiscourseDbServlet</servlet-class>
+    </servlet>
+
+    <!-- LearnSphere web services -->
+    <servlet>
+        <servlet-name>LearnSphereWebServicesServlet</servlet-name>
+        <servlet-class>edu.cmu.learnsphere.servlet.webservices.LearnSphereWebServicesServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>AccessRequestServlet</servlet-name>
+        <url-pattern>/AccessRequests</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AccountProfileServlet</servlet-name>
+        <url-pattern>/AccountProfile</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AdminDomainLearnLabServlet</servlet-name>
+        <url-pattern>/AdminDomainLearnLab</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <url-pattern>/ChangePassword</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CustomFieldServlet</servlet-name>
+        <url-pattern>/CustomField</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DatasetInfoServlet</servlet-name>
+        <url-pattern>/DatasetInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DatasetInfoEditServlet</servlet-name>
+        <url-pattern>/DatasetInfoEdit</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DisplayChart</servlet-name>
+        <url-pattern>/servlet/DisplayChart</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ErrorServlet</servlet-name>
+        <url-pattern>/Error</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ErrorReportServlet</servlet-name>
+        <url-pattern>/ErrorReport</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ExportServlet</servlet-name>
+        <url-pattern>/Export</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ExternalToolsServlet</servlet-name>
+        <url-pattern>/ExternalTools</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FileServlet</servlet-name>
+        <url-pattern>/Delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FileServlet</servlet-name>
+        <url-pattern>/Display</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FileServlet</servlet-name>
+        <url-pattern>/Download</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DownloadPaperServlet</servlet-name>
+        <url-pattern>/DownloadPaper</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FileServlet</servlet-name>
+        <url-pattern>/Edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FileServlet</servlet-name>
+        <url-pattern>/Upload</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FilesInfoServlet</servlet-name>
+        <url-pattern>/Files</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ForgotPasswordServlet</servlet-name>
+        <url-pattern>/ForgotPassword</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>gaexclude</servlet-name>
+        <url-pattern>/GAExclude</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HelpServlet</servlet-name>
+        <url-pattern>/help</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HideShowServlet</servlet-name>
+        <url-pattern>/HideShow</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ImportQueueServlet</servlet-name>
+        <url-pattern>/ImportQueue</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>KCModelServlet</servlet-name>
+        <url-pattern>/KcModel</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LCPIDServlet</servlet-name>
+        <url-pattern>/LCPID</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LearningCurveServlet</servlet-name>
+        <url-pattern>/LearningCurve</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LearningCurveContentServlet</servlet-name>
+        <url-pattern>/LearningCurveContent</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LearningCurvePointInfoServlet</servlet-name>
+        <url-pattern>/PointInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LfaValuesServlet</servlet-name>
+        <url-pattern>/LfaValues</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LoggingActivityServlet</servlet-name>
+        <url-pattern>/LoggingActivity</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/webiso</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GitHubLoginServlet</servlet-name>
+        <url-pattern>/GitHubLogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LinkedInLoginServlet</servlet-name>
+        <url-pattern>/LinkedInLogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CreateProjectServlet</servlet-name>
+        <url-pattern>/CreateProject</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ManageInstanceServlet</servlet-name>
+        <url-pattern>/ManageInstance</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ManageComponentsServlet</servlet-name>
+        <url-pattern>/ManageComponents</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ManageProblemContentServlet</servlet-name>
+        <url-pattern>/ManageProblemContent</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ManageUsersServlet</servlet-name>
+        <url-pattern>/ManageUsers</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>MetricsReportServlet</servlet-name>
+        <url-pattern>/MetricsReport</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>NavigationServlet</servlet-name>
+        <url-pattern>/nav</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PasswordResetServlet</servlet-name>
+        <url-pattern>/PasswordReset</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PerformanceProfilerServlet</servlet-name>
+        <url-pattern>/PerformanceProfiler</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProblemContentServlet</servlet-name>
+        <url-pattern>/ProblemContent</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProblemListServlet</servlet-name>
+        <url-pattern>/ProblemList</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DisplayResourcesServlet</servlet-name>
+        <url-pattern>/servlet/DisplayResources</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>IrbServlet</servlet-name>
+        <url-pattern>/ProjectIRB</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProjectPageServlet</servlet-name>
+        <url-pattern>/Project</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProjectPageEditServlet</servlet-name>
+        <url-pattern>/ProjectPageEdit</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProjectPermissionsServlet</servlet-name>
+        <url-pattern>/ProjectPermissions</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProjectTermsServlet</servlet-name>
+        <url-pattern>/ProjectTerms</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>IrbReviewServlet</servlet-name>
+        <url-pattern>/IRBReview</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProjectServlet</servlet-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ResearchGoalsServlet</servlet-name>
+        <url-pattern>/ResearchGoals</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ResearchGoalsEditServlet</servlet-name>
+        <url-pattern>/ResearchGoalsEdit</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SetServlet</servlet-name>
+        <url-pattern>/Set</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SiteMapServlet</servlet-name>
+        <url-pattern>/sitemap.xml</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SamplesServlet</servlet-name>
+        <url-pattern>/Samples</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SampleToDatasetServlet</servlet-name>
+        <url-pattern>/SampleToDataset</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>StepRollupExportServlet</servlet-name>
+        <url-pattern>/StepRollupExport</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>StudentProblemExportServlet</servlet-name>
+        <url-pattern>/StudentProblemExport</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TermsAgreeServlet</servlet-name>
+        <url-pattern>/TermsAgree</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TermsServlet</servlet-name>
+        <url-pattern>/Terms</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ManageTermsServlet</servlet-name>
+        <url-pattern>/ManageTerms</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TextSuggestServlet</servlet-name>
+        <url-pattern>/textSuggest</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>UploadDatasetServlet</servlet-name>
+        <url-pattern>/UploadDataset</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>WebServicesCredentialsServlet</servlet-name>
+        <url-pattern>/WebServicesCredentials</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>WebServicesServlet</servlet-name>
+        <url-pattern>/services/*</url-pattern>
+    </servlet-mapping>
+
+<!-- DataLab -->
+    <servlet-mapping>
+        <servlet-name>DatalabServlet</servlet-name>
+        <url-pattern>/DataLab</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DatalabLoginServlet</servlet-name>
+        <url-pattern>/DataLabLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DatalabLoginServlet</servlet-name>
+        <url-pattern>/DataLabSSO</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DatalabLogoutServlet</servlet-name>
+        <url-pattern>/DataLabLogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DatalabRegistrationServlet</servlet-name>
+        <url-pattern>/DataLabRegistration</url-pattern>
+    </servlet-mapping>
+
+    <!-- PL2 -->
+    <servlet-mapping>
+        <servlet-name>PL2Servlet</servlet-name>
+        <url-pattern>/PL2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PL2LoginServlet</servlet-name>
+        <url-pattern>/PL2Login</url-pattern>
+    </servlet-mapping>
+
+    <!-- Workflows -->
+    <servlet-mapping>
+        <servlet-name>LearnSphereServlet</servlet-name>
+        <url-pattern>/LearnSphere</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WorkflowEditorServlet</servlet-name>
+        <url-pattern>/WorkflowEditor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WorkflowAttributesServlet</servlet-name>
+        <url-pattern>/WorkflowAttributes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WorkflowResultsServlet</servlet-name>
+        <url-pattern>/WorkflowResults</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WorkflowUserFeedbackServlet</servlet-name>
+        <url-pattern>/WorkflowUserFeedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LearnSphereLoginServlet</servlet-name>
+        <url-pattern>/LearnSphereLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LearnSphereLoginServlet</servlet-name>
+        <url-pattern>/WorkflowsSSO</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LearnSphereLogoutServlet</servlet-name>
+        <url-pattern>/LearnSphereLogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LearnSphereRegistrationServlet</servlet-name>
+        <url-pattern>/ls_registration</url-pattern>
+    </servlet-mapping>
+
+    <!-- DiscourseDB -->
+    <servlet-mapping>
+        <servlet-name>DiscourseDbServlet</servlet-name>
+        <url-pattern>/DiscourseInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DiscourseDbServlet</servlet-name>
+        <url-pattern>/DiscourseExport</url-pattern>
+    </servlet-mapping>
+
+    <!-- LearnSphere web services -->
+    <servlet-mapping>
+        <servlet-name>LearnSphereWebServicesServlet</servlet-name>
+        <url-pattern>/learnsphere/services/*</url-pattern>
+    </servlet-mapping>
+
+<!-- JSPC servlet mappings end -->
+
+    <!-- Error Page for 404: Not found -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error</location>
+    </error-page>
+
+    <!-- Error Page for 500: Internal server error -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/Error</location>
+    </error-page>
+
+    <!-- Error Page for Exception -->
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/Error</location>
+    </error-page>
+
+</web-app>

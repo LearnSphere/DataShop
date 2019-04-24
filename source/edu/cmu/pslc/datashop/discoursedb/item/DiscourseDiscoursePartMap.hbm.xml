@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 12724 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2015-11-05 13:30:26 -0500 (Thu, 05 Nov 2015) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.discoursedb.item.DiscourseDiscoursePartMapItem" table="discourse_has_discourse_part">
+        <composite-id name="id" class="edu.cmu.pslc.datashop.discoursedb.item.DiscourseDiscoursePartMapId">
+            <key-property name="discourseId" type="long">
+                <column name="fk_discourse"/>
+            </key-property>
+            <key-property name="partId" type="long">
+                <column name="fk_discourse_part"/>
+            </key-property>
+        </composite-id>
+        
+        <many-to-one name="discourse" class="edu.cmu.pslc.datashop.discoursedb.item.DiscourseItem"
+        	     insert="false" update="false">
+            <column name="fk_discourse" not-null="true" />
+        </many-to-one>
+
+        <many-to-one name="part" class="edu.cmu.pslc.datashop.discoursedb.item.DiscoursePartItem"
+        	     insert="false" update="false">
+            <column name="fk_discourse_part" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,1228 @@
+/********************************************
+*    Project Page
+********************************************/
+#project-page {
+    padding:1em 1.5em;
+    margin:.2em .5em 2em 0;
+}
+#project-page #subtab {
+    padding: 12px 0 12px 5px;
+    background-color:#efefef;
+    font-size: 85%;
+    width: 450px;
+}
+#project-page #subtab a {
+    padding:0 1em;
+    text-decoration:underline;
+    cursor:pointer;
+    color:#333;
+}
+#project-page #subtab span {
+    padding: 7px 1em;
+    background-color: white;
+    border-radius: 2px; 
+}
+#project-page h1 {
+    font-size:1.6em;
+    font-weight:normal;
+    margin-top:0;
+}
+#project-page h2 {
+    margin-bottom: 8px;
+    margin-top: 12px;
+    font-size: 22px;
+}
+#project-page p {
+    font-size:12px;
+    line-height: 1.3em;
+}
+#project-page a {
+    color:#37567F;
+    text-decoration:underline
+}
+#project-page a.request_link {
+    text-decoration:none;
+    color:#636363;
+    font-size:.9em;
+}
+#project-page a.ui-state-disabled {
+    text-decoration: none;
+    color: #636363;
+}
+#project-page .information-box p {
+    font-size: inherit;
+}
+#project-page .information-box.srsMessage {
+    padding: 6px;
+    margin-bottom: 16px;
+    width: 800px;
+}
+#project-page .information-box.srsMessagePublic {
+    padding: 0 15px;
+    margin-bottom: 16px;
+    width: 200px;
+}
+#project-page .information-box.srsMessagePublic p {
+    font-size: 14px;
+    margin: 12px 0;
+}
+#project-page .information-box.srsMessagePublic p img {
+    vertical-align: top
+}
+#projects-link {
+    font-size: .9em;
+    font-weight: normal;
+    margin-bottom:.2em;
+}
+#projects-link a {
+}
+#project-page #pi {
+    margin-bottom:0;
+}
+#project-page #dp {
+    margin-top:0;
+}
+#piNameField.auto-hint, 
+#dpNameField.auto-hint {
+    color: #aaa;
+}
+#project-page table.dataset-box {
+    max-width:920px;
+    width:800px;
+}
+#project-page table.dataset-box.noAdminColsPresent td {
+    width:auto;
+}
+#project-page table.dataset-box.adminColsPresent {
+    width: 1024px;
+}
+#project-page table.dataset-box.adminColsPresent td.name{
+    width: 400px;
+}
+#project-page table.dataset-box.adminColsPresent td.irbUploaded,
+#project-page table.dataset-box.adminColsPresent td.appearsAnon,
+#project-page table.dataset-box.adminColsPresent td.hasStudyData {
+    width: 55px
+}
+#project-page table.dataset-box.adminColsPresent td.domain_learnlab {
+    width: 55px
+}
+#project-page table.dataset-box.adminColsPresent td.dates {
+    width: 194px
+}
+#project-page table.dataset-box.adminColsPresent td.gear {
+    width: 40px
+}
+#project-page table.dataset-box td.gear .disabledGear,
+#project-page table.dataset-box td.gear .disabledGear {
+    margin: -11px 0 0 -15px;
+}
+#project-page h4 {
+    margin-bottom:1em;
+    font-size:.9em;
+}
+#projectDatasetsExplanatoryText p {
+    margin-left:2em;
+}
+#auth-level-desc-heading {
+    padding-top: 1em;
+    margin-bottom: 7px;
+}
+#project-page #terms {
+    margin:0 1em;
+    max-width:800px;
+    font-size:.9em;
+}
+#project-page #terms p {
+    line-height: 1.2em;
+}
+#project-page #terms ul {
+    font-size: .9em;
+}
+#project-page #datashop-terms-note {
+    font-size:.8em;
+}
+#project-page #pi-dp-table {
+    width: 500px;
+    border: 1px solid #DFDFDF;
+    font-size: 1.1em;
+}
+#project-page #pi-dp-table td {
+    border-bottom: 1px solid #DFDFDF;
+    cursor:pointer;
+}
+#project-page #pi-dp-table th {
+    border: 1px solid #9F9F9F;
+    width:140px;
+}
+#project-info-div .label {
+    float: left;
+    margin-bottom: 9px;
+    margin-right: 20px;
+    font-size: 85%;
+    width: 100px;
+    font-weight: bold;
+    text-align: right;
+}
+#project-datasets-div, #import-queue-div {
+    margin-top: 2em;
+}
+#import-queue-div {
+    clear: left;
+}
+#project-datasets-div .label, #import-queue-div .label{
+    margin-bottom: 9px;
+    font-size: 85%;
+    width: 150px;
+    font-weight: bold;
+}
+.project-info-row #projectInfoPiDiv,
+.project-info-row #projectInfoDpDiv {
+    position: relative;
+    float: left;
+    width: 135px;
+    margin-bottom: 9px;
+    font-size: 85%;
+}
+#projectInfoPiDiv,
+#projectInfoDpDiv,
+#projectInfoDescriptionDiv,
+#projectInfoTagsDiv,
+#projectInfoLinksDiv {
+    padding-right: 25px;
+}
+.project-info-row .projectInfoEmptyDiv {
+    position: relative;
+    float: left;
+    width: 10px;
+    margin-bottom: 9px;
+    margin-left: 9px;
+    font-size: 85%;
+}
+.project-info-row .projectInfoLinkDiv {
+    position: relative;
+}
+.project-info-row #projectInfoDescriptionDiv,
+.project-info-row #projectInfoTagsDiv,
+.project-info-row #projectInfoLinksDiv {
+    position: relative;
+    float: left;
+    width: 450px;
+    margin-bottom: 9px;
+    font-size: 85%;
+}
+.project-info-row #projectInfoDescriptionSpan {
+    width: 425px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.project-info-row.clear {
+    clear: left;
+}
+.project-edit-link {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    font-size: 12px;
+    color: #37567F;
+    padding-left: 3px;
+    text-decoration: underline;
+}
+.project-add-link {
+    font-size: 12px;
+    color: #37567F;
+    text-decoration: underline;
+}
+.hidden {
+    display: none;
+}
+.trash-img {
+    vertical-align: middle;
+}
+#projectInfoEditPiDiv, #projectInfoEditDpDiv,
+#projectInfoEditDescDiv, #projectInfoEditTagsDiv,
+#projectInfoAddLinkDiv,
+.projectInfoEditLinkDiv, .projectLinkSureDiv {
+    display: none;
+}
+#projectTagsHowTo {
+    font-size: 10px;
+    margin-left: 120px;
+}
+#linkTitleTitle, #linkUrlTitle {
+    font-size: 12px;
+}
+#linkUrlTitle {
+    margin-left: 140px;
+}
+#descSaveButton {
+    margin-left: 120px;
+}
+#projectInfoPiDiv.emptyDiv,
+#projectInfoDpDiv.emptyDiv,
+#projectInfoDescriptionDiv.emptyDiv,
+#projectInfoTagsDiv.emptyDiv {
+    width: 20px;
+    padding-right: 0;
+}
+#project-page .success_style {
+	margin-bottom: 1em;
+}
+#project_content_div {
+    width: 800px;
+}
+#project-actions {
+    float: right;
+}
+#project-actions a, #project-actions span {
+    font-size: 85%;
+}
+#project-actions ul {
+    margin-top: 1px;
+}
+#project-actions ul.concise {
+    list-style-type: none;	
+    margin-bottom: 1em;
+    padding-left: 6px
+}
+#project-actions ul.concise li {
+    margin-bottom:.2em;
+}
+#project-actions ul.concise ul {
+    font-size:1em;
+    list-style-type:square;
+    margin: .2em 0;
+    padding-left:1.5em;
+}
+#renameProjectDialog p, 
+#renameProjectDialog span, 
+#deleteProjectDialog p {
+    font-size: 0.8em;
+    margin-bottom: 4px;
+    color: #333;
+}
+#renameProjectDialog p, 
+#renameProjectDialog span {
+   font-weight: bold;
+}
+
+#newProjectNameLabel {
+    clear: left;
+    float: left;
+    margin-top: 2px;
+}
+#newProjectName {
+    float: left;
+    margin-left: 23px;
+}
+
+/********************************************
+*    IRB
+********************************************/
+#irb-info-div .label {
+    float: left;
+    margin-bottom: 9px;
+    margin-right: 20px;
+    font-size: 14px;
+    width: 220px;
+    font-weight: bold;
+    text-align: right;
+}
+#irb-info-div .left-label {
+    float: left;
+    margin-bottom: 9px;
+    font-size: 14px;
+    width: 220px;
+    font-weight: bold;
+    text-align: left;
+}
+.irb-info-row.clear {
+    clear: left;
+}
+.irb-info-row #irbInfoDCDiv,
+.irb-info-row #irbInfoShareStatusDiv,
+.irb-info-row #irbInfoNeedsAttnDiv,
+.irb-info-row #irbInfoSubjToDSDiv {
+    position: relative;
+    float: left;
+    margin-bottom: 9px;
+    font-size: 14px;
+    padding-right: 22px;
+}
+.irb-info-width-95 {
+    width: 95px;
+}
+.irb-info-width-125 {
+    width: 125px;
+}
+.irb-info-width-170 {
+    width: 170px;
+}
+.irb-info-width-270 {
+    width: 270px;
+}
+.irb-info-width-480 {
+    width: 480px;
+}
+.irb-info-width-490 {
+    width: 490px;
+}
+#submitProjectForReview {
+    clear: left;
+    float: left;
+    margin-right: 10px;
+    margin-left: 237px;
+    font-size: 14px;
+}
+#submitForReviewForm {
+	font-size: 14px;
+}
+#emailRMLink {
+    float: left;
+    font-size: 12px;
+    margin-top: 5px;
+}
+#projectAdminNoticeDiv {
+    clear: left;
+    float: left;
+    margin-top: 10px;
+    margin-left: 14px;
+    width: 650px;
+}
+#projectAdminNotice {
+    margin: 15px 17px;
+}
+#projectAdminNoticeDiv.information-box {
+    background-color:#fff9d7;
+    border:1px solid #e2c822;
+}
+#projectAdminNoticeDiv p {
+    font-size: 14px;
+}
+.irb-info-row #irbInfoRMNotesDiv {
+    position: relative;
+    float: left;
+    width: 460px;
+    margin-bottom: 9px;
+    font-size: 14px;
+}
+#irbInfoRMNotesSpan {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.irb-edit-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 12px;
+    color: #37567F;
+    padding-left: 3px;
+    text-decoration: underline;
+}
+.irb-edit-irb-link {
+    float: left;
+    font-size: 12px;
+    color: #37567F;
+    padding-left: 3px;
+    text-decoration: underline;
+}
+.irb-add-link {
+    position: absolute;
+    left: 132px;
+    font-size: 12px;
+	float: left;
+}
+#projectIrbUploadNote {
+    left: 251px;
+    margin-top: -11px;
+    position: absolute;
+    font-style: oblique;
+    border: none;
+    background-color: transparent;
+}
+.irb-file-add {
+    clear: left;
+    font-size: 12px;
+}
+#irb-rm-notes,
+#irb-shareability-history {
+    clear: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#irb-docs {
+    clear: left;
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    position: relative;
+    width: 300px;
+}
+.irb-doc {
+    clear: left;
+    width: 825px;
+    background-color: #EFEFEF;
+    font-size: 14px;
+    margin-bottom: 13px;
+    padding: 14px 0 14px 16px;
+}
+#irbDocTitle {
+    float: left;
+    width: 725px;
+    clear: left;
+    margin-bottom: 10px;
+}
+#irbEditRemoveDiv {
+    float: left;
+    width: 100px;
+    font-size: 12px;
+}
+#irbEditRemoveDiv .remove-irb-link,
+#deleteIRBDiv .remove-irb-link {
+    font-size: 12px;
+    color: #37567F;
+    text-decoration: underline;
+}
+#irbEditRemoveDiv .remove-irb-link-inactive,
+#deleteIRBDiv .remove-irb-link-inactive {
+    font-size: 12px;
+    color: gray;
+}
+#irbDocEdit {
+}
+.irbRemoveSure, .irbDeleteSure {
+    display: none;
+}
+#editIRBDialog .deleteFileSure {
+    display: none;
+}
+#irbDocPN {
+    float: left;
+    width: 200px;
+    clear:left;
+}
+#irbDocPI {
+    float: left;
+    width: 200px;
+}
+#irbDocAD {
+    float: left;
+    width: 200px;
+    clear:left;
+}
+#irbDocED {
+    float: left;
+    width: 200px;
+}
+#irbDocGI {
+    float: left;
+    width: 200px;
+}
+#irbDocFiles {
+    float: left;
+    clear:left;
+    margin-bottom: 5px;
+}
+#irbDocNotes {
+    clear:left;
+    width: 400px;
+}
+.irb-fake-header {
+    color: gray;
+}
+.irb-doc-label {
+    color: gray;
+    float: left;
+    width: 200px;
+}
+.irb-doc-field {
+    float: left;
+    width: 200px;
+    padding-bottom: 10px;
+    clear: left;
+}
+.irb-doc-files-table {
+    min-width: 370px;
+}
+#emptyIRBListSpan,
+#emptyShareabilityListSpan {
+    clear: left;
+    color: gray;
+    float: left;
+    font-size: 14px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+}
+.irb-shareability-history {
+    clear: left;
+    font-size: 14px;
+    margin-left: 12px;
+    margin-bottom: 10px;
+    min-width: 450px;
+}
+#irbInfoRMNotesDiv {
+    clear: left;
+    margin-left: 15px;
+    font-size: 14px;
+}
+.rm-notes-empty {
+    color: gray;
+}
+
+/* IRB Review Filters */
+#irb-review-filters-div fieldset  {
+    background-color: #EFEFEF;
+    border: 2px solid #bbb;
+    width: 800px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+#irb-review-filters-div fieldset legend {
+    font-size: 13px;
+}
+#irb-review-filters-div div {
+    float: left;
+    margin-left: 16px;
+    margin-bottom: 2px;
+}
+#irb-review-filters-div label {
+    font-size: 13px;
+    font-weight: normal;
+}
+#irb-review-filters-div .filter-div-first {
+    margin-left:0;
+    clear: left;
+}
+#irb-review-filters-div .irb_review_button {
+    cursor: pointer;
+    width: 13px;
+    height: 13px;
+}
+#numProjectsFoundDiv {
+    margin-top: 10px;
+    font-style: oblique;
+}
+
+/* IRB Review Table */
+tr.highlightRow td {
+	background: #FFF9D7;
+}
+#irbReviewTable {
+    clear: left;
+    margin: 1em 0 1.5em;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+#irbReviewTable td {
+    border-bottom: 1px solid #E0E0E0;
+    font-size: 90%;
+    padding: 8px 10px 8px 0;
+}
+#irbReviewTable td.noBorder {
+    border-bottom: 0px;
+}
+#irbReviewTable td span {
+    /*font-size: 80%;*/
+}
+#irbReviewTable span.bTitle {
+    font-weight:bold;
+}
+#irbReviewTable th {
+    text-align: left;
+    padding-left: 0;
+    padding-right: 10px;
+}
+#irbReviewTable th img {
+    vertical-align: middle;
+}
+#irbReviewTable th a {
+    color: #37567F;
+    background-color: inherit;
+    font-size: 90%;
+    text-decoration: none;
+    border-bottom: 1px solid #37567F;;
+}
+#irbReviewTable td a {
+    color:#37567F;
+    background-color: inherit;
+    text-decoration: underline;
+}
+#irbReviewTable caption {
+    font-size:.8em;
+    text-align:left;
+    margin-bottom:.5em;
+    padding-bottom:0;
+    border:none;
+    font-weight:bold;
+}
+#irbReviewTable .datasetsRow .datasetsDiv {
+    margin: 0px 0 20px 23px;
+}
+#irbReviewTable .datasetsRow td {
+    padding-top: 0;
+}
+#irbReviewTable .datasetsRow .datasetsDiv .datasetsTable {
+    margin-top: 0;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #cfcfcf;
+}
+#irbReviewTable .datasetsRow .datasetsDiv .datasetsTable td {
+    padding: 5px 12px 5px 5px;
+    color: #42525A;
+    border-right: 1px solid #cfcfcf;
+    border-bottom: none;
+}
+#irbReviewTable .datasetsRow .datasetsDiv .datasetsTable tr.odd td {
+    background-color: #efefef;
+}
+#irbReviewTable .datasetsRow .datasetsDiv .datasetsTable th {
+    padding: 5px 14px 5px 14px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    color: #333;
+    background-color: #efefef;
+    border-bottom: 1px solid #cfcfcf;
+    border-right: 1px solid #cfcfcf;
+}
+#irbReviewTable .datasetsRow .datasetsDiv .datasetsTable td.c1 {
+    width: 350px;
+}
+#irbReviewTable .datasetsRow .datasetsDiv .datasetsTable caption {
+    text-align: right;
+    font-size: 13px;
+}
+#irbReviewTable .datasetsRow .datasetsDiv .datasetsTable p {
+    margin: 0;
+}
+.projectUser {
+    margin-left:2em;
+    font-size:.8em;
+}
+.showHideDatasets {
+    margin-left:2em;
+    font-size:.8em;
+}
+/* All IRBs Table */
+#allIrbSearchDiv {
+    width: 260px;
+    float: left;
+    margin-bottom: 15px;
+}
+#all_irb_search_button {
+    cursor: pointer;
+}
+#addIrbButton {
+    width: 130px;
+    float: left;
+    margin-top: 4px;
+}
+#addIrbButton p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#addIrbButton p a {
+    text-decoration: none;
+    font-size: 13px;
+    color: #636363;
+    padding: .4em .7em .4em 20px;
+    position: relative;
+}
+#addIrbButton p a span.ui-icon {
+    margin: 0 5px 0 0;
+    position: absolute;
+    left: .2em;
+    top: 50%;
+    margin-top: -8px;
+}
+#allIRBsTable {
+    clear: left;
+    margin: 1.5em 0 1.5em;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+#allIRBsTable td {
+    border-bottom: 1px solid #E0E0E0;
+    font-size: 90%;
+    padding: 8px 10px 8px 0;
+}
+#allIRBsTable td span {
+    /*font-size: 80%;*/
+}
+#allIRBsTable span.bTitle {
+    font-weight:bold;
+}
+#allIRBsTable th {
+    text-align: left;
+    padding-left: 0;
+    padding-right: 5px;
+}
+#allIRBsTable th img {
+    vertical-align: middle;
+}
+#allIRBsTable th a {
+    color: #37567F;
+    background-color: inherit;
+    font-size: 90%;
+    text-decoration: none;
+    border-bottom: 1px solid #37567F;;
+}
+#allIRBsTable td a {
+    color:#37567F;
+    background-color: inherit;
+    text-decoration: underline;
+}
+#allIRBsTable caption {
+    font-size:.8em;
+    text-align:left;
+    margin-bottom:.5em;
+    padding-bottom:0;
+    border:none;
+    font-weight:bold;
+}
+#irb_search_button {
+    cursor: pointer;
+    vertical-align: text-top;
+}
+#irb_review_search_by.auto-hint,
+#irb_review_search_by_pi_dp.auto-hint,
+#all_irb_search_by.auto-hint,
+#add_irb_search_by.auto-hint {
+    color: #aaa;
+}
+#irbInfoEditDCDiv,
+#irbInfoEditSubjToDiv,
+#irbInfoEditShareStatusDiv,
+#irbInfoEditNeedsAttnDiv,
+#irbInfoEditRMNotesDiv {
+    display: none;
+}
+#irbInfoEditDCDiv,
+#irbInfoEditSubjToDiv,
+#irbInfoEditShareStatusDiv,
+#irbInfoEditNeedsAttnDiv {
+    font-size: 14px;
+}
+#irbInfoEditRMNotesDiv {
+    clear: left;
+    margin-left: 12px;
+}
+#irbInfoEditDCTable {
+    width: 575px;
+}
+
+/* Add IRB Dialog */
+#addIRBDialog p, #addIRBFileDialog p, #editIRBDialog p {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
+}
+#irbTitleMaxLen, #irbPNMaxLen, #irbGIMaxLen {
+    font-size: .8em;
+    margin-top: 2px;
+}
+#addIRBDialog .addFilesNote, .irb-note {
+    font-weight: normal;
+    margin-top: 27px;
+    margin-bottom: 12px;
+    background-color: #FFF9D7;
+    border: 1px solid #E2C822;
+    font-size: 13px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 300px
+}
+#addIRBDialog .addFilesNote {
+    margin-top: 13px;   
+}
+
+#addIRBForm textarea, #addIRBDialog textarea {
+    width: 99%;
+    height: 60px;
+    font-family: Arial, Verdana, sans-serif;
+}
+#addIRBFileForm textarea, #addIRBFileDialog textarea {
+    width: 99%;
+    height: 50px;
+    font-family: Arial, Verdana, sans-serif;
+}
+#editIRBForm textarea, #editIRBDialog textarea {
+    width: 99%;
+    height: 50px;
+    font-family: Arial, Verdana, sans-serif;
+}
+#editIRBDialog a {
+    color: #37567F;
+    text-decoration: underline;
+}
+#addIRBDialog #addNewIRB, #addIRBDialog #chooseExistingIRB {
+    width: 200px;
+    float: left;
+}
+#addNewIRBDiv, #chooseExistingIRBDiv {
+    clear: both;
+    padding-top: 6px;
+}
+#chooseExistingIRBDiv {
+    font-size: 0.8em;
+}
+#chooseExistingSelect {
+    width: 600px;
+    margin-top: 2px;
+}
+#addIRBDialog .choose-existing-label {
+    color: gray;
+    float: left;
+    width: 200px;
+}
+#editIRBDialog .edit-dialog-label {
+    color: gray;
+    float: left;
+    width: 150px;
+}
+#editIRBDialog {
+    font-size: 0.8em;
+}
+#addIRBDialog .choose-existing-field {
+    float: left;
+    width: 200px;
+    padding-bottom: 10px;
+}
+#editIRBDialog .edit-dialog-field {
+    float: left;
+    width: 200px;
+    padding-bottom: 10px;
+}
+#addIRBDialog .choose-existing-title-field,
+#editIRBDialog .edit-dialog-title-field {
+    clear: left;
+    float: left;
+    width: 600px;
+    padding-bottom: 10px;
+}
+#addIRBDialog .choose-existing-pn-label {
+    color: gray;
+    float: left;
+    width: 200px;
+    clear: both;
+}
+#chooseExistingTitle {
+    float: left;
+    width: 600px;
+    clear: left;
+    margin-top: 8px;
+}
+#chooseExistingPN {
+    float: left;
+    width: 200px;
+    clear:left;
+}
+#chooseExistingPI {
+    float: left;
+    width: 200px;
+}
+#chooseExistingAD {
+    float: left;
+    width: 200px;
+    clear:left;
+}
+#chooseExistingED {
+    float: left;
+    width: 200px;
+}
+#chooseExistingGI {
+    float: left;
+    width: 200px;
+}
+#chooseExistingFiles {
+    float: left;
+    clear:left;
+    margin-bottom: 5px;
+}
+#chooseExistingFilesTable {
+    min-width: 300px;
+}
+#chooseExistingFiles a {
+    color: #37567F;
+    text-decoration: underline;
+}
+#chooseExistingFilesTable {
+	min-width: 300px;
+}
+#chooseExistingNotes {
+    float: left;
+    clear:left;
+    margin-bottom: 5px;
+}
+#chooseExistingProjects {
+    float: left;
+    clear:left;
+    margin-bottom: 5px;
+}
+#chooseExistingProjectsTable td a{
+    color:#37567F;
+    background-color: inherit;
+    text-decoration: underline;
+}
+.choose-existing-label {
+    color: gray;
+    float: left;
+    width: 200px;
+}
+.choose-existing-field {
+    float: left;
+    width: 200px;
+    padding-bottom: 10px;
+    clear: left;
+}
+#deleteIRBDiv {
+    float: left;
+    clear:left;
+    padding-left: 3px;
+    padding-top: 10px;
+    width: 200px;
+}
+#editDialogTitle {
+    float: left;
+    width: 600px;
+    clear: left;
+    margin-top: 8px;
+}
+#editDialogPN {
+    float: left;
+    width: 250px;
+    clear:left;
+}
+#editDialogPI {
+    float: left;
+    width: 250px;
+}
+#editDialogAD {
+    float: left;
+    width: 250px;
+    clear:left;
+}
+#editDialogED {
+    float: left;
+    width: 250px;
+}
+#editDialogGI {
+    float: left;
+    width: 250px;
+}
+#editDialogNotes {
+    float: left;
+    clear:left;
+    margin-bottom: 5px;
+}
+#editDialogFiles {
+    float: left;
+    clear:left;
+    margin-bottom: 5px;
+}
+#editDialogFiles a {
+    color: #37567F;
+    text-decoration: underline;
+}
+#editDialogFiles img {
+    vertical-align: top;
+}
+#editDialogFilesTable {
+    width: 560px;
+}
+#editDialogAddFile {
+    float: left;
+    clear: left;
+}
+#editDialogProjects {
+    float: left;
+    clear:left;
+    margin-bottom: 5px;
+}
+#editDialogProjectsTable td a{
+    color:#37567F;
+    background-color: inherit;
+    text-decoration: underline;
+}
+#pnEditDiv, #piEditDiv, #adEditDiv, #edEditDiv, #giEditDiv, #notesEditDiv {
+    display: none;
+}
+
+#project-datasets-div #datasetsLabelDiv {
+	width: 90px;
+	float:left;
+}
+#datasetsEditDiv {
+	float:left;
+	margin-right:5px;
+}
+#datasetsEditDiv a {
+	font-size: 12px;
+    color:#37567F;
+    text-decoration: underline;
+    clear:left;
+}
+#datasetsTable {
+	float: clear;
+	clear: both;
+}
+.appearsAnon select {
+	width: 60px;
+	font-size: 12px;
+}
+.irbUploaded select {
+	width: 50px;
+	font-size: 12px;
+}
+.hasStudyData select {
+	width: 60px;
+	font-size: 12px;
+}
+
+/********************************************
+*    Project Permissions
+********************************************/
+#project-permissions-div .label {
+    float: left;
+    margin-bottom: 9px;
+    margin-right: 20px;
+    font-size: 85%;
+    font-weight: bold;
+    text-align: right;
+}
+#perm-requests-for-access-div {
+    clear: left;
+}
+#perm-add-new-user-div {
+    clear: left;
+}
+#perm-project-public-button {
+    float: left;
+    margin: 6px 0 6px 0;
+}
+#access-report-filter-options {
+    clear: left;
+}
+#perm-requests-for-access, #perm-access-report, #perm-current-permissions {
+    clear: left;
+}
+#perm-current-permissions td, #perm-current-permissions th, #perm-current-permissions th a,
+#perm-current-permissions td p, #perm-requests-for-access td, #perm-requests-for-access th, #perm-requests-for-access th a,
+#perm-requests-for-access td p,  #perm-access-report td {
+    font-size: 12px;
+}
+#add-new-user-input-div {
+    clear: left;
+    float: left;
+    margin-bottom: 20px;
+}
+.addNewUser {
+    clear: left;
+}
+#requests-for-access-table {
+    clear: left;
+}
+.emptyPermissionsListSpan {
+    clear: left;
+    color: gray;
+    float: left;
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+}
+#view-level-descriptions {
+    font-size: 75%;
+    margin-left: 5px;
+}
+#accessReportDiv {
+    display: none;
+}
+#currentPermissionsTab {
+    font-size: 85%;
+    font-weight: bold;
+    text-align: right;
+    clear: left;
+    float: left;
+    margin-right: 5px;
+}
+#accessReportTab {
+    font-size: 85%;
+    font-weight: bold;
+    text-align: right;
+    float: left;
+    margin-left: 5px;
+}
+/*** Initially, currentPermissions tab is selected ***/
+#permissionTabsDiv {
+    clear: left;
+    float: left;
+}
+#currentPermissionsTab a {
+    text-decoration: none;
+    color: #333;
+}
+#accessReportTab a {
+    color: #333;
+}
+#spacer {
+    float: left;
+}
+#add-new-user-field.auto-hint {
+    color: #aaa;
+}
+#perm-requests-for-access th a,
+#perm-access-report th a,
+#perm-current-permissions th a {
+    text-decoration: underline;
+    border-bottom: none;
+}
+/* Respond Button */
+#project-permissions-div .responseButton a:link, .responseButton a:visited {
+    text-decoration: none;
+    font-size: 13px;
+    color: #fcfcfc
+}
+#perm_ar_search_by.auto-hint,
+#perm_cp_search_by.auto-hint {
+    color: #aaa;
+}
+#permFilterOptionsTable td {
+    vertical-align: middle;
+}
+#project-permissions-div td {
+    vertical-align: middle;
+}
+#permFilterOptionsTable #perm_ar_search_button,
+#permFilterOptionsTable #perm_cp_search_button {
+    cursor: pointer;
+    vertical-align: text-top;
+    margin-right: 12px;
+}
+#pageCountTable {
+    margin-left: 12px;
+}
+
+/********************************************
+*    Project Terms
+********************************************/
+#clear_terms_div {
+    display: inline;
+    margin-left: 20px;
+    margin-top: -2px;
+}
+
+/********************************************
+*    Import Queue
+********************************************/
+#project-page #importQueueTable_project_queue {
+    min-width: auto;
+    width: 800px;
+}

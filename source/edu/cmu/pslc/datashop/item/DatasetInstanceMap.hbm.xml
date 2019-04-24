@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ Author: Cindy Tipper
+ $Revision: 12671 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2015-10-08 09:36:42 -0400 (Thu, 08 Oct 2015) $
+ $KeyWordsOff: $
+-->
+
+  <class name="edu.cmu.pslc.datashop.item.DatasetInstanceMapItem" table="dataset_instance_map">
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.DatasetInstanceMapId">
+            <key-property name="datasetId" type="integer">
+                <column name="dataset_id"/>
+            </key-property>
+            <key-property name="remoteInstanceId" type="long">
+                <column name="remote_instance_id"/>
+            </key-property>
+        </composite-id>
+        
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem"
+        	     insert="false" update="false">
+          <column name="dataset_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="remoteInstance" class="edu.cmu.pslc.datashop.item.RemoteInstanceItem"
+        	     insert="false" update="false">
+          <column name="remote_instance_id" not-null="true" />
+        </many-to-one>
+  </class>
+</hibernate-mapping>

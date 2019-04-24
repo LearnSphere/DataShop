@@ -1,0 +1,11 @@
+<div class="topic" id="help-discourse-export">
+    <h2>Discourse Export</h2>
+    <p>In addition to providing counts for the various components of the
+    current discourse, this page provides a button for exporting the
+    Discourse. The export is a zipped SQL file of the original DiscourseDB
+    mysqldump.</p>    
+
+    <span class="helpTopicLink" style="display:none"><a href="help?page=discourseInfo"><img src="images/page_white_text.png" /> <span>Read more 
+    about Discourse Info</span></a></span>
+
+</div>

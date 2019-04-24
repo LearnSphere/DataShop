@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 3297 $
+ Last modified by - $Author: bkb $
+ Last modified on - $Date: 2006-08-31 14:50:37 -0400 (Thu, 31 Aug 2006) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ConditionItem" table="ds_condition">
+    	<meta attribute="class-description">A notable condition on a problem. Most commonly used
+to differentiate between experimental conditions.</meta>
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique Id for this condition.</meta>
+            <column name="condition_id" />
+            <generator class="native" />
+        </id>
+        <property name="conditionName" type="string">
+        	<meta attribute="field-description">The name of this condition.</meta>
+            <column name="condition_name" length="80" not-null="true" />
+        </property>
+        <property name="type" type="string">
+        	<meta attribute="field-description">The type of this condtion as a string.</meta>
+            <column name="type" />
+        </property>
+        <property name="description" type="string">
+        	<meta attribute="field-description">Description of this condition as a string.</meta>
+            <column name="description" />
+        </property>
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+        	<meta attribute="field-description">Dataset associated with this item.</meta>
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+        <!--
+        <set name="transactions" table="transaction_condition_map" inverse="true">
+        	<meta attribute="field-description">Collection of transactions associated with this condtion</meta>
+            <key>
+                <column name="condition_id" not-null="true" />
+            </key>
+            <many-to-many column="transaction_id" class="edu.cmu.pslc.datashop.item.TransactionItem" />
+        </set> -->
+    </class>
+</hibernate-mapping>

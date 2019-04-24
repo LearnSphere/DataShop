@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2018
+ All Rights Reserved
+
+ $Revision: 15126 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2018-05-10 14:51:35 -0400 (Thu, 10 May 2018) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WfcRecentlyUsedItem" table="wfc_recently_used">
+        <meta attribute="class-description">WFC recently used.</meta>
+        <id name="id" type="long">
+            <column name="wfc_recently_used_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="userId" type="string">
+            <column name="user_id" length="250" not-null="true" />
+        </property>
+        <property name="componentType" type="string">
+            <column name="component_type" length="100" not-null="true" />
+        </property>
+        <property name="componentName" type="string">
+            <column name="component_name" length="100" not-null="true" />
+        </property>
+        <property name="lastUsed" type="timestamp">
+            <column name="last_used" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

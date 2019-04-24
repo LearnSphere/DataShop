@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2014
+ All Rights Reserved
+
+ $Revision: 10848 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2014-03-28 13:20:06 -0400 (Fri, 28 Mar 2014) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.PcProblemItem" table="pc_problem">
+        <id name="id" type="long">
+            <column name="pc_problem_id" />
+            <generator class="native" />
+        </id>
+        <property name="problemName" type="string">
+            <column name="problem_name" />
+        </property>
+        <many-to-one name="pcConversion" class="edu.cmu.pslc.datashop.item.PcConversionItem">
+            <column name="pc_conversion_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="htmlFile" class="edu.cmu.pslc.datashop.item.FileItem">
+            <column name="html_file_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

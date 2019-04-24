@@ -1,0 +1,98 @@
+/*
+ * Edit Research Goals Page
+ */
+#research-goals-edit-page-div h1 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+#research-goals-edit-page-div p {
+    margin-left: 0;
+    margin-top: 1px;
+    margin-bottom: 2px;
+    max-width: 676px;
+}
+#research-goals-edit-page-div a {
+    color: #37567f;
+    text-decoration: underline;
+}
+#research-goals-edit-div .rgEditDesc p {
+    margin-left: 0;
+    margin-top: 7px;
+    max-width: 576px;
+}
+.rt-button-link {
+    font-size: 12px;
+    font-weight: normal;
+}
+.rt-basic-link {
+    font-size: 12px;
+}
+.rt-basic-title {
+    color: gray;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+}
+#researcher-types-table .col1 {
+    width: 30px;
+}
+#researcher-types-table .col2 {
+    width: 250px;
+}
+#research-goals-edit-div, #papers-with-goals-div, #papers-without-goals-div {
+    margin-top: 15px;
+}
+#research-goals-table .col1 {
+    width: 30px;
+}
+#research-goals-table .col2 {
+    width: 560px;
+}
+#research-goals-table .col3 {
+    width: 243px;
+}
+#research-goals-table .col4 {
+    width: 560px;
+}
+#research-goals-table .rgEditTitle {
+    font-weight: bold;
+}
+#research-goals-table .rgEditTitle a {
+    font-weight: normal;
+}
+.rg_papers_citation_td {
+    width: 540px;
+}
+.rg_types_label_td {
+    width: 540px;
+}
+#papers-with-goals-table .col1 {
+    width: 30px;
+}
+#papers-with-goals-table .col2 {
+    width: 400px;
+}
+#papers-with-goals-table .col3 {
+    width: 200px;
+}
+#papers-with-goals-table .col4 {
+    width: 100px;
+}
+#papers-with-goals-table .col5 {
+    width: 75px;
+}
+#papers-with-goals-table .col6 {
+    font-size: 12px;
+}
+#papers-without-goals-table .col1 {
+    width: 30px;
+}
+#papers-without-goals-table .col2 {
+    width: 400px;
+}
+#papers-without-goals-table .col3 {
+    width: 200px;
+}
+#papers-without-goals-table .col4 {
+    width: 100px;
+}

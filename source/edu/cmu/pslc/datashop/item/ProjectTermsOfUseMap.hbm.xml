@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2011
+ All Rights Reserved
+
+ $Revision: 7225 $
+ Author: Mike Komisin
+ Last modified by - $Author: mkomi $
+ Last modified on - $Date: 2011-11-04 15:26:46 -0400 (Fri, 04 Nov 2011) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ProjectTermsOfUseMapItem" table="project_terms_of_use_map">
+        <meta attribute="class-description">Represents a ProjectTermsOfUseMapItem in the system.  This class
+            is essentially a mapping table with additional properties, so in order to get Hibernate to 
+            play nicely, we create a surrogate id object, called ProjectTermsOfUseMapId.  It holds
+            the two members that form the composite key.  This item is then used to access ProjectTermsOfUseMap
+            Items, as opposed to passing a termsOfUse and project item.
+        </meta>
+
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.ProjectTermsOfUseMapId">
+            <key-property name="termsOfUseId" type="integer">
+                <meta attribute="field-description">Part of the composite key - FK into terms_of_use</meta>
+                <column name="terms_of_use_id"/>
+            </key-property>
+            <key-property name="projectId" type="integer">
+                <meta attribute="field-description">Part of the composite key - FK into project</meta>
+                <column name="project_id"/>
+            </key-property>
+        </composite-id>
+         
+        <many-to-one name="termsOfUse" class="edu.cmu.pslc.datashop.item.TermsOfUseItem"
+                insert="false" update="false">
+            <meta attribute="field-description">TermsOfUse associated with this item.</meta>
+            <column name="terms_of_use_id" not-null="true"/>
+        </many-to-one>
+        
+        <many-to-one name="project" class="edu.cmu.pslc.datashop.item.ProjectItem"
+                insert="false" update="false">
+            <meta attribute="field-description">Project associated with this item.</meta>
+            <column name="project_id" not-null="true" />
+        </many-to-one>
+        
+        <property name="effectiveDate" type="timestamp">
+            <meta attribute="field-description">The effective date for this ProjectTermsOfUseMapItem.</meta>
+            <column name="effective_date" not-null="true"/>
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>

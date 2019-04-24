@@ -1,0 +1,139 @@
+/** HELP WINDOW **/
+
+#helpWindow {
+    width:28em;
+    z-index: 9240;
+}
+#helpWindow h1 {
+    font-size:.75em;
+    margin:0 0 .5em;
+    color:#333;
+    font-weight:bold;
+    background-color:#ece9d8;
+    padding:.3em .5em;
+    border-bottom:1px solid #cfcbb5;
+}
+#helpWindow h2 {
+    font-size:.9em;
+    border-bottom:1px solid gray;
+}
+
+#helpWindow h3 {
+    font-size:.9em;
+}
+#helpWindow h4 {
+    font-size:.8em;
+}
+#helpWindow ul {
+    list-style: square;
+}
+#helpWindow ol ul {
+    margin: 5px inherit;
+}
+#helpWindow ol ul li {
+    font-size: 13px;
+}
+#helpWindow dl {
+    font-size:.8em;
+}
+#helpWindow dt {
+    font-weight:bold;
+    margin-top:1em;
+}
+#helpWindow dd  {
+    margin-left:1.2em;
+}
+#helpWindow p, #helpWindow li, #helpWindow table {
+    font-size:.8em;
+}
+#helpWindow table tbody th {
+    text-align: right;
+    padding-right:1em;
+    vertical-align:top;
+    padding-bottom:1em;
+}
+#helpWindow .screen-item {
+    font-weight:bold;
+}
+#helpWindow a:link {
+    text-decoration:underline;
+    color:#304b6f;
+}
+#helpWindow a:visited {
+    text-decoration:underline;
+    color:#304b6f;
+}
+#helpWindowContent {
+    padding:0 1em 1em 1em;
+    height:25em;
+    overflow:scroll;
+    overflow-y:scroll;
+    overflow-x:auto;
+}
+#helpWindowContent p img {
+    vertical-align:bottom;
+}
+#helpWindowCloseButton {
+    float:right;
+    margin:.2em;
+}
+#helpWindowHeader {
+    cursor:move;
+}
+#helpWindowCloseButton img {
+    background-color:transparent;
+    cursor:pointer;
+    border:none;
+    width:16px;
+    height:16px;
+}
+#helpWindowDocHome {
+    float:left;
+    margin:.2em;
+}
+#helpWindowDocHome img {
+    vertical-align:middle
+}
+#helpWindowDocPage {
+    float:left;
+    margin:.2em;
+}
+#helpWindowResize {
+    position:absolute;
+    right:0;
+    bottom:0;
+}
+#helpWindowTopicLink {
+    margin-top:3px
+}
+#helpWindowFooter #helpWindowTopicLink a {
+    font-size:.8em;
+    text-decoration:none;
+    margin-left:2px;
+}
+#helpWindowTopicLink a img {
+    vertical-align:top;
+}
+#helpWindowTopicLink a span {
+    text-decoration:underline;
+}
+
+/** HELP BUTTON **/
+
+#helpButton {
+    padding: 2px 11px;
+    min-width: 29px;
+    width: 29px;
+    font-size: 13px;
+}
+#helpButtonWrapper.navPresent {
+    margin: 0;
+}
+#helpButtonWrapper.navPresent div {
+    position: absolute;
+    top: 64px;
+    left: 3px;
+}
+#helpSearch {
+    margin-top: -22px;
+}

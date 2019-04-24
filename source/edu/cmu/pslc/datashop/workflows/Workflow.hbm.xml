@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 11782 $
+ Last modified by - $Author: mkomisin $
+ Last modified on - $Date: 2014-11-26 10:07:02 -0500 (Wed, 26 Nov 2014) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowItem" table="workflow">
+        <meta attribute="class-description">A workflow describes an user-defined process that a sample undergoes.</meta>
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique Id for this workflow.</meta>
+            <column name="workflow_id" />
+            <generator class="native" />
+        </id>
+        <property name="workflowName" type="string">
+            <meta attribute="field-description">Name of this workflow as a string.</meta>
+            <column name="workflow_name" length="100" not-null="true" />
+        </property>
+        <many-to-one name="owner" class="edu.cmu.pslc.datashop.item.UserItem">
+            <meta attribute="field-description">The id of the user that created this workflow.</meta>
+            <column name="owner" length="250" not-null="true" />
+        </many-to-one>
+        <property name="globalFlag" type="boolean">
+            <meta attribute="field-description">Flag indicating whether this workflow is viewable by more than just the owner.</meta>
+            <column name="global_flag" not-null="true" default="false" />
+        </property>
+        <property name="isRecommended" type="boolean">
+            <meta attribute="field-description">Flag indicating whether this workflow is recommended.</meta>
+            <column name="is_recommended" not-null="true" default="false" />
+        </property>
+        <property name="description" type="string">
+            <meta attribute="field-description">Description of this workflow as a string.</meta>
+            <column name="description" />
+        </property>
+        <property name="workflowXml" type="string">
+            <meta attribute="field-description">The XML which defines the workflow.</meta>
+            <column name="workflow_xml" length="65535" />
+        </property>
+        <property name="lastUpdated" type="timestamp">
+            <meta attribute="field-description">The last update time.</meta>
+            <column name="last_updated" length="19" not-null="true" />
+        </property>
+        <property name="results" type="string">
+            <meta attribute="field-description">The XML results.</meta>
+            <column name="results" length="65535" />
+        </property>
+        <property name="state" type="string">
+            <meta attribute="field-description">The workflow state.</meta>
+            <column name="state" length="50" default="new" />
+        </property>
+
+        <set name="datasets" inverse="true" table="workflow_dataset_map">
+            <key>
+                <column name="workflow_id"/>
+            </key>
+            <many-to-many column="dataset_id" class="edu.cmu.pslc.datashop.item.DatasetItem" />
+        </set>
+        <set name="workflowHistory" inverse="true" cascade="delete" >
+            <meta attribute="field-description">The set of history items associated with this workflow.</meta>
+            <key>
+                <column name="workflow_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.workflows.WorkflowHistoryItem" />
+        </set>
+        <set name="workflowComponentInstances" inverse="true">
+            <meta attribute="field-description">Collection of component instances associated with this workflow.</meta>
+            <key>
+                <column name="workflow_component_instance_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.workflows.WorkflowComponentInstanceItem" />
+        </set>
+        <set name="workflowComponentInstancePersistences" inverse="true">
+            <meta attribute="field-description">Collection of component instances persistence objects associated with this workflow.</meta>
+            <key>
+                <column name="workflow_component_instance_persistence_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.workflows.WorkflowComponentInstancePersistenceItem" />
+        </set>
+        <set name="componentFilePersistences" inverse="true">
+            <meta attribute="field-description">Collection of component file persistence objects associated with this workflow.</meta>
+            <key>
+                <column name="component_file_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.workflows.ComponentFilePersistenceItem" />
+        </set>
+        <set name="workflowAnnotation" inverse="true" cascade="delete" >
+            <meta attribute="field-description">The set of annotations associated with this workflow.</meta>
+            <key>
+                <column name="workflow_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.workflows.WorkflowAnnotationItem" />
+        </set>
+        <set name="workflowFolders" inverse="true" table="workflow_folder_map">
+            <meta attribute="field-description">Collection of workflow folders associated with this workflow.</meta>
+            <key>
+                <column name="workflow_id" not-null="true" />
+            </key>
+            <many-to-many column="workflow_folder_id" class="edu.cmu.pslc.datashop.workflows.WorkflowFolderItem" />
+        </set>
+        <set name="workflowPapers" inverse="true" table="workflow_paper_map">
+            <meta attribute="field-description">Collection of workflow papers associated with this workflow.</meta>
+            <key>
+                <column name="workflow_id" not-null="true" />
+            </key>
+            <many-to-many column="workflow_paper_id" class="edu.cmu.pslc.datashop.workflows.WorkflowPaperItem" />
+        </set>
+        <set name="workflowTags" inverse="true" table="workflow_tag_map">
+            <meta attribute="field-description">Collection of workflow tags associated with this workflow.</meta>
+            <key>
+                <column name="workflow_id" not-null="true" />
+            </key>
+            <many-to-many column="workflow_tag_id" class="edu.cmu.pslc.datashop.workflows.WorkflowTagItem" />
+        </set>
+    </class>
+</hibernate-mapping>

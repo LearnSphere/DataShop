@@ -1,0 +1,25 @@
+
+body, #footerTable { background-image: none !important; background-color: #4e377f !important; font-family: 'Open Sans',sans-serif !important;}
+.header { padding-top: 20px; padding-bottom: 0px; }
+.header h3 .logo { background-color: transparent;}
+#helpButtonWrapper, #main-side-nav-cell { display: none !important;; }
+#main { background: #f8f8f8;
+    background-image: url(../images/tiny_grid.png);
+    background-attachment: fixed; }
+#main_td { background-color: transparent !important;}
+#contents, #workflows-page-div { background: transparent !important; padding: 0px; min-height: 640px !important; white-space: nowrap; }
+#createNewWorkflowButton.ui-button { background-color: #4e377f; background-image: none; color: #FFFFFF; }
+#createNewWorkflowButton.disabled { cursor: not-allowed; background-color: #bcbcbc; }
+#createNewWorkflowButton:hover {
+    background-color: #765eaa;
+    border: 1px solid #4e377f;
+    box-shadow: 0 1px 0 #FFFFFF;
+}
+#process-div { background-image: url(../images/tiny_grid.png); }
+
+.myWFContainer .separator, .globalWFContainer .separator { background-color: #FFF; border: 2px solid #ebebeb; padding: 30px 35px; position: relative;}
+.searchWFContainer .separator, .recommendedWFContainer .separator { background-color: #FFF; border: 2px solid #ebebeb; padding: 10px 30px 10px 30px; position: relative;}
+
+body, html {
+    background-color: #4e377f !important;
+}

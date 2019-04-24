@@ -1,0 +1,100 @@
+<div class="topic" id="help-dataset-info-kc-models">
+    <h2>Dataset Info / KC Models</h2>
+    
+    <p> A KC (Knowledge Component) model is a mapping between steps and
+    knowledge components. In DataShop, each unique step can map to zero or more
+    knowledge components.</p>
+    
+    <p>From the KC Models page, you can compare existing KC models, export an
+    existing model or template for creating a new KC model, or import a new
+    model that you've created.</p>
+
+    <h3>Comparing KC models</h3>
+    <p>On the KC Models page, each model is described by:</p>
+    <ul class="concise">
+        <li>a number of KCs</li>
+        <li>a number of observations labeled with KCs</li>
+        <li>five statistical measures of goodness of fit for the model: AIC, BIC, and three
+        Cross Validation RMSE values. These model fit values are described in more detail on the <a
+            href="help?page=modelValues">Model Values help page</a>.</li>
+    </ul>
+    
+    <p>Models are grouped by the number of observations, sorted in ascending order. The secondary sort defaults to AIC (lowest to highest, or best fit with fewest parameters to worst fit or additional parameters) and then model name.</p>
+    
+    <p>One general goal of KC modeling is to determine the "best" model for representing knowledge
+    by fitting the model to the data. The "best" model would not only account for most of the
+    data&mdash;it would have the highest number of observations labeled with KCs&mdash;and fit the data
+    well, but it would do so with fewest parameters (KCs). The BIC value that DataShop calculates tells
+    you how well the model fits the data (lower values are better), and it penalizes the models for
+    overfitting (having additional parameters). This penalty for having additional parameters is
+    stronger than AIC's penalty, so it is used in DataShop for sorting models.</p>
+
+    <h3>Why create additional KC models and import them to DataShop?</h3>
+    <p>A primary reason for creating a new KC model is that an existing model is
+    insufficient in some way&mdash;it may model some knowledge components too
+    coarsely, producing learning curves that spike or dip, or it may be too
+    fine-grained (too many knowledge components), producing curves that end
+    after one or two opportunities. Or perhaps the model fails to model the
+    domain sufficiently or with the right terminology. In any case, you may find
+    value in creating a new KC model.</p>
+    
+    <p>By importing the resulting KC model that you created back into DataShop,
+    you can use DataShop tools to assess your new model. Most reports in
+    DataShop support analysis by knowledge component model, while some
+    currently support comparing values from two KC models
+    simultaneously&mdash;see the predicted values on the error rate Learning
+    Curve, for example. We plan to create new features in DataShop that
+    support more direct knowledge component model comparison.</p>
+    
+    <h3>Auto-generated KC models</h3>
+    <!-- The following para should be identical to the one on the DS
+    Info/overview page tooltip -->
+
+    <p>DataShop creates two knowledge component models in addition to the model
+    that was logged or imported when the dataset was created:</p>
+    <ul class="concise">
+        <li><strong>single-KC model</strong>: the same knowledge component is
+        applied to every transaction in the dataset, producing a very general
+        model</li> <li><strong>unique-step model</strong>: a unique knowledge
+        component is applied to each unique step in the dataset, producing a
+        very precise (likely too much so) model.</li>
+    </ul>
+    
+    <h3>Creating a new KC model</h3>
+
+    <h4>Step 1: Export an existing model or blank template</h4>
+    <ul class="concise">
+        <li>To get started, click <strong>Export</strong> at the top of the KC Models page.</li>
+        <li>Select one or more existing KC models to use as a template for the new one, or
+        choose "(new only)" to download a blank template.</li>
+        <li>Click the <strong>Export</strong> button to download your file.</li>
+    </ul>
+
+    <h4>Step 2: Edit the KC model file in Excel or other text-file/spreadsheet editor</h4>
+    <ul class="concise">
+        <li>Define the KC model by filling in the cells in the column <strong>KC (model_name)</strong>,
+        replacing "model_name" with a name for your new model.</li>
+        <li>Assign multiple KCs to a step by adding additional <strong>KC (model_name)</strong> columns, placing one
+        KC in each column. Replace "model_name" with the same model name you used for your new model;
+        you will have multiple columns with the same header.</li>
+        <li>Add additional KC models by creating a new <strong>KC (model_name)</strong> column
+         for each KC model, replacing "model_name" with the name of your new model.</li>
+        <li><strong>Delete any KC model columns that duplicate existing KC models already in the dataset (unless you want
+        to overwrite these).</strong></li>
+        <li><strong>Do not change the values or headers of any other columns.</strong></li>
+    </ul>
+    
+    <h4>Step 3: Import a KC model file</h4>
+    <ul class="concise">
+        <li>Start the import process by clicking <strong>Import</strong> at the top of the 
+        KC Models page.</li>
+        <li>Click <strong>Choose File</strong> to browse for the KC model file you edited.</li>
+        <li>Click <strong>Verify</strong> to start file verification. If errors are found
+        in your file, fix them and re-verify the file. When DataShop
+        successfully verifies the file, you can then import it by clicking
+        the <strong>Import</strong> button.</li>
+    </ul>
+    
+    <span class="helpTopicLink" style="display:none"><a href="help?page=kcm"><img src="images/page_white_text.png" /> <span>Read more 
+    about KC Models</span></a></span>
+</div>

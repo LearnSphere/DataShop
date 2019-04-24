@@ -1,0 +1,205 @@
+  /*
+   fix to bridle the table, prevents overflowing of the viewport
+   works in IE7b2, too. Special thanks to Ingo Chao (satzansatz.de) for the fix!
+  */
+#exportPreview {
+	float: left; 
+}
+#contents {
+	zoom:1;
+}
+#sampleManager { 
+	zoom:1;
+}
+#dataPreview {
+	float:left;
+}
+/* paginator horizontal controls should be lower when the download info is displayed */
+.data_grid_container .horizontal_controls {
+	top:65px;
+}
+/* LC page, Step Rollup Export */
+#learningCurves #exportPreviewTable {
+	border-top:none;
+	white-space:nowrap;
+	font-size:11px;
+}
+#learningCurves #exportPreviewTable span {
+	padding:0;
+	margin:0;
+	white-space: nowrap;
+}
+#learningCurves #exportPreviewTable td.cell {
+	padding:1px;
+	margin:0;
+}
+#learningCurves #viewPort {width:100%}
+#learningCurves #exportHeaderTable{
+	font-size:11px;
+}
+#exportPreviewTable th {
+	padding:0;
+	margin:0;
+}
+
+/* Problem Breakdown Table (Dataset Info) */
+#problemInfoList #data_grid {
+	border-top:none;
+	border-left:none;
+	font-size:11px;
+	float:none;
+}
+#problemInfoList #data_grid span {
+	white-space:nowrap;
+}
+#problemInfoList #viewPort {width:100%}
+#problemInfoList #data_grid_container{white-space:nowrap}
+
+#helpWindowTopicLink {
+	margin-top:0;
+}
+#info-boxes-wrapper {
+    margin-bottom:1em;
+}
+/* data_grid */
+.col_0, .col_1, .col_2, .col_3, .col_4, .col_5, .col_6, .col_7, .col_8, 
+.col_9, .col_10, .col_11, .col_12, .col_13, .col_14, .col_15, .col_16, 
+.col_17, .col_18, .col_19, .col_20, .col_21, .col_22, .col_23, .col_24, 
+.col_25, .col_26, .col_27, .col_28, .col_29, .col_30, .col_31 {
+    white-space: nowrap;
+}
+
+/* Dataset Info */
+#datasetInfo .dataset-box td {
+    white-space: pre;
+}
+
+/* KC Models */
+#modelInfo .cvrmse {
+    width:200px;
+}
+#modelInfo .numobservations {
+    width:300px;
+}
+
+/* Help pages */
+#helpcontents h2 {
+    height:1em;
+    margin-top:0;
+}
+#toc h2 {
+    margin-top:0
+}
+#toc ol {
+    margin-left:0;
+    padding-left:42px;
+}
+#externalAnalysisOutput p.eaText {
+    white-space: pre;
+}
+#tabheader #accessRequestsTab span {
+    padding-right: 6px
+}
+#tabheader #accessRequestsTab img {
+    position: absolute;
+}
+#project-requests-table input {
+    display: none;
+}
+#modelValuesTable {
+    border-left: none;
+    border-right: none;
+}
+#learningCurves #modelValuesTableContainer {
+    float: none;
+    width: 65em;
+}
+/*
+ * Access Requests
+ */
+#requestDialog .textAreaDiv, #responseDialog .textAreaDiv, #newAccessRowDialog .textAreaDiv {
+    width: 490px;
+}
+#requestDialog textarea, #responseDialog textarea, #newAccessRowDialog textarea {
+    width: 480px;
+}
+.requestDialog p, .responseDialog p, .newAccessRowDialog p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#user-requests-table td {
+    height: 40px;
+}
+/*
+ * Files
+ */
+#uploadPaperForm textarea, #uploadFileDialog textarea {
+    width: 95%;
+}
+#uploadExternalAnalysisDialog textarea, #externalAnalysisStatModel {
+    width: 92%
+}
+#uploadExternalAnalysisDialog p {
+    margin-top: 8px
+}
+/*
+ * Login
+ */
+.column11 {
+    display: inline;
+}
+#create-new-account td input {
+    width: 184px;
+}
+#uploadDatasetButtonDiv, #createProjectButtonDiv {
+    float: none;
+    position: relative;
+}
+#createProjectButtonDiv {
+    margin-left: 3px;
+}
+/*
+ * External Tools
+ */
+#downloadAllFilesButton {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#uploadFileButton {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#external-tools-div {
+	min-width: auto;
+}
+#addToolButton, #deleteThisToolDiv {
+    top: 15px;
+    right: 0;
+}
+.gearSubmenu {
+    border: 1px solid #e0e0e0;
+}
+/*
+ * IRB
+ */
+#chooseExistingTitle {
+	float: none;
+	clear: none;
+}
+#addIRBForm textarea, #addIRBDialog textarea {
+	width: 90%;
+}
+#addNewIRBDiv {
+	padding-top: 0;
+	margin-top: 0;
+}
+#addIRBDialog p, #addIRBFileDialog p, #editIRBDialog p,
+#irbPNMaxLen, #irbTitleMaxLen {
+	margin-bottom: 2px;
+}
+#addIRBDialog p, #addIRBFileDialog p, #editIRBDialog p {
+	margin-top: 12px;
+}
+#allIRBsTable td, #allIRBsTable th {
+    padding: 8px 10px 8px 0;
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 4521 $
+ Last modified by - $Author: bkb $
+ Last modified on - $Date: 2008-02-29 21:18:58 -0500 (Fri, 29 Feb 2008) $
+ $KeyWordsOff: $
+-->
+<hibernate-mapping>
+    <class name="edu.cmu.pslc.datashop.item.SubgoalItem" table="subgoal" batch-size="100">
+    	<meta attribute="class-description">A portion of a problem.</meta>
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique id for this subgoal.</meta>
+            <column name="subgoal_id" />
+            <generator class="native" />
+        </id>
+        <property name="subgoalName" type="string">
+        	<meta attribute="field-description">The name of the subgoal.</meta>
+            <column name="subgoal_name" not-null="true" />
+        </property>
+        <property name="guid" type="string">
+            <meta attribute="field-description">Generated GUID for this subgoal.</meta>
+            <column name="guid" not-null="true" />
+        </property>
+        <property name="inputCellType" type="string">
+        	<meta attribute="field-description">string of the subgoal input cell type.</meta>
+            <column name="input_cell_type" length="50" />
+        </property>
+        <many-to-one name="problem" class="edu.cmu.pslc.datashop.item.ProblemItem">
+        	<meta attribute="field-description">The problem this subgoal is associated with.</meta>
+            <column name="problem_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="interpretation" class="edu.cmu.pslc.datashop.item.InterpretationItem">
+       	    <meta attribute="field-description">The interpretation this subgoal is associated with.</meta>
+            <column name="interpretation_id" />
+        </many-to-one>
+        <set name="selections" inverse="true">
+        	<meta attribute="field-description">Collection of selections associated with this subgoal.</meta>
+            <key>
+                <column name="subgoal_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SelectionItem" />
+        </set>
+        <set name="actions" inverse="true">
+        	<meta attribute="field-description">Collection of actions associated with this subgoal.</meta>
+            <key>
+        		<column name="subgoal_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ActionItem" />
+        </set>
+        <set name="inputs" inverse="true">
+        	<meta attribute="field-description">Collection of inputs associated with this subgoal.</meta>
+            <key>
+                <column name="subgoal_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.InputItem" />
+        </set>
+        <set name="subgoalAttempts" inverse="true">
+        	<meta attribute="field-description">Collection of attempts at this subgoal.</meta>
+            <key>
+                <column name="subgoal_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SubgoalAttemptItem" />
+        </set>
+        <set name="transactions" inverse="true">
+        	<meta attribute="field-description">Collection of transactions associated with this attempt.</meta>
+            <key>
+                <column name="subgoal_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.TransactionItem" />
+        </set>
+        <set name="skills" table="subgoal_skill_map" batch-size="10">
+        	<meta attribute="field-description">Collection of skills (knowledge components) associated with this subgoal.</meta>
+        	<key>
+        		<column name="subgoal_id" not-null="true" />
+        	</key>
+        	<many-to-many column="skill_id" class="edu.cmu.pslc.datashop.item.SkillItem" />
+        </set>
+    </class>
+</hibernate-mapping>

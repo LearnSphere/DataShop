@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision:  $
+ Last modified by - $Author:  $
+ Last modified on - $Date:  $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowErrorTranslationItem" table="workflow_error_translation">
+        <meta attribute="class-description">Workflow error translation.</meta>
+        <id name="id" type="integer">
+            <meta attribute="field-description">Database generated unique Id for this workflow error translation.</meta>
+            <column name="workflow_error_translation_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="componentName" type="string">
+            <meta attribute="field-description">The optional component name</meta>
+            <column name="component_name" length="100" not-null="false" />
+        </property>
+        <property name="signature" type="string">
+            <meta attribute="field-description">A unique signature used to recognize the error.</meta>
+            <column name="signature" not-null="true" />
+        </property>
+        <property name="translation" type="string">
+            <meta attribute="field-description">The converted error message.</meta>
+            <column name="translation" not-null="false" />
+        </property>
+        <property name="regexp" type="string">
+            <meta attribute="field-description">The regular expression to assist in conversion.</meta>
+            <column name="regexp" not-null="false" />
+        </property>
+        <property name="replaceFlag" type="boolean">
+            <meta attribute="field-description">Whether to prepend to ]the error message or replace it.</meta>
+            <column name="replace_flag" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 7788 $
+ Author: Alida Skogsholm
+ Last modified by - $Author: mkomi $
+ Last modified on - $Date: 2012-07-20 15:18:47 -0400 (Fri, 20 Jul 2012) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.SessionItem" table="session">
+        <meta attribute="class-description">Represents a Session in the system.</meta>
+
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique id.</meta>
+            <column name="session_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="sessionTag" type="string">
+            <meta attribute="field-description">Session Tag.</meta>
+            <column name="session_tag" not-null="true" />
+        </property>
+
+        <property name="startTime" type="timestamp">
+            <meta attribute="field-description">The start time field of this session.</meta>
+            <column name="start_time" length="19" not-null="true"/>
+        </property>
+
+        <property name="startTimeMS" type="integer">
+            <meta attribute="field-description">Start Time Milliseconds for this session.</meta>
+            <column name="start_time_ms" />
+        </property>
+
+        <property name="endTime" type="timestamp">
+            <meta attribute="field-description">The end time field of this session (optional).</meta>
+            <column name="end_time" length="19" />
+        </property>
+
+        <property name="endTimeMS" type="integer">
+            <meta attribute="field-description">End Time Milliseconds for this session.</meta>
+            <column name="end_time_ms" />
+        </property>
+
+        <property name="completionCode" type="string">
+            <meta attribute="field-description">The completion code, expected values are: QUIT, DONE, TIMEOUT, UNKNOWN (default)</meta>
+            <column name="completion_code" not-null="true"/>
+        </property>
+
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+        	<meta attribute="field-description">Dataset associated with this item.</meta>
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+
+        <many-to-one name="school" class="edu.cmu.pslc.datashop.item.SchoolItem">
+        	<meta attribute="field-description">School associated with this session.</meta>
+            <column name="school_id" />
+        </many-to-one>
+
+        <many-to-one name="classItem" class="edu.cmu.pslc.datashop.item.ClassItem">
+        	<meta attribute="field-description">Class associated with this session.</meta>
+            <column name="class_id" />
+        </many-to-one>
+
+        <many-to-one name="datasetLevelSequence" class="edu.cmu.pslc.datashop.item.DatasetLevelSequenceItem">
+        	<meta attribute="field-description">Dataset level sequence associated with this session.</meta>
+            <column name="dataset_level_sequence_id" />
+        </many-to-one>
+
+
+
+        <many-to-one name="student" class="edu.cmu.pslc.datashop.item.StudentItem">
+		<meta attribute="field-description">A single Student associated to this session</meta>
+		<column name="student_id" not-null="true" />
+	</many-to-one>
+
+
+         <set name="problemEvents" inverse="true">
+        	<meta attribute="field-description">Collection of problem events associated with this session.</meta>
+            <key>
+                <column name="session_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ProblemEventItem" />
+        </set>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,110 @@
+<%   // start new namespace
+{
+        String categoryStr = "";
+        String noKCsHereStr = "There are no KCs for this category.";
+        if (categoryName.equals(LearningCurveImage.CLASSIFIED_TOO_LITTLE_DATA)) {
+            categoryStr = "&category=too_little_data";
+        } else if (categoryName.equals(LearningCurveImage.CLASSIFIED_LOW_AND_FLAT)) {
+            categoryStr = "&category=low_and_flat";
+        } else if (categoryName.equals(LearningCurveImage.CLASSIFIED_STILL_HIGH)) {
+            categoryStr = "&category=still_high";
+        } else if (categoryName.equals(LearningCurveImage.CLASSIFIED_NO_LEARNING)) {
+            categoryStr = "&category=no_learning";
+            if (!hasAfmRun) {
+                noKCsHereStr = "There are no KCs for this category; AFM has not run"
+                             + " for this dataset and model.";
+            }
+        } else if (categoryName.equals(LearningCurveImage.CLASSIFIED_OTHER)) {
+            categoryStr = "&category=other";
+        }
+
+        // No spaces in ids...
+        String categoryId = categoryName.replace(" ", "_");
+        
+        // "Other" label has been changed to "Good"... trac #323
+        if (categoryName.equals(LearningCurveImage.CLASSIFIED_OTHER)) {
+            categoryName = LearningCurveImage.CLASSIFIED_OTHER_LABEL + "*";
+        }
+
+        int count = 0;
+        int numSkipped = 0;
+
+        %>
+        <div id="perCategoryThumbs_<%=categoryId %>" style="clear:left">
+             <% if (!categoryName.equals("")) { %>
+             <div id="perCategoryThumbsTag_<%=categoryId %>" style="clear:left">
+                  <p class="classified_label"><%=categoryName %>
+                  <img src="images/information.png" id="perCategoryThumbsImg_<%=categoryId %>" />
+                  </p>
+             </div>
+             <% } %>
+        <%
+        if ((lciList != null) && (lciList.size() > 0)) {
+
+        for (LearningCurveImage lci : lciList) {
+            count++;
+
+            //make sure we are in range of thumbs we actually care about.
+            if (count >= lcRange + numberOfThumbs) {
+                break;
+            } else if (count < lcRange) {
+                continue;
+            }
+
+            if (lci != null) { %>
+		<a class="<%=lci.getThumbClass() %>" 
+		   href="<%=lci.getAnchorURL() %>"
+		   name="<%=lci.getThumbLabel() %>">
+                   <img src="<%=lci.getImageURL() %>" width=175 height=95 border=0
+			     title="<%=lci.getImageTitle() %>"/>
+		</a>
+            <% } else {
+                count--;
+                numSkipped++;
+            }
+        } %>
+
+        <%  int totalItems = lciList.size() - numSkipped;
+
+        if (totalItems > numberOfThumbs) { %>
+               <div style="clear:both">&nbsp;</div>
+               <div class="lc_range" id="lc_range_<%=categoryId %>">
+
+               <%
+               int rangeStart = 0;
+
+               while (rangeStart < totalItems) {
+                   int rangeEnd = rangeStart + numberOfThumbs;
+                   boolean selected = lciList.get(rangeStart).equals(topItem);
+            
+                   if (rangeEnd > totalItems) {
+                      rangeEnd = totalItems;
+                   }
+                   rangeStart++;
+            
+                   String rangeStr = rangeStart + "-" + rangeEnd;
+
+                   if (lcRange != rangeStart) { %>
+                      <a <%=selected ? "class=\"selected\"" : ""%>
+                         href="LearningCurve?datasetId=<%=lcDatasetId %><%=categoryStr %>&range=<%=rangeStart%>"><%=rangeStr%></a> 
+                   <% } else { %>
+                      <%=rangeStr%> 
+                   <% }
+                   rangeStart = rangeEnd; 
+               }
+               
+               %>
+               </div>  <!-- id=lc_range -->
+
+        <% } %>
+
+        <% } else { %>
+           <p class="no_kcs_here"><%=noKCsHereStr %></p>
+        <% } %>
+
+        </div>  <!-- id=perCategoryThumbs -->
+        <div style="clear:left">
+             <hr>
+        </div>
+
+<% } // end new namespace %>

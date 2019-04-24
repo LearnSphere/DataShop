@@ -1,0 +1,61 @@
+<div class="topic" id="help-export-step">
+    <h2>Export / By Student-Step</h2>
+    <p>Export your data to a tab-delimited format, viewable in Excel, SPSS, or
+    other program.</p>
+    
+    <p>The <strong>student-step export</strong> aggregates data by student-step: each row
+    represents a student attempting to complete a step. Rows are ordered
+    by student, problem, then step, so all steps attempted by a student for 
+    a problem are listed together.</p>
+
+    <p><a href="help?page=stepRollup#column-desc">Read column descriptions</a></p>
+
+    <p>A student-step pair can appear on more than one row if the student saw the 
+    same problem more than once&mdash;there you would see the Problem View number
+    increase.</p>
+
+    <h3>What can you do with a student-step rollup?</h3>
+
+    <p>Export the table by clicking the <span class="button">Export 
+    Student-Step Rollup</span> button. Then using Excel or another spreadsheet editor 
+    to manipulate your data, you could:</p>
+
+    <ul>
+        <li>Create a KC rollup from the student-step rollup using an <a 
+            href="help?page=pivotTable">Excel PivotTable</a>.</li>
+        <li>Compare the step rollup with learning curves in DataShop to 
+        investigate the causes of spikes and dips in the learning 
+        curve. (Requires exporting knowledge components, which includes
+        the "Opportunity" column.)</li>
+    </ul>
+
+    <h3>Export checklist:</h3>
+    <ul>
+        <li>Select samples to include by clicking the name of the sample(s) in the
+            sidebar. (Bolded sample names are included.)</li>
+        <li>Examine the "Export File Status" table above the <strong>Export</strong> button to see
+        1) how fast the export process will be, and 2) to gauge the age of the cached export file, if
+        one exists. <br />
+        - <img src="images/tick.png" alt="Checkmark Icon" class="icon" /> means the export file is
+        cached and up-to-date. DataShop will prepare the file for download quickly.<br />
+        - <img src="images/hourglass.png" alt="Hourglass Icon" class="icon" /> means the export file
+        is not cached, so exporting may take considerably longer.<br />
+        - <img src="images/alert.gif" alt="Alert Icon" class="icon" /> means that although the sample
+        is cached, either recent KC models or logged data are not yet included in the sample. To find
+        out which, hover your mouse cursor over the icon. This sample should be up-to-date within 24
+        hours.<br />
+        <strong>Including at least one sample that is not up-to-date means the export will take
+        longer.</strong></li>
+    <!-- <li>Set the empty fields character, useful if data will be
+        imported into SPSS or other statistics package</li> -->
+    </ul>
+
+    <p><strong>You can lose precision in your data when opening data in
+    Microsoft Excel!</strong><br /> <a
+    href="help?page=export">Read
+    our recommended method for opening exported data in Excel</a>.</p>
+    
+
+    <span style="display:none" class="helpTopicLink"><a href="help?page=export"><img src="images/page_white_text.png" /> <span>Read 
+    more about exporting data.</span></a></span>  
+</div>

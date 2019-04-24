@@ -1,0 +1,11 @@
+<%
+    //Duplicated in header.jspf which is used for all pages (but variables not accessible here)
+    String webIsoHref="webiso";
+
+    String datasetIdUnsafe = request.getParameter("datasetId");
+
+    String datasetId = null;
+    if (datasetIdUnsafe != null && datasetIdUnsafe.matches("[0-9]+")) {
+        datasetId = datasetIdUnsafe;
+    }
+%>

@@ -1,0 +1,190 @@
+<!--
+  Carnegie Mellon University, Human Computer Interaction Institute
+  Copyright 2019
+  All Rights Reserved
+-->
+<%
+// Author: Cindy Tipper
+// Version: $Revision: 13213 $
+// Last modified by: $Author: ctipper $
+// Last modified on: $Date: 2016-05-02 16:48:45 -0400 (Mon, 02 May 2016) $
+// $KeyWordsOff: $
+//
+%>
+
+<!-- Load an object that contains the questions for the kickoff interview -->
+
+
+<script>
+
+/*let mathInterestSelect = {
+        id: "mathInterestSelect",
+        type: "multiSelect",
+        question_text: "You (%advisorFirstName%) would say that %studentFirstName% (Check all that apply)",
+        options: [
+                {
+                    id: "interestedInMathSelect",
+                    text:"Is interested in math"
+                },
+                {
+                    id: "strugglesInMathSelect",
+                    text:"Struggles with core concepts"
+                },
+                {
+                    id: "otherMathInterestSelect",
+                    text:"Other (open ended)",
+                    open_ended: true
+                }
+            ],
+};*/
+/*
+let mathInterest = {
+        id: "mathInterest",
+        type: "multiCheckbox",
+        question_text: "You (%advisorFirstName%) would say that %studentFirstName% (Check all that apply)",
+        options: [
+                {
+                    id: "interestedInMath",
+                    text:"Is interested in math"
+                },
+                {
+                    id: "strugglesInMath",
+                    text:"Struggles with core concepts"
+                },
+                {
+                    id: "otherMathInterest",
+                    text:"Other (open ended)",
+                    open_ended: true
+                }
+            ],
+        is_background: true
+};
+
+let mathMindset = {
+        id: "mathMindset",
+        type: "textarea",
+        question_text: "When %studentFirstName% thinks about learning math, what comes to mind?",
+        is_background: true
+};
+
+let mathHelper = {
+        id: "mathHelper",
+        type: "textarea",
+        question_text: "Who in %studentFirstName%'s life has helped them learn math?",
+        is_background: true
+};
+
+let studentsMathReflection = {
+        id: "studentsMathReflection",
+        type: "multiCheckbox",
+        question_text: "%studentFirstName%... (Check all that apply)",
+        options: [
+                {
+                    id: "mathLearner",
+                    text:"Sees themselves as a math learner"
+                },
+                {
+                    id: "moreTime",
+                    text:"Feels they can succeed at math by spending more time on math"
+                },
+                {
+                    id: "mathIsUsefulForFuture",
+                    text:"Sees math as useful for their future"
+                },
+                {
+                    id: "otherMathReflection",
+                    text:"Other (open ended)",
+                    open_ended: true
+                }
+            ],
+        is_background: true
+};
+
+let studentsInterests = {
+        id: "studentsInterests",
+        type: "textarea",
+        question_text: "What are some of %studentFirstName%'s interests?",
+        is_background: true
+};
+*/
+let studentsMathReflection = {
+        id: "studentsMathReflection",
+        type: "multiCheckbox",
+        question_text: "%studentFirstName%... (Check all that apply)",
+        options: [
+                {
+                    id: "seesThemselvesAsMathLearner",
+                    text:"Sees themselves as a math learner"
+                },
+                {
+                    id: "moreTime",
+                    text:"Feels they can succeed at math by spending more time on math"
+                },
+                {
+                    id: "mathIsUsefulForFuture",
+                    text:"Sees math as useful for their future"
+                },
+                {
+                    id: "otherMathReflection",
+                    text:"Other (open ended)",
+                    open_ended: true
+                }
+            ],
+        is_background: true
+};
+
+let studentsMathExperience = {
+        id: "studentsMathExperience",
+        type: "textarea",
+        question_text: "What are %studentFirstName%'s prior experiences in school with math?",
+        is_background: true
+};
+
+let mathLearner = {
+        id: "mathLearner",
+        type: "textarea",
+        question_text: "Does %studentFirstName% consider themselves to be a \"math learner\"? Why or why not?",
+        is_background: true
+};
+
+let mathSuccessByTimeLearning = {
+        id: "mathSuccessByTimeLearning",
+        type: "textarea",
+        question_text: "Does %studentFirstName% feel like they can succeed at math by spending more time learning math?",
+        is_background: true
+};
+
+let mathSuccessByTimeDoing = {
+        id: "mathSuccessByTimeDoing",
+        type: "textarea",
+        question_text: "Does %studentFirstName% feel like they can succeed at math by spending more time doing math?",
+        is_background: true
+};
+
+let mathUsefulForFuture = {
+        id: "mathUsefulForFuture",
+        type: "textarea",
+        question_text: "Does %studentFirstName% see math as useful for their future? In what ways does %studentFirstName% think it will be useful?",
+        is_background: true
+};
+
+let minutesExpectedUse = {
+        id: "minutesExpectedUse",
+        type: "number",
+        question_text: "How many minutes per week does %studentFirstName% feel they can spend with the tutor?",
+        is_background: false
+};
+
+let percentCorrectExpected = {
+        id: "percentCorrectExpected",
+        type: "number",
+        question_text: "What % of problems does %studentFirstName% think they will get correct?",
+        is_background: false
+};
+
+
+
+var questions = [studentsMathExperience, mathLearner, mathSuccessByTimeLearning,
+    mathSuccessByTimeDoing, mathUsefulForFuture, studentsMathReflection,
+    minutesExpectedUse, percentCorrectExpected];
+</script>

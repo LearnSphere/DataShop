@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2017
+ All Rights Reserved
+
+ $Revision:  $
+ Last modified by - $Author:  $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowUserLogItem" table="workflow_user_log">
+        <meta attribute="class-description">A piece of log information for a user at the workflow-level.</meta>
+        <id name="id" type="integer">
+            <meta attribute="field-description">Database generated unique Id.</meta>
+            <column name="workflow_user_log_id" />
+            <generator class="native" />
+        </id>
+        <property name="user" type="string">
+            <meta attribute="field-description">The user of the dataset.</meta>
+            <column name="user_id" length="250" not-null="false" />
+        </property>
+        <property name="dataset" type="integer">
+            <meta attribute="field-description">Dataset being used.</meta>
+            <column name="dataset_id" not-null="false" />
+        </property>
+        <property name="workflow" type="long">
+            <meta attribute="field-description">The workflow.</meta>
+            <column name="workflow_id" not-null="false" />
+        </property>
+        <property name="newWorkflow" type="long">
+            <meta attribute="field-description">The workflow.</meta>
+            <column name="new_workflow_id" not-null="false" />
+        </property>
+        <property name="time" type="timestamp">
+            <meta attribute="field-description">Timestamp of the log action.</meta>
+            <column name="time" length="19" not-null="true" />
+        </property>
+        <property name="action" type="string">
+            <meta attribute="field-description">The action being performed on the dataset.</meta>
+            <column name="action" length="75" not-null="true" />
+        </property>
+        <property name="info" type="string">
+            <meta attribute="field-description">Additional information about the action performed.</meta>
+            <column name="info" length="255" not-null="false"/>
+        </property>
+    </class>
+</hibernate-mapping>

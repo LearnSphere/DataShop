@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2016
+ All Rights Reserved
+
+ $Revision: 8333 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2012-12-06 14:27:24 -0500 (Thu, 06 Dec 2012) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowFileItem" table="workflow_file">
+        <meta attribute="class-description">A file.</meta>
+        <id name="id" type="integer">
+                <meta attribute="field-description">Database generated unique Id for this file.</meta>
+            <column name="file_id" />
+            <generator class="native" />
+        </id>
+        <property name="fileName" type="string">
+                <meta attribute="field-description">The actual name of the file.</meta>
+            <column name="actual_file_name" not-null="true" />
+        </property>
+        <property name="filePath" type="string">
+                <meta attribute="field-description">The local path to the file.</meta>
+            <column name="file_path" not-null="true" />
+        </property>
+        <property name="title" type="string">
+                <meta attribute="field-description">The title to display for the file.</meta>
+            <column name="title" />
+        </property>
+        <property name="description" type="string">
+                <meta attribute="field-description">Description of the file.</meta>
+            <column name="description" />
+        </property>
+        <property name="addedTime" type="timestamp">
+                <meta attribute="field-description">The timestamp for when this file was added.</meta>
+            <column name="added_time" length="19" not-null="true" />
+        </property>
+        <property name="fileType" type="string">
+                <meta attribute="field-description">The type/extension of the file.</meta>
+            <column name="file_type" not-null="true" />
+        </property>
+        <property name="fileSize" type="long">
+                <meta attribute="field-description">The size of the file.</meta>
+            <column name="file_size" not-null="true" />
+        </property>
+
+        <many-to-one name="owner" class="edu.cmu.pslc.datashop.item.UserItem">
+                <meta attribute="field-description">The id of the user that is the owner of this entry.</meta>
+            <column name="owner" length="32" not-null="true" />
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

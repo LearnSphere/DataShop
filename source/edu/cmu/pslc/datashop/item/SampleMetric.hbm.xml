@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 6308 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2010-09-15 14:43:21 -0400 (Wed, 15 Sep 2010) $
+ $KeyWordsOff: $
+-->
+    <import class="edu.cmu.pslc.datashop.servlet.export.SkillModelWithMaxSkills" />
+    <class name="edu.cmu.pslc.datashop.item.SampleMetricItem" table="sample_metric">
+    	<meta attribute="class-description">SampleMetric on a column.</meta>
+        <id name="id" type="integer">
+        	<meta attribute="field-description">Database generated unique Id for this sample metric.</meta>
+            <column name="sample_metric_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="sample" class="edu.cmu.pslc.datashop.item.SampleItem">
+        	<meta attribute="field-description">The sample this metric is associated with.</meta>
+            <column name="sample_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="skillModel" class="edu.cmu.pslc.datashop.item.SkillModelItem">
+            <meta attribute="field-description">The optional skill model this metric is associated with.</meta>
+            <column name="skill_model_id" />
+        </many-to-one>
+        <property name="metric" type="string">
+        	<meta attribute="field-description">The metric being stored.</meta>
+            <column name="metric" length="255" not-null="true" />
+        </property>
+        <property name="value" type="long">
+        	<meta attribute="field-description">Value of the calculated metric.</meta>
+            <column name="value" not-null="true" />
+        </property>
+        <property name="calculatedTime" type="timestamp">
+        	<meta attribute="field-description">Timestamp of when the value was calculated.</meta>
+            <column name="calculated_time" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

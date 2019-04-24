@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 15913 $
+ Last modified by - $Author: mkomisin $
+ Last modified on - $Date: 2019-03-14 14:35:21 -0400 (Thu, 14 Mar 2019) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowComponentInstancePersistenceItem" table="workflow_component_instance_persistence">
+        <meta attribute="class-description">Workflow component.</meta>
+        <id name="id" type="integer">
+            <meta attribute="field-description">Database generated unique Id for this workflow component instance.</meta>
+            <column name="workflow_component_instance_id" />
+            <generator class="native" />
+        </id>
+
+        <many-to-one name="workflow" class="edu.cmu.pslc.datashop.workflows.WorkflowItem">
+            <meta attribute="field-description">The workflow for this component instance.</meta>
+            <column name="workflow_id" not-null="true" />
+        </many-to-one>
+
+        <property name="componentName" type="string">
+            <meta attribute="field-description">The component name</meta>
+            <column name="component_name" length="100" not-null="true" />
+        </property>
+        <property name="dirtyFile" type="boolean">
+            <meta attribute="field-description">The dirty file bit</meta>
+            <column name="dirty_file" not-null="true" default="false" />
+        </property>
+        <property name="dirtyOption" type="boolean">
+            <meta attribute="field-description">The dirty option bit</meta>
+            <column name="dirty_option" not-null="true" default="false" />
+        </property>
+        <property name="dirtySelection" type="boolean">
+            <meta attribute="field-description">The dirty selection bit</meta>
+            <column name="dirty_selection" not-null="true" default="false" />
+        </property>
+        <property name="dirtyAddConnection" type="boolean">
+            <meta attribute="field-description">The dirty add connection bit</meta>
+            <column name="dirty_add_connection" not-null="true" default="false" />
+        </property>
+        <property name="dirtyDeleteConnection" type="boolean">
+            <meta attribute="field-description">The dirty delete connection bit</meta>
+            <column name="dirty_delete_connection" not-null="true" default="false" />
+        </property>
+        <property name="dirtyAncestor" type="boolean">
+            <meta attribute="field-description">The dirty ancestor bit</meta>
+            <column name="dirty_ancestor" not-null="true" default="false" />
+        </property>
+        <property name="state" type="string">
+            <meta attribute="field-description">The state</meta>
+            <column name="state" length="64" />
+        </property>
+        <property name="depthLevel" type="integer">
+            <meta attribute="field-description">The execution order</meta>
+            <column name="depth_level" />
+        </property>
+        <property name="errors" type="string">
+            <meta attribute="field-description">Errors</meta>
+            <column name="errors" not-null="false" />
+        </property>
+        <property name="warnings" type="string">
+            <meta attribute="field-description">Warnings</meta>
+            <column name="warnings" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>

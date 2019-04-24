@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 11939 $
+ Last modified by - $Author: mkomisin $
+ Last modified on - $Date: 2015-02-01 11:24:14 -0500 (Sun, 01 Feb 2015) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.CfTxLevelItem" table="cf_tx_level">
+        <meta attribute="class-description">Represents a single row in the custom field transaction level table.</meta>
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.CfTxLevelId">
+            <key-property name="customFieldId" type="long">
+            <meta attribute="field-description">Part of the composite PK - FK of the custom field Id.</meta>
+            <column name="custom_field_id" />
+            </key-property>
+            <key-property name="transactionId" type="long">
+                <meta attribute="field-description">Part of the composite PK - FK of the transaction Id.</meta>
+                <column name="transaction_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="customField" class="edu.cmu.pslc.datashop.item.CustomFieldItem" update="false" insert="false">
+        <meta attribute="field-description">Part of the composite PK - FK of the custom field Id.</meta>
+            <column name="custom_field_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="transaction" class="edu.cmu.pslc.datashop.item.TransactionItem" update="false" insert="false">
+        <meta attribute="field-description">Part of the composite PK - FK of the transaction Id.</meta>
+            <column name="transaction_id" not-null="true" />
+        </many-to-one>
+        <property name="type" type="string">
+        <meta attribute="field-description">Type of this custom field.</meta>
+            <column name="type" not-null="false" />
+        </property>
+        <property name="value" type="string">
+            <column name="value" not-null="false" />
+        </property>
+        <property name="bigValue" type="text">
+            <column name="big_value" not-null="false" />
+        </property>
+        <property name="loggingFlag" type="boolean">
+            <column name="logging_flag" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

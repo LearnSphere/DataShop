@@ -1,0 +1,9 @@
+# robots.txt - allows everyone for now (9/30/2009)
+User-agent: *
+Disallow: /Shibboleth.sso/
+
+# blocking crawlers... maybe
+User-agent: MegaIndex.ru/2.0
+User-agent: Yandex
+User-agent: SemanticScholarBot
+Disallow: /

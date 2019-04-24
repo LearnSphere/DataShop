@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2012
+ All Rights Reserved
+
+ Author: Cindy Tipper
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+
+  <class name="edu.cmu.pslc.datashop.item.ProjectIrbMapItem" table="project_irb_map">
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.ProjectIrbMapId">
+            <key-property name="projectId" type="integer">
+                <column name="project_id"/>
+            </key-property>
+            <key-property name="irbId" type="integer">
+                <column name="irb_id"/>
+            </key-property>
+        </composite-id>
+        
+        <many-to-one name="project" class="edu.cmu.pslc.datashop.item.ProjectItem"
+        	insert="false" update="false">
+            <column name="project_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="irb" class="edu.cmu.pslc.datashop.item.IrbItem"
+        	insert="false" update="false">
+            <column name="irb_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="addedBy" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="added_by" length="250" />
+        </many-to-one>
+
+        <property name="addedTime" type="timestamp">
+            <column name="added_time" length="19" />
+        </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<div class="topic" id="help-access-requests">
+    <h2>Access Requests</h2>
+    <p>View responses to your requests for project access and respond to requests
+    for access to your projects.</p>
+    
+    <h3>My Requests for Access</h3>
+    <p>This table lists the status of recent requests you have made. (You can make new requests
+    from the <a href="index.jsp?datasets=other">private datasets</a> page.) If a request has been denied or if more than 24 hours
+    have elapsed since the time you requested access and you haven't received a response,
+    you can re-request access.</p>
+    
+    <h3>Requests for Access to My Projects</h3>
+    <p>This portion of the page is divided into three subtabs:</p>
+    <ul>
+        <li><strong>Not Reviewed</strong>. Requests that you need to act on by reviewing. 
+        Click <strong>Respond</strong> to approve or deny the request. You can also modify the
+        type of access (view, edit, or project admin) that the requester receives.</li>
+        <li><strong>Recent Activity</strong>. Recent requests that you have responded to, or in the case
+        of a project where there is a principal investigator or data provider other than you, requests 
+        that he or she has responded to. Click an access level to modify your response.</li>
+        <li><strong>Access Report</strong>. A report showing all users who have requested access to your
+        projects, or who have had access at any point in time. You can sort by table headers or search the
+        report. Click <strong>Export</strong> to export a version of the table that you can open in Excel
+        or keep for your records. If you are the principal investigator or data provider for a public project,
+        you will also see rows corresponding to users who have viewed datasets in your project(s).</li>
+    </ul>
+    <p>On any subtab, click the expand icon (<img src="images/expand.png" alt="icon" />) to show the history for a user's request 
+    to a project, including your responses.</p>
+    
+    <h3>Responding to a Request</h3>
+    <p>In the respond dialog, you can choose the type of access to grant or to deny access. You can also enter a short "reason", which can
+    be shared with the requester. (Any text you enter here will be shared with the project's principal investigator or data provider, if one exists
+    besides you.)</p>
+    <p>To email the requester directly, click the requester's name.</p>
+    
+<span class="helpTopicLink" style="display:none"><a href="help?page=administration"><img src="images/page_white_text.png" /> <span>Read more 
+    about project / dataset administration</span></a></span>
+</div>

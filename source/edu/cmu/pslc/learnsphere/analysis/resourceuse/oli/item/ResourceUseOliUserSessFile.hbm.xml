@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2012
+ All Rights Reserved
+
+ $Revision: 13980 $
+ Last modified by - $Author: hcheng $
+ Last modified on - $Date: 2017-03-07 15:57:59 -0500 (Tue, 07 Mar 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.learnsphere.analysis.resourceuse.oli.item.ResourceUseOliUserSessFileItem" table="resource_use_oli_user_sess_file">
+        <meta attribute="class-description">Resource use user_sess file.</meta>
+        <id name="id" type="integer">
+            <meta attribute="field-description">Database generated unique Id for this resource use user_sess file.</meta>
+            <column name="resource_use_oli_user_sess_file_id" />
+            <generator class="native" />
+        </id>
+        <property name="fileName" type="string">
+            <meta attribute="field-description">file name.</meta>
+            <column name="file_name" length="500"/>
+        </property>
+    </class>
+</hibernate-mapping>

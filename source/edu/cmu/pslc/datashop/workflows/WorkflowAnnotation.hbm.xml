@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2018
+ All Rights Reserved
+
+ $Revision:  $
+ Last modified by - $Author: Peter Schaldenbrand $
+ Last modified on - $Date:  $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowAnnotationItem" table="workflow_annotation">
+        <meta attribute="class-description">Workflow annotation for a given workflow.</meta>
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique Id for this workflow annotation item.</meta>
+            <column name="workflow_annotation_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="workflow" class="edu.cmu.pslc.datashop.workflows.WorkflowItem">
+            <meta attribute="field-description">The workflow for this workflow annotation.</meta>
+            <column name="workflow_id" not-null="true" />
+        </many-to-one>
+        
+        <property name="text" type="string">
+            <meta attribute="field-description">The text in the annotation.</meta>
+            <column name="annotation_text" length="2048" not-null="false" />
+        </property>
+        <property name="lastUpdated" type="timestamp">
+            <meta attribute="field-description">The last update time.</meta>
+            <column name="last_updated" length="19" not-null="true" />
+        </property>
+
+    </class>
+</hibernate-mapping>

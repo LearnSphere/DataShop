@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision:  $
+ Last modified by - $Author:  $
+ Last modified on - $Date:  $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowComponentItem" table="workflow_component">
+        <meta attribute="class-description">Workflow component.</meta>
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique Id for this workflow component.</meta>
+            <column name="workflow_component_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="componentType" type="string">
+            <meta attribute="field-description">The component type</meta>
+            <column name="component_type" length="100" not-null="true" />
+        </property>
+        <property name="componentName" type="string">
+            <meta attribute="field-description">The component name</meta>
+            <column name="component_name" length="100" not-null="true" />
+        </property>
+        <property name="toolDir" type="string">
+            <meta attribute="field-description">The schema path</meta>
+            <column name="tool_dir" length="1024" not-null="true" />
+        </property>
+        <property name="schemaPath" type="string">
+            <meta attribute="field-description">The schema path</meta>
+            <column name="schema_path" length="1024" not-null="true" />
+        </property>
+        <property name="interpreterPath" type="string">
+            <meta attribute="field-description">The interpreter path</meta>
+            <column name="interpreter_path" length="1024" not-null="false" />
+        </property>
+        <property name="toolPath" type="string">
+            <meta attribute="field-description">The tool path</meta>
+            <column name="tool_path" length="1024" not-null="true" />
+        </property>
+        <property name="enabled" type="boolean">
+            <meta attribute="field-description">The enabled flag</meta>
+            <column name="enabled" not-null="true" />
+        </property>
+        <property name="remoteExecEnabled" type="boolean">
+            <meta attribute="field-description">The remote execution enabled flag</meta>
+            <column name="remote_exec_enabled" not-null="true" />
+        </property>
+        <property name="author" type="string">
+            <meta attribute="field-description">The component author (user id)</meta>
+            <column name="author" length="250" not-null="true" />
+        </property>
+        <property name="citation" type="string">
+            <meta attribute="field-description">The citation</meta>
+            <column name="citation" length="4096" not-null="false" />
+        </property>
+        <property name="version" type="string">
+            <meta attribute="field-description">The component type</meta>
+            <column name="version" length="100" not-null="true" />
+        </property>
+        <property name="info" type="string">
+            <meta attribute="field-description">The component info, e.g. help, meta-info, etc.</meta>
+            <column name="info" />
+        </property>
+
+    </class>
+</hibernate-mapping>

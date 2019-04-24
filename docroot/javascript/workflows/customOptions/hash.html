@@ -1,0 +1,165 @@
+<!--
+	Carnegie Mellon University, Human-Computer Interaction Institute
+	Copyright 2018
+	All Rights Reserved
+
+	Options panel interface for the standalone anonymizing component
+-->
+<html>
+
+<head>
+    <script src="../../lib/jquery-1.7.1.min.js"></script>
+    <script src="../../lib/sjcl.js"></script>
+    <script src="../../lib/papaparse.min.js"></script>
+    <style>
+    #headersSelect {
+        max-width: 250px;
+    }
+
+    td {
+        padding: 5px 5px 10px 5px;
+    }
+    </style>
+</head>
+
+<body>
+    <table class="optionsTable">
+        <tr>
+            <td>
+                Upload CSV File
+            </td>
+            <td>
+                <input type="file" id="csvFile" accept=".csv" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Column(s) To Hash
+            </td>
+            <td>
+                <!--<input type="text" id="columnHeader" />-->
+                <span id="selectFileReminder" style="color:blue;margin-left:5px">please upload a csv file</span>
+                <select multiple id="headersSelect" style="display:none">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                (Optional) File Name
+            </td>
+            <td>
+                <input type="text" id="filename" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Secret Word
+            </td>
+            <td>
+                <input type="text" id="salt" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button id="submitButton" type="button">Download CSV</button>
+            </td>
+        </tr>
+    </table>
+    <script>
+    jQuery(".advancedOptionsTable", parent.document).hide();
+    jQuery(".fileInputForm", parent.document).css("height", "98%");
+    jQuery(".fileInputForm", parent.document).css("width", "97%");
+    jQuery(".componentOptionsDiv", parent.document).css("height", "60%");
+
+    jQuery(function() {
+
+        // When a new csv file is chose, populate the header multi-select
+        jQuery('#csvFile').change(function() {
+            let csvFile = jQuery('#csvFile')[0].files[0];
+
+            if (csvFile) {
+                jQuery('#selectFileReminder').css('display', 'none');
+                jQuery('#headersSelect').css('display', 'inherit');
+                Papa.parse(csvFile, {
+                    header: true,
+                    complete: function(results) {
+                        // Add headers to the select box
+                        let headers = results.meta.fields;
+                        let headerHtml = '';
+                        for (let i = 0; i < headers.length; i++) {
+                            let h = headers[i];
+                            headerHtml += '<option value="' + h + '">' + h + '</option>';
+                        }
+                        jQuery('#headersSelect').html(headerHtml);
+                    }
+                });
+            }
+        });
+
+        // When the download button is clicked, anonymize the data and download it
+        jQuery('#submitButton').on('click', function() {
+
+            let salt = jQuery('#salt').val().trim();
+            let csvFile = jQuery('#csvFile')[0].files[0];
+            let columnsToHash = jQuery('#headersSelect').val();
+            let newFileName = jQuery('#filename').val().trim();
+
+            if (!csvFile) {
+                alert('Please select a proper .csv file');
+                return;
+            } else if (columnsToHash == null) {
+                alert('No columns were selected.');
+                return;
+            }
+
+            //disable the button during upload
+            jQuery('#submitButton').attr('disabled', 'disabled');
+
+            Papa.parse(csvFile, {
+                header: true,
+                complete: function(results) {
+                    // Loop through the column headers to hash and hash them
+                    columnsToHash.forEach(function(column) {
+
+                        //If the input column header can't be found, return said error
+                        if (results.meta.fields.indexOf(column) < 0) {
+                            alert('Please input a valid column header from your uploaded .csv file,' +
+                                    ' including spaces, such as "student ID"');
+                            jQuery('#submitButton').attr('disabled', false)
+                            return
+                        }
+
+                        for (let i = 0; i < results.data.length; i++) {
+                            //In case the .csv has extra blank rows being parsed somewhere in the file, 
+                            //ensure it won't hash cells with just spaces/tabs/etc.
+                            let username = results.data[i][column];
+                            if (username && username.trim()) {
+                                let bitArray = sjcl.hash.sha256.hash(username + salt);
+                                let hash = sjcl.codec.hex.fromBits(bitArray);
+
+                                //Replace the column header/'username' values with the new hash value
+                                results.data[i][column] = hash;
+                            }
+                        }
+                    });
+
+                    let newFile = Papa.unparse(results);
+
+                    let element = document.createElement('a');
+                    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(newFile));
+                    element.setAttribute('download', newFileName ? newFileName + '.csv' : csvFile.name.replace('.', '-hashed.'));
+                    element.style.display = 'none';
+                    document.body.appendChild(element);
+                    element.click();
+                    document.body.removeChild(element);
+
+                    // enable the download button
+                    jQuery('#submitButton').attr('disabled', false);
+                }
+            });
+        });
+    });
+    </script>
+</body>
+
+</html>

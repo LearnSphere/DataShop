@@ -1,0 +1,16 @@
+#help #toc, #backToApp, #header, #footerTable {
+	display:none
+}
+#helpcontents, #main, html body, #contents {
+	margin:0
+}
+#main {
+	border:none;
+	position:relative;
+}
+#main #contents #help {
+	min-width: 0; /* min-width >0 interferes with print margins */
+}
+#contents {
+	padding:0
+}

@@ -1,0 +1,705 @@
+<%// Author: Brett Leber
+  // Version: $Revision: 15607 $
+  // Last modified by: $Author: mkomisin $
+  // Last modified on: $Date: 2018-10-18 13:47:08 -0400 (Thu, 18 Oct 2018) $
+  // $KeyWordsOff: $
+  //%>
+<%@page contentType="text/html"%>
+<%@page import="java.io.StringWriter"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.util.*"%>
+<%@page import="edu.cmu.pslc.datashop.dao.DaoFactory"%>
+<%@page import="edu.cmu.pslc.datashop.dao.DatasetUserLogDao"%>
+<%@page import="edu.cmu.pslc.datashop.dao.UserRoleDao"%>
+<%@page import="edu.cmu.pslc.datashop.helper.UserState"%>
+<%@page import="edu.cmu.pslc.datashop.item.AccessRequestStatusItem"%>
+<%@page import="edu.cmu.pslc.datashop.item.DatasetItem"%>
+<%@page import="edu.cmu.pslc.datashop.item.ProjectItem"%>
+<%@page import="edu.cmu.pslc.datashop.item.SampleItem"%>
+<%@page import="edu.cmu.pslc.datashop.item.SetItem"%>
+<%@page import="edu.cmu.pslc.datashop.item.SkillModelItem"%>
+<%@page import="edu.cmu.pslc.datashop.item.UserItem"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.NavigationHelper"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.HelperFactory"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.DatasetContext"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.MetricsReportHelper"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.ProjectHelper"%>
+<%@page import="edu.cmu.pslc.datashop.util.DataShopInstance"%>
+<%@page import="com.beginmind.login.model.LoginServicePrincipal" %>
+
+<%@page import="edu.cmu.pslc.datashop.discoursedb.item.DiscourseItem"%>
+<%@page import="edu.cmu.pslc.datashop.discoursedb.servlet.DiscourseDbServlet"%>
+<%@page import="edu.cmu.pslc.datashop.discoursedb.servlet.DiscourseDto"%>
+<%
+
+    String webIsoHref="webiso";
+
+    NavigationHelper navHelper = HelperFactory.DEFAULT.getNavigationHelper();
+    ProjectHelper projHelper = HelperFactory.DEFAULT.getProjectHelper();
+
+    UserItem user = (UserItem)session.getAttribute("cmu.edu.pslc.datashop.item.UserItem");
+    String remoteUser = (user != null) ? (String)user.getId() : null;
+
+    String setAliasStr = "<span id=\"aliasAlert\"></span>";
+    if (user != null) {
+       if ((user.getEmail() != null && user.getEmail().equals(user.getId())) && (user.getUserAlias() == null)) {
+          setAliasStr = "<span id=\"aliasAlert\">"
+                      + "<img id=\"aliasAlertImg\" title=\"Please update your profile.\" src=\"images/exclamation.png\">"
+                      + "</span>";
+       }
+    }
+
+    // Determine if the user is a new user.
+    boolean adminUserFlag = false;
+    boolean datasetHasEditFlag = false;
+    boolean newUserFlag = false;
+    String  newUserFlagDebugOutput = "";
+    boolean hasLoggingActivityRole = false;
+    boolean hasWebServicesRole = false;
+    boolean hasTermsManagerRole = false;
+    boolean hasResearchManagerRole = false;
+    boolean hasDatashopEditRole = false;
+    boolean hasRequestedDatashopEditRole = UserState.hasRequestedDatashopEditRole(user);
+    boolean hasResearchGoalEditRole = false;
+
+    if (user != null) {
+        adminUserFlag = user.getAdminFlag();
+
+        // the 30 day threshold in seconds used to determine if a user account is new or not
+        long newUserThresholdInSeconds = 30 * 24 * 60 * 60;
+        Date now = new Date();
+        Date minusThreshold = new Date(now.getTime() - (newUserThresholdInSeconds * 1000));
+        if (user.getCreationTime() != null && user.getCreationTime().after(minusThreshold)) {
+            newUserFlag = true;
+        } else {
+            DatasetUserLogDao datasetUserLogDao = DaoFactory.DEFAULT.getDatasetUserLogDao();
+            long numSelects = datasetUserLogDao.getNumberDatasetSelects(user);
+            if (numSelects < 10) {
+                newUserFlag = true;
+            }
+        }
+
+        UserRoleDao userRoleDao = DaoFactory.DEFAULT.getUserRoleDao();
+        hasLoggingActivityRole = userRoleDao.hasLoggingActivityAuth(user);
+        hasWebServicesRole = userRoleDao.hasWebServicesAuth(user);
+        hasTermsManagerRole = userRoleDao.hasTermsManagerRole(user);
+        hasResearchManagerRole = userRoleDao.hasResearchManagerRole(user);
+        hasDatashopEditRole = userRoleDao.hasDatashopEditRole(user);
+        hasResearchGoalEditRole = userRoleDao.hasResearchGoalEditRole(user);
+    }
+
+    String uploadDatasetHref = "javascript:requestDatashopEditRole(true)";
+    String createProjectHref = "javascript:requestDatashopEditRole(false)";
+
+    if (adminUserFlag || hasDatashopEditRole) {
+        uploadDatasetHref = "UploadDataset";
+        createProjectHref = "CreateProject";
+    } else if (hasRequestedDatashopEditRole && !hasDatashopEditRole) {
+        uploadDatasetHref = "javascript:roleRequestPending(true)";
+        createProjectHref = "javascript:roleRequestPending(false)";
+    }
+
+    String workflowsHref = "LearnSphere";
+
+    String datasetLabel = "Dataset: ";
+    String itemStr = "dataset";
+
+    String datasetIdUnsafe = request.getParameter("datasetId");
+
+    String datasetId = null;
+    if (datasetIdUnsafe != null && datasetIdUnsafe.matches("[0-9]+")) {
+        datasetId = datasetIdUnsafe;
+    }
+    String projectIdStr = request.getParameter("id");
+    String discourseIdStr = request.getParameter(DiscourseDbServlet.DISCOURSE_ID_ATTR);
+
+    DatasetContext info = (DatasetContext)session.getAttribute("datasetContext_" + datasetId);
+    DatasetItem datasetItem = null;
+    String datasetName = "";
+    ProjectItem projectItem = null;
+    Integer projectId = null;
+    String projectName = "";
+    boolean isPublic = false;
+    boolean isRemote = false;
+
+    String debugMsg = "<p>";
+
+    if (info != null) {
+        datasetItem = info.getDataset();
+        datasetItem = DaoFactory.DEFAULT.getDatasetDao().get((Integer)datasetItem.getId());
+        datasetName = navHelper.displayDatasetName(info);
+    } else {
+        /* (DS1427) Retrieving dataItem directly from DAO if necessary (i.e. not logged-in). */
+        if (datasetId != null && datasetId.matches("\\d+")) {
+            datasetItem = DaoFactory.DEFAULT.getDatasetDao().get(Integer.valueOf(datasetId));
+            if (datasetItem != null) {
+                datasetName = datasetItem.getDatasetName();
+            }
+        } else if (discourseIdStr != null) {
+             DiscourseDto dto = (DiscourseDto)
+                request.getAttribute(DiscourseDbServlet.DISCOURSE_OVERVIEW_ATTR + discourseIdStr);
+             if (dto != null) {
+                DiscourseItem discourse = dto.getDiscourse();
+                datasetName = discourse.getName();
+                isRemote = dto.getIsRemote();
+                projectId = discourse.getProjectId();
+                projectItem = DaoFactory.DEFAULT.getProjectDao().get(projectId);
+                projectName = projectItem.getProjectName();
+             }
+
+             datasetLabel = "Discourse: ";
+             itemStr = "discourse";
+        }
+    }
+
+    if (datasetItem != null) {
+        Integer dsId = (Integer)datasetItem.getId();
+        isPublic = projHelper.isPublic(dsId);
+        projectItem = datasetItem.getProject();
+        if (projectItem != null) {
+            projectId = (Integer)projectItem.getId();
+            projectItem =  DaoFactory.DEFAULT.getProjectDao().get(projectId);
+            projectName = projectItem.getProjectName();
+        }
+
+        if (navHelper != null) {
+            isRemote = navHelper.isDatasetRemote(datasetItem);
+        }
+    }
+
+    String datasetNameString = "";
+    if (datasetName == null || datasetName.length() == 0) {
+        datasetNameString  = "<div id=\"contentHeader\" class=\"clearfix\"><h1></h1></div>";
+    } else {
+        datasetNameString  = "<div id=\"contentHeader\" class=\"clearfix\">" + "<div id=\"contentHeader1Col\">";
+
+        if (projectItem != null) {
+            datasetNameString += "<h1 id=\"contentProjectName\" class=\"datasetname\">Project: ";
+            datasetNameString += "<a href=\"Project?id=" + projectId + "\">" + projectName + "</a>";
+            if (isPublic) {
+                datasetNameString += "<img title=\"This is a public project.\" alt=\"(public)\" src=\"images/users.gif\">";
+            } else {
+                datasetNameString += "<img title=\"This is a private project.\" alt=\"(private)\" src=\"images/lock.png\">";
+            }
+            datasetNameString += "</h1>";
+        }
+
+        datasetNameString += "<h1 id=\"contentDatasetName\" class=\"datasetname\">" + datasetLabel + datasetName;
+        if (isRemote) {
+            datasetNameString += "<img title=\"This is a remote " + itemStr + ".\" alt=\"(remote)\" src=\"images/remote_ds.png\">";
+        }
+
+        datasetNameString += "</h1>";
+        datasetNameString += "</div></div>";
+
+    }
+
+    String sampleString = null;
+    SkillModelItem thePrimaryModel = null;
+    SetItem theSkillSet = null;
+    String theSkillSetSpan = "";
+    String theSkillSetName = "";
+
+    boolean released = true;
+    boolean exportAllowed = true;
+
+    long numberOfTransactions = 0;
+
+    boolean datasetSelectedFlag = false;
+    if (navHelper != null && info != null) {
+
+        if (datasetName == null || datasetName.length() == 0) {
+            datasetSelectedFlag = false;
+        } else {
+            datasetSelectedFlag = true;
+        }
+
+        sampleString = navHelper.getSelectedSamplesString(info);
+        thePrimaryModel =  DaoFactory.DEFAULT.getSkillModelDao().get(
+        navHelper.getSelectedSkillModel(info));
+        theSkillSet = navHelper.getSelectedSkillSetItem(info);
+        boolean isModified = info.getNavContext().isSkillSetModified();
+        if (theSkillSet != null) {
+            theSkillSetName = theSkillSet.getName();
+            theSkillSetSpan = "<span id=\"contentSetName\">KC Set: " + theSkillSetName + "</span>";
+            if (isModified) {
+                theSkillSetSpan += "<span id=\"contentSetNameModified\">(modified)</span>";
+            } else {
+                theSkillSetSpan += "<span id=\"contentSetNameModified\"></span>";
+            }
+        } else {
+            theSkillSetSpan = "<span id=\"contentSetName\"></span>";
+            theSkillSetSpan += "<span id=\"contentSetNameModified\"></span>";
+        }
+        datasetHasEditFlag = info.getEditFlag() || info.isDataShopAdmin();
+
+        // Determine if dataset has been released...
+        if ((datasetItem.getReleasedFlag() == null)
+            || !datasetItem.getReleasedFlag()
+            || (datasetItem.getProject() == null)) {
+            released = false;
+            exportAllowed = false;
+        }
+
+        // Datashop Admins can always export.
+        exportAllowed |= adminUserFlag;
+
+        numberOfTransactions = info.getNumTransactions();
+    }
+
+    //------------- RECENT DATASETS drop-down menu --------------------------
+    String datasetOptions = "";
+    datasetOptions = "<div id=\"dsSelector\"><select name=\"current_dataset\" id=\"dsSelectorSelect\">";
+    if (datasetSelectedFlag) {
+        datasetOptions = datasetOptions + "<option selected=\"selected\">" + datasetName + "</option>";
+    } else {
+        datasetOptions = datasetOptions + "<option selected=\"selected\">Please select a dataset...</option>";
+    }
+
+    List recentDatasetList = (List)session.getAttribute("recent_datasets");
+    if (recentDatasetList != null) {
+        for (Iterator iter = recentDatasetList.iterator(); iter.hasNext();) {
+            DatasetItem dsItem = (DatasetItem) iter.next();
+            String recentName = dsItem.getDatasetName();
+            if (!datasetSelectedFlag || !datasetName.equals(recentName)) {
+                datasetOptions = datasetOptions
+                        + "<option value=\"" + dsItem.getId()
+                        + "\">" + recentName + "</option>";
+            }
+        }
+    }
+
+    datasetOptions = datasetOptions + "<option>Other...</option>";
+    datasetOptions = datasetOptions + "</select></div>";
+    //-----------------------------------------------------------------------
+
+    String contentHeader = "<div id=\"contentHeader\" class=\"clearfix\">";
+
+    contentHeader += "<div id=\"contentHeaderCol1\">";
+
+    if (projectItem != null) {
+        contentHeader += "<h1 id=\"contentProjectName\" class=\"datasetname\">Project: ";
+        contentHeader += "<a href=\"Project?id=" + projectId + "\">" + projectName + "</a>";
+        if (isPublic) {
+            contentHeader += "<img title=\"This is a public project.\" alt=\"(public)\" src=\"images/users.gif\">";
+        } else {
+            contentHeader += "<img title=\"This is a private project.\" alt=\"(private)\" src=\"images/lock.png\">";
+        }
+        contentHeader += "</h1>";
+    }
+
+    contentHeader += "<h1 id=\"contentDatasetName\" class=\"datasetname\">" + datasetLabel + datasetName + "</h1>";
+
+    if (sampleString != null && !sampleString.equals("")) {
+        contentHeader += "<h1 id=\"contentSampleName\" class=\"samplename\">Sample(s): " + sampleString + "</h1>";
+    }
+    contentHeader += "</div>";
+    contentHeader += "<div id=\"contentHeaderCol2\">";
+    if (thePrimaryModel != null) {
+        contentHeader += "<h1 id=\"contentKcModelName\" class=\"kcmname\">KC Model: "
+        + "<span id=\"selectedKCM\">" + thePrimaryModel.getSkillModelName() + "</span>"
+        + "<span id=\"allSelectedKCM\" style=\"display:none\">All Models</span>";
+        contentHeader += "</h1><h1 class=\"kcsetname\">" + theSkillSetSpan + "</h1>";
+
+    }
+    contentHeader += "</div>";
+    contentHeader += "</div>";
+
+    String unreleasedDatasetStr =
+           "<b>This dataset is not yet released.</b> Importing and exporting "
+           + "functionality will be disabled until you release it. A released "
+           + "dataset inherits the access permissions of its project. It will "
+           + "also appear in the main index of DataShop datasets.";
+
+    // Add info for unreleased, no-project datasets.
+    if (!released && datasetItem != null) {
+       contentHeader += "<div id=\"unreleased_dataset_div\"><span>"
+                     + unreleasedDatasetStr + "</span>";
+
+        // Disable button if remote...
+        String disabledStr = "";
+        if (isRemote) { disabledStr = "disabled"; }
+        contentHeader += "<div class=\"release-dataset-div\" id=\"" + datasetItem.getId()
+                          + "\"><input id=\"releaseDataset_" + datasetItem.getId()
+                          + "\" type=\"button\" value=\"Release Dataset\""
+                          + disabledStr + "></div>";
+
+        contentHeader += "</div>";
+    }
+
+
+    MetricsReportHelper metricsReportHelper = HelperFactory.DEFAULT.getMetricsReportHelper();
+
+    String welcomeString = "";
+    String logInOutString = "<a href=\"login\">Log in</a>";
+
+    /* [2012/07/17 - ysahn] login status */
+    final int LOGIN_STATUS_NOT_LOGGED = 0;
+    final int LOGIN_STATUS_GUEST = 1;
+    final int LOGIN_STATUS_LOGGED = 2;
+
+    int loginStatus = LOGIN_STATUS_NOT_LOGGED;
+
+    if (remoteUser != null) {
+        if (remoteUser.equals("guest")) {
+            loginStatus = LOGIN_STATUS_GUEST;
+            welcomeString = "we hope you enjoy your visit";
+        } else {
+            loginStatus = LOGIN_STATUS_LOGGED;
+            welcomeString = "logged in as <a href=\"AccountProfile\">" + remoteUser + "</a> " + setAliasStr;
+        }
+        logInOutString = " <a href=\"javascript:logout()\">logout</a>";
+    }
+
+    String contentType = (String) session.getAttribute("content_type");
+    if (contentType == null) {
+        contentType = "learningCurve";
+    }
+
+
+%>
+
+<html>
+<head>
+    <title>
+<%
+        if (pageTitle != null) {
+            out.print("DataShop > " + pageTitle);
+        } else {
+            out.print("DataShop");
+        }
+%>
+    </title>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KRQP7W9');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="google-signin-client_id" content="757918974099-bfjl74l0a27t68mfk9v2pbu6rr3fh8qe.apps.googleusercontent.com"/>
+
+    <!-- The following is for the new logo. -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/jquery-ui-1.8.18.custom.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/styles.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/nav.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/HelpWindow.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/ManageKCSets.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/AutoComplete.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/idpselect.css")%>" />
+<%
+       if (!cssIncludes.isEmpty()) {
+           for (int i = 0; i < cssIncludes.size(); i++) {
+               out.println("\t<link rel=\"stylesheet\" type=\"text/css\" href=\""
+                               + response.encodeURL("/v/css/"+cssIncludes.get(i))
+                               + "\" />");
+           }
+       }
+%>
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/print.css")%>" media="print" />
+    <!--[if lt IE 7]>
+        <link rel="stylesheet" href="css/iefix.css" type="text/css" />
+        <link rel="stylesheet" href="css/ie6fix.css" type="text/css" />
+    <![endif]-->
+    <!--[if IE 7]>
+        <link rel="stylesheet" href="css/iefix.css" type="text/css" />
+        <link rel="stylesheet" href="css/ie7fix.css" type="text/css" />
+    <![endif]-->
+    <!--[if IE 8]>
+        <link rel="stylesheet" href="css/ie8fix.css" type="text/css" />
+    <![endif]-->
+    <!--[if IE 9]>
+        <link rel="stylesheet" href="css/ie9fix.css" type="text/css" />
+    <![endif]-->
+
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/jquery-1.7.1.min.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/jquery-ui-1.8.17.custom.min.js")%>"></script>
+
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/Datashop.js")%>"></script>
+
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/prototype.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/scriptaculous.js?load=effects,dragdrop,controls")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/datasetSelector.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/object/NavBoxItem.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/object/NavigationBox.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/object/ToolTip.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/Navigation.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/object/HelpWindow.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/object/ManageKCSets.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/UploadDataset.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/workflows/lsWorkflowCommon.js")%>"></script>
+<%
+
+    if (!jsIncludes.isEmpty()) {
+        for (int i = 0; i < jsIncludes.size(); i++) {
+            out.println("\t<script type=\"text/javascript\" src=\""
+                    + response.encodeURL("/v/"+jsIncludes.get(i))
+                    + "\"></script>");
+        }
+    }
+%>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/hint.js")%>"></script>
+
+    <!-- for Google sign-in -->
+    <script src="https://apis.google.com/js/platform.js?onload=gapiOnload" async defer></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/Authentication.js")%>"></script>
+<%@ include file="/google-analytics.jspf" %>
+</head>
+
+<%
+    boolean helpPageFlag = false;
+    // check the page title to determine if this is a help page or not
+    if (pageTitle.toLowerCase().indexOf("help") >= 0) {
+        helpPageFlag = true;
+    }
+
+    String helpHrefString = "help";
+    Boolean navPresentFlag = true;
+    Boolean hasSplitTr = false;
+    if (!helpPageFlag) {
+        if (pageTitle.equals("Learning Curve")) {
+            helpHrefString = "help?page=learningCurve";
+        } else if (pageTitle.equals("Error Report")) {
+            helpHrefString = "help?page=errorReport";
+        } else if (pageTitle.equals("Export")) {
+            helpHrefString = "help?page=export";
+        } else if (pageTitle.equals("Dataset Info")) {
+            helpHrefString = "help?page=datasetInfo";
+            navPresentFlag = false;
+        } else if (pageTitle.equals("Discourse Info")) {
+            helpHrefString = "help?page=discourseInfo";
+            navPresentFlag = false;
+        } else if (pageTitle.equals("Discourse Export")) {
+            helpHrefString = "help?page=discourseInfo";
+            navPresentFlag = false;
+        } else if (pageTitle.equals("Save Sample as Dataset")) {
+            helpHrefString = "help?page=sampletodataset";
+            navPresentFlag = false;
+        } else if (pageTitle.equals("Files")) {
+            helpHrefString = "help?page=files";
+            navPresentFlag = false;
+        } else if (pageTitle.equals("Performance Profiler")) {
+            helpHrefString = "help?page=perfProfiler";
+        } else if (pageTitle.equals("Registration")) {
+            helpHrefString = "help?page=access";
+        } else if (pageTitle.equals("Citation")) {
+            helpHrefString = "help?page=citation";
+        } else if (pageTitle.equals("Project")) {
+            helpHrefString = "help?page=administration";
+            navPresentFlag = false;
+        } else if (pageTitle.equals("Access Requests")) {
+            helpHrefString = "help?page=access";
+        } else if (pageTitle.equals("Manage Workflows")) {
+            helpHrefString = "help?page=workflows";
+            navPresentFlag = false;
+        } else if (pageTitle.equals("Dataset Workflows")) {
+            helpHrefString = "help?page=workflows";
+            navPresentFlag = false;
+        } else if ((pageTitle.equals("External Tools"))
+                || (pageTitle.equals("Metrics"))
+                || (pageTitle.equals("Web Services Credentials"))
+                || (pageTitle.equals("Logging Activity"))
+                || (pageTitle.equals("Manage Terms"))) {
+            helpHrefString = "help?page=advanced";
+        } else if (pageTitle.equals("Discourse Info")
+                    || pageTitle.equals("Discourse Export")) {
+            helpHrefString = "help?page=discourseDb";
+        }
+
+        if (datasetId != null && datasetId.matches("\\d+")) {
+            helpHrefString += "&datasetId=" + datasetId;
+        } else if (projectIdStr != null) {
+            helpHrefString += "&id=" + projectIdStr;
+        } else if (discourseIdStr != null) {
+            helpHrefString += "&discourseId=" + discourseIdStr;
+        }
+    }
+    if (!helpPageFlag && (pageTitle.equals("Home")
+            || pageTitle.equals("Access Requests")
+            || pageTitle.equals("External Tools")
+            || pageTitle.equals("IRB Review")
+            || pageTitle.equals("All IRBs")
+            || pageTitle.equals("Import Queue")
+            || pageTitle.equals("Create a project")
+            || pageTitle.equals("Upload a dataset")
+            || pageTitle.equals("Metrics")
+            || pageTitle.equals("Web Services Credentials")
+            || pageTitle.equals("Logging Activity")
+            || pageTitle.equals("Manage Terms")
+            || pageTitle.equals("Edit Terms")
+            || pageTitle.equals("Congratulations")
+            || pageTitle.equals("Discourse Info")
+            || pageTitle.equals("Discourse Export")
+            || pageTitle.equals("Manage Workflows")
+            || pageTitle.equals("Research Goals"))) {
+        navPresentFlag = false;
+        hasSplitTr = true;
+    }
+%>
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRQP7W9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<%
+/* [2012/7/17 - ysahn] Top Login box: show when not-logged AND in the pages: Project or Dataset Info */
+if (loginStatus == LOGIN_STATUS_NOT_LOGGED) {
+    if (pageTitle.equals("Project")
+            || pageTitle.equals("Dataset Info")
+            || pageTitle.equals("Discourse Info")
+            || pageTitle.equals("Files") ) {
+%>
+        <div id="not-logged-in-box">
+        <a href="login">Log in</a> to start analyzing data.
+        </div>
+<%
+    }
+}
+
+    StringBuffer locationStr = new StringBuffer();
+    if (DataShopInstance.isSlave()) {
+        locationStr.append(DataShopInstance.getSlaveId());
+    } else {
+        locationStr.append("CMU");
+    }
+
+%>
+
+<table border="0" id="layout">
+<tr><td colspan="2" id="header">
+
+    <a id="datashopLogoLink" href="index.jsp" title="DataShop Home">
+    <div class="logo">
+        <h1>DataShop <span>@<%=locationStr.toString() %><span></h1>
+        <span>a data analysis service for the learning science community</span>
+    </div>
+    </a>
+
+    <%
+        if (remoteUser != null) {
+    %>
+    <%=datasetOptions%>
+    <%
+        }
+    %>
+    <!--
+    <div id="debug_msg" class="infoMessage"><%=debugMsg%></div>
+    -->
+    <p><%=welcomeString%> <%=logInOutString%><br />
+    <p id="link_bar">
+        <a href="index.jsp">home</a>
+        | <a href="/about" target="_blank">about</a>
+        |
+        <%
+        if (helpPageFlag) {
+            out.print("help");
+        } else {
+            out.print("<a href=\"" + helpHrefString + "\">help</a>");
+        }
+    %>
+    | <a href="help?page=contact">contact us</a></p>
+    </p>
+
+</td></tr>
+
+<%
+    Boolean useSearchColumn = false;
+    if (navPresentFlag && remoteUser != null && showHelpButton) { %>
+        <div id="helpButtonWrapper" class="navPresent"><div id="helpButton" class="help-button">Help</div></div>
+<%  } else if (showHelpButton) {
+        useSearchColumn = true;
+        %>
+        <tr><td>
+            <div id="helpButtonWrapper"><div id="helpButton" class="help-button">Help</div></div>
+<% } else {
+        useSearchColumn = true;
+        %>
+        <tr><td>
+            <div id="helpButtonWrapper"><div id="helpButton" class="help-button" style="display:none">Help</div></div>
+<% } %>
+
+<script>
+  function gseFunction() {
+
+      var cx = '003403572499718465305:czdgc2ancys';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+  };
+
+  var regex = new RegExp(".*/help.*","gi");
+  if (window.location.href.match(regex) === null) {
+      gseFunction();
+  }
+</script>
+
+<%  if (hasSplitTr && !navPresentFlag) { %>
+        </td><td>
+        <div id="siteWideSearch" style="width: 290px; float: right; ">
+          <gcse:search></gcse:search>
+        </div>
+<%  } else if (showHelpButton && !navPresentFlag) { %>
+        </td><td>
+        <div id="siteWideSearch" style="width: 290px; float: right; ">
+          <gcse:search></gcse:search>
+        </div>
+<% } else if (!hasSplitTr) { %>
+        <div id="siteWideSearch" style="width: 290px; float: right; display: none; ">
+          <gcse:search></gcse:search>
+        </div>
+<% } %>
+
+<%  if (useSearchColumn) { %>
+        </td></tr>
+<% } %>
+
+
+<!-- begin Announcement Area -->
+<%
+    boolean announceFlag = false;
+    String  announceMsg  = "DataShop and its logging services will be unavailable on Tuesday, November 11, 2008. <br>Downtime will start around 6:00 am EST and could last until 2:00 pm EST.";
+    try {
+        Date now = new Date();
+        java.text.DateFormat df = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);
+        Date announceStartDate = df.parse("Nov 4, 2008");
+        Date announceEndDate   = df.parse("Nov 11, 2008");
+        if (now.after(announceStartDate) && now.before(announceEndDate)) {
+            announceFlag = true;
+        }
+    } catch (Exception e) {
+        // Ignore this exception
+    }
+%>
+<% if (announceFlag) { %>
+<tr><td class="announcementMessage" colspan="3"><div>
+<%=announceMsg%>
+</div></td></tr>
+<% } %>
+<!-- end Announcement Area -->
+
+<input type="hidden" id="discourseId" value="<%=discourseIdStr %>" />
+
+<% /* Hidden Input : Must have edit or admin to save KC sets. */ %>
+<input type="hidden" id="datasetHasEditFlag" value="<%=datasetHasEditFlag%>" />
+<% /* Hidden Input : Is the dataset eligible for Export? */ %>
+<input type="hidden" id="datasetExportAllowed" value="<%=exportAllowed %>" />
+<% /* Hidden Input : Is the user a DS admin? */ %>
+<input type="hidden" id="adminUserFlag" value="<%=adminUserFlag %>" />
+
+<div id="releaseDatasetDialog" class="releaseDatasetDialog"></div>
+<div id="moveDatasetDialog" class="moveDatasetDialog"> </div>
+
+

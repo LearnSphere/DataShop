@@ -1,0 +1,638 @@
+body {
+    background: url(../../images/bg-pattern.gif) repeat scroll 0 0 #e5e1db;
+}
+#datalab-content-div {
+    width: 90%;
+    min-width: 890px;
+    margin: 8px auto 0 auto;
+}
+#dl-logo {
+    background: transparent url(../../images/datalab_logo.png) no-repeat top left;
+    width: 233px;
+    height: 56px;
+}
+#dl-logo a {
+    width: 233px;
+    display: block;
+    height: 56px;
+}
+#dl-logo a span {
+    display: none;
+}
+#dl-content-wrapper-div {
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    padding-left: 14px;
+}
+#dl-navbar {
+    float: left;
+    clear: left;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+.dl-navbar {
+    width: 305px;
+}
+.dl-navbar-wide {
+    width: 356px;
+}
+#login-div {
+    float: right;
+    padding-right: 70px;
+    padding-top: 12px;
+}
+#logged-in-user-div {
+    float: right;
+    padding-right: 30px;
+    font-size: 13px;
+}
+#logged-in-user-div a {
+    text-decoration: underline;
+}
+#save-analysis-div {
+    float: right;
+    padding-right: 140px;
+    padding-top: 67px;
+}
+#save-analysis-button {
+    font-size: 15px;
+    height: 40px;
+    width: 75px;
+}
+#drop-file-div {
+    width: 375px;
+    height: 100px;
+    padding: 10px;
+    border: 1px dashed;
+    border-radius: 10px;
+    margin: 10px 0 10px 0;
+}
+#file-loading-div {
+    display: none;
+    float: left;
+    clear: left;
+    margin-left: 60px;
+    margin-top: 50px;
+}
+#table-div {
+    background-color: white;
+    width: 100%;
+    min-width: 865px;
+}
+#overview-table-div {
+    margin-left: 0;
+    padding-top: 10px;
+    padding-bottom: 14px;
+    position: relative;
+}
+#overview-table-div span {
+    float: left;
+    clear: left;
+}
+#overview-table-div .no-bottom-cell {
+    border-bottom-style: hidden;
+}
+.drop-file-info {
+    font-size: 15px;
+    margin-top: 20px;
+    margin-left: 22px;
+}
+#cell-shading-div, #third-tab-div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    clear: left;
+}
+.outer-div {
+    clear: left;
+    padding-left: 6px;
+    padding-top: 2px;
+    padding-bottom: 6px;
+}
+#three-options-div {
+    display: none;
+}
+td.threshold-label {
+    font-size: 12px;
+    text-align: right;
+}
+td.threshold-value {
+    font-size: 12px;
+    padding-left: 10px;
+    padding-bottom: 2px;
+}
+.threshold-input {
+    width: 30px;
+}
+#start-analysis-div {
+    padding-bottom: 20px;
+}
+#overview-info-div {
+    border-style: solid;
+    border-width: thin;
+    margin-top: 16px;
+    border-radius: 4px;
+    padding: 5px;
+    width: 96%;
+    border-color: #bbb;
+}
+#overview-info-div span {
+    margin: 0 5 0 5px;
+    clear: left;
+}
+#overview-info-div img {
+    float: right;
+}
+#overview-display-options {
+    clear: left;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 76%;
+}
+#overview-display-options a {
+    text-decoration: underline;
+}
+#overview-display-options p {
+    font-weight: bold;
+}
+#shading-and-summary-info-table {
+    min-width: 770px
+}
+#summary-column-table {
+    margin-bottom: 10px;
+}
+#summary-column-table label {
+    font-weight: normal;
+}
+#shading-and-summary-info-div {
+    clear: left;
+    padding-top: 10px;
+    padding-bottom: 25px;
+}
+#additional-analysis-tables-div {
+    width: 95%;
+}
+#shading-and-summary-info-table td {
+    vertical-align: top;
+    font-size: 14px;
+}
+.cell-one {
+    width: 45%;
+}
+.cell-two {
+    padding-top: 5px;
+}
+.empty-cell {
+    width: 10%;
+}
+#analysis-type-div {
+    clear: left;
+}
+#student-score-threshold-input {
+    width: 30px;
+}
+#summary-column-info-div span {
+    font-style: italic;
+}
+#overviewTable,
+#correlationTable {
+    clear: left;
+    float: left;
+    width: 72%;
+    font-size: 12px;
+}
+.datatable-scroll {
+    width: 98%;
+    overflow-x: auto;
+    overflow-y: visible;
+    min-width: 860px;
+}
+.dataTable td {
+    font-size: 12px;
+}
+#overviewTable {
+    width: 100%;
+    table-layout: fixed;
+    font-size: 14px;
+}
+#overviewTable td, #overviewTable th {
+    white-space: nowrap; 
+    text-overflow:ellipsis; 
+    overflow: hidden;
+}
+.colAverage, .colStDev, .colOverallScore {
+    font-weight: 700;
+    background-color: #eee;
+}
+#upload-new-file-div, #create-an-account-div {
+    padding-bottom: 20px;
+}
+#upload-new-file-div a,
+#create-an-account-div a {
+    text-decoration: underline;
+    font-size: 12px;
+}
+#paging-options-table {
+    float: left;
+    clear: left;
+    width: 500px;
+    margin-top: 3px;
+    margin-bottom: 5px;
+}
+#pagingOptionsTable .row-range {
+    padding-left: 15px;
+    font-size: 0.8em;
+}
+#pagingOptionsTable .rows-per-page {
+    font-size: 0.8em;
+}
+#pagingOptionsTable span.rows_per_page {
+    padding-right: 3px;
+}
+#pagingOptionsTable td.display-anon-ids {
+    padding-top: 5px;
+    padding-bottom: 6px;
+    font-size: 0.8em;
+}
+#pagingOptionsTable label {
+    font-weight: normal;
+}
+#pageCountTable,
+#panelCountTable {
+    margin-left: 14px;
+    font-size: 0.8em;
+}
+#pageCountTable td img,
+#panelCountTable td img {
+    vertical-align: top;
+}
+#pageCountTable .disabled,
+#panelCountTable .disabled {
+    color:#BBBBBB;
+    text-decoration:none !important;
+}
+#emailsStudentsForm {
+    width: 450px;
+}
+#emailsStudentsForm p {
+    margin-top: 5px;
+}
+#emailContentDiv {
+    margin-top: 17px;
+}
+#studentTableHeader {
+    margin-top: 15px;
+    font-size: 90%;
+    width: 430px;
+    table-layout: fixed;
+}
+#studentTableDiv {
+    height: 140px;
+    overflow: auto;
+}
+#studentTable {
+    font-size: 90%;
+    width: 430px;
+    table-layout: fixed;
+}
+#studentTable td, #studentTable th, #studentTableHeader th {
+    border: 1px solid;
+    padding: 2px;
+}
+#studentTable tr.even {
+    background-color: #efefef;
+}
+#correlation-table-div, #cronbachs-alpha-table-div {
+    clear: left;
+
+}
+#cronbachs-alpha-table-div {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    width: 295px;
+}
+#correlation-label,
+#reliability-label {
+    margin-bottom: 10px;
+}
+#correlation-label img,
+#reliability-label img {
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+.dl-label {
+    width: 40%;
+    font-size: 18px;
+}
+.shading-gray {
+    background-color: #D6D6D6
+}
+table.dataTable th.fixed-col-left,
+table.dataTable td.fixed-col-left {
+    border-right-color: black;
+}
+table.dataTable td.fixed-col-left {
+    border-left: none;
+}
+table.dataTable th.fixed-col-right,
+table.dataTable td.fixed-col-right {
+    border-left-color: black;
+}
+table.dataTable td.fixed-col-right {
+    border-right: none;
+}
+table.dataTable td.empty-col {
+    border-right: none;
+}
+th.dl-table-header {
+    font-size: 12px;
+}
+/* Cell shading: table IDs lost with DataTables library... */
+.dataTable td.shading-red {
+    background-color: #FBE3E4;
+}
+.dataTable td.shading-green {
+    background: #E6EFC2;
+}
+.dataTable tfoot th.ui-state-default,
+.dataTable tfoot td.ui-state-default {
+    border-top: 1px solid #d3d3d3;
+}
+
+/**************************************
+* Home tab tables
+***************************************/
+.dl-label-small {
+    font-size: 16px;
+}
+table.dl-home-table {
+    margin:2px 0 18px 0;
+    padding: 0;
+    width: 95%;
+}
+table.dl-home-table caption {
+    padding: 8px 2px 5px 2px;
+    color: #2B353A;
+    background-color: inherit;
+    font-size: 95%;
+    font-weight:normal;
+    text-align: left;
+    text-transform: capitalize;
+}
+table.dl-home-table th {
+    padding:4px 2px 4px 5px;
+    color:#333;
+    background-color:#e0e7ef;
+    font-size:70%;
+    font-weight:bold;
+    text-align:center;
+}
+table.dl-home-table td {
+    width: 320px;
+    padding: 4px 10px;
+    color: #42525A;
+    font-size: 70%;
+}
+table.dl-home-table td.center {
+    text-align: center;
+}
+table.dl-home-table tr.odd td {
+    color: #42525A;
+    background-color: #efefef;
+}
+table.dl-home-table th a {
+    color: #2B353A;
+    background-color: inherit;
+    font-size: 110%;
+    text-decoration: none;
+}
+table.dl-home-table td a {
+    color:#37567F;
+    background-color: inherit;
+    text-decoration:underline;
+}
+.analysis-edit-img {
+    float: right;
+}
+.nameChangeDiv {
+    display: none;
+    padding-bottom: 5px;
+}
+.deleteSureDiv {
+    display: none;
+}
+/**************************************
+* Sorting dropdown
+***************************************/
+.sortDropdown {
+    color: #555;
+    width: 58px;
+    height: 24px;
+    text-align: left;
+    border: 1px solid #bbbbbb;
+    position: absolute;
+    right: 45px;
+    top: 65px;
+    background-color: #f6f6f6;
+    font-weight: bold;
+    border-radius: 2px;
+}
+.sortSubmenu {
+    background: #fff;
+    position: absolute;
+    top: 25px;
+    left: -94px;
+    width: 140px;
+    margin-left: 10px;
+    padding: 9px 0 4px 6px;
+    /*border-radius: 6px;*/
+    -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    display: none;
+    /* for ie8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#88000000')";
+    /* for ie9 */
+    border-collapse: separate;
+}
+#datalab-content-div .sortDropdown li a {
+    color: #555555;
+    display: block;
+    font-family: arial;
+    font-weight: bold;
+    padding: 6px 15px;
+    cursor: pointer;
+    text-decoration:none;
+}
+#datalab-content-div .sortDropdown li a:hover {
+    background:#155FB0;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+a.sortAnchor {
+    font-size: 11px;
+    line-height: 16px;
+    color: #555;
+    position: absolute;
+    display: block;
+    padding: 15px 0 0 20px;
+    width: 58px;
+    height: 24px;
+    margin: -11px 0 0 -4px;
+    text-decoration: none;
+    cursor:pointer;
+}
+.sortUl {
+    list-style:none;
+    margin:0px;
+    margin-left: 5px;
+    padding:0px;
+    font-size: 11px;
+}
+
+ul.sortUl li label img {
+    padding-left: 8px;
+}
+
+.disabledSort {
+    margin: -11px 0 0 -10px;
+    padding: 11px 0 0 20px;
+}
+
+#datalab-content-div .sortDropdown li a.disabledLink {
+    color: #bbb;
+}
+#datalab-content-div .sortDropdown li a.disabledLink:hover {
+    background:#fff;
+    color: #bbb;
+}
+
+/**************************************
+* Login & Create an Account
+***************************************/
+#datalab-login-div {
+    font-family: arial;
+    width: 65%;
+    margin: 8px auto 0 auto;
+}
+#dl-registration  {
+    background-color:white;
+    width:600px;
+    padding: 0.4em 3em;
+    margin-left: 48px;
+    margin-top: 15px;
+    -webkit-box-shadow: 0 1px 3px #273E5C;
+    -moz-box-shadow: 0 1px 3px #273E5C;
+    box-shadow: 0 1px 3px #273E5C; 
+}
+#congratulations {
+    width: 615px;
+    padding: 0.4em 3em;
+}
+#congratulations p {
+    font-size: 14px;
+    line-height: 149%;
+}
+#congratulations h1 {
+    font-size: 25px;
+}
+#dl-registration h1 {
+    font-size:1.6em; 
+    font-weight:normal;
+    width:588px;
+    margin: 1em auto;
+}
+#dl-registration h2 {
+    font-weight:normal;
+    font-size:1.2em;
+    width:588px;
+    margin: 1em auto 0 auto;
+}
+#create-new-account {
+    padding:0;
+    margin:1em auto;
+    width:24em;
+    background-color:#fff;
+    border-collapse:collapse;
+}
+#create-new-account td {
+    vertical-align:middle;   
+}
+#create-new-account label {
+    margin-right:.6em;
+    font-size:90%;
+    width:10em;
+}
+#create-new-account td.label {
+    text-align:right;
+    white-space:nowrap;
+}
+#create-new-account td.submit {
+    padding:1em 0;    
+}
+#create-new-account td input {
+    font-size: 16px;
+}
+a#view-file-requirements {
+    text-decoration: underline;    
+    font-size: 12px;
+}
+.doYouWantToOption {
+    cursor: pointer;
+}
+.errorMessage{
+  font-style: normal;
+  font-weight: bold;
+  font-size:.8em;
+  color:#cc3333;
+}
+/**************************************
+* POPUP MENU STYLES
+*   (Stolen from nav.css)
+***************************************/
+.popupMenu {
+  display:block;
+  background-color:white;
+  border:1px solid gray;
+  border-right:2px solid #4f4f4f;
+  border-bottom:2px solid #4f4f4f;
+  padding:0;
+  font-size:12px;
+}
+#messagePopup {
+  position: fixed;
+  top: 35%;
+  left: 35%;
+  width:300px;
+  z-index: 10000;
+}
+#messagePopup.wide {
+  width: 600px;
+}
+.popupMenu span {padding:2px 15px 2px 4px}
+.popupMenu h1 {
+  margin:0;
+  padding:3px;
+  font-size:1.1em;
+  font-weight:bold;
+  background-color:#e0e7ef;
+  border-bottom:1px solid gray;
+}
+.errorPopupContent, .successPopupContent, .warningPopupContent, .messagePopupContent {
+    margin: 0;
+    padding: 7px;
+    font-size: 13px;
+    font-weight: normal;
+}
+.errorPopupContent {
+  background-color: #FBE3E4;
+}
+.successPopupContent {
+    background: #E6EFC2;
+}
+.warningPopupContent {
+    background-color: #FFF6BF;
+}
+.messagePopupContent {
+  background-color: white;
+}

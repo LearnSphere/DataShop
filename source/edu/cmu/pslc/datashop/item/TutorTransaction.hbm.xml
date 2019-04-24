@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 12092 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2015-03-20 15:22:38 -0400 (Fri, 20 Mar 2015) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.TransactionItem" table="tutor_transaction">
+    <meta attribute="class-description">Represents a single transaction by the tutor.</meta>
+        <id name="id" type="long">
+        <meta attribute="field-description">Database generated unique Id for this tutor transaction.</meta>
+            <column name="transaction_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="subgoalAttempt" class="edu.cmu.pslc.datashop.item.SubgoalAttemptItem">
+        <meta attribute="field-description">Subgoal Attempt associated with this transaction.</meta>
+            <column name="subgoal_attempt_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="session" class="edu.cmu.pslc.datashop.item.SessionItem">
+        <meta attribute="field-description">Session associated with this transaction.</meta>
+            <column name="session_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="feedback" class="edu.cmu.pslc.datashop.item.FeedbackItem">
+        <meta attribute="field-description">Feedback associated with this transaction.</meta>
+            <column name="feedback_id" />
+        </many-to-one>
+        <many-to-one name="school" class="edu.cmu.pslc.datashop.item.SchoolItem">
+        <meta attribute="field-description">School associated with this transaction.</meta>
+            <column name="school_id" />
+        </many-to-one>
+        <many-to-one name="classItem" class="edu.cmu.pslc.datashop.item.ClassItem">
+        <meta attribute="field-description">Class associated with this transaction.</meta>
+            <column name="class_id" />
+        </many-to-one>
+        <many-to-one name="problem" class="edu.cmu.pslc.datashop.item.ProblemItem">
+        <meta attribute="field-description">Problem associated with this transaction.</meta>
+            <column name="problem_id" />
+        </many-to-one>
+        <many-to-one name="problemEvent" class="edu.cmu.pslc.datashop.item.ProblemEventItem">
+        <meta attribute="field-description">Problem Event associated with this transaction.</meta>
+            <column name="problem_event_id" />
+        </many-to-one>
+        <many-to-one name="subgoal" class="edu.cmu.pslc.datashop.item.SubgoalItem">
+        <meta attribute="field-description">Subgoal associated with this transaction.</meta>
+            <column name="subgoal_id" />
+        </many-to-one>
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+        <meta attribute="field-description">Dataset associated with this transaction.</meta>
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+         <property name="guid" type="string">
+            <meta attribute="field-description">Generated GUID for this transaction.</meta>
+            <column name="guid" />
+        </property>
+        <property name="transactionTime" type="timestamp">
+        <meta attribute="field-description">The timestamp for when this transaction occurred.</meta>
+            <column name="transaction_time" length="19" />
+        </property>
+        <property name="transactionTimeMS" type="integer">
+            <meta attribute="field-description">Milliseconds for the transaction time.</meta>
+            <column name="transaction_time_ms" />
+        </property>
+        <property name="timeZone" type="string">
+        <meta attribute="field-description">Time-zone the timestamp was taken in.</meta>
+            <column name="time_zone" length="50" />
+        </property>
+        <property name="transactionTypeTutor" type="string">
+        <meta attribute="field-description">The type of tutor transaction that was logged (CYCLE, HINT, GLOSSARY, START_TUTOR, RESULT, HINT_MSG).</meta>
+            <column name="transaction_type_tutor" length="30" />
+        </property>
+        <property name="transactionTypeTool" type="string">
+        <meta attribute="field-description">The type of tool transaction that was logged (CYCLE, HINT, GLOSSARY, START_TUTOR, ATTEMPT, HINT_REQUEST).</meta>
+            <column name="transaction_type_tool" length="30" />
+        </property>
+        <property name="transactionSubtypeTutor" type="string">
+        <meta attribute="field-description">The subtype of tutor transaction that was logged.</meta>
+            <column name="transaction_subtype_tutor" length="30" />
+        </property>
+        <property name="transactionSubtypeTool" type="string">
+        <meta attribute="field-description">The subtype of tool transaction that was logged.</meta>
+            <column name="transaction_subtype_tool" length="30" />
+        </property>
+        <property name="outcome" type="string">
+        <meta attribute="field-description">Outcome for this transaction. (OK, ERROR, BUG, INITIAL_HINT, NEXT_HINT, GLOSSARY_ITEM, CORRECT, INCORRECT)</meta>
+            <column name="outcome" length="15" />
+        </property>
+        <property name="attemptAtSubgoal" type="integer">
+        <meta attribute="field-description">Integer of which attempt at a subgoal this transaction recorded.</meta>
+            <column name="attempt_at_subgoal" />
+        </property>
+        <property name="isLastAttempt" type="boolean">
+        <meta attribute="field-description">Flag indicating the transaction is the last attempt on a step for a student.</meta>
+            <column name="is_last_attempt" />
+        </property>
+        <property name="helpLevel" type="short">
+        <meta attribute="field-description">Level of help this transaction recorded.</meta>
+            <column name="help_level" />
+        </property>
+        <property name="totalNumHints" type="short">
+        <meta attribute="field-description">Total number of hint requests.</meta>
+            <column name="total_num_hints" />
+        </property>
+        <property name="duration" type="integer">
+        <meta attribute="field-description">The logged duration of the transaction.</meta>
+            <column name="duration" />
+        </property>
+        <property name="probSolvingSequence" type="integer">
+        <meta attribute="field-description">The sequence number logged for sequential problems.</meta>
+            <column name="prob_solving_sequence" />
+        </property>
+
+        <set name="samples" table="transaction_sample_map">
+        <meta attribute="field-description">
+        Collection of samples associated with this transaction.
+        </meta>
+            <key>
+                <column name="transaction_id" not-null="true" />
+            </key>
+            <many-to-many column="sample_id" class="edu.cmu.pslc.datashop.item.SampleItem" />
+        </set>
+        <set name="skills" table="transaction_skill_map">
+        <meta attribute="field-description">
+        Collection of Skills (Knowledge Components) associated with this transaction.
+        </meta>
+            <key>
+                <column name="transaction_id" not-null="true" />
+            </key>
+            <many-to-many column="skill_id" class="edu.cmu.pslc.datashop.item.SkillItem" />
+        </set>
+        <set name="conditions" table="transaction_condition_map">
+        <meta attribute="field-description">Conditions for this transaction.</meta>
+            <key>
+                <column name="transaction_id" not-null="true" />
+            </key>
+            <many-to-many column="condition_id" class="edu.cmu.pslc.datashop.item.ConditionItem" />
+        </set>
+        <set name="cfTxLevels" inverse="true">
+        <meta attribute="field-description">Custom field transaction level values associated with this transaction.</meta>
+            <key>
+                <column name="transaction_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.CfTxLevelItem" />
+        </set>
+    </class>
+</hibernate-mapping>

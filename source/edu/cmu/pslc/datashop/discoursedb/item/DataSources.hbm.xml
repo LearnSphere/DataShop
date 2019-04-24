@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 13000 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2016-03-23 14:46:19 -0400 (Wed, 23 Mar 2016) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.discoursedb.item.DataSourcesItem" table="data_source_aggregate">
+        <id name="id" type="long">
+          <column name="id_data_sources" />
+          <generator class="native" />
+        </id>
+        <property name="created" type="timestamp">
+          <column name="entity_created" length="19"/>
+        </property>
+        <property name="modified" type="timestamp">
+          <column name="entity_modified" length="19"/>
+        </property>
+        <property name="version" type="long">
+          <column name="entity_version" length="20"/>
+        </property>
+        <property name="sourceId" type="long">
+          <column name="source_id" length="20"/>
+        </property>
+        <many-to-one name="discourse" class="edu.cmu.pslc.datashop.discoursedb.item.DiscourseItem">
+            <column name="discourse_id" />
+        </many-to-one>
+        <set name="dataSourceInstances" inverse="true">
+            <key>
+                <column name="fk_sources" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.discoursedb.item.DataSourceInstanceItem" />
+        </set>
+    </class>
+</hibernate-mapping>

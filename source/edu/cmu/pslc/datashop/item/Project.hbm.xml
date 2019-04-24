@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 14293 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-09-28 14:12:25 -0400 (Thu, 28 Sep 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ProjectItem" table="project">
+        <id name="id" type="integer">
+            <column name="project_id" />
+            <generator class="native" />
+        </id>
+        <property name="projectName" type="string">
+            <column name="project_name" length="100" unique="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <property name="tags" type="string">
+            <column name="tags" />
+        </property>
+        <property name="researchManagersNotes" type="string">
+            <column name="research_mgr_notes" />
+        </property>
+        <property name="dataCollectionType" type="string">
+            <column name="data_collection_type" not-null="true" length="28"/>
+        </property>
+        <property name="shareableStatus" type="string">
+            <column name="shareable_status" not-null="true" length="22"/>
+        </property>
+        <property name="subjectToDsIrb" type="string">
+            <column name="subject_to_ds_irb" not-null="true" length="14"/>
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="createdTime" type="timestamp">
+            <column name="created_time" length="19" />
+        </property>
+        <property name="needsAttention" type="boolean">
+            <column name="needs_attention" />
+        </property>
+        <property name="datasetLastAdded" type="timestamp">
+            <column name="dataset_last_added" length="19" />
+        </property>
+        <property name="isDiscourseDataset" type="boolean">
+            <column name="is_discourse_dataset" />
+        </property>
+        <many-to-one name="updatedBy" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="updated_by" length="250" />
+        </many-to-one>
+        <many-to-one name="createdBy" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="created_by" length="250" />
+        </many-to-one>
+        <many-to-one name="dataProvider" class="edu.cmu.pslc.datashop.item.UserItem">
+                <meta attribute="field-description">The user id of the data provider for this dataset.</meta>
+            <column name="data_provider" length="250" />
+        </many-to-one>
+        <many-to-one name="primaryInvestigator" class="edu.cmu.pslc.datashop.item.UserItem">
+                <meta attribute="field-description">The user id of the primary investigator for this dataset.</meta>
+            <column name="primary_investigator" length="250" />
+        </many-to-one>
+        <set name="authorizations" inverse="true">
+        	<meta attribute="field-description">Authorizations associated with this project.</meta>
+            <key>
+                <column name="project_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.AuthorizationItem" />
+        </set>
+        <set name="datasets" inverse="true">
+        	<meta attribute="field-description">Datasets associated with this project.</meta>
+            <key>
+                <column name="project_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.DatasetItem" />
+        </set>
+        <set name="projectTermsOfUseMap" inverse="true">
+                <meta attribute="field-description">Collection of Terms of Use associated with this project.</meta>
+            <key>
+                <column name="project_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ProjectTermsOfUseMapItem" />
+        </set>
+        <set name="accessRequestStatus" inverse="true">
+                <meta attribute="field-description">Access Request statuses associated with this project.</meta>
+            <key>
+                <column name="project_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.AccessRequestStatusItem" />
+        </set>
+        <set name="externalLinks" inverse="true">
+        	<meta attribute="field-description">External links associated with this project.</meta>
+            <key>
+                <column name="project_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ExternalLinkItem" />
+        </set>
+        <set name="irbs" table="project_irb_map">
+            <key>
+                <column name="project_id"/>
+            </key>
+            <many-to-many column="irb_id" class="edu.cmu.pslc.datashop.item.IrbItem" />
+        </set>
+    </class>
+</hibernate-mapping>

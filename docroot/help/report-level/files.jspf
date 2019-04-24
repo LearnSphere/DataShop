@@ -1,0 +1,40 @@
+<div class="topic" id="help-files">
+    <h2>Files </h2>
+    
+    <p>Add or view the following types of files by clicking on the subtabs:</p>
+    <ul>
+        <li>Papers</li>
+        <li>External Analyses</li>
+        <li>Files</li>
+    </ul>
+    
+    <p>Click on the "Upload" button to add a file. In the window that pops up, browse 
+    for the paper, fill in the fields and then click the Upload button to add the file. <p>
+    
+    <h3>Don't see the "Upload" button?</h3>
+    <p>To add or modify files for a dataset, your account needs to be given permission by the 
+    project admin (often the PI). If you don't have such access already, find the name of the 
+    project on the <a href="index.jsp?datasets=other">private datasets</a> page and click 
+    <strong>Request Access</strong>. Be sure to select the "edit" access type. If you already 
+    have "view" access, you can request "edit" access from the project's permissions
+    page.</p>
+    
+    <h3>What's appropriate here?</h3>
+    <p>Below are some examples of files that may be useful to others and which subtab they should go on, 
+    but feel free to upload whatever might be useful for your research group or others performing
+    secondary analyses.</p> 
+
+    <ul class="concise">
+        <li>A paper that references data in this dataset (<strong>Papers</strong>)
+        <li>A file that provides a mapping from the DataShop anonymous user ID to the original user ID 
+        for each student, useful if you are an instructor or are trying to compare student performance
+        on pencil-and-paper pre/posttests completed in a school (<strong>Files</strong>)</li>
+        <li>Audio/visual artifacts gathered during the course or study (<strong>Files</strong>)</li>
+        <li>Statistical analyses (eg, from R, SPSS) (<strong>External Analyses</strong>)</li>
+        <li>Other analysis artifacts (<strong>Files</strong>)</li>
+        <li>Scanned pre and posttests (<strong>Files</strong>)</li>
+    </ul>
+    
+    <span style="display:none" class="helpTopicLink"><a href="help?page=files"><img 
+    src="images/page_white_text.png" /> <span>Read more about the Files page.</span></a></span>
+</div>

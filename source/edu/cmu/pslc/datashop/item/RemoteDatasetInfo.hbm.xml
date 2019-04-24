@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.RemoteDatasetInfoItem" table="remote_dataset_info">
+        <id name="id" type="long">
+            <column name="remote_dataset_info_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+            <meta attribute="field-description">Dataset associated with this item.</meta>
+            <column name="dataset_id" />
+        </many-to-one>
+        <property name="projectName" type="string">
+            <column name="project_name" length="100" not-null="true" />
+        </property>
+        <property name="piName" type="string">
+            <column name="pi_name" length="250" />
+        </property>
+        <property name="dpName" type="string">
+            <column name="dp_name" length="250" />
+        </property>
+        <property name="accessLevel" type="string">
+            <column name="access_level" length="7" />
+        </property>
+        <property name="citation" type="string">
+            <column name="citation" />
+        </property>
+        <property name="isPublic" type="boolean">
+            <column name="is_public" />
+        </property>
+        <property name="numStudents" type="long">
+            <column name="num_students" />
+        </property>
+        <property name="numStudentHours" type="double">
+            <column name="num_student_hours" precision="22" scale="0" />
+        </property>
+        <property name="numUniqueSteps" type="long">
+            <column name="num_unique_steps" />
+        </property>
+        <property name="numSteps" type="long">
+            <column name="num_steps" />
+        </property>
+        <property name="numTransactions" type="long">
+            <column name="num_transactions" />
+        </property>
+        <property name="numSamples" type="long">
+            <column name="num_samples" />
+        </property>
+        <set name="skillModels" inverse="true">
+            <key>
+                <column name="remote_dataset_info_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.RemoteSkillModelItem" />
+        </set>
+    </class>
+</hibernate-mapping>

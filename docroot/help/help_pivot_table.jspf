@@ -1,0 +1,73 @@
+<h2>Creating and Using Excel PivotTable Reports with DataShop Data</h2>
+
+<p>While DataShop provides a number of high frequency reports for data
+analysis, you may want to create a custom report to combine and compare
+data. You can create such a report using DataShop's
+Export page in conjunction with Microsoft Excel's PivotTable report
+feature. Using DataShop's export function, you can export your data to your computer
+and construct PivotTables in Microsoft Excel.</p>
+
+<h3>What is a PivotTable report?</h3>
+
+<p>A PivotTable report is an interactive table that lets you specify
+columns of data to compare. The table is easy to construct, and can be
+modified by changing the columns and rows of source data to quickly
+create different summaries.</p>
+
+<p>In a PivotTable report, each column or field in your source data
+becomes a PivotTable field that summarizes multiple rows of information.</p>
+
+<h3>When should I use a PivotTable report?</h3>
+
+<p>You could use a PivotTable report to quickly evaluate a potential
+hypothesis. Or you may want to take a more exploratory approach as you
+look for relationships or trends in a large data set. You could also use
+a PivotTable report as the basis for a graph that visualizes your data.</p>
+
+<h3>How do I create a PivotTable report?</h3>
+<p>First, you need to export your data from the DataShop to your local
+machine.</p>
+
+<h4>To export your data:</h4>
+<ol>
+	<li>Navigate to the <strong>Export</strong> tab, and select samples to include in your 
+	data by clicking the name of the sample(s) in the sidebar. (Bolded sample names are included.) The
+	Export preview will update to reflect the changes you've made.</li>
+	<li>Select the desired knowledge component model from the knowledge
+	component model combobox.</li>
+	<li>Press the <strong>Export Data</strong> button. You will be prompted
+	to save the file.</li>
+</ol>
+
+<p>Now you can open the data in Microsoft Excel. See <a href="help?page=export">our recommendation</a> for how 
+to open a tab-delimited text file in Excel. Once your data file is open in Excel, you can 
+add a PivotTable report to your spreadsheet.</p>
+
+<h4>To add a PivotTable report:</h4>
+<p>The exact way to do this varies across the different versions of Excel. Most likely, the command
+is under a "Data" menu. For example, in Excel 2003:</p>
+<ol>
+	<li>Select the menu item <strong>Data > PivotTable and PivotChart Report ...</strong></li>
+	<li>In the PivotTable and PivotChart Wizard (Step 1 of 3), leave the
+	default items selected, and press <strong>Finish</strong>.</li>
+</ol>
+
+<p>The PivotTable will be created in a new sheet. By default, all
+columns from your data set will be included in the list of PivotTable
+Fields.</p>
+
+<h4>To construct your PivotTable report:</h4>
+<ol>
+	<li>Drag and drop fields from the PivotTable Field List onto the Row
+	Fields, Column Fields, and Data Items sections of the PivotTable. (If
+	you don't see the field list, click within the outlines of the
+	PivotTable drop areas, and make sure Show Field List is pressed.)</li>
+	<li>To rearrange fields, drag them from one area to another. To remove
+	a field, drag it out of the PivotTable report. To hide the drop area
+	outlines, click a cell outside the PivotTable report.</li>
+</ol>
+<h3>Additional Resources</h3>
+<ul class="concise">
+	<li><a href="http://office.microsoft.com/en-us/excel-help/">
+	Microsoft Office Excel Help</a></li>
+</ul>

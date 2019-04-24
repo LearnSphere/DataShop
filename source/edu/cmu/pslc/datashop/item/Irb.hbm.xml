@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2012
+ All Rights Reserved
+
+ $Revision: 10529 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2014-02-10 11:30:51 -0500 (Mon, 10 Feb 2014) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.IrbItem" table="irb">
+
+        <id name="id" type="integer">
+            <column name="irb_id" />
+            <generator class="native" />
+        </id>
+        <property name="title" type="string">
+            <column name="title" length="255" />
+        </property>
+        <property name="notes" type="string">
+            <column name="notes" />
+        </property>
+        <property name="addedTime" type="timestamp">
+            <column name="added_time" length="19" />
+        </property>
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" />
+        </property>
+        <property name="approvalDate" type="timestamp">
+            <column name="approval_date" length="19" />
+        </property>
+        <property name="expirationDate" type="timestamp">
+            <column name="expiration_date" length="19" />
+        </property>
+        <property name="expirationDateNa" type="boolean">
+            <column name="expiration_date_na" />
+        </property>
+        <property name="pi" type="string">
+            <column name="pi" length="255" />
+        </property>
+        <property name="protocolNumber" type="string">
+            <column name="protocol_number" length="50" />
+        </property>
+        <property name="grantingInstitution" type="string">
+            <column name="granting_institution" length="255" />
+        </property>
+        <many-to-one name="addedBy" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="added_by" />
+        </many-to-one>
+        <many-to-one name="updatedBy" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="updated_by" />
+        </many-to-one>
+        <set name="files" inverse="true" table="irb_file_map">
+            <key>
+                <column name="irb_id"/>
+            </key>
+            <many-to-many column="file_id" class="edu.cmu.pslc.datashop.item.FileItem" />
+        </set>
+        <set name="projects" inverse="true" table="project_irb_map">
+            <key>
+                <column name="irb_id"/>
+            </key>
+            <many-to-many column="project_id" class="edu.cmu.pslc.datashop.item.ProjectItem" />
+        </set>
+    </class>
+</hibernate-mapping>

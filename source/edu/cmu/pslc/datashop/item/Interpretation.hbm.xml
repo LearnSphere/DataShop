@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 2960 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2006-06-19 16:21:21 -0400 (Mon, 19 Jun 2006) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.InterpretationItem" table="interpretation">
+    	<meta attribute="class-description">Represents a single row in the interpretation table.</meta>
+        <id name="id" type="long">
+       	    <meta attribute="field-description">Database generated unique Id for this interpretation.</meta>
+            <column name="interpretation_id" />
+            <generator class="native" />
+        </id>
+
+        <set name="subgoals" inverse="true">
+            <key>
+                <column name="interpretation_id"/>
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SubgoalItem" />
+        </set>  
+        
+        <set name="cogStepSequences" inverse="true">
+            <key>
+                <column name="interpretation_id"/>
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.CogStepSeqItem" />
+        </set>  
+        
+        <set name="interpretationAttempts" inverse="true">
+            <key>
+                <column name="interpretation_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.InterpretationAttemptItem" />
+        </set>
+        
+    </class>
+</hibernate-mapping>

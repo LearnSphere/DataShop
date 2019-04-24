@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 13540 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2016-09-22 14:16:36 -0400 (Thu, 22 Sep 2016) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.DatasetItem" table="ds_dataset">
+        <meta attribute="class-description">A collection of data by a tutor.</meta>
+        <id name="id" type="integer">
+            <meta attribute="field-description">Database generated unique Id for this dataset.</meta>
+            <column name="dataset_id" />
+            <generator class="edu.cmu.pslc.datashop.dao.hibernate.UpdatableIdentityGenerator" />
+        </id>
+        <many-to-one name="curriculum" class="edu.cmu.pslc.datashop.item.CurriculumItem">
+            <meta attribute="field-description">Curriculum that this dataset is part of.</meta>
+            <column name="curriculum_id" />
+        </many-to-one>
+        <many-to-one name="project" class="edu.cmu.pslc.datashop.item.ProjectItem">
+            <meta attribute="field-description">Project associated with this dataset.</meta>
+            <column name="project_id" />
+        </many-to-one>
+        <many-to-one name="learnlab" class="edu.cmu.pslc.datashop.item.LearnlabItem">
+            <meta attribute="field-description">Which learnlab this dataset falls under.</meta>
+            <column name="learnlab_id" />
+        </many-to-one>
+        <many-to-one name="domain" class="edu.cmu.pslc.datashop.item.DomainItem">
+            <meta attribute="field-description">Which domain this dataset falls under.</meta>
+            <column name="domain_id" />
+        </many-to-one>
+        <many-to-one name="preferredPaper" class="edu.cmu.pslc.datashop.item.PaperItem">
+            <meta attribute="field-description">Preferred citation paper associated with this dataset.</meta>
+            <column name="preferred_paper_id" />
+        </many-to-one>
+        <property name="datasetName" type="string">
+            <meta attribute="field-description">Name of this dataset.</meta>
+            <column name="dataset_name" length="100" not-null="true" unique="true" />
+        </property>
+        <property name="tutor" type="string">
+            <meta attribute="field-description">The name of the tutor as a string.</meta>
+            <column name="tutor" length="50" />
+        </property>
+        <property name="startTime" type="timestamp">
+            <meta attribute="field-description">The timestamp for when data collection began for this dataset.</meta>
+            <column name="start_time" length="19" />
+        </property>
+        <property name="endTime" type="timestamp">
+            <meta attribute="field-description">The timestamp for when this dataset finished collecting data.</meta>
+            <column name="end_time" length="19" />
+        </property>
+        <property name="status" type="string">
+            <meta attribute="field-description">string of the current status of this dataset.</meta>
+            <column name="status" length="20" />
+        </property>
+        <property name="description" type="string">
+            <meta attribute="field-description">string description of this dataset.</meta>
+            <column name="description" length="65535" />
+        </property>
+        <property name="hypothesis" type="string">
+            <meta attribute="field-description">Hypothesis that this dataset was gathered to explore.</meta>
+            <column name="hypothesis" length="65535" />
+        </property>
+        <property name="acknowledgment" type="string">
+            <meta attribute="field-description">Acknowledgment for this dataset.</meta>
+            <column name="acknowledgment" length="255" />
+        </property>
+        <property name="junkFlag" type="boolean">
+            <meta attribute="field-description">Indicates whether this dataset is junk.</meta>
+            <column name="junk_flag" default="false" />
+        </property>
+        <property name="studyFlag" type="string">
+            <meta attribute="field-description">Flag indicating whether this dataset was a study.</meta>
+            <column name="study_flag" not-null="true" length="20"/>
+        </property>
+        <property name="notes" type="string">
+            <meta attribute="field-description">string of notes for this dataset.</meta>
+            <column name="notes" length="65535" />
+        </property>
+        <property name="school" type="string">
+            <meta attribute="field-description">string school(s) associated with this dataset.</meta>
+            <column name="school" length="255" />
+        </property>
+        <property name="autoSetSchoolFlag" type="boolean">
+            <meta attribute="field-description">Flag indicating whether to auto set the school.</meta>
+            <column name="auto_set_school_flag" not-null="true"/>
+        </property>
+        <property name="autoSetTimesFlag" type="boolean">
+            <meta attribute="field-description">Flag indicating whether to auto set the times.</meta>
+            <column name="auto_set_times_flag" not-null="true"/>
+        </property>
+        <property name="irbUploaded" type="string">
+            <meta attribute="field-description">String indicating whether the IRB has been uploaded.</meta>
+            <column name="irb_uploaded" not-null="true" length="20"/>
+        </property>
+        <property name="appearsAnonymous" type="string">
+            <meta attribute="field-description">String indicating whether data appears to be anonymous.</meta>
+            <column name="appears_anon_flag" length="20"/>
+        </property>
+        <property name="releasedFlag" type="boolean">
+            <column name="released_flag"/>
+        </property>
+        <property name="deletedFlag" type="boolean">
+            <column name="deleted_flag" default="false"/>
+        </property>
+        <property name="accessedFlag" type="boolean">
+            <column name="accessed_flag"/>
+        </property>
+        <property name="projectSetTime" type="timestamp">
+            <column name="project_set_time" length="19" />
+        </property>
+        <property name="dataLastModified" type="timestamp">
+            <column name="data_last_modified" length="19" />
+        </property>
+        <property name="fromExistingDatasetFlag" type="boolean">
+            <column name="from_existing_dataset_flag" default="false"/>
+        </property>
+        <set name="samples" inverse="true">
+            <meta attribute="field-description">Collection of samples associated with this dataset.</meta>
+            <key>
+                <column name="dataset_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SampleItem" />
+        </set>
+        <set name="classes" inverse="true" table="class_dataset_map">
+            <meta attribute="field-description">Collection of classes associated with this dataset.</meta>
+            <key>
+                <column name="dataset_id" not-null="true" />
+            </key>
+            <many-to-many column="class_id" class="edu.cmu.pslc.datashop.item.ClassItem" />
+        </set>
+        <set name="datasetLevels" inverse="true">
+            <meta attribute="field-description">Collection of dataset levels that describe the hierarchy of problems in this dataset.</meta>
+            <key>
+                <column name="dataset_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.DatasetLevelItem" />
+        </set>
+        <set name="files" inverse="true" table="file_dataset_map">
+            <meta attribute="field-description">Collection of files associated with this dataset.</meta>
+            <key>
+                <column name="dataset_id"/>
+            </key>
+            <many-to-many column="file_id" class="edu.cmu.pslc.datashop.item.FileItem" />
+        </set>
+        <set name="papers" inverse="true" table="paper_dataset_map">
+            <meta attribute="field-description">Collection of papers associated with this dataset.</meta>
+            <key>
+                <column name="dataset_id"/>
+            </key>
+            <many-to-many column="paper_id" class="edu.cmu.pslc.datashop.item.PaperItem" />
+        </set>
+        <set name="externalAnalyses" inverse="true" table="external_analysis_dataset_map">
+            <meta attribute="field-description">Collection of external analyses associated with this dataset.</meta>
+            <key>
+                <column name="dataset_id"/>
+            </key>
+            <many-to-many column="external_analysis_id" class="edu.cmu.pslc.datashop.item.ExternalAnalysisItem" />
+        </set>
+        <set name="datasetUsages" inverse="true">
+            <meta attribute="field-description">Collection of information about the usage of this dataset.</meta>
+            <key>
+                <column name="dataset_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.DatasetUsageItem" />
+        </set>
+        <set name="tutorTransactions" inverse="true">
+            <meta attribute="field-description">Tutor transactions associated with this dataset.</meta>
+            <key>
+                <column name="dataset_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.TransactionItem" />
+        </set>
+        <set name="skillModels" inverse="true">
+            <meta attribute="field-description">Collection of skill models associated with this dataset.</meta>
+            <key>
+                <column name="dataset_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SkillModelItem" />
+        </set>
+        <set name="conditions" inverse="true">
+            <meta attribute="field-description">Collection of conditions associated with this dataset.</meta>
+            <key>
+                <column name="dataset_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ConditionItem" />
+        </set>
+        <set name="customFields" inverse="true">
+            <meta attribute="field-description">Collection of custom fields associated with this dataset.</meta>
+            <key>
+                <column name="dataset_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.CustomFieldItem" />
+        </set>
+        <set name="sessions" inverse="true">
+            <meta attribute="field-description">Sessions associated with this dataset.</meta>
+            <key>
+                <column name="dataset_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SessionItem" />
+        </set>
+        <set name="sampleHistory" inverse="true" cascade="delete" >
+            <meta attribute="field-description">The set of history items associated with this sample.</meta>
+            <key>
+                <column name="sample_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SampleHistoryItem" />
+        </set>
+    </class>
+</hibernate-mapping>

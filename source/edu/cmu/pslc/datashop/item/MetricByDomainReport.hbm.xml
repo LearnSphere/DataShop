@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2010
+ All Rights Reserved
+
+ $Revision: 6145 $
+ Last modified by - $Author: shanwen $
+ Last modified on - $Date: 2010-06-18 16:41:14 -0400 (Fri, 18 Jun 2010) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.MetricByDomainReportItem" table="metric_by_domain_report">
+    	<meta attribute="class-description">Snapshots of numbers for metric by domain report.</meta>
+        <id name="id" type="integer">
+        	<meta attribute="field-description">Database generated unique Id for this report.</meta>
+            <column name="metric_by_domain_report_id" />
+            <generator class="native" />
+        </id>        
+        <property name="files" type="integer">
+        	<meta attribute="field-description">The number of files for this report.</meta>
+            <column name="files" />
+        </property>     
+        <property name="papers" type="integer">
+        	<meta attribute="field-description">The number of "papers" for this report.</meta>
+            <column name="papers" />
+        </property>      
+        <property name="datasets" type="integer">
+        	<meta attribute="field-description">The number of datasets for this report.</meta>
+            <column name="datasets" />
+        </property>      
+        <property name="students" type="integer">
+        	<meta attribute="field-description">The number of students for this report.</meta>
+            <column name="students" />
+        </property>      
+        <property name="actions" type="integer">
+        	<meta attribute="field-description">The number of actions for this report.</meta>
+            <column name="actions" />
+        </property>      
+        <property name="hours" type="double">
+        	<meta attribute="field-description">The number of hours for this report.</meta>
+            <column name="hours" />
+        </property>         
+        
+        <many-to-one name="domain" class="edu.cmu.pslc.datashop.item.DomainItem">
+        	<meta attribute="field-description">Which domain this report covers.</meta>
+            <column name="domain_id" />
+        </many-to-one>        
+        <many-to-one name="metricReport" class="edu.cmu.pslc.datashop.item.MetricReportItem">
+        	<meta attribute="field-description">When this report is generated.</meta>
+            <column name="metric_report_id" />
+        </many-to-one>       
+    </class>
+</hibernate-mapping>

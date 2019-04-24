@@ -1,0 +1,235 @@
+    <h2>KC Models</h2>
+    
+    <p> A KC (Knowledge Component) model is a mapping between steps and
+    knowledge components in a dataset. In DataShop, each unique step can map to zero or more
+    knowledge components.</p>
+    
+    <p>From the KC Models page, you can compare existing KC models, export an
+    existing model or template for creating a new KC model, or import a new
+    model that you've created.</p>
+
+    <ul class="concise">
+        <li><a href="#why">Why create additional KC models and import them to DataShop?</a></li>
+        <li><a href="#auto-gen">Auto-generated KC models</a></li>
+        <li><a href="#mapping-types">KC model mapping types</a></li>
+        <li><a href="#comparing">Comparing KC models</a></li>
+        <li><a href="#creating">Creating a new KC model</a></li>
+        <li><a href="#kcm-export-columns">Columns of a KC model export</a></li>
+    </ul>
+
+    <h3 id="why">Why create additional KC models and import them to DataShop?</h3>
+    <p>A primary reason for creating a new KC model is that an existing model is
+    insufficient in some way&mdash;it may model some knowledge components too
+    coarsely, producing learning curves that spike or dip, or it may be too
+    fine-grained (too many knowledge components), producing curves that end
+    after one or two opportunities. Or perhaps the model fails to model the
+    domain sufficiently or with the right terminology. In any case, you may find
+    value in creating a new KC model.</p>
+    
+    <p>By importing the resulting KC model that you created back into DataShop,
+    you can use DataShop tools to assess your new model. Most reports in
+    DataShop support analysis by knowledge component model, while some
+    currently support comparing values from two KC models
+    simultaneously&mdash;see the predicted values on the error rate Learning
+    Curve, for example. We plan to create new features in DataShop that
+    support more direct knowledge component model comparison.</p>
+    
+    <p>We recommend these two DataShop tutorial videos that describe how to find
+    instances where an alternative knowledge component model might be useful, and
+    how to create such a model easily using Excel and Datashop.</p>
+    <ul class="concise">
+        <li class="movie"><img src="images/film.png" /> <a href="http://www.youtube.com/watch?v=UW2UeKKRbCY"
+        rel="external" target="_blank">Tutorial 1: Explaining student difficulty through knowledge component analysis</a> (11m:15s)</li>
+        <li class="movie"><img src="images/film.png" /> <a href="http://www.youtube.com/watch?v=wT1mfXembnM"
+        rel="external" target="_blank">Tutorial 2: Exploring an alternative knowledge component model</a> (12m:37s)</li>
+    </ul>
+    
+    <h3 id="auto-gen">Auto-generated KC models</h3>
+    <!-- The following para should be identical to the one on the DS
+    Info/overview page tooltip -->
+
+    <p>DataShop creates two knowledge component models in addition to the model
+    that was logged or imported when the dataset was created:</p>
+    <ul class="concise">
+        <li><strong>single-KC model</strong>: the same knowledge component is
+        applied to every transaction in the dataset, producing a very general
+        model</li> 
+        <li><strong>unique-step model</strong>: a unique knowledge
+        component is applied to each unique step in the dataset, producing a
+        very precise (likely too much so) model.</li>
+    </ul>
+
+    <p><strong>Note:</strong> For the unique-step model, DataShop will <strong>not</strong> create a
+    KC for a unique step if the number of observations for that step is under a certain threshold.
+    This threshold is currently 10% of the total number of students represented in the dataset, or 10 or more students. So in a dataset with 100 students, a step with fewer than 10 observations  will not have a KC created for it in the unique-step model. </p>
+
+    <h3 id="mapping-types">KC model mapping types</h3>
+    <p>A mapping type describes the level of granularity of the connection between 
+    knowledge components and log data. Two mapping types currently exist:</p>
+    <ul class="concise">
+        <li>correct-transaction-to-KC</li>
+        <li>step-to-KC</li>
+    </ul>
+    <p>Tutors that log data with KC information produce a mapping at the <a
+    href="help?page=terms#transaction">transaction level</a> where each transaction can have one or
+    more associated knowledge components. This is the lowest level possible in DataShop's schema.
+    For these data, DataShop creates a KC model based on correct transactions alone (the
+    correct-transaction-to-KC mapping type). (See <a href="help?page=learningCurve#alg">Knowledge
+    component attribution</a> for more information.)</p>
+    <p>Auto-generated KC models created by DataShop map knowledge components to steps (the
+    step-to-KC mapping type). This is at a level coarser than that of a transaction-to-KC
+    mapping.</p>
+    <p>KC models you create are also at the level of step-to-KC (the step-to-KC mapping type).</p>
+    <p>The primary difference between the two mapping types is that for a correct-transaction-to-KC
+    mapping, a step can have different KCs associated with it depending on the tutoring situation,
+    while for a step-to-kc mapping, all steps will have the same KCs for all students. Whether or
+    not there is a practical difference between the two types depends on the tutoring system and the
+    data it logged.</p>
+
+    <h3 id="comparing">Comparing KC models</h3>
+
+    <p>On the KC Models page, each model is described by:</p>
+    <ul class="concise">
+        <li>a number of KCs</li>
+        <li>a number of observations labeled with KCs</li>
+        <li>five statistical measures of goodness of fit for the model: AIC, BIC, and three
+        Cross Validation RMSE values. These model fit values are described in more detail on the <a
+            href="help?page=modelValues">Model Values help page</a>.</li>
+    </ul>
+    
+    <p>Models are grouped by the number of observations, sorted in ascending order. The secondary sort, which can be changed, defaults to AIC (lowest to highest, or best fit with fewest parameters to worst fit or additional parameters) and then model name. You can change the secondary sort order by using the drop-down list at the top of the page. The sort order chosen also affects the order of models in the KC Models drop-down list seen in the navigation area of various reports. </p>
+    
+    <p><strong>Note:</strong> The program that generates the statistical measures of goodness of fit
+    (called AFM) will not run on large datasets. "Large", in this case, is a function of the
+    number of transactions, students, and KCs&mdash;a dataset with more than 300,000
+    transactions, 250 students, and 300 KCs will prevent AFM from running successfully. The
+    current workaround for this limitation is to create a smaller dataset with a subset of the
+    data.</p> 
+
+    <p>One general goal of KC modeling is to determine the "best" model for representing knowledge
+    by fitting the model to the data. The "best" model would not only account for most of the data&mdash;it would
+    have the highest number of observations labeled with KCs&mdash;and fit the data well, but it would do so with
+    fewest parameters (KCs). The BIC value that DataShop calculates tells you how well the model fits
+    the data (lower values are better), and it penalizes the models for overfitting (having additional
+    parameters). This penalty for having additional parameters is stronger than AIC's penalty, so it is
+    used in DataShop for sorting models.</p>
+    
+    <p>Additional statistical information about a KC model can be found on the Model Values page (Learning
+    Curve &gt; Model Values), which is documented <a href="help?page=modelValues">here</a>.</p>
+
+<h3 id="creating">Creating a new KC model</h3>
+
+    <h4>Step 1: Export an existing model or blank template</h4>
+    <ul class="concise">
+        <li>To get started, click <strong>Export</strong> at the top of the KC Models page.</li>
+        <li>Select one or more existing KC models to use as a template for the new one, or
+        choose "(new only)" to download a blank template.</li>
+        <li>Click the <strong>Export</strong> button to download your file.</li>
+    </ul>
+
+    <h4>Step 2: Edit the KC model file in Excel or other text-file/spreadsheet editor</h4>
+    <ul class="concise">
+        <li>Define the KC model by filling in the cells in the column <strong>KC (model_name)</strong>,
+        replacing "model_name" with a name for your new model.</li>
+        <li>Assign multiple KCs to a step by adding additional <strong>KC (model_name)</strong> columns, placing one
+        KC in each column. Replace "model_name" with the same model name you used for your new model;
+        you will have multiple columns with the same header.</li>
+        <li>Add additional KC models by creating a new <strong>KC (model_name)</strong> column
+         for each KC model, replacing "model_name" with the name of your new model.</li>
+        <li><strong>Delete any KC model columns that duplicate existing KC models already in the dataset (unless you want
+        to overwrite these).</strong></li>
+        <li><strong>Do not change the values or headers of any other columns.</strong></li>
+    </ul>
+    
+    <h4>Step 3: Import a KC model file</h4>
+    <ul class="concise">
+        <li>Start the import process by clicking <strong>Import</strong> at the top of the 
+        KC Models page.</li>
+        <li>Click <strong>Choose File</strong> to browse for the KC model file you edited.</li>
+        <li>Click <strong>Verify</strong> to start file verification. If errors are found
+        in your file, fix them and re-verify the file. When DataShop
+        successfully verifies the file, you can then import it by clicking
+        the <strong>Import</strong> button.</li>
+    </ul>
+
+    <h3 id="kcm-export-columns">Columns of a KC model export</h3>
+    <p>The KC model export is most similar to a student-step export except that
+    it aggregates data across students for each step. Some columns in the KC model 
+    export are described in <a href="help?page=export">Export</a>. Those not covered 
+    are described in the table below. </p>
+
+    <table>
+        <colgroup>
+            <col style="width:20%" />
+            <col style="width:80%" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Column</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Step ID</td>
+            <td>A unique step identifier used for importing a KC model into DataShop. <strong>This column must
+            remain intact for a KC Model import to work.</strong></td>
+        </tr>
+        <tr>
+            <td>Max problem view</td>
+            <td>The maximum number of times the problem was viewed for the step. Note that problem
+            view increases regardless of whether or not the step was encountered in previous problem
+            views. For example, a step can have a "Max problem view" of "3", indicating the problem
+            was viewed three times by a single student (the most of any student), but that same step
+            need not have been encountered by that student in all instances of the problem.</td>
+        </tr>
+        <tr>
+            <td>Avg Incorrects</td>
+            <td>The average number of incorrect attempts for this step.</td>
+        </tr>
+        <tr>
+            <td>Avg Hints</td>
+            <td>The average number of hint requests for this step.</td>
+        </tr>
+        <tr>
+            <td>Avg Corrects</td>
+            <td>The average number of correct attempts for this step.</td>
+        </tr>
+        <tr>
+            <td>% First Attempt Incorrects</td>
+            <td>The percentage of first attempts that were incorrect attempts.</td>
+        </tr>
+        <tr>
+            <td>% First Attempt Hints</td>
+            <td>The percentage of first attempts that were hint requests.</td>
+        </tr>
+        <tr>
+            <td>% First Attempt Corrects</td>
+            <td>The percentage of first attempts that were correct attempts.</td>
+        </tr>
+        <tr>
+            <td>Avg Step Duration</td>
+            <td>Average <a href="help?page=terms#step_duration">step duration</a>.</td>
+        </tr>
+        <tr>
+            <td>Avg Correct Step Duration</td>
+            <td>Average <a href="help?page=terms#correct_step_duration">correct step duration</a>.</td>
+        </tr>
+        <tr>
+            <td>Avg Error Step Time</td>
+            <td>Average <a href="help?page=terms#error_step_duration">error step duration</a>.</td>
+        </tr>
+        <tr>
+            <td>Total Students</td>
+            <td>The count of distinct students who worked on this step.</td>
+        </tr>
+        <tr>
+            <td>Total Opportunities</td>
+            <td>The total number of times students encountered this step. Multiple encounters by a
+            single student are counted as distinct opportunities. For example, if a Student A
+            encountered Step X two times (possibly from separate instances of the same problem) and
+            Student B encountered the same step once, the "Total Opportunities" for Step X would be
+            "3".</td>
+        </tr>
+        </tbody>
+    </table>

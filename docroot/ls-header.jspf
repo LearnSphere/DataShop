@@ -1,0 +1,155 @@
+<%// Author: Brett Leber
+  // Version: $Revision: 15918 $
+  // Last modified by: $Author: mkomisin $
+  // Last modified on: $Date: 2019-03-15 07:53:16 -0400 (Fri, 15 Mar 2019) $
+  // $KeyWordsOff: $
+  //%>
+<%@page contentType="text/html"%>
+<%@page import="java.io.StringWriter"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.util.*"%>
+<%@page import="edu.cmu.pslc.datashop.item.UserItem"%>
+<%@page import="edu.cmu.pslc.datashop.util.DataShopInstance"%>
+<%
+
+    UserItem user = (UserItem)session.getAttribute("cmu.edu.pslc.datashop.item.UserItem");
+    String remoteUser = (user != null) ? (String)user.getId() : null;
+    boolean adminUserFlag = (user != null) ? user.getAdminFlag() : false;
+
+%>
+
+<html>
+<head>
+    <title>
+<%
+        if (pageTitle != null) {
+            out.print(pageTitle);
+        } else {
+            out.print("LearnSphere");
+        }
+%>
+    </title>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KRQP7W9');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="google-signin-client_id" content="757918974099-bfjl74l0a27t68mfk9v2pbu6rr3fh8qe.apps.googleusercontent.com"/>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Slabo+27px" rel="stylesheet">
+    <!-- LS MAIN Style -->
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/workflows/main.css")%>">
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/workflows/layout.css")%>">
+
+    <link rel="icon" href="images/learnsphere/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/jquery-ui-3.3.1.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/styles.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/nav.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/idpselect.css")%>" />
+<%
+       if (!cssIncludes.isEmpty()) {
+           for (int i = 0; i < cssIncludes.size(); i++) {
+               out.println("\t<link rel=\"stylesheet\" type=\"text/css\" href=\""
+                               + response.encodeURL("/v/css/"+cssIncludes.get(i))
+                               + "\" />");
+           }
+       }
+%>
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/print.css")%>" media="print" />
+    <!--[if IE 9]>
+        <link rel="stylesheet" href="css/ie9fix.css" type="text/css" />
+    <![endif]-->
+
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/jquery-3.3.1.min.js")%>"></script>
+
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/prototype.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/scriptaculous.js?load=effects,dragdrop,controls")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/object/ToolTip.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/workflows/lsWorkflowCommon.js")%>"></script>
+<%
+
+    if (!jsIncludes.isEmpty()) {
+        for (int i = 0; i < jsIncludes.size(); i++) {
+            out.println("\t<script type=\"text/javascript\" src=\""
+                    + response.encodeURL("/v/"+jsIncludes.get(i))
+                    + "\"></script>");
+        }
+    }
+
+    StringBuffer locationStr = new StringBuffer();
+    if (DataShopInstance.isSlave()) {
+        locationStr.append(DataShopInstance.getSlaveId());
+    } else {
+        locationStr.append("CMU");
+    }
+
+%>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/hint.js")%>"></script>
+
+    <!-- for Google sign-in -->
+    <script src="https://apis.google.com/js/platform.js?onload=gapiOnload" async defer></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/Authentication.js")%>"></script>
+<%@ include file="/google-analytics.jspf" %>
+
+</head>
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRQP7W9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!--HEADER-->
+<div id="<%=lsHeaderType%>" class="header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <h3><a class="navbar-brand" href="http://learnsphere.org/" target="_blank"><span class="logo"></span>LearnSphere@<%=locationStr.toString() %></a></h3>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Tigris</a></li>
+                <li><a href="http://learnsphere.org/explore.html" target="_blank">Explore</a></li>
+                <li><a href="http://learnsphere.org/leadership.html" target="_blank">Leadership</a></li>
+                <li><a href="http://learnsphere.org/about.html" target="_blank">About</a></li>
+                <li><a href="http://learnsphere.org/help.html" target="_blank">Help</a></li>
+                <% if (showWfShareIcon) { %>
+                <li>
+                    <a class="shareIcon" href="javascript:shareLink()"><img src="css/images/share.svg" /></a>
+                    <span class="lsShareLink"><div id="curLink"></div>
+                      <div id="cancelCopyLinkButton"></div>
+                      <div id="copyLinkButton"></div></span>
+                </li>
+                <% } %>
+            </ul>
+
+        <% if (remoteUser != null) { %>
+           <div id="logged-in-user-div">
+                   <a href="javascript:logout()">logout</a>
+           </div><br/>
+           <div id="logged-in-email-div">
+           <a href="mailto:learnsphere-help@lists.andrew.cmu.edu">contact us</a>
+           </div>
+        <% } %>
+
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+<table border="0" id="layout">
+
+<% /* Hidden Input : Is the user a DS admin? */ %>
+<input type="hidden" id="adminUserFlag" value="<%=adminUserFlag %>" />

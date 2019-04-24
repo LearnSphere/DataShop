@@ -1,0 +1,675 @@
+/*@font-face {
+  font-family: 'SourceSansVariable';
+  src: url('SourceSansPro-Regular.ttf.woff') format('woff'),
+       url('SourceSansVariable-Roman.ttf'),
+       url('SourceSansVariable-Roman.otf');
+}*/
+
+@media only screen and (max-width: 1100px) { /* Matches phones */
+    .login_container {
+        width: 100vw !important;
+        font-size: 1.5em  !important;
+        margin-left: 0px  !important;
+    }
+    body {
+        font-size: 2vw;
+        padding-top: 90px !important;
+    }
+    .navbar-brand {
+        font-size: 1.3em !important;
+    }
+    .header {
+        height: 90px !important;
+    }
+    #pl2-registration {
+        width: 80% !important;
+        margin-left: 10% !important;
+    }
+    .welcomeAdvisor {
+        font-size: 35px !important;
+    }
+    .classOrIndividualButtons > div, .classOrIndividualButtons > form {
+        height: 93px !important;
+    }
+    #individualButton {
+        height: 76px !important;
+    }
+    .kickoffQuestion textarea {
+        width: 90% !important;
+        height: 9em !important;
+    }
+    .checkboxContainer label {
+        font-size: 2em !important;
+    }
+    .questionText, .goalInfo>div {
+    }
+    div.editObjectiveDialog {
+        width: 90vw !important;
+    }
+}
+@media only screen and (min-width: 1100px) { /* Matches laptops */
+    body {
+        font-size: 1.2vw;
+  }
+}
+
+body {
+    font-family: sans-serif;
+    padding-top: 60px;
+    min-width: 900px;
+}
+
+/*
+            LOGIN CSS
+*/
+.navbar-brand {
+    color: white;
+    text-decoration: none;
+    font-size: 2em;
+    margin: 10px 20px;
+}
+.login_container {
+    width: 50vw;
+    font-size: 1.5em;
+    color: #3957ae;
+    min-width: 400px;
+    margin-left: 25%;
+    margin-top: 30px;
+}
+.login_type {
+
+}
+.exponent {
+    font-size: 0.7em;
+    vertical-align: top;
+    margin-left: 2px;
+}
+
+
+/*
+            REGISTRATION CSS
+*/
+#pl2-registration {
+    width: 60%;
+    margin-left: 30%;
+    min-width: 300px;
+}
+#pl2-registration > h1, #pl2-registration > h3 {
+    color: #3957ae;
+    margin-bottom: 0px;
+}
+#pl2-registration > h3 {
+    margin-left: 2em;
+    margin-top: 0em;
+}
+#create-new-account tr > td:first-child {
+    color: #3957ae;
+    font-size: 1.3em;
+    padding-right: 1em;
+}
+#create-new-account select,
+#create-new-account input {
+    color: #4fb500;
+    font-size: 1.1em;
+}
+
+
+/*
+            HEADER CSS
+*/
+
+.header {
+    background-color: #3957ae;
+    color: white;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 60px;
+}
+
+.welcomeAdvisor {
+    font-size: 25px;
+    margin: 16px 0px 0px 16px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.classOrIndividualButtons {
+    float: right;
+    display: inline-block;
+}
+.classOrIndividualButtons > div, .classOrIndividualButtons > form {
+    width: 145px;
+    height: 60px;
+    margin-top: 7px;
+    vertical-align: top;
+
+    display: inline-block;
+
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+.classOrIndividualButtons > form {
+    cursor: pointer;
+}
+
+#classButton {
+    background-image: url('../../images/pl2/group_profile.svg');
+}
+
+#individualButton {
+    background-image: url('../../images/pl2/single_profile.svg');
+    width: 130px;
+    margin-top: 15px;
+    height: 50px;
+}
+.logoutAndContact {
+    max-width: 5em;
+    display: inline-block;
+    font-size: 1em;
+}
+.logoutForm, .logoutAndContact div {
+    width: auto !important;
+    margin: 0px;
+    display: inline-block;
+    float: right;
+}
+.logoutForm > button, .contact_us {
+    border: none;
+    background: none;
+    color: white;
+    font-size: 1em;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
+/*
+            ADVISOR HOME CSS
+*/
+
+#studentViewBig {
+}
+
+.horizontalDivider {
+    padding: 0px !important;
+    border: 0;
+    height: 1px;
+    /*background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(57, 87, 174, 1), rgba(0, 0, 0, 0));*/
+    background-color: #3957ae;
+}
+#studentViewBig > .horizontalDivider {
+    width: 90%;
+    margin-left: 5%;
+}
+
+#studentViewBig > div {
+    padding: 30px;
+}
+
+.studentBox {
+    display: inline-block;
+    width: 350px;
+    height: 85px;
+    //font-size: 1.5em;
+    font-size: 22px;
+    margin: 10px;
+    cursor: pointer;
+}
+.studentBox > div {
+    display: inline-block;
+}
+
+.studentImage {
+    width: 80px;
+    height: 80px;
+
+    border: 3px solid #3957ae;
+    border-radius: 42px;
+    /*background-color: lightblue;
+
+    background-image: url('../../images/pl2/single_profile.svg');*/
+}
+.studentImage > img {
+    width: 50px;
+    height: 50px;
+    margin: 15px 0px 0px 15px;
+}
+
+.check {
+    position: absolute;
+    margin-top: -33px;
+    margin-left: 27px;
+    width: 45px;
+    opacity: 1 !important;
+}
+
+#studentsWhoNeedAttention div {
+    opacity: 0.9;
+}
+#studentsWhoNeedAttention .studentImage {
+    border-color: #6f90d1;
+}
+
+.studentInfo {
+    //max-width: 220px;
+    width: 230px;
+    word-break: break-word;
+    margin: 0px 0px 20px 20px;
+}
+
+.studentName {
+    text-transform: uppercase;
+    color: #3957ae;
+}
+
+.studentStatus {
+    font-style: italic;
+    color: #000;
+}
+.newHashSecretDiv {
+    color: #3957ae;
+    font-size: 1.5em;
+}
+.newHashSecretDiv > div {
+    margin-bottom: 1em;
+}
+.newHashSecretDescription {
+    margin: 1em;
+    font-size: 0.8em;
+    color: #6f90d1;
+}
+
+
+
+/*
+            STUDENT DASHBOARD CSS
+*/
+
+
+#studentInfo {
+    width: 90%;
+    margin-left: 5%;
+}
+#studentMainInfo > div {
+    display: inline-block;
+}
+
+#studentMainInfo .studentImage {
+    vertical-align: top;
+    margin: 20px;
+}
+
+#studentMainTextInfo {
+    width: 60%;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+#studentNameDashboard {
+    text-transform: uppercase;
+    color: #3957ae;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+button.sessionStartEndButton {
+    display: inline-block;
+    width: 20%;
+    vertical-align: top;
+    margin-top: 5% !important;
+}
+
+#studentNameAndStatus > div {
+    display: inline-block;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#nameStatusDivider {
+    color: #6f90d1;
+    font-size: 2.5em !important;
+    margin: 0px 5px;
+}
+
+#backgroundInfo {
+    margin-top: 20px;
+}
+
+.lightBlueText {
+    color: #6f90d1;
+    font-weight: bold;
+}
+
+.greenText {
+    color: #4fb500;
+}
+
+.dialogTextbox {
+    width: 20em;
+    height: 5em;
+    font-family: inherit;
+    font-size: 1em;
+    color: #3957ae;
+    margin: 20px;
+}
+.dialogTextInput {
+    width: 20em;
+    font-family: inherit;
+    font-size: 1em;
+    color: #3957ae;
+    margin: 20px;
+}
+.dialogSelect {
+    width: 20em;
+    font-family: inherit;
+    font-size: 1em;
+    color: #3957ae;
+    margin: 20px;
+}
+#customGoalInput {
+    display: none;
+}
+.dialogNumInput {
+    font-family: inherit;
+    font-size: 1em;
+    color: #3957ae;
+    width: 2em;
+}
+.newObjectiveDescription {
+    color: #3957ae;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#objective {
+    margin-top: 1em;
+    margin-left: 3em;
+    font-size: 1.3em;
+}
+input[name="acceptRec"]:checked+label {
+
+}
+input[name="acceptRec"] {
+    display: none;
+}
+input[name="acceptRec"]+label {
+    font-size: 0.8em;
+    margin-left: 5em;
+    cursor: pointer;
+}
+
+input[type="number"] {
+    width: 3.5em;
+    color: #3957ae;
+    font-size: 0.8em;
+    padding: 5px;
+    margin: 5px;
+    text-align: right;
+}
+#goal_completion_date {
+    color: #3957ae;
+    margin: 5px;
+    padding: 3px;
+    width: 6em;
+}
+.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+    background: #6f90d1;
+}
+a.ui-state-default {
+    color: #3957ae !important;
+}
+
+.addReflection, .addBackground, .editObjective, .updateGoal {
+    display: inline-block;
+    cursor: pointer;
+}
+
+#allSessions {
+    margin-top: 20px;
+}
+.sessionBlock > div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.progressReport {
+    width: 60%;
+}
+
+.progressReport>div {
+    margin-bottom: 2px;
+}
+
+.reportTitle {
+    margin-bottom: 10px !important;
+    text-transform: uppercase;
+}
+
+.plan {
+    width: 39%;
+}
+
+.resource {
+    cursor: pointer;
+}
+
+.selectedResource, input[name="acceptRec"]:checked+label {
+    background-color: #3957ae;
+    color: #FFF;
+    font-weight: bold;
+    padding: 8px;
+    margin-bottom: 5px;
+    display: inline-block;
+    transition: 0.4s;
+}
+.selectedResource:hover {
+    background: #6f90d1;
+}
+
+.strategyOptionAdd::before {
+    content: "+";
+}
+.strategyOptionAdd {
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#allSessions>div.horizontalDivider {
+    margin: 40px 0px;
+}
+
+#allSessions .horizontalDivider:last-child {
+    display: none;
+}
+
+
+/*
+            RESOURCE POPUP CSS
+*/
+
+iframe.resourceIframe {
+    width: 75vw;
+    max-width: 85vw;
+    height: 70vh;
+    max-height: 70vh;
+}
+
+
+.ui-dialog {
+    max-width: 80vw !important;
+    max-height: 80vh !important;
+    background: white;
+
+    padding: 40px 40px 100px 40px !important;
+    border: solid 5px #3957ae !important;
+    border-radius: 10px !important;
+
+    -moz-box-shadow: 3px 3px 5px #535353;
+    -webkit-box-shadow: 3px 3px 5px #535353;
+    box-shadow: 3px 3px 5px #535353;
+}
+
+.ui-dialog-titlebar {
+    display: none;
+}
+.ui-widget-overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #86858547;
+}
+
+.ui-button {
+    margin: 10px !important;
+    padding: 10px !important;
+    background: #3957ae !important;
+    color: white !important;
+    font-size: 1.2em !important;
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+    border: none !important;
+    transition: 0.4s !important;
+}
+.ui-button:hover {
+    background: #6f90d1 !important;
+}
+.editObjectiveDialog {
+    width: 50vw !important;
+    //height: 30vh !important;
+    height: fit-content !important;
+    min-width: 300px !important;
+    min-height: 200px !important;
+    padding-bottom: 40px;
+}
+
+
+
+/*
+            RESOURCE LIBRARY CSS
+*/
+
+
+.resourceLibrary {
+    min-width: 800px;
+    padding: 40px 0px 0px 40px;
+    white-space: nowrap;
+}
+
+#strategyOptionTitle {
+    display:inline-block;
+    color: #3957ae;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+    white-space: normal;
+    word-break: break-word;
+}
+
+#backToStudentButton {
+    display: inline-block;
+    color: white;
+    font-size: 1.5em;
+    background: #3957ae;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    float: right;
+    margin-right: 30px;
+}
+
+.resourceLibrary .resource {
+    font-size: 1.5em;
+    max-width: 500px;
+    word-break: break-word;
+    white-space: normal;
+    padding-left: 1em;
+    text-indent: -1em;
+}
+
+
+
+
+.pl2Banner {
+    color: peachpuff;
+    font-size: 3em;
+    text-shadow: 2px 2px #f00;
+    font-weight: bold;
+}
+
+/* DELETE ME FOR DEBUGGING ONLY */
+.infoFromDb {
+    font-size: 10px;
+    border:solid 1px;
+    padding: 4px;
+    display: inline-block;
+    margin: 10px 30px;
+}
+
+
+
+/*
+            KICKOFF QUESTIONS CSS
+*/
+.kickoff_interview_title {
+    color: #3957ae;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+#questionsContainer {
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 100px;
+}
+.kickoffQuestion {
+    color: #3957ae;
+    margin: 2em 0px;
+}
+.kickoffQuestion textarea {
+    width: 60%;
+    height: 4em;
+    font-family: inherit;
+    font-size: 1em;
+    color: #3957ae;
+    border-color: #3957ae;
+    margin-left: 1em;
+    margin-top: 8px;
+}
+.kickoffQuestion input {
+    border-color: #3957ae;
+    margin-left: 1em;
+    font-size: 1.2em;
+}
+.kickoffQuestion select {
+    width: 40%;
+    font-size: 1em;
+    color: #3957ae;
+}
+.questionText {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.goalInfo .questionText {
+    display: inline-block;
+}
+.checkboxContainer input[type="checkbox"] {
+    display: none;
+}
+.checkboxContainer label {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0.25em 1em;
+}
+
+.daysOfWeekCheckbox {
+    font-size: 0.8em;
+    margin-left: 3em;
+}
+
+

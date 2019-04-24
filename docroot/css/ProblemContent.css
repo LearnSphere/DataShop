@@ -1,0 +1,261 @@
+/********************************************
+* ERROR REPORT
+********************************************/
+.error-report-view-problem-by-kc {
+    font-size: 0.95em;
+}
+.error-report-view-problem-none {
+    color: #ccc;
+    font-size: 0.95em;
+    text-decoration: none;
+}
+#error-report-view-problem-button {
+    position: relative;
+    margin-left: 10px;
+}
+#errorReportViewProblemLink {
+    padding: .25em 10px .25em 10px;
+    position: relative;
+    color: #636363;
+    font-size: 80%;
+}
+#errorReportViewProblemLink:hover {
+    text-decoration: none;
+    border: 1px solid #999999;
+    color: #212121;
+}
+
+/***********************************
+* Problem List and Problem Content
+***********************************/
+
+#problem_list_div {
+	margin-top: 10px;
+}
+
+#tooltip-view-problem-button {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+#tooltipViewProblemLink {
+    padding: .25em 10px .25em 10px;
+    position: relative;
+    color: #636363;
+}
+#tooltipViewProblemLink:hover {
+    text-decoration: none;
+    border: 1px solid #999999;
+    color: #212121;
+}
+
+#problem_list_header {
+    padding-top: 12px;
+    padding-bottom: 10px;
+    width: 830px;
+}
+#problem_list_header .label {
+    font-weight: bold;
+}
+#problem_list_info {
+    font-size: 0.8em;
+    color: gray;
+}
+#problem_list_download_button {
+    float: right;
+    position: relative;
+}
+#problemListDownloadLink {
+    padding: .5em 16px .5em 10px;
+    position: relative;
+    color: #636363;
+    font-size: 13px;
+}
+#problemListDownloadLink:hover {
+    text-decoration: none;
+    border: 1px solid #999999;
+    color: #212121;
+}
+
+#problemListFilterOptionsTable {
+	margin-top: 10px;
+}
+#problemListFilterOptionsTable #prob_list_search_button {
+    cursor: pointer;
+    vertical-align: text-top;
+    margin-right: 12px;
+}
+#problemListFilterOptionsTable .row-range,
+#problemListPagingOptionsTable .row-range{
+    padding-top: 4px;
+    font-size: 0.8em;
+}
+#problemListFilterOptionsTable .headings_per_page,
+#problemListPagingOptionsTable .headings_per_page {
+    margin-left: 10px;
+}
+#prob_list_search_by.auto-hint{
+    color: #aaa;
+}
+#topPageCountTable, #bottomPageCountTable {
+    margin-left: 12px;
+    font-size: 0.8em;
+    width: 276px;
+}
+#topPageCountTable td img,
+#bottomPageCountTable td img {
+    vertical-align: top;
+}
+#topPageCountTable .disabled,
+#bottomPageCountTable .disabled {
+    color:#BBBBBB;
+    text-decoration:none !important;
+}
+#prob_list_pc_select_span {
+    font-size: 0.8em;
+}
+#problem_list_filters_div div.prob_list_pc_info {
+    margin-left: 5px;
+    margin-top: 4px;
+}
+#problem-hierarchy-list {
+    font-size: 0.95em;
+    list-style-type: none;
+}
+#problem-hierarchy-list h4 {
+	margin-top: 0px;
+	margin-bottom: 4px;
+}
+#problem-hierarchy-list ul {
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+.per-hierarchy-list {
+    list-style-type: disc;
+}
+a.problem-list-view-problem {
+    font-size: 0.9em;
+    text-decoration: underline;
+}
+
+#pc_msg img {
+    top: 8px;
+    left: 7px;
+}
+
+.brickImg {
+    padding-left: 6px;
+}
+
+#problemContent .label {
+    font-size: 75%;
+    font-weight: bold;
+}
+#pc_curriculum {
+    padding-bottom: 5px;
+}
+#pc_conversion_tool, #pc_content_version, #pc_mapped_content {
+    padding-top: 10px;
+}
+#pc_search_button {
+    cursor: pointer;
+    vertical-align: text-top;
+    margin-right: 12px;
+}
+#pc_search_by.auto-hint{
+    color: #aaa;
+}
+#pc_conversion_tool_select, #pc_content_version_search, #pc_content_version_select, #pc_mapped_content_select {
+    clear: left;
+}
+#pc_content_version_select, #pc_mapped_content_select {
+    min-width: 600px;
+    display: block;
+    height: 200px;
+    margin-bottom: 3px;
+}
+#pc_content_version_box {
+    border: 1px solid #999999;
+    height: 100px;
+    width: 600px;
+    overflow-y: auto;
+}
+#pc_content_version .content_version_data {
+    display: none;
+    font-size: 80%;
+}
+#pc_content_version .content_date, #pc_content_version .conversion_date {
+    font-weight: bold;
+}
+#pc_content_version_add {
+    padding-left: 561px;
+}
+#pc_mapped_content_table td, #pc_mapped_content_table th, #pc_mapped_content_table th a,
+#pc_mapped_content_table td p, {
+    font-size: 80%;
+}
+#pc_mapped_content_table th img {
+    vertical-align: middle;
+}
+#pc_mapped_content_table {
+    border-collapse: collapse;
+    clear: left;
+    width: 800px;
+}
+#pc_mapped_content_table th a {
+    color: #37567F;
+    background-color: inherit;
+    font-size: 80%;
+    text-decoration: none;
+    border-bottom: 1px solid #37567F;;
+}
+#pc_mapped_content_table td a {
+    color:#37567F;
+    background-color: inherit;
+    text-decoration: underline;
+}
+#pc_mapped_content_table .content_version {
+    font-weight: bold;
+}
+.none_mapped {
+    color: red;
+}
+.num_problems_mapped {
+    font-size: 0.8em;
+}
+.pc_content_version_map_delete_areYouSure {
+    display: none;
+}
+
+/********************************************
+* Problem List Filter Box
+********************************************/
+#problem_list_filters_div fieldset  {
+    background-color: #EFEFEF;
+    border: 2px solid #bbb;
+    width: 800px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+#problem_list_filters_div fieldset legend {
+    font-size: 13px;
+}
+#problem_list_filters_div div {
+    float: left;
+    margin-left: 16px;
+    margin-bottom: 2px;
+}
+#problem_list_filters_div label {
+    font-size: 13px;
+    font-weight: normal;
+}
+#problem_list_filters_div .filter-div-first {
+    margin-left:0;
+    clear: left;
+}
+
+.emptyProblemListDiv {
+	font-style: oblique;
+	margin-top: 10px;
+	margin-left: 10px;
+}

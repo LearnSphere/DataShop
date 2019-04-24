@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 1592 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2005-10-28 09:57:32 -0400 (Fri, 28 Oct 2005) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.AlphaScoreItem" table="alpha_score">
+    	<meta attribute="class-description">This is the Alpha score of a student given a skill model</meta>
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.AlphaScoreId">
+            <key-property name="studentId" type="long">
+            	<meta attribute="field-description">Part of the composite PK - FK of the student Id.</meta>
+                <column name="student_id" />
+            </key-property>
+            <key-property name="skillModelId" type="long">
+            	<meta attribute="field-description">Part of the composite PK - FK of the skill model Id.</meta>
+                <column name="skill_model_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="student" class="edu.cmu.pslc.datashop.item.StudentItem" update="false" insert="false">
+        	<meta attribute="field-description">Part of the composite PK - FK of the student Id.</meta>
+            <column name="student_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="skillModel" class="edu.cmu.pslc.datashop.item.SkillModelItem" update="false" insert="false">
+        	<meta attribute="field-description">Part of the composite PK - FK of the student Id.</meta>
+            <column name="skill_model_id" not-null="true" />
+        </many-to-one>
+        <property name="alpha" type="double">
+        	<meta attribute="field-description">The alpha score for a this student for this skill model.</meta>
+            <column name="alpha" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

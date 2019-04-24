@@ -1,0 +1,397 @@
+body {
+    background-color: #d7e2f1;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.infoWrapper {
+    width: 99%;
+    height: 99%;
+    min-height: 500px;
+}
+
+.chooseBoxes {
+    //height: 85%;
+    vertical-align: top;
+    padding: 7px;
+}
+
+.chooseText {
+    font-weight: bold;
+}
+
+.chooseBoxWrapper {
+    height: 90%;
+}
+
+.chooseBoxWrapper>td,
+.currentFileBox>td {
+    line-height: 140%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    background-color: #d9dff0;
+}
+
+.horizontalGap {
+    height: 3px;
+}
+
+.verticalGap {
+    width: 3px;
+    border-style: none !important;
+    opacity: 0;
+}
+
+/**
+  CHOOSE FILE TYPE BOX (TOP LEFT)
+*/
+
+#importDataTypeForm {
+    white-space: nowrap;
+    line-height: 140%;
+    max-width: 240px;
+}
+
+#importDataTypeForm input,
+#importDataTypeForm label {
+    cursor: pointer;
+}
+
+#importDataTypeForm label {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 1px 10px;
+    margin: 2px 0px;
+    border: solid 1px #3d567c00;
+    transition: .3s;
+}
+
+#importDataTypeForm label:hover {
+    border: 1px solid #3d567c;
+}
+
+.selectedDataType {
+    color: white;
+    background-color: #3d567c;
+}
+
+#importDataTypeForm input[type="radio"] {
+    display: none;
+}
+
+.dataTypeRadioDiv {
+    margin: 0px 20px;
+    padding: 0px 5px;
+}
+
+
+/**
+  CHOOSE/UPLOAD FILE BOX (TOP RIGHT)
+*/
+
+.chooseFileBox {
+    width: 68%;
+    min-width: 380px;
+}
+
+.wfRadioButtonGroup {
+    margin-top: -30px !important;
+    margin-bottom: 0px;
+    position: absolute;
+    min-width: 390px;
+}
+
+.wfRadioButtonGroup>label {
+    font-size: 14px;
+    height: 30px;
+}
+
+.wfRadioButtonGroup span {
+    background-color: #cccccc;
+    color: #000;
+    font-weight: bold;
+}
+
+.locationSelected {
+    background-color: white !important;
+    border-bottom: none !important;
+}
+
+.dataFileFilter {
+    width: 70% !important;
+    padding: 3px;
+}
+
+.datasetList {
+    width: 90%;
+    height: 70%;
+}
+
+.tabBody {
+    height: 90%;
+    width: 90%;
+    min-height: 100px;
+    margin-top: 39px;
+    padding-top: 15px;
+    background: white;
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: #80808085;
+}
+
+.tabLeftColumn {
+    min-width: 200px;
+    max-width: 400px;
+    font-size: 0.8em;
+}
+
+.chooseFileBody select {
+    width: 400px;
+    height: 100%;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.searchFilesRow td,
+.datasetHiddenFilesDiv td {
+    padding-left: 15px;
+}
+
+.datasetList td {
+    height: 100%;
+    //TODO CHANGE THESE
+}
+
+.datasetList td select {
+    height: 70vh;
+}
+
+.projectLabelInList {
+    color: black; //#000000ad;
+    font-size: 1em;
+    margin-top: 1px;
+}
+
+.datasetLabelInList {
+    color: black; //#000000ad;
+    margin-left: 9px;
+    font-size: 1em;
+}
+
+#datashopUploadTable {
+    height: 100% !important;
+}
+
+.descendantFile,
+.dataHiddenFileOption {
+    color: black;
+    font-size: .8em;
+    cursor: pointer;
+}
+
+.existingDataFile,
+.existingDataset {
+    height: inherit;
+    min-width: 200px;
+}
+
+.existingDataFile {
+    min-height: 200px;
+}
+
+#waitingForDatasetGif {
+    padding: 21% 0% 0 36%;
+    width: 100px;
+}
+
+.disabledFileUploadButton {
+    background-color: #718692 !important;
+    color: #ccc !important;
+    cursor: auto !important;
+}
+
+#customFileUploadButton,
+#uploadFileButton {
+    margin-left: 30px;
+}
+
+.custom-file-upload {
+    background-color: #584f7a !important;
+    padding: 9px 10px !important;
+}
+
+.localFileUpload {
+    font-size: normal !important;
+}
+
+#irbRequirementDiv {
+    margin: 5%;
+}
+
+#recallTermsDiv {
+    max-width: 440px;
+    font-style: italic;
+    background-color: #fff9d7;
+    border: 1px solid #e2c822;
+    padding: 6px 12px 6px 12px;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: black !important;
+}
+
+#recallTermsDiv a:link {
+    text-decoration: underline;
+}
+
+.irbRequirementText {
+    font-size: 1em;
+}
+
+#selectDataTypeReminder {
+    margin-left: 20px;
+}
+
+
+
+
+
+/**
+  CURRENT FILE BOX (TOP)
+*/
+
+.currentFileBox {
+    height: 10%;
+}
+
+.currentFileBox td {
+    padding: 1px 5px;
+}
+
+.importedFileText {
+    font-size: 0.8em;
+    min-width: 200px;
+    max-width: 500px;
+
+    white-space: nowrap;
+}
+
+.importedFileText>div {
+    margin-top: 5px;
+    white-space: normal;
+    word-break: break-all;
+    text-indent: -1em;
+    padding-left: 1em;
+}
+
+.fileUploadDisplayText {
+    font-size: 16px;
+    font-weight: bold;
+
+    max-width: 400px;
+    margin-left: 3px;
+    border: none;
+    background-color: inherit !important;
+}
+
+#fileSuccessMessage {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+#whatToDoDiv {
+    color: red;
+}
+
+#currentFileName {
+    white-space: normal;
+    word-break: break-all;
+}
+
+.fileUploadDisplayText[name="fileType"] {
+    width: 50%;
+}
+
+.fileUploadDisplayText {
+    font-size: 1.2em !important;
+}
+
+.addDatasetLink>label {
+    text-decoration: underline;
+    color: #294289;
+    cursor: pointer;
+}
+
+#datasetLinkDiv {
+    width: 100% !important;
+}
+
+#datasetLinkDiv label {
+    text-decoration: underline;
+    cursor: pointer;
+    color: -webkit-link;
+    color: -moz-hyperlinkText;
+}
+
+.dataset_linked {
+    display: inline !important;
+}
+
+.dataset_linked label {
+    cursor: pointer;
+}
+
+#componentDatasetInfo {}
+
+.attachDatasetTable td {
+    font-size: 0.8em;
+    padding: 0px;
+}
+
+#addToDataset {
+    max-width: 60vw;
+    font-size: 0.8em;
+}
+
+#new_project_table {
+    font-size: 1em !important;
+}
+
+#new_project_name {
+    width: 100% !important;
+}
+
+select#existing_project_select,
+textarea#datasetDesc,
+input#datasetName {
+    max-width: 100%;
+    width: 100%;
+}
+
+.grayNote {
+    color: grey;
+    font-size: 0.9em;
+}
+
+#attachingFileReminder {
+    white-space: normal;
+    word-break: break-word;
+    font-weight: bold;
+    margin-bottom: 1em;
+    font-size: 0.9em;
+    max-width: 300px;
+    padding-left: 20px;
+}
+
+.purpleButton {
+    background: #584f7a !important;
+    color: white !important;
+    cursor: pointer;
+    margin-left: 2em;
+    border: none;
+}
+
+.ui-dialog {
+	min-width: 225px;
+}

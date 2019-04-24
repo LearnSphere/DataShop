@@ -1,0 +1,23 @@
+<div class="topic" id="help-create-project">
+    <h2>Create a project</h2>
+    <p>Enter a name for your project. (You can rename your project later.)</p>
+    
+    <h3>Data Collection Type</h3>
+    <p>DataShop's IRB requires that you describe the conditions under which the data were 
+    collected. This field describes what type of IRB (if any) applies to the data. The 
+    three options are:</p>
+   
+        <ul class="concise" style="margin-top:1em">
+            <li><strong>Not human subjects data (not originally collected for research purposes)</strong> 
+            This includes data from a private company, which has no IRB governing how data can be 
+            collected and shared.</li>
+            <li><strong>Study data collected under an IRB where consent was not required (IRB approval 
+            letter required)</strong> This is human subjects data. Please upload the IRB approval letter.</li>
+            <li><strong>Study data collected under an IRB where consent was required (IRB approval letter 
+            and consent form required)</strong> This is human subjects data. Please upload the IRB approval 
+            letter and consent form to DataShop so that we have these on file.</li>
+        </ul>
+    
+<span class="helpTopicLink" style="display:none"><a href="help?page=administration"><img src="images/page_white_text.png" /> <span>Read more 
+    about project / dataset administration</span></a></span>
+</div>

@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 5025 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2008-08-01 12:06:14 -0400 (Fri, 01 Aug 2008) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.MessageItem" table="message">
+        <meta attribute="class-description">Represents a message item in the system.</meta>
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique id.</meta>
+            <column name="message_id" />
+            <generator class="native" />
+        </id>
+        <property name="userId" type="string">
+            <meta attribute="field-description">User Id.</meta>
+            <column name="user_id" not-null="true" />
+        </property>
+        <property name="sessionTag" type="string">
+            <meta attribute="field-description">The session tag for this item as a string.</meta>
+            <column name="session_tag" not-null="true" />
+        </property>
+        
+        <property name="contextMessageId" type="string">
+            <meta attribute="field-description">Context Message Id; previously attempt_id.</meta>
+            <column name="context_message_id" not-null="true" />
+        </property>
+        
+        <property name="time" type="timestamp">
+            <meta attribute="field-description">The time field of this record</meta>
+            <column name="time" length="19" />
+        </property>
+        
+        <property name="timeZone" type="string">
+            <meta attribute="field-description">Time zone</meta>
+            <column name="time_zone" />
+        </property>
+        
+        <property name="transactionId" type="string">
+            <meta attribute="field-description">transaction Id</meta>
+            <column name="transaction_id" />
+        </property>
+              
+        <property name="messageType" type="string">
+            <meta attribute="field-description">Message type.</meta>
+            <column name="message_type" length="50" not-null="true" />
+        </property>
+        
+        <property name="info" type="string">
+            <meta attribute="field-description">The info field.</meta>
+            <column name="info"  />
+        </property>
+        
+        <property name="importedTime" type="timestamp">
+            <meta attribute="field-description">The time that this record is imported.</meta>
+            <column name="imported_time"  />
+        </property>
+        
+        <property name="importSource" type="string">
+            <meta attribute="field-description">The source of the imported file.</meta>
+            <column name="import_source"  />
+        </property>
+
+        <property name="processedTime" type="timestamp">
+            <meta attribute="field-description">The time that this record is processed.</meta>
+            <column name="processed_time"  />
+        </property>
+        
+        <property name="processedFlag" type="string">
+            <meta attribute="field-description">The flag if this record is processed.</meta>
+            <column name="processed_flag"  />
+        </property>
+        
+        <property name="processedInfo" type="string">
+            <meta attribute="field-description">Error messages from the TMC.</meta>
+            <column name="processed_info" length="255" />
+        </property>
+        
+        <property name="guid" type="string">
+            <meta attribute="field-description">GUID of this log message.</meta>
+            <column name="guid"  />
+        </property>
+        
+        <property name="xmlVersion" type="string">
+            <meta attribute="field-description">XML version of the info field.</meta>
+            <column name="xml_version"  />
+        </property>
+        
+        <property name="serverReceiptTime" type="timestamp">
+            <meta attribute="field-description">The server receipt time of this action.</meta>
+            <column name="server_receipt_time" length="19"/>
+        </property>
+    </class>
+</hibernate-mapping>

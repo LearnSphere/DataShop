@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 12889 $
+ Last modified by - $Author: hcheng $
+ Last modified on - $Date: 2016-02-01 23:56:51 -0500 (Mon, 01 Feb 2016) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.learnsphere.analysis.resourceuse.oli.item.ResourceUseOliTransactionItem" table="resource_use_oli_transaction">
+    <meta attribute="class-description">Represents a single transaction for a log transaction file.</meta>
+        <id name="id" type="long">
+        <meta attribute="field-description">Database generated unique Id for this transaction.</meta>
+            <column name="resource_use_oli_transaction_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="resourceUseOliTransactionFileItem" class="edu.cmu.pslc.learnsphere.analysis.resourceuse.oli.item.ResourceUseOliTransactionFileItem">
+        <meta attribute="field-description">Resource Use transaction file associated with this transaction.</meta>
+            <column name="resource_use_oli_transaction_file_id" not-null="true" />
+        </many-to-one>
+        <property name="guid" type="string">
+            <meta attribute="field-description">GUID from source for this transaction.</meta>
+            <column name="guid" />
+        </property>
+        <property name="userSess" type="string">
+            <meta attribute="field-description">user sess from source for this transaction.</meta>
+            <column name="user_sess" length="255"/>
+        </property>
+        <property name="source" type="string">
+            <meta attribute="field-description">original source field for this transaction.</meta>
+            <column name="source" length="255"/>
+        </property>
+        <property name="transactionTime" type="timestamp">
+        <meta attribute="field-description">The timestamp for when this transaction occurred.</meta>
+            <column name="transaction_time" length="19" />
+        </property>
+        <property name="timeZone" type="string">
+        <meta attribute="field-description">Time-zone the timestamp was taken in.</meta>
+            <column name="time_zone" length="250"/>
+        </property>
+        <property name="action" type="string">
+            <meta attribute="field-description">original action field for this transaction.</meta>
+            <column name="action" length="250"/>
+        </property>
+        <property name="externalObjectId" type="string">
+            <meta attribute="field-description">original external_object_id field for this transaction.</meta>
+            <column name="external_object_id" length="250"/>
+        </property>
+        <property name="container" type="string">
+            <meta attribute="field-description">original container field for this transaction.</meta>
+            <column name="container" length="250"/>
+        </property>
+        <property name="conceptThis" type="string">
+            <meta attribute="field-description">original concept_this field for this transaction.</meta>
+            <column name="concept_this" length="250"/>
+        </property>
+        <property name="conceptReq" type="string">
+            <meta attribute="field-description">original concept_req field for this transaction.</meta>
+            <column name="concept_req" length="250"/>
+        </property>
+        <property name="easternTime" type="timestamp">
+        <meta attribute="field-description">The easternTime.</meta>
+            <column name="eastern_time" length="19" />
+        </property>
+        <property name="serverReceiptTime" type="timestamp">
+        <meta attribute="field-description">The serverReceiptTime.</meta>
+            <column name="server_receipt_time" length="19" />
+        </property>
+        <property name="infoType" type="string">
+        <meta attribute="field-description">The info_type for when this transaction occurred.</meta>
+            <column name="info_type" length="255"/>
+        </property>
+        <property name="info" type="string">
+        <meta attribute="field-description">The info for when this transaction occurred.</meta>
+            <column name="info" />
+        </property>
+    </class>
+</hibernate-mapping>

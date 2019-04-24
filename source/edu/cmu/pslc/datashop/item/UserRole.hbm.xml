@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2009
+ All Rights Reserved
+
+ The initial user roles are:
+     logging_activity
+     web_services
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.UserRoleItem" table="user_role">
+        <meta attribute="class-description">UserRole maps a user to a role.</meta>
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.UserRoleId">
+            <key-property name="userId" type="string">
+                <meta attribute="field-description">Part of the composite key - FK to the user table.</meta>
+                <column name="user_id" length="250" />
+            </key-property>
+            <key-property name="role" type="string">
+                <meta attribute="field-description">Part of the composite key.</meta>
+                <column name="role" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="user" class="edu.cmu.pslc.datashop.item.UserItem" update="false" insert="false">
+            <meta attribute="field-description">Part of the composite key - FK to the user table.</meta>
+            <column name="user_id" length="250" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

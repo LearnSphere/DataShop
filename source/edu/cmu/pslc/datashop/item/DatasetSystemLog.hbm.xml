@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 6308 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2010-09-15 14:43:21 -0400 (Wed, 15 Sep 2010) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.DatasetSystemLogItem" table="dataset_system_log">
+    	<meta attribute="class-description">A piece of log information for the system on a dataset.</meta>
+        <id name="id" type="integer">
+        	<meta attribute="field-description">Database generated unique Id.</meta>
+            <column name="dataset_system_log_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+        	<meta attribute="field-description">Dataset being used.</meta>
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="skillModel" class="edu.cmu.pslc.datashop.item.SkillModelItem">
+        	<meta attribute="field-description">The skill model item for this log action.</meta>
+            <column name="skill_model_id" not-null="false" />
+        </many-to-one>
+        <many-to-one name="sample" class="edu.cmu.pslc.datashop.item.SampleItem">
+        	<meta attribute="field-description">The sample for this log action.</meta>
+            <column name="sample_id" not-null="false" />
+        </many-to-one>
+        <property name="time" type="timestamp">
+        	<meta attribute="field-description">Timestamp of the log action.</meta>
+            <column name="time" length="19" not-null="true" />
+        </property>
+        <property name="action" type="string">
+        	<meta attribute="field-description">The action being performed on the dataset.</meta>
+            <column name="action" length="255" not-null="true" />
+        </property>
+        <property name="info" type="string">
+            <meta attribute="field-description">Additional information about the action performed.</meta>
+            <column name="info"/>
+        </property>
+        <property name="successFlag" type="boolean">
+            <meta attribute="field-description">Additional information about the action performed.</meta>
+            <column name="success_flag"/>
+        </property>
+        <property name="value" type="integer">
+            <column name="value"/>
+        </property>
+        <property name="elapsedTime" type="long">
+            <column name="elapsed_time"/>
+        </property>
+        <property name="datashopVersion" type="string">
+            <column name="datashop_version" length="20"/>
+        </property>
+    </class>
+</hibernate-mapping>

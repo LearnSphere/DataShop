@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 6372 $
+ Author: Alida Skogsholm
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2010-10-15 09:41:13 -0400 (Fri, 15 Oct 2010) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ProblemEventItem" table="problem_event">
+        <meta attribute="class-description">Represents a ProblemEvent in the system.</meta>
+
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique id.</meta>
+            <column name="problem_event_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="startTime" type="timestamp">
+            <meta attribute="field-description">The start time field of this ProblemEvent.</meta>
+            <column name="start_time" length="19" not-null="true"/>
+        </property>
+        
+        <property name="startTimeMS" type="integer">
+            <meta attribute="field-description">Milliseconds for the problem event start time.</meta>
+            <column name="start_time_ms" />
+        </property>
+        
+        <property name="eventFlag" type="edu.cmu.pslc.datashop.type.hibernate.EventFlagHibernateType">
+        	<meta attribute="field-description">The event type, expected values are: START, RESUME, DONE, QUIT, SKIP, RESET.</meta>
+            <column name="event_flag" not-null="true" />
+        </property>
+
+        <property name="eventType" type="string">
+        	<meta attribute="field-description">The actual value of the event type.</meta>
+            <column name="event_type" not-null="true" length="100" />
+        </property>
+        
+        <property name="problemView" type="integer">
+            <column name="problem_view" />
+        </property>
+        
+        <many-to-one name="session" class="edu.cmu.pslc.datashop.item.SessionItem">
+            <meta attribute="field-description">Session associated with this item.</meta>
+            <column name="session_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="problem" class="edu.cmu.pslc.datashop.item.ProblemItem">
+            <meta attribute="field-description">Problem associated with this item.</meta>
+            <column name="problem_id" not-null="true" />
+        </many-to-one>
+        
+    </class>
+</hibernate-mapping>

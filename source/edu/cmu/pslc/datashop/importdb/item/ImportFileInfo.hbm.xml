@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2011
+ All Rights Reserved
+
+ $Revision: 6646 $
+ Last modified by - $Author: shanwen $
+ Last modified on - $Date: 2011-02-14 13:32:26 -0500 (Mon, 14 Feb 2011) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.importdb.item.ImportFileInfoItem" table="import_file_info">
+        <meta attribute="class-description">Import File Info Table.</meta>
+        <id name="id" type="integer">
+            <meta attribute="field-description">Database generated unique Id for this item.</meta>
+            <column name="import_file_id" />
+             <generator class="native" />
+        </id>
+        <property name="fileName" type="string">
+            <meta attribute="field-description">The full path of the file to be imported.</meta>
+            <column name="file_name" length="255" not-null="true"/>
+        </property>
+        <property name="lineStart" type="integer">
+            <meta attribute="field-description">The number of start line.</meta>
+            <column name="line_start" length="10"/>
+        </property>
+        <property name="lineEnd" type="integer">
+            <meta attribute="field-description">The number of end line.</meta>
+            <column name="line_end" length="10"/>
+        </property>
+        <property name="timeStart" type="timestamp">
+            <meta attribute="field-description">The timestamp of the start of this import.</meta>
+            <column name="time_start" length="19"/>
+        </property>
+        <property name="timeEnd" type="timestamp">
+            <meta attribute="field-description">The timestamp of the end of this import.</meta>
+            <column name="time_end" length="19" />
+        </property>
+        <property name="status" type="string">
+            <meta attribute="field-description">The status of this import.</meta>
+            <column name="status" length="17" not-null="true"/>
+        </property>
+        <property name="errorCount" type="integer">
+            <meta attribute="field-description">The number of errors of this import.</meta>
+            <column name="error_count"/>
+        </property>
+        <property name="errorMessage" type="string">
+            <meta attribute="field-description">The error message.</meta>
+            <column name="error_message" length="65535" />
+        </property>
+        <property name="warningCount" type="integer">
+            <meta attribute="field-description">The number of warning of this import.</meta>
+            <column name="warning_count"/>
+        </property>
+        <property name="warningMessage" type="string">
+            <meta attribute="field-description">The warning message.</meta>
+            <column name="warning_message" length="65535" />
+        </property>
+        <many-to-one name="importStatus" class="edu.cmu.pslc.datashop.importdb.item.ImportStatusItem">
+        	<meta attribute="field-description">Import status that this file belongs to.</meta>
+            <column name="import_status_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

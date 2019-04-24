@@ -1,0 +1,13 @@
+<div class="topic" id="help-external-tool-table">
+    <h2>External Tools</h2>
+    <p>This page displays an index of free tools submitted by developers in the educational 
+    data mining and intelligent tutoring systems communities. If you know of any tools that
+    may be useful to others, feel free to submit them here&mdash;click <strong>Add Tool</strong>
+    after logging in.</p>
+    
+    <p>Please be aware that these files have been provided by users of DataShop; we cannot 
+    vouch for their accuracy or authenticity.</p>
+    
+    <span style="display:none" class="helpTopicLink"><a href="help?page=externalTools">
+    <img src="images/page_white_text.png" /> <span>Read more about External Tools</span></a></span>
+</div>

@@ -1,0 +1,32 @@
+.clearfix {
+    zoom: 1;     /* triggers hasLayout */
+    display: block;     /* resets display for IE/Win */
+}
+.kcsetname {
+	height:1%;
+}
+#hideGraphInfoLink, #hidePointInfoLink,
+#hideObservationTableLink {
+	font-size:10px;	
+}
+/* Double-margin bug */
+#samples ul ul li a, #samples ul ul li {
+	margin-top:0;
+	margin-bottom:0;
+	padding-top:0;
+	padding-bottom:0;
+	display:inline;
+	zoom:1;
+}
+#samples ul li a:link {
+	text-decoration:none;	
+}
+#samples ul li a:visited {
+	text-decoration:none;
+}
+#samples ul li a:hover {
+	text-decoration:underline;
+}
+#samples ul li a:active {
+	text-decoration:underline;
+} 

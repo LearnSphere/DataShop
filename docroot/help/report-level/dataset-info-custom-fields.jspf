@@ -1,0 +1,50 @@
+<div class="topic" id="help-dataset-info-custom-fields">
+    <h2>Dataset Info / Custom Fields</h2>
+
+    <p>A custom field is a new column you define for annotating transaction data.
+    DataShop currently supports adding and modifying custom fields at the transaction level.</p>
+
+    <p>You can add or modify a custom field's metadata from this page, but to set the
+    data in that custom field, you need to use <a href="/about/webservices.html">web
+    services</a>, which is a way to interact with DataShop through a program you write.
+    You can also add custom fields when logging or importing new data.</p>
+
+    <h3>Permissions</h3>
+    <p>A custom field has an owner, the user who created it. Users who have edit or
+    admin permission for a project can create custom fields for a dataset in it.
+    Only the owner or a DataShop administrator can delete or modify the custom field.
+    Only DataShop administrators can delete custom fields that were logged with the data.</p>
+
+    <h3>Custom Field Metadata</h3>
+    <p>The following fields describe a custom field:</p>
+    <ul class="concise">
+        <li><strong>name</strong>&mdash;descriptive name for the new custom field. Must be unique across all custom fields
+        for the dataset. Must be no more than 255 characters.</li>
+        <li><strong>description</strong>&mdash;description for the new custom field. Must be no more than 500 characters.</li>
+        <li><strong>level</strong>&mdash;the level of aggregation that the custom field describes. Currently, the only accepted value
+        is transaction. Future versions may support other levels such as step or student.
+        Cannot be modified later.</li>
+    </ul>
+
+    <h3>Data Types</h3>
+    <p>A custom field value is classified as one or more of the following data types assigned internally by DataShop:</p>
+    <ul class="concise">
+        <li><strong>number</strong>&mdash;must be no more than 65,000 characters</li>
+        <li><strong>string</strong>&mdash;must be no more than 65,000 characters</li>
+        <li><strong>date</strong>&mdash;see <a href="/about/importverify.html#note-2">format suggestions</a>;
+        must be no more than 255 characters</li>
+    </ul>
+    <p>The Custom Fields page indicates the types of custom fields, what percentage of those custom fields
+    fall into the aforementioned categories, and what percentage of transactions are associated with each
+    custom field.</p>
+    <p><strong>Caveat:</strong> Very large custom fields may cause unexpected behavior in some applications.  Excel correctly handles
+    exports with very large custom field values if you import the text from Excel. Other text editors may incorrectly wrap the
+    text values if they become too large while programs like vim, jEdit, and Notepad++ correctly handle the maximum lengths. Additionally,
+    when viewing custom fields in the web interface, the values are truncated to 255 characters to prevent issues with browsers. To
+    get the full custom field value, use the <strong>transaction export</strong> feature.</p>
+    <p><a href="help?page=export#excel_warning"> Read
+    our recommended method for opening exported data in Excel</a></p>
+
+<span class="helpTopicLink" style="display:none"><a href="help?page=customFields"><img src="images/page_white_text.png" /> <span>Read more
+    about custom fields</span></a></span>
+</div>

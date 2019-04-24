@@ -1,0 +1,18 @@
+<h2>Problem List</h2>
+
+<p>The problem list page lists all problems in dataset, grouped by problem hierarchy,
+which is a unique hierarchy of curriculum levels containing the problem (e.g., a problem might be 
+contained in a Unit A, Section B hierarchy).</p> 
+
+<p>This page is most useful for seeing which particular problems have 
+<a href="help?page=problemContent">problem content</a> stored: any problem
+name shown as a hyperlink will link to the content that students saw when they interacted 
+with that problem. You can also filter on problems with or without problem content, and search
+those lists.</p>
+
+<p>Download all of the problem content associated with the dataset by clicking the 
+<strong>Download Problem Content</strong> button</strong>. The format of the download is
+a single .zip file containing a hierarchy of .html and web content files (e.g., images, videos, audio).
+The exact hierarchy of this file differs depending on the source of the problem content.</p>
+
+<p class="clearFloat"></p>

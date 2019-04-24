@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 2750 $
+ Author: Alida Skogsholm
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2006-04-26 15:31:08 -0400 (Wed, 26 Apr 2006) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.OliFeedbackItem" table="oli_feedback">
+
+        <meta attribute="class-description">Represents a single OLI feedback record.</meta>
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique Id for this item.</meta>
+            <column name="oli_feedback_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="userId" type="string">
+            <meta attribute="field-description">The actual user ID for this item as a string.</meta>
+            <column name="user_id" not-null="true" />
+        </property>
+
+        <property name="sessionTag" type="string">
+            <meta attribute="field-description">The session tag for this item as a string.</meta>
+            <column name="session_tag" not-null="true" />
+        </property>
+
+        <property name="feedbackTime" type="timestamp">
+            <meta attribute="field-description">The timestamp for when this feedback was collected.</meta>
+            <column name="time" length="19" />
+        </property>
+
+        <property name="timeZone" type="string">
+            <meta attribute="field-description">Timezone the timestamp was taken in.</meta>
+            <column name="time_zone" length="50" />
+        </property>
+
+        <property name="admitCode" type="string">
+            <meta attribute="field-description">The admit code for the OLI course.</meta>
+            <column name="admit_code" length="12" />
+        </property>
+
+        <property name="pageId" type="string">
+            <meta attribute="field-description">The OLI id for this feedback page.</meta>
+            <column name="page_id" length="50" />
+        </property>
+
+        <property name="questionId" type="string">
+            <meta attribute="field-description">The OLI id for this question on the page.</meta>
+            <column name="question_id" length="50" />
+        </property>
+
+        <property name="choice" type="string">
+            <meta attribute="field-description">The choice the student made for this question.</meta>
+            <column name="choice" length="65535" />
+        </property>
+
+        <property name="actionGuid" type="string">
+            <meta attribute="field-description">The OLI GUID from the log.log_act table's GUID column.</meta>
+            <column name="action_guid" length="32" />
+        </property>
+
+    </class>
+</hibernate-mapping>

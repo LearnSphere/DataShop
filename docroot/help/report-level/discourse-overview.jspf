@@ -1,0 +1,20 @@
+<div class="topic" id="help-discourse-overview">
+    <h2>Discourse Info</h2>
+    <p>This page provides an overview for the current discourse.
+    It may answer questions such as:
+    </p>
+    <ul>
+    <li>When were these data collected? 
+    <li>What's the scope of the discourse?</li>
+    <li>What types of data sources are present in the discourse?</li>
+    <li>What is the contribution type make-up of the discourse?</li>
+    </ul>
+
+    <h3>Discourse statistics at a glance</h3>
+    <p>You can gauge the size of the discourse by looking at the number
+    of users, data sources and contributions.</p>
+    
+    <span class="helpTopicLink" style="display:none"><a href="help?page=discourseInfo"><img src="images/page_white_text.png" /> <span>Read more 
+    about Discourse Info</span></a></span>
+    
+</div>

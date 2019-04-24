@@ -1,0 +1,51 @@
+<div id="ws_user_agreement">
+<h1>DataShop Web Services User Agreement</h1>
+<p><em>Updated August 3, 2011</em></p>
+
+<p>In this agreement, we describe how you can and cannot use DataShop Web Services, and how
+our Services may change over time. This is not a legal agreement, but an informal contract that 
+you understand our concerns and the risks of using DataShop Web Services, and agree to follow
+our guidelines.</p>
+
+<p>Once you accept this agreement and request access, we will review your account and grant
+you access. Should you not hear from us within three business days, please contact us with a kind
+reminder.</p>
+
+<h2>1.1 Permitted Uses</h2>
+
+<p>You may write a software application or web site that interfaces with the Services, provided
+you are the only person with access. We may change, deprecate or republish APIs for any feature
+from time to time, and it is your responsibility to ensure that calls you make the Services are
+compatible with the then-current API. We may change or remove features or functionality of the
+Services at any time.</p>
+
+<p>You may make network calls or requests to the Services at any time that the Services are
+available, provided that, you (or if you build and release an application, each installed
+copy of your application) do not exceed the maximum file size or maximum calls per second limit set
+forth in the Users Guide. If we notice that you are exceeding these limits, we may contact you via
+email about your use, throttle your use, or suspend your account.</p>
+
+<h2>1.2. Restricted Uses</h2>
+
+<p>You may not interfere or attempt to interfere in any manner with the functionality or proper
+working of the Services.</p>
+
+<p>You may not create a web application that uses DataShop Web Services to directly access data, 
+regardless of whether you own the data, unless the only user is yourself.</p>
+
+<h2>1.3 Accounts and Keys</h2>
+
+<p>You may only create one account per email address.</p>
+
+<p>DataShop Web Services accounts are associated with one public key/private key pair, which is
+used to access the service. Private keys are for your personal use only, and you may not sell,
+transfer, or otherwise disclose your private key to any other party. You may use your public key in
+the open in requests to DataShop Web Services; your public key is therefore not secret. However, you
+are responsible for maintaining the secrecy and security of your private key. You are fully
+responsible for all activities that occur under your account, regardless of whether such activities
+are undertaken by you or a third party. Therefore, you should contact us immediately if you believe
+a third party may be using your private key, or if your private key is otherwise lost or stolen. You
+are responsible for maintaining up-to-date and accurate information (including contact information)
+for your DataShop account. We are not responsible for any unauthorized access to or alteration of
+your data.</p>
+</div>

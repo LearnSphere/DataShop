@@ -1,0 +1,377 @@
+<html>
+
+<head>
+    <title>ImportComponent</title>
+    <script src="../../lib/jquery-1.7.1.min.js"></script>
+    <script src="../../lib/jquery-ui-1.8.17.custom.min.js"></script>
+    <script src="./singleImportJS.js"></script>
+    <script src="../lsWorkflowCommon.js"></script>
+    <link rel="stylesheet" href="../../../css/workflows/custom_options/singleImportStyling.css">
+    <link rel="stylesheet" href="../../../css/jquery-ui-1.8.18.custom.css">
+    <link rel="stylesheet" href="../../../css/workflows/learnsphere.css">
+    <link rel="stylesheet" href="../../../css/UploadDataset.css">
+</head>
+
+<body>
+    <div class="chooseText"></div>
+    <div class="wfRadioButtonGroup">
+        <input type="radio" name="importType" value="importDataset" id="datasetFilesBtn">
+        <label for="datasetFilesBtn"> Import DataShop Files</label>
+        <input type="radio" name="importType" value="importFile" id="fileUploadBtn">
+        <label for="fileUploadBtn"> Upload Your Own File</label>
+    </div>
+    <table class="tabBody">
+        <tr style="display:block;vertical-align: top;">
+            <td class="tabLeftColumn">
+                <div class="chooseFileBody">
+                    <!-- HTML for importing a datashop dataset, initially hidden-->
+                    <table id="datashopUploadTable" style="display: none">
+                        <tr hidden class="searchFilesRow" style="display: table-row;">
+                            <td style="font-size: 0.8em">
+                                <!--Search Dataset Files-->
+                                <input type="text" class="dataFileFilter auto-hint" maxlength="100" size="40" placeholder="Filter Samples By Name, Dataset or Project" style="color:black">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table class="datasetList"></table>
+                                <img id="waitingForDatasetGif" src="../../../images/waiting.gif" style="display:none">
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="irbRequirementDiv" style="display:none">
+                        <div id="recallTermsDiv">
+                            <table class="irbRequirementText">
+                                <tr>
+                                    <td style="vertical-align:top">
+                                        <input type="checkbox" id="irbRequirementsMet" name="irbRequirementsMet">
+                                    </td>
+                                    <td>
+                                        <label for="irbRequirementsMet" id="irbRequirementsLabel">
+                                            I certify that the data in this file meets LearnSphere's
+                                            <a href='../../../help?page=irb' target='_blank'>IRB requirements</a>, and I agree to add any relevant IRB documentation later.
+                                            <br /><br />Please keep in mind the LearnSphere
+                                            <a href='../../../Terms' target='_blank'>Terms of Use</a> when uploading your data.
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="dataTypeDiv" style="display:none">
+                        <form id="importDataTypeForm">
+                            <!--The data type options are populated here-->
+                        </form>
+                    </div>
+                    <label id="uploadFileButton" style="display:none" disabled class="localFileUpload custom-file-upload">
+                        <input type="file" class="importDataFile" name="file" id="importFile">Choose File
+                    </label>
+                </div>
+                <div id="addToDataset" style="display:none">
+                    <input type="radio" id="existingDataset" value="existingDataset" name="addToDatasetLocation" checked="" onclick="javascript:showAttachOptions()">
+                    <label for="existingDataset">Add to existing dataset</label>
+                    <input type="radio" id="newDataset" value="newDataset" name="addToDatasetLocation" onclick="javascript:showAttachOptions()">
+                    <label for="newDataset">Add to new dataset</label>
+                    <div class="attachToExistingDatasetDiv">
+                        <table id="attachableDatasets">
+                            <tr class="wfFileUploadRow">
+                                <td style="width:30%;padding-left:10px">Choose a dataset: </td>
+                                <td style="font-size: 12px">Attaching a file to a dataset makes the file available to anyone with access to the dataset, even if the workflow is private.</td>
+                            </tr>
+                            <tr class="wfFileUploadRow">
+                                <td style="width:30%;padding-left:10px">Filter Datasets:</td>
+                                <td>
+                                    <input type="text" class="datasetFilter auto-hint" maxlength="100" size="40" placeholder="Filter by Dataset or Project" style="color:black">
+                                </td>
+                            </tr>
+                            <tr class="wfFileUploadRow">
+                                <td colspan="2">
+                                    <table class="datasetListAttachable"></table>
+                                    <img id="waitingForDatasetGif" src="../../../images/waiting.gif" style="display:none">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="attachToNewDatasetDiv"></div>
+                </div>
+            </td>
+            <td style="padding-top: 2em; padding-right: 1em; padding-left: 2em">
+                <div id="fileSuccessMessage"></div>
+                <div id="attachingFileReminder" style="display:none">
+                    Adding
+                    <span id="addingThisFile" style="color: #4e377f;"></span>
+                    to DataShop dataset
+                </div>
+                <div class="importedFileText" style="display:none">
+                    <div>
+                        <span  id="currentFileName" class="fileUploadDisplayText"></span>
+                    </div>
+                    <div> 
+                      <input type="hidden" name="fileType" readonly="" id="fileType" class="fileUploadDisplayText" value=""> 
+                    </div>
+                    <!-- Attach Upload to DataSet button -->
+                    <div id="componentDatasetInfo" style="display:none;"></div>
+                </div>
+                <div id="whatToDoDiv">
+                    <iframe width="20" height="20" border="0" name="dummyframe" id="dummyframe"></iframe>
+                </div>
+                <button id="cancelButton" class="purpleButton" style="padding: 8px 10px;display:none" onclick="javascript:cancelAttaching(event);"><span class="ui-button-text">Cancel</span></button>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" id="filePath" value="">
+    <input type="hidden" id="fileIndex" value="">
+    <input type="hidden" id="fileLabel" value="">
+    <input type="hidden" id="workflowId" value="">
+    <script>
+        var componentId = parent.getComponentId();
+
+    // Get the data type xml from the server for the left hand menu
+    getDataTypesXmlFile();
+
+    // Load saved data to this component options pane
+    // If it exists, then propagate it through the interface
+    var loadedData = getSavedData();
+
+    jQuery(document).ready(function() {
+
+        // Handle sizes on the outside of the options pane
+        jQuery(".advancedOptionsTable", parent.document).hide();
+        jQuery(".fileInputForm", parent.document).css("height", "98%");
+        jQuery(".fileInputForm", parent.document).css("width", "97%");
+        jQuery(".componentOptionsDiv", parent.document).css("height", "90%");
+        jQuery(".componentOptionsDiv", parent.document).css("max-height", "95%");
+        jQuery(".componentInfoHeader", parent.document).css("display", "none");
+        jQuery(".componentOptionsPartition", parent.document).css("display", "none");
+
+        jQuery('.wfRadioButtonGroup').buttonset();
+
+        hideAttaching();
+
+        // The user is only viewing the workflow. Do not display options to change this import.
+        if (parent.isView) {
+            componentIsView();
+        }
+
+        // Wait for the data type select (left hand side) to populate
+        var waitForDataTypeForm = setInterval(function() {
+            if (importDataTypeFormReady) {
+                importDataTypeFormReady = false; //so this function doesn't run twice accidentally
+
+                // If saved state exists, populate the interface with it
+                if (loadedData !== null && loadedData !== undefined && loadedData != "0") {
+                    propagateLoadedData(loadedData);
+                } else {
+                    jQuery('label[for="datasetFilesBtn"]').click();
+                }
+
+                // add some functionality
+                initializeFunctionality();
+
+                setTimeout(function() { parent.setOutsideOptionPanelClick(componentId); }, 500);
+
+                clearInterval(waitForDataTypeForm);
+            }
+        }, 10);
+
+        // Add the new dataset form to the dom above
+        jQuery('#upload_dataset_form').appendTo('#attachToNewDatasetDiv');
+    });
+    </script>
+    <!-- UPLOAD NEW DATASET FORM PUT DOWN HERE FOR READABLILITY -->
+    <form id="upload_dataset_form" name="upload_dataset_form" method="post" action="../../../UploadDataset" style="display:none;" target="dummyframe">
+        <table id="upload_dataset_table" class="account_profile_table_style">
+            <input type="hidden" name="upload_dataset_action" value="describe">
+            <tbody>
+                <tr>
+                    <!--<td class="label labelRight"><label>Project</label></td>-->
+                    <td>Add this dataset to ...</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <!--<td></td>-->
+                    <td>
+                        <div id="projectGroupDiv">
+                            <input type="hidden" name="upload" value="upload">
+                            <input type="radio" name="project_group" id="newRadio" onclick="javascript:showAttachOptions()" value="new">
+                            <label for="newRadio">new project</label>
+                            <input type="radio" name="project_group" id="existingRadio" onclick="javascript:showAttachOptions()" value="exist" checked="">
+                            <label for="existingRadio">existing project</label>
+                            <input type="radio" name="project_group" id="laterRadio" onclick="javascript:showChooseLaterProjectDiv()" value="later" style="display:none;">
+                            <label for="laterRadio" style="display:none;">choose later</label>
+                            <div id="no_data_no_project_warning" style="display: none;">
+                                <span>To create a new dataset without transaction data, you need to select an existing project or specify a new one.</span>
+                            </div>
+                        </div>
+                        <div id="new_project_div" style="display: none;">
+                            <table id="new_project_table">
+                                <tbody>
+                                    <tr>
+                                        <td class="labelSmaller">Project Name</td>
+                                        <td><input type="text" name="new_project_name" id="new_project_name" value="" title="Please enter a unique project name."></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="labelSmaller">Data Collection Type</td>
+                                        <td>
+                                            <table id="dctTable">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="dctTd">
+                                                            <input type="radio" name="dataCollectionType" id="dctInput1" value="not_specified" checked="">
+                                                        </td>
+                                                        <td>
+                                                            <label for="dctInput1">
+                                                                Not specified
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="dctTd">
+                                                            <input type="radio" name="dataCollectionType" id="dctInput2" value="not_human_subject">
+                                                        </td>
+                                                        <td>
+                                                            <label for="dctInput2">
+                                                                Not human subjects data (not originally collected for research purposes)
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="dctTd">
+                                                            <input type="radio" name="dataCollectionType" id="dctInput3" value="study_data_consent_not_req">
+                                                        </td>
+                                                        <td>
+                                                            <label for="dctInput3">
+                                                                Study data collected under an IRB where consent was not required (IRB approval letter required)
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="dctTd">
+                                                            <input type="radio" name="dataCollectionType" id="dctInput4" value="study_data_consent_req">
+                                                        </td>
+                                                        <td>
+                                                            <label for="dctInput4">
+                                                                Study data collected under an IRB where consent was required (IRB approval letter and consent form required)
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> <!-- end dctTable -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="existing_project_list_div" style="display: inline;">
+                            <select id="existing_project_select" name="existing_project_select" size="5">
+                                <!--Fill this dynamically based on the projects the user has access to -->
+                            </select>
+                            <p class="grayNote">
+                                Don't see your project here? Check with the project admin to make
+                                sure you are listed as having "admin" permission.
+                            </p>
+                        </div> <!-- end existing_project_list_div -->
+                    </td>
+                    <td />
+                </tr>
+                <tr>
+                    <td class="label labelRight" id="datasetNameLabel">
+                        <label for="datasetName">Dataset Name</label>
+                        <input type="text" name="datasetName" id="datasetName" value="" title="Please enter a unique dataset name.">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label labelRight" id="datasetDescLabel"><label for="datasetDesc">Description <span>(optional)</span></label>
+                        <textarea name="datasetDesc" id="datasetDesc" class="datasetDesc" rows="4" cols="50"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label labelRight" id="domainLearnlabLabel"><label for="domainLearnlab">Domain/LearnLab</label>
+                        <select id="domainLearnlab" name="domainLearnlab">
+                            <option value="dummy"> -- </option>
+                            <option value="Language/Chinese">Language/Chinese</option>
+                            <option value="Language/English">Language/English</option>
+                            <option value="Language/French">Language/French</option>
+                            <option value="Language/Other">Language/Other</option>
+                            <option value="Math/Algebra">Math/Algebra</option>
+                            <option value="Math/Geometry">Math/Geometry</option>
+                            <option value="Math/Other">Math/Other</option>
+                            <option value="Science/Chemistry">Science/Chemistry</option>
+                            <option value="Science/Physics">Science/Physics</option>
+                            <option value="Science/Statistics">Science/Statistics</option>
+                            <option value="Science/Other">Science/Other</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr style="display:none;">
+                    <td class="label labelRight" id="hasStudyDataLabel"><label for="hasStudyData">Has Study Data</label>
+                        <select id="hasStudyData" name="hasStudyData">
+                            <option value="dummy"> -- </option>
+                            <option value="Not Specified" selected>Not Specified</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr style="display:none;">
+                    <td class="label labelCenter">
+                        Do you have transaction data to upload now?
+                    </td>
+                </tr>
+                <tr style="display:none;">
+                    <td>
+                        <table id="txToUploadTable">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="radio" id="txToUploadGroupNo" name="txToUploadGroup" value="no" checked="" onclick="javascript:disableYesTxOptions()">
+                                    </td>
+                                    <td>
+                                        <label for="txToUploadGroupNo">
+                                            No transaction data now
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="grayNote transactionDataTd">
+                                        Dataset will either receive transaction data
+                                        later or it will be a files-only dataset.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" id="txToUploadGroupYes" name="txToUploadGroup" value="yes" onclick="javascript:enableYesTxOptions()">
+                                    </td>
+                                    <td>
+                                        <label for="txToUploadGroupYes">
+                                            Yes, I want to upload transaction data
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="grayNote transactionDataTd">
+                                        Can be a single TXT or XML file, or a zip
+                                        file (.zip, .gz or .bz) containing multiple files.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td class="submit">
+                        <div id="upload_button_div" class="uploadDatasetButton">
+                            <button id="choose_button" type="submit" class="purpleButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only " role="button" aria-disabled="true" onclick="javascript:submitNewDataset(event);doneAttaching(event);"><span class="ui-button-text">Continue</span></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form> <!-- End of attach file to new dataset form -->
+</body>
+
+</html>

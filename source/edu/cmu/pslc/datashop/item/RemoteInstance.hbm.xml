@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 12671 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2015-10-08 09:36:42 -0400 (Thu, 08 Oct 2015) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.RemoteInstanceItem" table="remote_instance">
+    	<meta attribute="class-description">Represents a single Remote DataShop Instance.</meta>
+        <id name="id" type="long">
+            <column name="remote_instance_id" length="32" /> 
+            <generator class="native" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="100" />
+        </property>
+        <property name="datashopUrl" type="string">
+            <column name="datashop_url" length="48" />
+        </property>
+    </class>
+</hibernate-mapping>

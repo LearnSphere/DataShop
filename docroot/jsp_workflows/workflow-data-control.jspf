@@ -1,0 +1,297 @@
+<%@page import="edu.cmu.pslc.datashop.workflows.WorkflowComponentInstanceItem"%>
+<%@ include file="/doctype.jspf" %>
+<!--
+  Carnegie Mellon University, Human-Computer Interaction Institute
+  Copyright 2015
+  All Rights Reserved
+-->
+<%
+// Author: Mike Komisin
+// Version: $Revision: 15357 $
+// Last modified by: $Author: pls21 $
+// Last modified on: $Date: 2018-07-18 14:53:59 -0400 (Wed, 18 Jul 2018) $
+// $KeyWordsOff: $
+//
+// NEW
+%>
+<%@page contentType="text/html"%>
+<%@page import="java.io.StringWriter"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.util.*"%>
+<%@page import="java.text.FieldPosition"%>
+<%@page import="java.lang.StringBuffer"%>
+<%@page import="edu.cmu.pslc.datashop.dao.DaoFactory"%>
+<%@page import="edu.cmu.pslc.datashop.dao.WorkflowComponentDao"%>
+<%@page import="edu.cmu.pslc.datashop.item.ProjectItem "%>
+<%@page import="edu.cmu.pslc.datashop.workflows.WorkflowComponentItem"%>
+<%@page import="org.apache.commons.lang.time.FastDateFormat"%>
+<%@page import="org.apache.commons.collections.comparators.NullComparator"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.workflows.WorkflowRowDto"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.workflows.WorkflowHistoryDto"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.workflows.WorkflowContext"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.workflows.LearnSphereServlet"%>
+<%@page import="edu.cmu.pslc.datashop.workflows.WorkflowItem"%>
+<%@page import="org.apache.commons.lang.WordUtils"%>
+<%@page import="org.json.JSONArray"%>
+<%@page import="org.json.JSONException"%>
+<%@page import="org.json.JSONObject"%>
+
+
+
+<%
+
+    Boolean isLoggedIn = false;
+    Boolean isDsAdmin = false;
+    String wfState = null;
+    // Is Admin?
+    if (request.getAttribute("isDsAdmin") != null) {
+        isDsAdmin = (Boolean) request.getAttribute("isDsAdmin");
+        %><script type="text/javascript">
+        jQuery('body').data("isDsAdmin", <%=isDsAdmin.toString() %>);
+        </script><%
+    }
+    // Paper count
+    if (request.getAttribute("paperCount") != null) {
+        Integer paperCount = (Integer) request.getAttribute("paperCount");
+        %><script type="text/javascript">
+        jQuery('body').data("paperCount", <%=paperCount.toString() %>);
+        </script><%
+    }
+    %>
+
+    <!-- Workflow Editor data -->
+    <%
+
+    // Workflow State
+    if (request.getAttribute("wfState") != null) {
+        wfState = (String) request.getAttribute("wfState");
+        %><script type="text/javascript">
+        jQuery('body').data("wfState", "<%=wfState.toString() %>");
+        </script><%
+    }
+
+    // Results (inline or standalone).
+    if (request.getAttribute("wfResults") != null) {
+        try {
+        JSONObject s = new JSONObject(request.getAttribute("wfResults").toString());
+        %><script type="text/javascript">
+        jQuery('body').data("wfResults", <%=s.toString() %>);
+        </script><%
+        } catch (JSONException e) {
+            %><script type="text/javascript">
+            alert("An error exists in your results XML which cannot be processed. Please contact help.")
+            </script><%
+        }
+    }
+
+    // Workflow XML
+    if (request.getAttribute("wfXml") != null) {
+        try {
+        JSONObject s = new JSONObject(request.getAttribute("wfXml").toString());
+        %><script type="text/javascript">
+        jQuery('body').data("wfXml", <%=s.toString() %>);
+        </script><%
+        } catch (JSONException e) {
+            %><script type="text/javascript">
+            alert("An error exists in your workflow XML which cannot be processed. Please contact help.")
+            </script><%
+        }
+    }
+
+    // Component info xml
+    if (request.getAttribute("wfSupportingXml") != null) {
+        try {
+        JSONObject s = new JSONObject(request.getAttribute("wfSupportingXml").toString());
+        %><script type="text/javascript">
+        jQuery('body').data("wfSupportingXml", <%=s.toString() %>);
+        </script><%
+        } catch (JSONException e) {
+            %><script type="text/javascript">
+            alert("An error exists in your workflow support XML (info.xml) which cannot be processed. Please contact help.")
+            </script><%
+        }
+    }
+    %>
+
+    <!-- Component menu -->
+    <%
+    // Editor component menu
+    if (request.getAttribute("wfComponentMenuJson") != null) {
+        try {
+        JSONObject s = new JSONObject(request.getAttribute("wfComponentMenuJson").toString());
+        %><script type="text/javascript">
+        jQuery('body').data("wfComponentMenuJson", <%=s.toString() %>);
+        </script><%
+        } catch (JSONException e) {
+            %><script type="text/javascript">
+            alert("An error exists in your workflow menu XML which cannot be processed. Please contact help.")
+            </script><%
+        }
+    }
+
+    // Recently used components
+    if (request.getAttribute("recentComponentsJson") != null) {
+        try {
+        JSONObject s = new JSONObject(request.getAttribute("recentComponentsJson").toString());
+        %><script type="text/javascript">
+        jQuery('body').data("recentComponentsJson", <%=s.toString() %>);
+        </script><%
+        } catch (JSONException e) {
+            %><script type="text/javascript">
+            alert("An error exists in your Recent Components list which cannot be processed. Please contact help.")
+            </script><%
+        }
+    }
+
+    %>
+
+    <!-- Accessibility info -->
+    <%
+    if (request.getAttribute("hasUnownedPrivateFiles") != null) {
+        Boolean hasUnownedPrivateFiles = (Boolean) request.getAttribute("hasUnownedPrivateFiles");
+        %><script type="text/javascript">
+        jQuery('body').data("hasUnownedPrivateFiles", <%=hasUnownedPrivateFiles.toString() %>);
+        </script><%
+    }
+
+    if (request.getAttribute("accessibleProjects") != null) {
+        JSONObject s = new JSONObject();
+        for (ProjectItem projectItem : (List<ProjectItem>) request.getAttribute("accessibleProjects")) {
+            s.put(projectItem.getId().toString(), projectItem.getProjectName());
+        }
+        %><script type="text/javascript">
+        jQuery('body').data("accessibleProjects", <%=s.toString() %>);
+        </script><%
+    }
+
+    if (request.getAttribute("unrequestedProjects") != null) {
+        JSONObject s = new JSONObject();
+        for (ProjectItem projectItem : (List<ProjectItem>) request.getAttribute("unrequestedProjects")) {
+            s.put(projectItem.getId().toString(), projectItem.getProjectName());
+        }
+        %><script type="text/javascript">
+        jQuery('body').data("unrequestedProjects", <%=s.toString() %>);
+        </script><%
+    }
+
+    if (request.getAttribute("reRequestProjects") != null) {
+        JSONObject s = new JSONObject();
+        for (ProjectItem projectItem : (List<ProjectItem>) request.getAttribute("reRequestProjects")) {
+            s.put(projectItem.getId().toString(), projectItem.getProjectName());
+        }
+        %><script type="text/javascript">
+        jQuery('body').data("reRequestProjects", <%=s.toString() %>);
+        </script><%
+    }
+
+    if (request.getAttribute("nonShareableProjects") != null) {
+        JSONObject s = new JSONObject();
+        for (ProjectItem projectItem : (List<ProjectItem>) request.getAttribute("nonShareableProjects")) {
+            s.put(projectItem.getId().toString(), projectItem.getProjectName());
+        }
+        %><script type="text/javascript">
+        jQuery('body').data("nonShareableProjects", <%=s.toString() %>);
+        </script><%
+    }
+
+    if (request.getAttribute("pendingRequestProjects") != null) {
+        JSONObject s = new JSONObject();
+        for (ProjectItem projectItem : (List<ProjectItem>) request.getAttribute("pendingRequestProjects")) {
+            s.put(projectItem.getId().toString(), projectItem.getProjectName());
+        }
+        %><script type="text/javascript">
+        jQuery('body').data("pendingRequestProjects", <%=s.toString() %>);
+        </script><%
+    }
+
+    if (request.getAttribute("wfEditLevel") != null) {
+        try {
+        JSONObject s = new JSONObject(request.getAttribute("wfEditLevel").toString());
+        %><script type="text/javascript">
+        jQuery('body').data("wfEditLevel", <%=s.toString() %>);
+        </script><%
+        } catch (JSONException e) {
+            %><script type="text/javascript">
+            alert("An error exists in your session info which cannot be processed. Please contact help.")
+            </script><%
+        }
+    }
+
+    // Previous error messages
+    if (request.getAttribute("lastErrorMessage") != null) {
+        try {
+        JSONObject s = new JSONObject(request.getAttribute("lastErrorMessage").toString());
+        %><script type="text/javascript">
+        jQuery('body').data("lastErrorMessage", <%=s.toString() %>);
+        </script><%
+        } catch (JSONException e) {
+            %><script type="text/javascript">
+            alert("An error exists in your error XML which cannot be processed. Please contact help.")
+            </script><%
+        }
+    }
+
+    // Workflow options
+    if (request.getAttribute("wfOpt") != null) {
+        try {
+        JSONObject s = new JSONObject(request.getAttribute("wfOpt").toString());
+        %><script type="text/javascript">
+        jQuery('body').data("wfOpt", <%=s.toString() %>);
+        </script><%
+        } catch (JSONException e) {
+            %><script type="text/javascript">
+            alert("An error exists in your options XML which cannot be processed. Please contact help.")
+            </script><%
+        }
+    }
+
+    // User info (public % user, logged in)
+    if (request.getAttribute("wfResults") == null) {
+
+        if (request.getAttribute("wfUserPublic") != null) {
+            %><div id="wfUserPublic" ></div><%
+        } else {
+            isLoggedIn = true;
+        }
+
+    } %>
+
+    <!-- Workflows Search -->
+    <%if (request.getAttribute("componentList") != null) {
+        try {
+        JSONArray s = new JSONArray(request.getAttribute("componentList").toString());
+        %><script type="text/javascript">
+        jQuery('body').data("componentList", <%=s.toString() %>);
+        </script><%
+        } catch (JSONException e) {
+            %><script type="text/javascript">
+            alert("The workflow component list could not be found.")
+            </script><%
+        }
+    }%>
+
+    <%if (request.getAttribute("existingWorkflowTags") != null) {
+        try {
+        JSONArray s = new JSONArray(request.getAttribute("existingWorkflowTags").toString());
+        %><script type="text/javascript">
+        jQuery('body').data("existingWorkflowTags", <%=s.toString() %>);
+        </script><%
+        } catch (JSONException e) {
+            %><script type="text/javascript">
+            alert("The workflow tag list could not be found.")
+            </script><%
+        }
+    }%>
+
+    <%if (request.getAttribute("authorList") != null) {
+        try {
+        JSONArray s = new JSONArray(request.getAttribute("authorList").toString());
+        %><script type="text/javascript">
+        jQuery('body').data("authorList", <%=s.toString() %>);
+        </script><%
+        } catch (JSONException e) {
+            %><script type="text/javascript">
+            alert("The workflow author list could not be found.")
+            </script><%
+        }
+    }%>

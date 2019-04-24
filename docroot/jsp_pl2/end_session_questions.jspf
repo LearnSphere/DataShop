@@ -1,0 +1,38 @@
+<!--
+  Carnegie Mellon University, Human Computer Interaction Institute
+  Copyright 2019
+  All Rights Reserved
+-->
+<%
+// Author: Cindy Tipper
+// Version: $Revision: 13213 $
+// Last modified by: $Author: ctipper $
+// Last modified on: $Date: 2016-05-02 16:48:45 -0400 (Mon, 02 May 2016) $
+// $KeyWordsOff: $
+//
+%>
+
+<!-- Load an object that contains the questions for the session starting interview -->
+
+
+<script>
+
+
+let howWasSession_SessionEnd = {
+        id: "howWasSession_SessionEnd",
+        type: "textarea",
+        question_text: "How was %studentFirstName%\'s session today?",
+        is_background: false
+};
+
+
+let sessionProgress_SessionEnd = {
+        id: "sessionProgress_SessionEnd",
+        type: "textarea",
+        question_text: "Does %studentFirstName% feel like they're making progress? Why or why not?",
+        is_background: false
+};
+
+
+var end_questions = [howWasSession_SessionEnd, sessionProgress_SessionEnd];
+</script>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2013
+ All Rights Reserved
+
+ Author: Alida Skogsholm
+ $Revision: 10435 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2013-12-19 10:07:17 -0500 (Thu, 19 Dec 2013) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ImportQueueStatusHistoryItem" table="import_queue_status_history">
+
+        <id name="id" type="integer">
+            <column name="import_queue_status_history_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="updatedTime" type="timestamp">
+            <column name="updated_time" length="19" not-null="true" />
+        </property> 
+        
+        <property name="status" type="string">
+            <column name="status" length="8" not-null="true" />
+        </property>
+        
+        <many-to-one name="importQueue" class="edu.cmu.pslc.datashop.item.ImportQueueItem">
+            <column name="import_queue_id" not-null="true"/>
+        </many-to-one>
+        
+        <many-to-one name="updatedBy" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="updated_by" not-null="true" />
+        </many-to-one>
+        
+    </class>
+</hibernate-mapping>

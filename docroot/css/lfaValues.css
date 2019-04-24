@@ -1,0 +1,105 @@
+/********************************************
+* Model Values
+********************************************/
+#lfaValues table td.afmNum {
+    text-align:right;
+}
+#exportLfaValues {
+    margin:.5em;
+}
+#lfaValues table {
+    text-align: left;
+    border:1px solid #cfcfcf;
+    border-collapse:collapse;
+}
+#lfaValues table th {
+    padding:4px 10px;
+    border:1px solid #afafaf;
+    text-align:center;
+}
+#lfaValues table td {
+    color:#333;
+    text-align:center;
+    border-right:1px solid #cfcfcf;
+}
+#lfaValues table td.even {
+    background-color:#efefef;
+}
+#lfaValues table td.sorted {
+    border-bottom: 1px solid #cfcfcf;
+}
+#lfaValues table td.lowSlope {
+    background-color:#ffcccc;
+    font-weight: bold;
+}
+#lfaValues table caption {
+    font-size:.8em;
+    text-align:left;
+    margin-bottom:.5em;
+    padding-bottom:0;
+    border:none;
+    font-weight:bold;
+}
+#slope-threshold {
+    float: right;
+    font-size: 90%;
+}
+#sort-kcs {
+    float: left;
+}
+#slope-threshold-form {
+    float: right;
+}
+#slope-threshold input#sort_kcs {
+    vertical-align: top;
+    margin-right: 12px;
+}
+#slope-threshold input#learning_rate_threshold {
+    width: 50px;
+}
+#slope-threshold input {
+    font-size: 98%;
+    text-align: right;
+}
+.lfaValuesNote {
+    font-size:90%;
+    margin-top:0;
+    font-weight:normal;
+    color:gray;
+    font-style:normal;
+    text-transform:none;
+}
+#lfaValues h1.lfaStatus {
+    font-size:.9em;
+}
+#kcModelValues {
+    width:380px;
+    margin-bottom:10px;
+}
+#stratifiedCrossValidationValuesContainer {
+    float:left;
+    margin-right:14px;
+}
+#stratifiedCrossValidationValues {
+    width:380px;
+    margin-bottom:10px;
+}
+#unstratifiedCrossValidationValues {
+    float:left;
+    width:380px;
+    margin-bottom:10px;
+}
+#kcValues {
+    clear:left;
+    width:756px
+}
+#studentValues {
+    width:756px;
+}
+#unstratifiedCrossValidationNote {
+    margin-bottom:10px;
+    color:gray;
+    font-size:.75em;
+    clear:left;
+    width:760px;   
+}

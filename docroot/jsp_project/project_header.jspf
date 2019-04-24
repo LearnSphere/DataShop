@@ -1,0 +1,235 @@
+<!--
+  Carnegie Mellon University, Human Computer Interaction Institute
+  Copyright 2011
+  All Rights Reserved
+-->
+<%
+// Author: Alida Skogsholm
+// Version: $Revision: 14293 $
+// Last modified by: $Author: ctipper $
+// Last modified on: $Date: 2017-09-28 14:12:25 -0400 (Thu, 28 Sep 2017) $
+// $KeyWordsOff: $
+//
+%>
+<%@page contentType="text/html"%>
+<%@page import="java.io.StringWriter"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.lang.StringBuffer"%>
+<%@page import="java.util.*"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.project.ExternalLinkDto"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.project.ProjectDatasetDto"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.project.ProjectDto"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.project.ProjectPageHelper"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.project.ProjectPageServlet"%>
+<%@page import="edu.cmu.pslc.datashop.dto.ProjectInfoReport"%>
+<%@page import="edu.cmu.pslc.datashop.servlet.tou.TermsServlet"%>
+<%@page import="edu.cmu.pslc.datashop.item.AuthorizationItem"%>
+<%@page import="edu.cmu.pslc.datashop.item.ProjectItem"%>
+<%@page import="edu.cmu.pslc.datashop.item.UserItem"%>
+
+<%@ include file="/header_variables.jspf" %>
+
+<%
+    pageTitle = "Project";
+    cssIncludes.add("styles.css");
+    cssIncludes.add("help.css");
+    jsIncludes.add("javascript/lib/jquery-1.7.1.min.js");
+    jsIncludes.add("javascript/lib/jquery-ui-1.8.17.custom.min.js");
+    jsIncludes.add("javascript/ProjectPage.js");
+    jsIncludes.add("javascript/IRBs.js");
+    jsIncludes.add("javascript/AccessRequests.js");
+    jsIncludes.add("javascript/ProjectPermissions.js");
+    jsIncludes.add("javascript/GoToDatasetProblemList.js");
+    jsIncludes.add("javascript/ImportQueue.js");
+    jsIncludes.add("javascript/ImportQueue/ImportQueueDialogs.js");
+    jsIncludes.add("javascript/DiscourseDB.js");
+    cssIncludes.add("jquery-ui-1.8.18.custom.css");
+    cssIncludes.add("access_requests.css");
+    cssIncludes.add("project_page.css");
+    cssIncludes.add("message.css");
+    cssIncludes.add("auth_level_desc.css");
+    cssIncludes.add("ImportQueue.css");
+    cssIncludes.add("UploadDataset.css");
+%>
+
+<!--  header -->
+<%@ include file="/header.jspf" %>
+<%@ include file="/access_request_notifications.jspf" %>
+
+<!-- body -->
+<%!
+    // TD element holds the displayed text. So we convert HTML characters to entities, and add line breaks (br) elements.
+    String cleanInputText(String str) {
+        String textCleaner = str.replaceAll("&","&amp;").replaceAll(">","&gt;").replaceAll("<","&lt;");
+        String textWithBrs = textCleaner.replaceAll("\n","<br />").replaceAll("\"","&quot;");
+        return textWithBrs;
+    }
+%>
+<%
+    String rmEmail = (String)session.getAttribute(ProjectPageServlet.RM_EMAIL);
+
+    projectId = (Integer)session.getAttribute(ProjectPageServlet.PROJECT_ID_ATTRIB);
+    ProjectInfoReport projInfoReport = projHelper.getProjectInfoReport(projectId, remoteUser);
+    projectName = projInfoReport.getName();
+    String projectTerms = projInfoReport.getProjectTerms();
+    String datashopTerms = projInfoReport.getDataShopTerms();
+    Boolean publicFlag = projInfoReport.getPublicFlag();
+    Long numPapers = projInfoReport.getNumPapers();
+    Boolean termsAccepted = projInfoReport.getTermsAcceptedFlag();
+    String termsTitle = "";
+    String termsImage = "";
+    Integer numDatasetsWithProblemContent = projHelper.getNumDatasetsWithProblemContent(projectId);
+    String pcTitle = " datasets in this project contain the problem content that students saw.";
+    if (numDatasetsWithProblemContent == 1) {
+        pcTitle = " dataset in this project contains the problem content that students saw.";
+    }
+
+    if (projectTerms != null) {
+        termsTitle = "There are terms of use associated with this project";
+
+        if (remoteUser != null) {
+            if (termsAccepted) {
+                termsTitle += " which you have agreed to already.";
+                termsImage = "images/script_go.png";
+            } else {
+                termsTitle += " which you have not agreed to yet.";
+                termsImage = "images/script_delete.png";
+            }
+        } else {
+            termsTitle += ".";
+            termsImage = "images/script.png";
+        }
+    }
+
+    ProjectPageHelper projPageHelper = HelperFactory.DEFAULT.getProjectPageHelper();
+
+    ProjectDto projectDto = projPageHelper.getProjectDto(request, projectId, user);
+
+    String accessRequestButton = "";
+    String makeProjectPublicButton = "";
+    String srsMessage = "";
+
+    Boolean isDataProvider = false;
+    Boolean hasProjectAdmin = false;
+    Boolean hasProjectEdit = false;
+    Boolean hasProjectView = false;
+    String authorizationLevel = null;
+    if (remoteUser != null) {
+        authorizationLevel = projPageHelper.getAuthLevel(remoteUser, projectId);
+        if (authorizationLevel != null) {
+            if (authorizationLevel.equals(AuthorizationItem.LEVEL_ADMIN)) {
+                hasProjectAdmin = true;
+                hasProjectEdit = true;
+                hasProjectView = true;
+            } else if (authorizationLevel.equals(AuthorizationItem.LEVEL_EDIT)) {
+                hasProjectEdit = true;
+                hasProjectView = true;
+            } else if (authorizationLevel.equals(AuthorizationItem.LEVEL_VIEW)) {
+                hasProjectView = true;
+            }
+        }
+        isDataProvider = projPageHelper.isDataProvider(remoteUser, projectId);
+    }
+    if ((authorizationLevel == null)
+            || (authorizationLevel != null
+                && authorizationLevel.equals(AuthorizationItem.LEVEL_VIEW))) {
+        accessRequestButton = projHelper.getAccessRequestButton(remoteUser, projectId, true);
+    }
+    if (adminUserFlag || hasProjectAdmin || isDataProvider) {
+        makeProjectPublicButton = projHelper.getMakeProjectPublicButton(remoteUser, projectId);
+        srsMessage = projHelper.getSrsMessage(projectId);
+    }
+
+    // Now reset the message info.
+    request.setAttribute("ProjectDto_" + projectId, null);
+
+    String piName = projectDto.getPiName();
+    String piUserId = projectDto.getPiUserId();
+    String dpName = projectDto.getDpName();
+    String dpUserId = projectDto.getDpUserId();
+    String description = projectDto.getDescription();
+    String descriptionToDisplay = cleanInputText(description);
+    String descriptionWithoutQuotes = description.replaceAll("\"","&quot;");
+    String tags = projectDto.getTags();
+
+    List<ExternalLinkDto> links = projectDto.getExternalLinks();
+    boolean hasLinks = (links.size() > 0) ? true : false;
+
+    boolean hasRmRole = (user != null) ? projPageHelper.hasResearchManagerRole(user) : false;
+
+    String tabHeader = (String)session.getAttribute(ProjectPageServlet.PROJECT_TAB_ATTRIB);
+
+    String tabTitle = "";
+    if (remoteUser == null) {
+        tabTitle = "\'You must be logged in to use this feature.\'";
+    }
+
+    // Permissions and IRB tabs only available to DS Admin, Research Manager and Project Admin.
+    boolean showIrbTab = adminUserFlag || hasRmRole || hasProjectAdmin;
+    boolean showPermTab = adminUserFlag || hasRmRole || hasProjectAdmin || hasProjectEdit || hasProjectView;
+
+    Boolean isDiscourse = projInfoReport.getIsDiscourseDataset();
+    String datasetsLabel = ((isDiscourse != null) && isDiscourse) ? "Discourses" : "Datasets";
+%>
+<tr>
+<%@ include file="/main_side_nav.jspf" %>
+    <td id="main_td">
+        <div id="project-page" class="home_pages">
+        <input type="hidden" id="adminUserFlag" value="<%=adminUserFlag%>" />
+        <h2 id="projectNameHeader"><%=projectName %>
+        <% if(publicFlag) { %>
+            <img src="images/users.gif" id="public-icon-img" alt="(public)" title="This is a public project." />
+        <% } else { %>
+            <img src="images/lock.png" id="public-icon-img" alt="(private)" title="This is a private project." />
+        <% } %>
+        <% if (numPapers > 0) {
+             if (numPapers > 1) {%>
+               <img src="images/star.png" alt="(gold star)"
+                    title="There are <%=numPapers %> papers associated with this project." />
+             <%} else { %>
+               <img src="images/star.png" alt="(gold star)"
+                    title="There is <%=numPapers %> paper associated with this project." />
+             <%}
+           }
+           if (projectTerms != null) { %>
+               <img src="<%=termsImage%>" alt="(terms of use)"
+                    title="<%=termsTitle%>" />
+        <% }
+           if (numDatasetsWithProblemContent > 0) {
+        %>
+               <img src="images/brick.png" alt="(problem content)"
+                    title="<%=numDatasetsWithProblemContent %><%=pcTitle %>" />
+        <%
+           }
+        %>
+          
+        </h2>
+
+        <!-- put subtabs here -->
+        <div id="subtab">
+        <% if (tabHeader.equals("datasets")) { %>
+           <span id="project_datasets_subtab_link" class="current"><%=datasetsLabel %></span>
+        <% } else { %>
+           <a id="project_datasets_subtab_link" href="Project?id=<%=projectId%>"><%=datasetsLabel %></a>
+        <% } %>
+       <% if (showPermTab) { %>
+           <% if (tabHeader.equals("permissions")) { %>
+              <span id="project_permissions_subtab_link" class="current" title=<%=tabTitle%>>Permissions</span>
+           <% } else { %>
+              <a id="project_permissions_subtab_link" href="ProjectPermissions?id=<%=projectId%>">Permissions</a>
+           <% } %>
+       <% } %>
+       <% if (showIrbTab) { %>
+           <% if (tabHeader.equals("irb")) { %>
+              <span id="project_irb_subtab_link" class="current" title=<%=tabTitle%>>IRB</span>
+           <% } else { %>
+              <a id="project_irb_subtab_link" href="ProjectIRB?id=<%=projectId%>">IRB</a>
+           <% } %>
+        <% } %>
+        <% if (tabHeader.equals("terms")) { %>
+           <span id="project_terms_subtab_link" class="current">Terms of Use</span>
+        <% } else { %>
+           <a id="project_terms_subtab_link" href="ProjectTerms?id=<%=projectId%>">Terms of Use</a>
+        <% } %>
+        </div>
+        <div><br/></div>

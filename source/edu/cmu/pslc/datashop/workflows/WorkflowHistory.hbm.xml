@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision:  $
+ Last modified by - $Author:  $
+ Last modified on - $Date:  $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowHistoryItem" table="workflow_history">
+        <meta attribute="class-description">Workflow history for a given workflow.</meta>
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique Id for this workflow history item.</meta>
+            <column name="workflow_history_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="workflow" class="edu.cmu.pslc.datashop.workflows.WorkflowItem">
+            <meta attribute="field-description">The workflow for this workflow history.</meta>
+            <column name="workflow_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem" >
+            <meta attribute="field-description">The dataset associated with this workflow history, if one exists.</meta>
+            <column name="dataset_id" />
+        </many-to-one>
+        <many-to-one name="sample" class="edu.cmu.pslc.datashop.item.SampleItem">
+            <meta attribute="field-description">The sample associated with this workflow history, if one exists.</meta>
+            <column name="sample_id" />
+        </many-to-one>
+
+        <property name="importQueue" type="edu.cmu.pslc.datashop.item.ImportQueueItem">
+            <meta attribute="field-description">The import queue associated with the workflow history, if one exists.</meta>
+            <column name="import_queue_id" />
+        </property>
+        <property name="userId" type="string">
+            <meta attribute="field-description">The user id string.</meta>
+            <column name="user_id" length="250" not-null="true" />
+        </property>
+        <property name="time" type="timestamp">
+            <meta attribute="field-description">The time of the action.</meta>
+            <column name="time" length="19" not-null="true" />
+        </property>
+        <property name="action" type="string">
+            <meta attribute="field-description">The action as a string.</meta>
+            <column name="action" not-null="true" />
+        </property>
+        <property name="info" type="string">
+            <meta attribute="field-description">The info as a string.</meta>
+            <column name="info" />
+        </property>
+        <property name="sampleFilters" type="string">
+            <meta attribute="field-description">
+                The filter text as a string if a sample is associated with this history item.</meta>
+            <column name="sample_filters" />
+        </property>
+
+    </class>
+</hibernate-mapping>

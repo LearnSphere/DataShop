@@ -1,0 +1,491 @@
+map area {
+    cursor:pointer;
+}
+#exportStepRollup {
+    margin:.5em;
+}
+#overview_skill_table{
+    border-collapse:collapse;
+    margin:0;
+    text-align:center;
+}
+#thumbs {
+    padding:1em;
+}
+#thumbs hr {
+    border: 0;
+    height: 1px;
+    background: #bebebe;
+}
+#thumbs_table{
+    width:100%;
+}
+#thumbs_table{
+    border-collapse:collapse;
+    width:100%;
+}
+#thumbs_table td{
+    text-align:center;
+    padding:2px;
+    width:25%;
+}
+#thumbs_table .even_thumb{
+    background-color:#DFE7FF;
+}
+.navigation_labels {
+    font-family: arial, verdana;
+    font-weight: bold;
+    vertical-align: top;
+}
+.section_name {
+    font-family: arial, verdana;
+    font-size: smaller;
+}
+.learning_curve_thumb {
+    margin-top:0;
+    border-collapse:collapse;
+}
+.learning_curve_thumb td {
+    font-size:11px;
+    font-weight: bold;
+    vertical-align: top;
+    text-align: left;
+    padding:0 5px 5px 5px;
+}
+.learning_curve_thumb a {
+    text-decoration:none;
+}
+.graph_column {
+    padding:5px;
+}
+.graph_column a{
+    display:block;
+    border:2px solid #FFFFFF;
+}
+.graph_column a:hover{
+    border:2px solid #0054B0;
+    background-color:white;
+}
+p.showCount {
+    font-size:.8em;
+    margin-top:0;
+}
+p.showCount a:link, p.showCount a:visited {
+    text-decoration:underline;
+    color:#5f6d7f;
+}
+p.showCount a:hover {
+    text-decoration:none;
+    color:white;
+    background-color:#333;
+}
+.attempt_num_table{
+    border-collapse:collapse;
+    font-size:11px;
+    margin:0 0 0 1em;
+    border:1px solid #333;
+    padding:0;
+    color:#333;
+}
+.attempt_num_table .asRow, .attempt_num_table .erRow, .lfaRow {
+    display:none;
+}
+.attempt_num_table td{
+    text-align:center;
+    border-bottom:1px solid #333;
+    padding:2px 5px;
+}
+.attempt_num_table th{
+    border-bottom:1px solid #333;
+}
+.attempt_num_table .even {
+    background-color:#f0f9ff;
+}
+.lcThumb {
+    float:left;
+    padding:10px;
+}
+.lcThumb:hover {
+    background-color:#f0f9ff;
+}
+.lcThumbSelected {
+    float:left;
+    padding:10px;
+    background-color:#cfdef2;
+}
+#allSkillThumb a:last-child, 
+#stillHighThumbs a:last-child, 
+#tooLittleDataThumbs a:last-child, 
+#otherThumbs a:last-child {
+    margin-bottom: 10px;
+}
+.classified_label img {
+    vertical-align: top;
+}
+#lowAndFlatTooltipContent,
+#noLearningTooltipContent,
+#stillHighTooltipContent,
+#tooLittleDataTooltipContent,
+#otherTooltipContent {
+    display: none
+}
+.toolTip.lcCategoryTooltips div {
+    padding: 12px 10px 10px 15px;
+}
+.toolTip.lcCategoryTooltips span.value {
+    color: #ff6600;
+}
+.lc_range {
+    padding:5px;
+    text-align:center;
+}
+.lc_range a:link, .lc_range a:visited {
+    margin:0 2px;
+    text-decoration:underline;
+    color:#5f6d7f;
+}
+.lc_range a:hover {
+    text-decoration:none;
+    color:white;
+    background-color:#333;
+}
+#learningCurveHeader{margin-bottom:0;}
+#stepRollupHeader{margin-top:0;}
+#stepRollupHeader:hover, #learningCurveHeader:hover {
+    text-decoration:underline;
+    cursor: pointer;
+}
+#stepRollupContent h3 {
+    font-size:.9em;
+}
+#exportPreviewTable, #exportHeaderTable {
+    margin:0;
+    border-spacing:0;
+    border-collapse:collapse;
+    border:1px solid #afafaf;
+    padding:0;
+    margin-left:.2em;
+    table-layout:fixed;
+}
+#exportPreviewTable td, #exportHeaderTable th {
+    font-weight:normal;
+    font-size:11px !important;
+    padding:0;
+    margin:0;
+    padding-left:.2em;
+    overflow:hidden;
+}
+#exportHeaderTable {
+    border:none;
+}
+#exportHeaderTable th {
+    white-space:normal;
+    color:#333;
+    font-weight:normal;
+    background-color:#e0e7ef;
+    border:1px solid #afafaf;
+}
+#exportPreviewTable{
+    height:15em;
+}
+#exportPreviewTable td {
+    vertical-align:middle;
+    white-space:nowrap;
+    border-right:1px solid #cfcfcf;;
+    height:1.5em;
+}
+#exportPreviewTable td.even {
+    background-color:#efefef;
+}
+#exportPreviewTable_container{
+    border-bottom:1px solid #afafaf
+}
+/********************
+ * GRAPH INFO AREA
+ *******************/
+#hideGraphInfo {
+    margin-bottom:.2em;
+    margin-top:1em;
+}
+#hidePointInfo {
+    margin-bottom:.2em;
+    margin-top:.2em;
+}
+#hideObservationTable {
+    margin-top:.1em;
+    margin-bottom:1em;
+}
+#hideGraphInfoLink, #hideObservationTableLink, #hidePointInfoLink {
+    font-size:.7em;
+    color:#37567F;
+    text-decoration:underline;
+    cursor: pointer;
+}
+#graphInfo {
+    float:left;
+    width:800px;
+    font-size:.8em;
+    margin-bottom:.5em;
+    margin-top:0;
+}
+#graphInfoCol1, #graphInfoCol2 {
+    width:50%;
+    float:left;
+}
+#graphInfoNote {
+    font-size:.85em;
+    color:#37567F;
+    float:left;
+    margin-left:5.0em;
+    margin-top:0.5em;
+}
+#graphInfoCol1 .graphInfoHeader {
+    display:block;
+    float:left;
+    width:65%;
+    text-align:right;
+    margin-top:3px;
+}
+#graphInfoCol1 #stdDevCutoffVal, #minMaxCutoffMsg {
+    display:block;
+    float:left;
+    width:25%;
+    font-size:1.0em;
+    margin-left:4px;
+    margin-top:3px;
+    font-weight:bold;
+}
+#errorBarTypeStr, #lastValidPointStr {
+    display:block;
+    float:left;
+    font-size:1.0em;
+    margin-left:4px;
+    margin-top:3px;
+    font-weight:bold;
+}
+.observationsSample {
+    margin-left:10px;
+    margin-top:4px;
+}
+.observationsSample span {
+    font-size:1.0em;
+    font-weight:bold;
+    margin-left:4px;
+    margin-top:3px;
+
+}
+/********************
+ * POINT INFO AREA
+ *******************/
+ #pointInfo {
+     margin-top:0;
+     margin-bottom:.2em;
+     width:800px;
+ }
+.pointInfoHeader {
+    /*width:10em;*/
+    width:130px;
+    font-size:.7em;
+    text-align:right;
+    vertical-align:bottom;
+    padding-bottom:2.5px;
+    display:block;
+    margin-top:.3em;
+}
+#pointInfoCol1 {
+    width:230px;
+    float:left;
+    border-collapse: collapse;
+}
+#pointInfoCol2 {
+    width:160px;
+    float:left;
+    margin-left:1em;
+    border-collapse: collapse;
+}
+#pointInfoCol2 .pointInfoHeader {
+    width:90px;
+}
+#pointInfoCol3 {
+    width:380px;
+    float:left;
+    background-color:#FFFCDF;
+    padding: 4px;
+}
+.valueColumn img, .nameColumn img, .freqColumn img {
+    vertical-align:bottom;
+}
+.pointInfoDetailsSelected {
+    background-color:#FFFCDF;
+    text-decoration:none;
+}
+
+.pointInfoDetailsActive {
+    text-decoration:underline;
+    color:#37567F;
+    cursor:pointer;
+}
+
+#pointInfoDetailsMessage {
+    font-size:.75em;
+    font-weight:bold;
+    margin:2px 0 1px 4px;
+}
+
+#pointInfoDetailsClose {
+    width:10px;
+    float:right;
+    text-decoration:underline;
+    font-size:.9em;
+    color:#37567F;
+    cursor:pointer;
+    margin:-5px -3px 0 0;
+}
+#pointInfoDetailsCol1Header, #pointInfoDetailsCol2Header, #pointInfoDetailsCol3Header {
+    float:left;
+    font-size:.8em;
+    margin-bottom:2px;
+    cursor:pointer;
+}
+#pointInfoDetailsCol1Header {
+    width:168px;
+    margin-left:1px;
+}
+#pointInfoDetailsCol2Header {
+    width:145px;
+}
+#pointInfoDetailsCol3Header {
+    width:50px;
+}
+
+#pointInfoDetailsCol1Header span, #pointInfoDetailsCol2Header span , #pointInfoDetailsCol3Header span{
+    text-decoration:underline;
+}
+#pointInfoDetailsCol1Img, #pointInfoDetailsCol2Img, #pointInfoDetailsCol3Img {
+    float:left;
+    width:16px;
+}
+#pointInfoDetailsValues {
+    clear:left;
+    background-color:white;
+    font-size:.8em;
+    overflow:scroll;
+    overflow:-moz-scrollbars-horizontal; /*What does this do?*/
+    overflow-x:hidden;
+    overflow-y:scroll;
+    border:1px solid gray;
+    height:150px;
+    margin:0 4px 0 1px;
+}
+#pointInfoDetailsValues table {
+    border-collapse: collapse;
+}
+#pointInfoDetailsActionLinks {
+    font-size:.75em;
+    text-decoration:underline;
+    color:#37567F;
+}
+#pointInfoDetailsActionLinks p {
+    margin:1px 0 0 4px;
+}
+#pointInfoDetailsActionLinks p span {
+    cursor:pointer;
+}
+/* Left-hand column in scrolling area */
+.pointInfoDetailsName {
+    width:168px;
+}
+/* Middle column in scrolling area */
+.pointInfoDetailsValue {
+    width:145px;
+}
+/* Right-hand column in scrolling area */
+.pointInfoDetailsFreq {
+    width:45px;
+}
+
+#pointInfoValue, #pointInfoPredictedValue, #pointInfoObservations,
+#pointInfoSkills, #pointInfoProblems, #pointInfoSteps,
+#pointInfoStudents, #pointInfoOpportunitySelector,
+#pointInfoUpperBound, #pointInfoLowerBound,
+#pointInfoSampleSelector {
+    width:100px;
+    font-size:1.2em;
+    margin-bottom:0;
+    padding-bottom:0;
+    font-weight:bold;
+    padding-left:.2em;
+}
+#pointInfoSkills, #pointInfoProblems, #pointInfoSteps,
+#pointInfoStudents {
+    width:65px;
+    padding-left:.2em;
+    margin-left:0;
+}
+#pointInfoSample {border-collapse:collapse}
+#pointInfoSampleSelector {
+    width:30em;
+    font-size:1em;
+    vertical-align:bottom;
+    cursor:pointer;
+}
+#pointInfoSampleSelectorImage {
+    display:block;
+    width:18px;
+    height:15px;
+    position:relative;
+    background: url('../images/arrow-down.png') no-repeat top left;
+    margin-left:3px;
+    margin-top:1px;
+}
+#pointInfoSampleSelector span {
+    float:left
+}
+#pointInfoSample .hover #pointInfoSampleSelectorImage {
+    background: url('../images/arrow-down-active.png') no-repeat top left;
+}
+.pointInfoLink {
+    text-decoration:underline;
+    color:#37567F;
+    cursor:pointer;
+}
+#pointInfoOpportunitySelector .OppButtons{
+    display:block;
+    width:35px;
+    position:relative;
+    left:60px;
+    top:-21px;
+}
+#pointInfoOpportunitySelector input {
+    font-weight:bold;
+    font-family:arial,helvetica,sans-serif;
+    font-size:.8em;
+    color:#333;
+    width:55px;
+}
+#prevOppButton, #nextOppButton {
+    display:block;
+    width:17px;
+    height:17px;
+    cursor:pointer;
+    position:absolute;
+}
+#prevOppButton {
+    background: url('../images/arrow-left.png') no-repeat top left;
+    left: 4px;
+}
+#nextOppButton {
+    background: transparent url('../images/arrow-right.png') no-repeat top left;
+    left: 23px;
+}
+#prevOppButtonWrapper .hover{
+    background: url('../images/arrow-left-active.png') no-repeat top left;
+}
+#nextOppButtonWrapper .hover {
+    background: transparent url('../images/arrow-right-active.png') no-repeat top left;
+}
+.no_kcs_here {
+    color: gray;
+    font-size: 14px;
+    padding-left: 10px;
+}

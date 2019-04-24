@@ -1,0 +1,41 @@
+<div class="topic" id="help-home-logged-in">
+    <h2 style="display:none">DataShop Home (logged in)</h2>
+    <p>Welcome to Datashop!</p>
+
+    <p>All projects and datasets in DataShop are divided into a three categories.</p>    
+    <ul>
+        <li><span class="screen-item">My Datasets</span> are datasets you can
+        view and, if given permission, edit. This includes projects for which you are
+        a project member or principal investigator (PI). If you think you are the PI for a 
+        project but don't see it listed here, <a href="help?page=contact" target="_blank">contact 
+        us</a>. </li>
+        <li><span class="screen-item">Public Datasets</span> are datasets you
+        (or anyone) can access once you've logged in. </li>
+        <li><span class="screen-item">Private Datasets</span> are datasets that
+        can only be accessed once you've gotten permission from
+        the PI. To request access to a project, click the <strong>Request
+        Access</strong> button next to the project name. The status of your request 
+        will be shown on the <strong>Access Requests</strong> page.</li>
+    </ul>
+
+    <p><span class="screen-item">Projects</span> are groupings of datasets. Each
+    project name appears above its table.</p>
+    <ul>
+        <li><img src="images/users.gif" /> indicates a public project.</li>
+        <li><img src="images/lock.png" /> indicates a private project.</li>
+        <li><img src="images/star.png" /> indicates that papers that
+        reference these data have been published by members of this project. 
+        Mouse-over the star to see the number of papers.</li>
+    </ul>
+    <p>Dataset <span class="screen-item">status</span> is often one of the following:</p>
+    <ul>
+        <li><span class="screen-item">complete</span>: data collection is complete</li>
+        <li><span class="screen-item">on-going</span>: data collection is on-going</li>
+        <li><span class="screen-item">files-only</span>: there is no
+        tutor interaction data in this dataset, only files and papers</li>
+    </ul>
+    
+    <h3>Quick tip:</h3><p>If you've viewed a dataset once before, it's
+    probably listed in the drop-down menu at the top of the screen. Select its name
+    to jump to that dataset.</p>
+</div>

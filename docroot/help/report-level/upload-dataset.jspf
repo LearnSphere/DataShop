@@ -1,0 +1,75 @@
+<div class="topic" id="help-upload-dataset">
+    <h2>Upload a dataset</h2>
+    <p>You can upload a file in either of the following formats:</p>
+    
+    <ul class="concise">
+        <li><a href="help?page=importFormatTd">DataShop tab-delimited format</a></li>
+        <li><a href="help?page=importFormatXml">DataShop Tutor Message XML format</a></li>
+    </ul>
+    
+    <p>
+        Before uploading your file(s), you should verify that it meets one of the 
+        format requirements above.
+    </p>
+    
+    <h3 id="upload-process">Upload process</h3>
+    <ol>
+        <li>Specify the project that should contain this new dataset. You can choose an existing
+            project, <a href="new-project">specify a new one</a>, or choose one later.
+        </li>
+        <li>Name your dataset. The name must be unique amongst datasets that have been loaded
+            already. You can change the dataset name later.</li>
+        <li>(Optional) Add transaction data.</li>
+    </ol>
+
+    <h4 id="transaction-data">Transaction data</h4>
+
+    <p>
+        <a href="help?page=terms#transaction">Transaction data</a></strong> is data in either
+        of the above two formats. If you want to create a dataset that will hold file attachments (of
+        any format), or if you want to create the dataset as a placeholder and add transaction data
+        later, choose <strong>No transaction data now</strong>.
+    </p>
+
+    <h4 id="de-identify-reqs">De-identification requirements</h4>
+    
+    <p>Data uploaded to DataShop must be de-identified. That is, the identity of human subjects
+        referenced in the data must not be discoverable.</p>
+    
+    <p>If your file is entirely de-identified, choose the first option, <strong>I certify that all data in
+        this file including the content of the "Anon Student Id" column is de-identified</strong>.</p>
+    
+    <p>
+        If your file is de-identified <em>except</em> for the identifiers present in the Anon Student Id
+        column, select the second option, <strong>I certify that all data in this file except the content of
+        the "Anon Student Id" column is de-identified.</strong> DataShop will de-identify that column for you,
+        substituting the identifiers in that column with anonymous ones. (You can later obtain a mapping
+        from DataShop identifiers to the original identifiers by <a href="help?page=contact">emailing us</a>.)
+    </p>
+
+    <h3 id="import-process">Import process</h3>
+    
+    <p>The import process is as follows:</p>
+
+    <ol>
+        <li><strong>Upload</strong> one or more files (as a .ZIP file) to be imported as a dataset.</li>
+        <li>DataShop will perform a quick verification of the file's first 100 lines and display the results.* 
+        You will need to correct any errors that are found. If any potential issues are found, you will be asked 
+        to decide if you want to continue.</li>
+        <li>After the initial verification completes, the dataset will appear in your <a
+            href="index.jsp?datasets=mine">Import Queue</a> as <strong>Queued for Verification</strong>,
+        where a separate process will verify the dataset in its entirety.*</li>
+        <li>When verification is complete, you will receive an email with the verification results. The status 
+        for your dataset will update in your <a href="index.jsp?datasets=mine">Import Queue</a>. DataShop staff 
+        will also enter an <strong>estimated import date</strong>. When your dataset is loaded, you will be 
+        notified via email.</li>
+        <li>After your dataset is loaded, we ask that you examine the dataset and then <strong>release it</strong>. 
+        When you release a dataset, it inherits the permissions of its project (those who can access the project can then access
+            this dataset) and becomes visible in the main index of datasets.</li>
+    </ol>
+    
+    <p>* Tab-delimited files only. XML files are verified by DataShop staff.</p>
+
+<span class="helpTopicLink" style="display:none"><a href="help?page=import"><img src="images/page_white_text.png" /> <span>Read more 
+    about importing new data</span></a></span>
+</div>

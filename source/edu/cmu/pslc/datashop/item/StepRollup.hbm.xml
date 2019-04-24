@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+
+ Author: Benjamin Billings
+ $Revision: 5872 $
+ Last modified by - $Author: kcunning $
+ Last modified on - $Date: 2009-11-11 11:56:55 -0500 (Wed, 11 Nov 2009) $
+ $KeyWordsOff: $
+-->
+   <class name="edu.cmu.pslc.datashop.item.StepRollupItem" table="step_rollup">
+       <meta attribute="class-description">Represents the aggregate data for a step, student, sample, skill</meta>
+ 
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique Id for the step rollups</meta>
+            <column name="step_rollup_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="opportunity" type="integer">
+        	<meta attribute="field-description">The attempt at the step for the skill.</meta>
+            <column name="opportunity" />
+        </property>
+        
+        <property name="incorrects" type="integer">
+        	<meta attribute="field-description">The total number of incorrects.</meta>
+            <column name="total_incorrects" />
+        </property>
+        
+        <property name="hints" type="integer">
+        	<meta attribute="field-description">The total number of hints.</meta>
+            <column name="total_hints" />
+        </property>
+        
+        <property name="corrects" type="integer">
+        	<meta attribute="field-description">The total number of corrects.</meta>
+            <column name="total_corrects" />
+        </property>
+        
+        <property name="firstAttempt" type="edu.cmu.pslc.datashop.type.hibernate.CorrectFlagHibernateType">
+        	<meta attribute="field-description">The first attempt outcome.</meta>
+            <column name="first_attempt" />
+        </property>
+        
+        <property name="conditions" type="string">
+        	<meta attribute="field-description">The conditions for this step.</meta>
+            <column name="conditions" />
+        </property>
+        
+        <property name="stepTime" type="timestamp">
+        	<meta attribute="field-description">The timestamp for when the step occured.</meta>
+            <column name="step_time" length="19" not-null="true" />
+        </property>
+        
+        <property name="predicted" type="double">
+        	<meta attribute="field-description">The first attempt outcome.</meta>
+            <column name="predicted_error_rate" />
+        </property>
+        
+        <property name="stepDuration" type="long">
+        	<meta attribute="field-description">The amount of time it took for the step.</meta>
+            <column name="step_duration" />
+        </property>
+        
+        <property name="correctStepDuration" type="long">
+        	<meta attribute="field-description">The amount of time it took to get step correct.</meta>
+            <column name="correct_step_duration" />
+        </property>
+            
+        <property name="errorStepDuration" type="long">
+        	<meta attribute="field-description">The amount of time it took to get step wrong.</meta>
+            <column name="error_step_duration" />
+        </property>
+        
+        <property name="problemView" type="integer">
+        	<meta attribute="field-description">The attempt/view number for the problem</meta>
+            <column name="problem_view" not-null="true" />
+        </property>
+        
+        <property name="firstTransactionTime" type="timestamp">
+            <meta attribute="field-description">The timestamp for the first tx in the step.</meta>
+            <column name="first_transaction_time" length="19" not-null="true"/>
+        </property>
+        
+        <property name="correctTransactionTime" type="timestamp">
+            <meta attribute="field-description">The timestamp for the first correct tx in the step.</meta>
+            <column name="correct_transaction_time" length="19"/>
+        </property>
+        
+        <property name="stepStartTime" type="timestamp">
+        	<meta attribute="field-description">The timestamp for when the step started.</meta>
+            <column name="step_start_time" length="19" />
+        </property>
+        
+        <property name="stepEndTime" type="timestamp">
+        	<meta attribute="field-description">The timestamp for when the step ended.</meta>
+            <column name="step_end_time" length="19" not-null="true" />
+        </property>
+
+        <many-to-one name="sample" class="edu.cmu.pslc.datashop.item.SampleItem">
+        	<meta attribute="field-description">Part of the composite PK - FK of the sample Id.</meta>
+            <column name="sample_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="student" class="edu.cmu.pslc.datashop.item.StudentItem">
+        	<meta attribute="field-description">Part of the composite PK - FK of the student Id.</meta>
+            <column name="student_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="step" class="edu.cmu.pslc.datashop.item.SubgoalItem">
+            <meta attribute="field-description">Step associated with this item.</meta>
+            <column name="step_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="skill" class="edu.cmu.pslc.datashop.item.SkillItem">
+        	<meta attribute="field-description">Part of the composite PK - FK of the skill Id.</meta>
+            <column name="skill_id" />
+        </many-to-one>
+        
+        <many-to-one name="skillModel" class="edu.cmu.pslc.datashop.item.SkillModelItem">
+            <meta attribute="field-description">Part of the composite PK - FK of the skill model Id.</meta>
+            <column name="skill_model_id" />
+        </many-to-one>
+        
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+            <meta attribute="field-description">Dataset this item is associated with.</meta>
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="problem" class="edu.cmu.pslc.datashop.item.ProblemItem">
+            <meta attribute="field-description">Problem associated with this item.</meta>
+            <column name="problem_id" not-null="true" />
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

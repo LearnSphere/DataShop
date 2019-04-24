@@ -1,0 +1,19 @@
+<div class="topic" id="help-model-values">
+    <h2>Model Values</h2>
+    <p>The <strong>Model Values</strong> report provides details on the results of the 
+    AFM (Additive Factor Model) algorithm, a logistic regression performed over the
+    &ldquo;error rate&rdquo; Learning Curve data. The AFM logistic regression, a standard regression
+    bounded between 0 and 1, attempts to find the best-fit curve for error-rate data, which also ranges
+    between 0 and 1.</p>
+    
+    <p>This page presents a quantitative analysis of how well, given the selected knowledge
+    component model, the AFM statistical model fits the data (via AIC, BIC, log likelihood) and how
+    well it might generalize to an independent dataset from the same tutor (via cross validation RMSE values).</p>
+
+    <p>AFM is run for all datasets in DataShop, once for each <a href="help?page=terms#kc_model"
+        title="See the definition of 'knowledge component model'">knowledge component model</a> of
+    a dataset.</p>
+
+    <span style="display:none" class="helpTopicLink"><a href="help?page=modelValues"><img src="images/page_white_text.png" /> <span>Read 
+    more about the Model Values report.</span></a></span>  
+</div>

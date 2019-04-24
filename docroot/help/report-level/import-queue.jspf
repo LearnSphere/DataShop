@@ -1,0 +1,23 @@
+<div class="topic" id="help-create-project">
+    <h2>Import Queue</h2>
+    <p>This page is the DataShop administrator's import queue for managing user-uploaded data.</p>
+    
+    <h3>Note:</h3>
+    <p>When using this page, an email is sent to the uploader whenever you:</p>
+    <ul class="concise">
+        <li>Set the estimated "days to load" for the first time</li>
+        <li>Change the estimated "days to load" explicitly (not including a change to the estimated
+        import date that results from a recalculation based on other changes)</li>
+        <li>Change the dataset status to: 
+        <br><em>Passed verification
+        <br>Errors and issues found
+        <br>Potential issues found
+        <br>Dataset loaded</em>, or 
+        <br><em>Import canceled</em></li>
+    </ul>
+
+<!-- 
+<span class="helpTopicLink" style="display:none"><a href="help?page=import"><img src="images/page_white_text.png" /> <span>Read more 
+    about importing new data</span></a></span>
+ -->
+</div>

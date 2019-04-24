@@ -1,0 +1,180 @@
+<h2>Dataset Info</h2>
+
+<p>The Dataset Info report provides both an overview and context for
+the currently selected dataset. It may answer questions such as how and
+when were these data collected? What's the scope of the dataset? If the
+owner of the dataset chose to provide other information about the
+dataset, that is displayed here as well.</p>
+
+<p>The main components of the Dataset Info report are:</p>
+<ul class="concise">
+    <li><a href="#overview">Dataset Overview</a></li>
+    <li><a href="help?page=samples">Samples</a></li>
+    <li><a href="help?page=kcm">KC Models</a></li>
+    <li><a href="help?page=customFields">Custom Fields</a></li>
+    <li><a href="help?page=problemList">Problem List</a></li>
+    <li><a href="help?page=stepList">Step List</a></li>
+</ul>
+
+<h3 id="overview">Dataset Overview and Statistics</h3>
+<p>The dataset overview table is presented at the top of the Dataset
+Info report. This report loads by default when you select a dataset to
+browse. If you don't see the overview, click the main tab titled
+<strong>Dataset Info</strong> followed by the <strong>Overview</strong>
+link below.</p>
+
+<p>In the Overview table, a number of fields describe the dataset's
+characteristics. If you are a project admin for this project, you can edit some of
+the fields in the Overview table&mdash;click a field to edit it. </p>
+
+<p>The overview fields are:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Project</th>
+            <td>A collection of datasets with a principal investigator and a data provider (who
+                is often the same as the principal investigator). We consider a project to be a
+                title for your research (e.g., <i>Perceptual Fluency in Geometry Achievement</i>).
+                It might be similar to the title of a grant proposal, or some other phrase that
+                identifies your work. To change the project name, <a href="help?page=contact">contact
+                us</a>.</td>
+        </tr>
+        <tr>
+            <th>Principal Investigator</th>
+            <td>Defined at the project level, this is the person who, along with the data provider,
+            determines who has access to the project. To change the principal investigator,
+            <a href="help?page=contact">contact us</a>.</td>
+        </tr>
+        <tr>
+            <th>Data Provider</th>
+            <td>Defined at the project level, the data provider is a person responsible for providing
+            a dataset to DataShop. He or she, with the agreement of CMU legal, may specify whether a
+            project-specific terms of use should apply to a project. Most datasets in DataShop use the
+            same person for both the data provider and principal investigator fields; in this case,
+            data provider is not shown. The data provider, along with the principal investigator,
+            determines who has access to the project. To change the data provider,
+            <a href="help?page=contact">contact us</a>.</td>
+        </tr>
+        <tr>
+            <th>Curriculum</th>
+            <td>Used to describe the curriculum in which these data were collected (e.g., <i>Algebra
+            I</i>).</td>
+        </tr>
+        <tr>
+            <th>Dates</th>
+            <td>The date range(s) for when these data were collected. This can be determined from
+            the log data by pressing the <strong>auto-set</strong> button.</td>
+        </tr>
+        <tr>
+            <th>Domain/LearnLab</th>
+            <td>The Domain/LearnLab group to which this dataset belongs (e.g., Language/Chinese or
+            Math/Algebra). </td>
+        </tr>
+        <tr>
+            <th>Tutor</th>
+            <td>The title of the tutor software used to collect data (e.g., <i>Algebra 1 2005</i>
+            or <i>CTAT 2.7</i>)</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>A description of the dataset. This can include links to outside resources. It can
+            be helpful to enter as much contextual information here as possible so that other
+            researchers can attempt to make sense of the dataset. This is especially true if the
+            dataset is part of a public project.</td>
+        </tr>
+        <tr>
+            <th>Has Study Data</th>
+            <td>Whether or not the dataset contains data that are the result of a research study
+            or experiment.</td>
+        <tr>
+            <th>Hypothesis</th>
+            <td>The hypothesis that was tested. Only displayed if "Has Study Data" is "yes".</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>The status of the dataset (one of <i>on-going</i>, <i>complete</i>, <i>files-only</i>,
+            or <i>other</i> ).</td>
+        </tr>
+        <tr>
+            <th>School(s)</th>
+            <td>The school(s) where these data were collected.</td>
+        </tr>
+        <tr>
+            <th>Acknowledgment for Secondary Analysis</th>
+            <td>Acknowledgement that a researcher should include in a publication if they use this
+            dataset for their research. The acknowledgement, if entered, is shown on the Citation page
+            and in a text file included with each export.</td>
+        </tr>
+        <tr>
+            <th>Preferred Citation for Secondary Analysis</th>
+            <td>Citation that a researcher should include in a publication if they use this
+            dataset for their research. The citation, if entered, is shown on the Citation page
+            and in a text file included with each export. A citation must be for a paper attached
+            to the dataset.</td>
+        </tr>
+        <tr>
+            <th>Additional Notes</th>
+            <td>Any additional information about the dataset.</td>
+        </tr>
+   </tbody>
+</table>
+
+        <p>The statistics table, described below, is generated from the data
+        and is therefore not editable.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Number of Students</th>
+            <td>The total number of students for which there is data.</td>
+        </tr>
+        <tr>
+            <th>Number of Unique Steps</th>
+            <td>The number of unique <a href="help?page=terms#step" class="jargon">steps</a> in
+            the dataset, where uniqueness is defined as a step within a specific <a
+            href="help?page=stepList" class="jargon">problem hierarchy</a> (the curriculum
+            location where the problem appears). The same step attempted by two students equals
+            only one unique step.</td>
+        </tr>
+        <tr>
+            <th>Total Number of Steps</th>
+            <td>The number of steps in the dataset, where each student-step counts as one step.
+            The same step attempted by two students equals two steps in the total number of steps.
+            For example, if problem A has steps S1, S2, and S3, and student A does S1 and S2 while
+            student B does S2 and S3, and there is just that problem in the dataset, then there are
+            3 unique steps and 4 total steps.
+            </td>
+        <tr>
+            <th>Total Number of Transactions</th>
+            <td>The total number of <a
+                href="help?page=terms#transaction" class="jargon">transactions</a> in the dataset.
+            </td>
+        </tr>
+        <tr>
+            <th>Total Student Hours</th>
+            <td>The number of hours of student activity in the dataset, represented by the sum
+        of the duration of all student <a href="help?page=terms#transaction" class="jargon">transactions</a> in the dataset.
+            </td>
+        </tr>
+        <tr>
+            <th>Knowledge Component Model(s)</th>
+            <td>The <a href="help?page=terms#kc_model" class="jargon">knowledge component models </a>
+                for this dataset (e.g., Default, Manual-Model).
+                The number of <i>unique</i> <a href="help?page=terms#kc" class="jargon">knowledge components</a> in
+                the model is displayed following each model listed.</td>
+        </tr>
+    </tbody>
+</table>
+

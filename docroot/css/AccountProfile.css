@@ -1,0 +1,152 @@
+.account_profile_div_style {
+    min-width: 500px;
+}
+.account_profile_div_style a {
+    text-decoration: underline;
+}
+.account_profile_div_style h1 {
+    font-size:1.2em; 
+    margin: 1em auto;
+}
+.account_profile_table_style {
+    padding:0;
+    background-color:#fff;
+    border-collapse:collapse;
+}
+.account_profile_table_style td {
+    vertical-align:middle;   
+}
+.account_profile_table_style label {
+    margin-right:.6em;
+    font-size:90%;
+    width:10em;
+}
+.account_profile_table_style td.label {
+    text-align:right;
+    white-space:nowrap;
+    padding: 0.2em 0;
+}
+.account_profile_table_style td.small_label {
+    text-align:left;
+    font-size:75%;
+    font-style:italic;
+}
+.account_profile_table_style td.submit {
+    padding-top: 1em;
+}
+.account_profile_table_style td input {
+    font-size:1.1em;
+}
+.account_profile_table_style #submit {
+
+}
+.account_profile_table_style p {
+    color:#000;
+    font-size:.9em;
+    margin:1em;
+}
+
+/** from #5F7899 to #37567F **/
+.account_profile_table_style #editInfoButton, .account_profile_table_style #changePasswordButton {
+    margin-bottom:2em;
+    margin-left: 1em;
+    border-top: 1px solid #7094C2;
+    background: #37567F;
+    background: -webkit-gradient(linear, left top, left bottom, from(#5F7899), to(#37567F));
+    background: -webkit-linear-gradient(top, #5F7899, #37567F);
+    background: -moz-linear-gradient(top, #5F7899, #37567F);
+    background: -ms-linear-gradient(top, #5F7899, #37567F);
+    background: -o-linear-gradient(top, #5F7899, #37567F);
+    padding: 4px 8px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 14px;
+    font-family: Helvetica, Arial, Sans-Serif;
+    font-weight:normal;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.account_profile_table_style #editInfoButton:hover,#changePasswordButton:hover {
+    border-top-color: #566C8A;
+    background: #566C8A;
+    color: #f5f5f5;
+}
+.account_profile_table_style #editInfoButton:active,#changePasswordButton:active {
+    border-top-color: #7094C2;
+    background: #7094C2;
+}
+.account_profile_table_style #cancel_edit_profile:link, .account_profile_table_style #cancel_forgot_password:link {
+    text-decoration:underline;
+    color:#333;
+    margin-left: 1em;
+    font-size:;
+}
+/**
+.account_profile_table_style a:link {
+    text-decoration:underline;
+    color:#333;
+}
+**/
+.account_profile_table_style a:visited {
+    text-decoration:underline;
+    color:#333;
+}
+.account_profile_table_style .amazon-orange {
+    font-size: 100%;
+    font-weight: 700;
+    color: #E47911;
+    padding: 1em 0 0.2em;
+}
+.account_profile_table_style .errorMessage {
+    width: 250px;
+}
+#password_reset_webiso_div #cmu-login-box {
+    width:180px;
+    margin:0 auto;
+}
+#account_profile_success_div {
+    width: 600px;
+    padding: 0;
+    margin-bottom: 20px
+}
+#forgot_password_div {
+    margin: 0 auto;
+    width: 500px;
+    background-color: white;
+    padding: 20px 0 30px 78px;
+}
+#forgot_password_error_message {
+	margin-left: 0;
+}
+#email_sent_msg {
+    margin-left: 0;
+}
+#password_reset_email_sent_div, #password_select_new_div, #password_changed_div, #password_reset_webiso_div {
+    margin: 0 auto;
+    width: 500px;
+    background-color: white;
+    padding: 20px 45px 30px 78px;
+}
+
+#password_select_new_table {
+    margin-top: 1em;
+}
+
+#account_profile_table {
+    margin-bottom: 25px;
+}
+
+#account_profile_table a {
+    text-decoration: underline;
+}
+
+#addAliasAlertSpan {
+    margin-left: 2px;
+    width: 364px;
+}

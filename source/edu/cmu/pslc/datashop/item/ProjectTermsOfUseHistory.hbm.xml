@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2011
+ All Rights Reserved
+
+ $Revision: 7201 $
+ Last modified by - $Author: mkomi $
+ Last modified on - $Date: 2011-11-03 11:35:32 -0400 (Thu, 03 Nov 2011) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ProjectTermsOfUseHistoryItem" table="project_terms_of_use_history">
+        <meta attribute="class-description">A history of terms of use by project.</meta>
+        
+        <id name="id" type="integer">
+                <meta attribute="field-description">Database generated unique Id for this project terms of use history entry.</meta>
+            <column name="project_terms_of_use_history_id" />
+            <generator class="native" />
+        </id>
+        <property name="effectiveDate" type="timestamp">
+                <meta attribute="field-description">The timestamp for when this terms of use was put into effect.</meta>
+                <column name="effective_date" length="19" not-null="true" />
+        </property>
+        <property name="expireDate" type="timestamp">
+                <meta attribute="field-description">The timestamp for when this terms of use was retired.</meta>
+                <column name="expire_date" length="19" not-null="false" />
+        </property>
+        
+        <many-to-one name="termsOfUseVersion" class="edu.cmu.pslc.datashop.item.TermsOfUseVersionItem">
+                <meta attribute="field-description">The id of the terms of use version that is the prior effective instance of this entry.</meta>
+            <column name="terms_of_use_version_id" length="32" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="project" class="edu.cmu.pslc.datashop.item.ProjectItem">
+                <meta attribute="field-description">The id of the project associated with this project terms of use history entry.</meta>
+            <column name="project_id" not-null="true" />
+        </many-to-one>
+        
+    </class>
+</hibernate-mapping>

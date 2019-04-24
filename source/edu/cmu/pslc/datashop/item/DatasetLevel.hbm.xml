@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 6372 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2010-10-15 09:41:13 -0400 (Fri, 15 Oct 2010) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.DatasetLevelItem" table="dataset_level">
+    	<meta attribute="class-description">Represents a hierarchical layer in the dataset which groups problems together.</meta>
+        <id name="id" type="integer">
+        	<meta attribute="field-description">Database generated unique Id for this dataset level.</meta>
+            <column name="dataset_level_id" />
+            <generator class="native" />
+        </id>
+        <property name="levelName" type="string">
+        	<meta attribute="field-description">The name of this level as a string.</meta>
+            <column name="level_name" length="50" not-null="true" />
+        </property>
+        <property name="levelTitle" type="string">
+        	<meta attribute="field-description">The title of this level.</meta>
+            <column name="level_title" length="50" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="100" />
+        </property>
+        <property name="leftIndex" type="integer">
+        	<meta attribute="field-description">The left index number of the nested set.</meta>
+            <column name="lft" />
+        </property>
+        <property name="rightIndex" type="integer">
+        	<meta attribute="field-description">The right index number of the nested set.</meta>
+            <column name="rgt" />
+        </property>
+        <many-to-one name="parent" class="edu.cmu.pslc.datashop.item.DatasetLevelItem">
+        	<meta attribute="field-description">The dataset level id of the parent level in the hierarchy.</meta>
+            <column name="parent_id" />
+        </many-to-one>
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+        	<meta attribute="field-description">Dataset that this level is describing.</meta>
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+        <set name="problems" inverse="true">
+        	<meta attribute="field-description">Collection of problems associated with this level.</meta>
+            <key>
+                <column name="dataset_level_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ProblemItem" />
+        </set>
+        <set name="children" inverse="true">
+        	<meta attribute="field-description">Collection of children levels for this level.</meta>
+        	<key>
+        		<column name="parent_id" />
+        	</key>
+        	<one-to-many class="edu.cmu.pslc.datashop.item.DatasetLevelItem" />
+        </set>
+    </class>   
+</hibernate-mapping>

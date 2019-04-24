@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 11782 $
+ Last modified by - $Author: mkomisin $
+ Last modified on - $Date: 2014-11-26 10:07:02 -0500 (Wed, 26 Nov 2014) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowFolderItem" table="workflow_folder">
+        <meta attribute="class-description">A workflow folder contains workflows for a given user.</meta>
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique Id for this workflow folder.</meta>
+            <column name="workflow_folder_id" />
+            <generator class="native" />
+        </id>
+        <property name="workflowFolderName" type="string">
+            <meta attribute="field-description">Name of this workflow as a string.</meta>
+            <column name="workflow_folder_name" length="100" not-null="true" />
+        </property>
+        <many-to-one name="owner" class="edu.cmu.pslc.datashop.item.UserItem">
+            <meta attribute="field-description">The id of the user that created this workflow.</meta>
+            <column name="owner" length="250" not-null="true" />
+        </many-to-one>
+        <property name="globalFlag" type="boolean">
+            <meta attribute="field-description">Flag indicating whether this workflow is viewable by more than just the owner.</meta>
+            <column name="global_flag" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <meta attribute="field-description">Description of this workflow as a string.</meta>
+            <column name="description" />
+        </property>
+        <property name="lastUpdated" type="timestamp">
+            <meta attribute="field-description">The last update time.</meta>
+            <column name="last_updated" length="19" not-null="true" />
+        </property>
+        <set name="workflows" table="workflow_folder_map">
+            <meta attribute="field-description">Collection of workflows contained in this folder.</meta>
+            <key>
+                <column name="workflow_folder_id" not-null="true" />
+            </key>
+            <many-to-many column="workflow_id" class="edu.cmu.pslc.datashop.workflows.WorkflowItem" />
+        </set>
+    </class>
+</hibernate-mapping>

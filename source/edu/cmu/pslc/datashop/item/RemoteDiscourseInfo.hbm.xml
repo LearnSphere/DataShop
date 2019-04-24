@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2016
+ All Rights Reserved
+
+ $Revision: 12983 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2016-03-14 15:13:11 -0400 (Mon, 14 Mar 2016) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.RemoteDiscourseInfoItem" table="remote_discourse_info">
+        <id name="id" type="long">
+            <column name="remote_discourse_info_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="discourse" class="edu.cmu.pslc.datashop.discoursedb.item.DiscourseItem">
+            <meta attribute="field-description">Discourse associated with this item.</meta>
+            <column name="discourse_id" />
+        </many-to-one>
+        <property name="dateRange" type="string">
+            <column name="date_range" length="32" />
+        </property>
+        <property name="numUsers" type="long">
+            <column name="num_users" />
+        </property>
+        <property name="numDiscourseParts" type="long">
+            <column name="num_discourse_parts" />
+        </property>
+        <property name="numContributions" type="long">
+            <column name="num_contributions" />
+        </property>
+        <property name="numDataSources" type="long">
+            <column name="num_data_sources" />
+        </property>
+        <property name="numRelations" type="long">
+            <column name="num_relations" />
+        </property>
+    </class>
+</hibernate-mapping>

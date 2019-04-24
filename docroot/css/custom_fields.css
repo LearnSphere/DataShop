@@ -1,0 +1,104 @@
+#customFields {
+    width:550px;
+}
+#customFields h1 {
+    font-size:120%;
+    margin-bottom:0;
+}
+#customFields h2 {
+    font-size:1em
+}
+.cf-export-note a {
+    text-decoration:underline;
+}
+#customFieldsTable {
+    width: 850px;
+}
+#customFieldsTable th {
+    text-align: left;
+}
+#customFieldsTable th a {
+    text-decoration: underline;
+    border-bottom: none;
+}
+
+#customFieldsTable .editButtons a {
+    text-decoration: none;
+}
+#customFieldsTable .cfDeleteSureDiv .yes_no_links {
+    text-decoration: underline;
+}
+#customFieldsTable td {
+    width: 320px;
+    padding: 4px 10px;
+    color: #42525A;
+    font-size: 12px;
+    border-right:1px solid #cfcfcf;
+}
+#customFieldsTable td a {
+    color:#37567F;
+    background-color: inherit;
+    text-decoration:underline;
+}
+#customFieldsTable td.even {
+    background-color: #efefef;
+}
+.cfName {
+    font-weight: bold;
+}
+.cfWrappedText {
+    width: 30em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+#customFieldsTable .unsorted_type {
+    width: 110%;
+    font-weight: bold;
+    color: #000000;
+    font-size: 13px;
+
+}
+.cfDescLessDiv {
+    display: none;
+}
+.cfDeleteLinkDiv {
+    display: inline;
+}
+.cfDeleteSureDiv {
+    display: none;
+}
+#cfNameInUse {
+    display: none;
+}
+#customFieldDialog p {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
+}
+#customFieldDialog #cfDescMaxLen, #customFieldDialog #cfNameMaxLen {
+    font-size: 12px;
+    margin-top: 2px;
+}
+#customFieldDialog #cfNameInUse {
+    font-size: 12px;
+    color: #E00000;
+}
+.addCustomFieldDataNote {
+    font-weight: normal;
+    margin-top: 27px;
+}
+#customFieldForm textarea, #customFieldDialog textarea {
+    width: 99%;
+    height: 100px;
+    font-family: Arial, Verdana, sans-serif;
+}
+#add-custom-field-button {
+    padding: .5em 16px .5em 30px;
+    position: relative;
+    color: #636363;
+    background-image: url('../images/add.png');
+    background-repeat: no-repeat;
+    background-position: 7px center;
+    margin-bottom: 6px;
+}

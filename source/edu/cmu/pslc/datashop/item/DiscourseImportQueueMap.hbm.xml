@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2016
+ All Rights Reserved
+
+ Author: Cindy Tipper
+ $Revision: 12866 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2016-01-20 15:52:56 -0500 (Wed, 20 Jan 2016) $
+ $KeyWordsOff: $
+-->
+
+  <class name="edu.cmu.pslc.datashop.item.DiscourseImportQueueMapItem" table="discourse_import_queue_map">
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.DiscourseImportQueueMapId">
+            <key-property name="discourseId" type="long">
+                <column name="discourse_id"/>
+            </key-property>
+            <key-property name="importQueueId" type="integer">
+                <column name="import_queue_id"/>
+            </key-property>
+        </composite-id>
+        
+        <many-to-one name="discourse" class="edu.cmu.pslc.datashop.discoursedb.item.DiscourseItem"
+        	     insert="false" update="false">
+          <column name="discourse_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="importQueue" class="edu.cmu.pslc.datashop.item.ImportQueueItem"
+        	     insert="false" update="false">
+          <column name="import_queue_id" not-null="true" />
+        </many-to-one>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,162 @@
+<h3>Performance Profiler</h3>
+
+<p>The Performance Profiler is a multi-purpose report, something akin
+to an educational researcher's Swiss Army Knife. With the Performance Profiler, 
+you can view measures of:</p>
+
+<ul class="concise">
+    <li><a href="help?page=terms#error_rate" target="_blank">Error Rate (%)</a></li>
+    <li><a href="help?page=terms#assist_score" target="_blank">Assistance Score</a></li>
+    <li>Average Number of Incorrects</li>
+    <li>Average Number of Hints</li>
+    <li>Residual Error Rate Percentage (Predicted&minus;Actual)</li>
+    <li><a href="help?page=terms#step_duration">Step Duration (seconds)</a></li>
+    <li><a href="help?page=terms#correct_step_duration">Correct Step Duration (seconds)</a></li>
+    <li><a href="help?page=terms#error_step_duration">Error Step Duration (seconds)</a></li>
+</ul>
+
+<p>These measures can then be aggregated by:</p>
+<ul class="concise">
+    <li>Problem</li>
+    <li>Step</li>
+    <li>Student</li>
+    <li>Knowledge Component</li>
+    <li>Problem hierarchy level (e.g., &ldquo;Unit&rdquo; or &ldquo;Section&rdquo;)</li>
+</ul>
+
+<p>Note that although these are aggregates, the measure (eg, Error Rate) is derived
+at the step level. The aggregate is then just the mean of all values.</p>
+
+<h4>To change the measure (top axis):</h4>
+<ol>
+    <li>Hover your cursor over the top axis label (the range selection). 
+    A pop-up menu will appear.</li>
+    <li>Select a new measure from the list.</li>
+</ol>
+<h4>To change the aggregation type (side axis):</h4>
+<ol>
+    <li>Hover your cursor over the left-side axis label (the domain selection). 
+    A pop-up menu will appear.</li>
+    <li>Select a new aggregation type from the list. </li>
+</ol>
+<p>To see more detail on bars in the graph, hover over them with
+your mouse.</p>
+
+<p>As with other reports in DataShop, your current view is based on
+the selected sample, knowledge components, models, students, and problems.
+Toggling any of these will cause the current view to update.</p>
+
+<h4>Comparing across samples</h4>
+<p>If you select more than one sample, the Performance Profiler
+will render a graph for each sample.</p>
+<p>DataShop orders rows in the graphs based on the <span
+class="screen-item">Sort By</span> type and the <span
+class="screen-item">Order</span> (ascending or descending), selected
+in the left-hand navigation bar. <strong>Sorting occurs in each
+graph independently</strong>, so to compare the same items across samples, 
+select them in the navigation sidebar and/or create a <a 
+    href="help?page=filteringData#kcsets">knowledge component set</a>.</p>
+
+<h4>Setting graph limits</h4>
+<p>You may want to set upper or lower limits on the quality of items
+being aggregated. For example, you may want to see only the top 10
+error rates for students in a large dataset; or the bottom five "average
+number of incorrects" for steps. In either case, the terms "top" 
+and "bottom" reflect an assessment of the measure (eg, top error rate,
+and bottom average number of incorrects), and mean slightly different
+things depending on the currently selected measure and sort order. 
+The table below attempts to clarify these interpretations:
+
+<table>
+    <caption>&ldquo;Top&rdquo; and &ldquo;Bottom&rdquo; defined by measure 
+        and an &ldquo;ascending&rdquo; order
+    <thead>
+        <tr><th>Measure</th><th>Top</th><th>Bottom</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Error rate (%) /<br />Predicted error rate</th>
+            <td>Lowest error rate (%)</td>
+            <td>Highest error rate (%)</td>
+        </tr>
+        <tr>
+            <th>Residuals</th>
+            <td>Items with no residual, followed by most under-predicted error rate <br />(predicted below actual)</td>
+            <td>Most over-predicted error rate <br />(predicted above actual)</td>
+        </tr>
+        <tr>
+            <th>Assistance Score</th>
+            <td>Lowest assistance score</td>
+            <td>Highest assistance score</td>
+        </tr>
+        <tr>
+            <th>Total Hints</th>
+            <td>Fewest hint requests</td>
+            <td>Most hint requests</td>
+        </tr>
+        <tr>
+            <th>Total Incorrects</th>
+            <td>Fewest incorrect attempts</td>
+            <td>Most incorrect attempts</td>
+        </tr>
+        <tr>
+            <th>First Attempt Hints</th>
+            <td>Fewest first-attempt hint requests</td>
+            <td>Most first-attempt hint requests</td>
+        </tr>
+        <tr>
+            <th>First Attempt Incorrects</th>
+            <td>Fewest first-attempt incorrect attempts</td>
+            <td>Most first-attempt incorrect attempts</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>Lowest alphanumeric order</td>
+            <td>Highest alphanumeric order</td>
+        </tr>
+        <tr>
+            <th>Number of problems / KCs / students / steps</th>
+            <td>Fewest ...</td>
+            <td>Most ...</td>
+        </tr>
+
+        </tbody>
+</table>
+
+<p><strong>Note:</strong> The top and bottom limits are both set to
+&ldquo;6&rdquo; upon first viewing the Performance Profiler report.</p>
+
+<h4>To set top and/or bottom limits:</h4>
+<ol>
+    <li>Enter a number (zero or greater) for the top limit.</li>
+    <li>Enter a number (zero or greater) for the bottom limit.</li>
+    <li>Press <strong>Refresh Graph</strong> to update the report.</li>
+</ol>
+
+<h4>To clear a limit:</h4>
+<ul class="concise">
+    <li>Press <strong>Clear</strong> to the right of the limit you'd
+    like to clear. The graph will update. You can also clear limits by
+    deleting the number from either or both of the limit boxes and
+    pressing <strong>Refresh Graph</strong>.</li>
+</ul>
+
+<p>You can also set minimum values for filtering which rows to show. Do this by
+entering values in the text fields underneath <strong>Only show rows with at least...</strong>, 
+and pressing <strong>Refresh Graph</strong>.</p>
+
+<h4>Sorting items</h4>
+
+<p>In the navigation bar on the left, you can choose a factor to sort by,
+and specify whether that sorting should be displayed in ascending or
+descending order. Selecting an option from either drop-down box will
+cause the graph to update and reflect your new choice.</p>
+
+<h4>Displaying AFM-predicted error rate values</h4>
+<p>You can display error rate values predicted by the Additive Factor Model (AFM) algorithm. 
+To do so, check the box labeled 
+<strong>Predicted Error Rate</strong>.</p>
+<p>You also have the option of displaying steps that have no knowledge
+component associated with them. To display them, check the box labeled 
+&ldquo;include steps without a knowledge component&rdquo;. As with other options,
+the graph will update to reflect your choice.</p>

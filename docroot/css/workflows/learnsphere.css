@@ -1,0 +1,3039 @@
+/* Workflow panels css */
+.jsplumb-connector {
+    cursor: pointer;
+}
+
+#ui-dialog-title-statusIndicatorModal {
+    white-space: nowrap;
+}
+
+#progressBar {
+    width: calc(100% - 8px);
+    height: 17px;
+    border: #4e377f solid 2px;
+    border-radius: 11px;
+    background: lightgrey;
+    margin-top: 5%;
+    padding: 3px 2px;
+}
+#progressAmount {
+    width: 0%;
+    height: 100%;
+    float: left;
+    background: #42986b;
+    border-radius: 10px;
+}
+
+.ui-dialog {
+
+  -moz-box-shadow: 3px 3px 5px #535353;
+  -webkit-box-shadow: 3px 3px 5px #535353;
+  box-shadow: 3px 3px 5px #535353;
+
+  -moz-border-radius: 6px 6px 6px 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px 6px 6px 6px;
+  border-color: rgba(0,0,0,0);
+}
+
+.ui-dialog-titlebar {
+    background: #4e377f;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 600;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    line-height: 1.4;
+    font-family: 'Open Sans', sans-serif;
+    padding: 1em 3em 1em 1em !important;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+    margin-right: 1em;
+}
+
+#workflow-main {
+    background: #fff0;
+    padding: 0;
+}
+
+#workflow-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #fff0;
+}
+
+#process-selector-div {
+    position: absolute;
+    width: 16.5%;
+    min-width: 230px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%;
+    z-index: 99999;
+    background-color: #4e377f;
+    padding-left: 4px;
+}
+
+#process-div {
+
+    /* height of process-div shares space with wfStatusBar */
+    height: 70vh;
+    position: absolute;
+    float: right;
+    width: 82%;
+    left: 16.3%;
+    padding: 10px 0 0 20px;
+    display: block;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    background: #f8f8f8;
+    background-image: url(../images/tiny_grid.png);
+
+    /*margin-left: 2%;*/
+}
+.wfErrorMessage {
+    color: #ff0000;
+}
+#wfMessageBar {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8em;
+    position: fixed;
+    left: 17%;
+    bottom: 0;
+    margin-right: -40px;
+    color: #000000;
+    height: 8vh;
+    padding: 14px 40px;
+    width: 100%;
+    opacity: 1;
+    background: #d2d2d250;
+    white-space: pre-line;
+    overflow-x: hidden;
+    z-index: 9999;
+    overflow-y: scroll;
+}
+#wfMessageBar:hover{
+  color: rgba(71,72,77,1);
+  opacity: 1;
+}
+
+/* Workflow components css */
+
+#process-div .draggableComponent, .process-component {
+    background: #ddd;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #AAAAAA;
+}
+
+.draggableComponent, .process-component {
+    z-index: 5024;
+    cursor: grab;
+    position: relative;
+}
+
+
+.humanReadableTextField {
+    width: 64%;
+    height: 14px;
+}
+
+.editHumanReadableSaveButton {
+
+}
+
+.editHumanReadableCancelButton {
+
+}
+
+.componentSubtitleEdit {
+    margin-top: 0;
+    height: 23px;
+}
+.componentTitle, .componentTitleLocked {
+    font-size: 0.8em;
+    font-weight: normal;
+    color: #FFF;
+    text-transform: none;
+
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+
+    padding: 10px 25px 10px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.componentTitle {
+    color: #FFF;
+    background: #4e377f;
+}
+
+.componentTitleLocked {
+    color: #FFF;
+    background: #380850;
+}
+
+.importTypeTitle {
+    display: inline-block;
+    max-width: 145px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.annotationTitle {
+    cursor: move;
+    background: #374d7f;
+    padding: 7px;
+}
+
+.componentSubtitle {
+    text-align: center;
+    font-size: 13px;
+    height: 16px;
+}
+
+.componentProgressMessage {
+    max-width: 143px;
+    height: 13px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    text-indent: 0px;
+}
+
+.workspaceTitle {
+    color:red;
+    display:none;
+}
+
+.data-connector-input {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    height: 14%;
+    width: 14%;
+    display: table-cell;
+    border: 1px solid black
+}
+
+.data-connector-output {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 84%;
+    height: 14%;
+    width: 14%;
+    display: table-cell;
+    border: 1px solid black
+}
+
+.dragActive {
+    border: 4px dotted #ff8000;
+    padding: 0;
+    border-radius: 28px;
+}
+
+.dropHover {
+    border: 4px dotted #4e377f;
+    padding: 0;
+    border-radius: 28px;
+}
+
+
+#workspaceHint {
+    position: absolute;
+    left: 37%;
+    top: 25%;
+}
+
+#wfStatusInfoDiv {
+    position: relative;
+    display: block;
+    padding-top: 0px;
+    width: auto;
+    text-align: left;
+    font-size: 0.6em !important;
+    float: right;
+    margin: 0 40px;
+    line-height: 180%;
+}
+
+#wfStatusInfoDiv > div {
+    padding: 1px;
+}
+
+.advancedOptionsTable, .selectDatasetTable {
+    width: 95%;
+}
+
+.selectDatasetDiv {
+    height: 90%;
+}
+.selectDatasetTable {
+    height: 100%;
+    table-layout: fixed;
+}
+
+.textOption {
+    width: 75%;
+}
+
+.componentOptionsTitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    height: 25px;
+}
+
+.endpointSourceLabel, .endpointTargetLabel {
+    font-size: 12px;
+    transition: opacity 800ms ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+.endpointHover {
+    transition: opacity 800ms ease-in-out;
+    opacity: 1;
+}
+.endpointNotConnected {
+    opacity: 1 !important;
+}
+
+.jsplumb-endpoint {
+    cursor: pointer;
+}
+
+/* Info and Status labels contain shareability, last updated, and workflow status. */
+.wfInfoLabel {
+    font-weight: bold;
+    float: left;
+    margin-right: 16px;
+}
+.wfStatusLabel {
+    float: left;
+    margin-right: 0px;
+    margin-top: 0px;
+}
+
+
+#componentStatusIcon img {
+    vertical-align: text-bottom;
+    margin-left: 5px;
+}
+
+.componentStatusIcon_ready {
+    background: #FFFFFF;
+}
+
+
+.componentStatusIcon_on {
+    background: rgb(122, 208, 44);
+}
+
+
+.componentStatusIcon_running {
+    background: orange;
+}
+
+.componentStatusIcon_error {
+    background: red;
+}
+
+.componentStatusIcon_warn {
+    background: #4343e6;
+}
+
+.componentStatusIcon_off {
+    background: transparent;
+}
+.componentStatusDiv {
+    bottom: 1px;
+    position: absolute;
+    width: 98%;
+}
+.showWarningsBtn {
+    display: inline-flex;
+    margin-left: 90px;
+    margin-bottom: 4px;
+    padding: 2px;
+    font-size: 9px;
+    border: 1px solid #AAAAAA;
+    background-color: #CCCCCC;
+}
+.showWarningsBtn:hover {
+    border: 1px solid #999999;
+    background-color: #EEEEEE;
+    cursor: pointer;
+}
+.wfStatusSuccess {
+    color: #4e377f;
+    font-weight: bold;
+}
+.wfStatusReady {
+    color: #ACACAC;
+    font-weight: bold;
+}
+.wfStatusInfo {
+    color: black;
+}
+.wfStatusWarning {
+    color: #bb5e00;
+}
+.wfStatusError {
+    color: #c81b1b;
+}
+
+.wfStatusIcon {
+    z-index: 5027;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    line-height: 1.1em;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 8px;
+    font-style: normal;
+    text-decoration: none;
+    text-indent: 16px;
+    font-size: 11px;
+    cursor: grab;
+    border-radius: 10px;
+}
+
+
+
+.openComponentOptionsGear, .openComponentPreviewIcon, .openComponentDebugInfoIcon {
+    margin: 2px;
+    margin-top: 6px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    position: absolute;
+}
+
+.openComponentPreviewIcon {
+    z-index: 5027;
+    display: block;
+    width: 25px;
+    height: 24px;
+    background: url(../images/glass.svg) no-repeat;
+    top: 34px;
+    left: 147px;
+}
+
+.openComponentDebugInfoIcon {
+    z-index: 5027;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url(../images/debug.svg) no-repeat;
+    top: 62px;
+    left: 150px;
+}
+
+.openComponentOptionsGear:hover, .openComponentPreviewIcon:hover, .openComponentDebugInfoIcon:hover {
+    -moz-box-shadow: 0 0 1px #aaa; -webkit-box-shadow: 0 0 1px #aaa; box-shadow: 0 0 1px #aaa;
+    background-color: #aaa;
+    cursor: pointer;
+}
+
+.openComponentOptionsGear {
+    z-index: 5027;
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: url(../images/gear.svg) no-repeat;
+    top: 35px;
+    left: 5px;
+}
+.debugFileRow {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.debugInfoText {
+    width: 96%;
+    float: left;
+    padding: 5px;
+    overflow: hidden;
+    max-width: 96%;
+}
+
+.debugRowHighlighted {
+    background-color: #ebeaea;
+}
+
+.debugInfoHeader {
+    width: 45%;
+    float: right;
+}
+#debugFilterTextDiv, #debugInfoLoadingSpan {
+    float: right;
+}
+
+#debugFilterTextDiv {
+    width: 100%;
+    color: #341f60;
+}
+#debugFilterText {
+    width: 60%;
+}
+
+.debugFileOutlineRow {
+    debugFileOutlineRow: flex;
+    white-space: nowrap;
+}
+.debugFileLink img {
+    width: 29px;
+    height: 29px;
+    margin-left: 10px;
+}
+.debugFileLink: {
+    color: #3c3d41;
+    text-decoration: none;
+}
+.debugFileLink:hover {
+    color: #88898c;
+    text-decoration: none;
+}
+.debugAnchorLink, .goBackAnchorLink {
+    cursor: pointer;
+    color: #4C2B58;
+    text-decoration: underline;
+    white-space: nowrap;
+    padding-top: 5px;
+}
+
+#debugInfoLoadingSpan {
+    margin-top: 4px;
+    margin-left: 10px;
+}
+
+.debugAnchorHeader {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #4a6177;
+    padding-top: 10px;
+}
+/* Match padding-top in debugAnchorHeader */
+.debugDownloadDiv {
+    padding-top: 10px;
+}
+
+#debugMiniWaitingIcon {
+    width: 18px;
+    height: 18px;
+    margin-bottom: 2px;
+}
+
+.disabledComponentOptionsGear {
+    display: none;
+}
+
+.deleteComponentIcon {
+    z-index: 5027;
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    margin: 4px;
+    background: url(../images/close.svg) no-repeat;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: absolute;
+    top: 4px;
+    left: 146px;
+}
+
+.deleteComponentIcon:hover {
+    cursor: pointer;
+}
+
+.deleteAnnotationIcon {
+    z-index: 5024;
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    margin: 0px 6px;
+    background: url(../images/close.svg) no-repeat;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    left: 153px;
+
+    display: none;
+}
+
+.deleteAnnotationIcon:hover {
+    cursor: pointer;
+}
+
+.componentSubtitle > img:hover {
+    cursor: pointer;
+}
+
+.closeComponentOptionsLink {
+    z-index: 5026;
+    display: block;
+    float: right;
+    width: 22px;
+    height: 22px;
+    background: url(../../images/close.gif) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.wflogo {
+    height: 200px;
+    background-color: rgb(51, 51, 51);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.componentOptionFields {
+    position: absolute;
+    top: 60px;
+    left: 14px;
+    width: 220px;
+    text-align: left;
+    z-index: 5026;
+    font-style : normal;
+    font-size: 14px;
+}
+
+
+/* Workflow Page css */
+
+
+.ui-icon-wf-prev-results {
+    width: 16px;
+    height: 16px;
+    background-image: url(../../images/arrow_rotate_clockwise.png) !important;
+}
+
+.ui-icon-wf-create {
+    width: 16px;
+    height: 16px;
+    background-image: url(../../images/add.png) !important;
+}
+
+.ui-icon-wf-prev {
+    width: 16px;
+    height: 16px;
+    background-image: url(../../images/arrow_left.png) !important;
+}
+
+.ui-icon-wf-next {
+    width: 16px;
+    height: 16px;
+    background-image: url(../../images/arrow_right.png) !important;
+    float: right;
+}
+
+
+#spacerDiv {
+    height: 20px;
+}
+.workflows-page-table {
+    width: 100%;
+}
+
+#workflows-page-div {
+    background: white;
+}
+
+#workflows-page-div table {
+    border-collapse: collapse;
+}
+
+#workflows-page-div table th {
+    padding: 4px 10px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+#workflows-page-div table td, #workflows-page-div table td p {
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#workflows-page-div table tr.history_row>td {
+    padding: 0;
+}
+
+#workflows-page-div table tr.history_row .sample-history td {
+    padding: 3px 13px;
+    vertical-align: top;
+}
+
+#workflows-page-div table tr.history_row .sample-history td.arFirstColumnWf,
+#workflows-page-div table tr.history_row .sample-history td.arSecondColumnWf
+    {
+    padding: 0;
+}
+
+#workflows-page-div table tr.history_row .sample-history td.reason {
+    width: 400px;
+}
+
+#workflows-page-div table td p {
+    margin: 0;
+}
+
+/* NOT SURE WHAT THE BELOW IS FOR - */
+/* Response: The partially-implemented workflow history icon placeholder. */
+.workflows-page-table tr .arFirstColumnWf {
+    width: 0px;
+    padding: 0 0;
+    text-align: center;
+}
+
+.workflows-page-table th img {
+    vertical-align: text-top;
+}
+
+.arSecondColumnWf {
+    width: 100px;
+    padding: 0 0;
+    text-align: left;
+}
+
+.wfAccessRequestLink, .wfAccessRequestPendingLink, .wfAccessRequestPrivateLink {
+    height: inherit;
+    width: inherit;
+    display: table-cell;
+    vertical-align: top;
+    float: left;
+    margin-left: 2px;
+    margin-right: 2px;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+
+.wfAccessRequestLink {
+    cursor: pointer;
+}
+
+#workflows-page-div table .even {
+    background-color: #ebebeb;
+}
+.myWFContainer, .globalWFContainer {
+    width: 66%;
+    float: left;
+    margin-left: 5%;
+}
+
+.wfItemDiv {
+    height: 12vh;
+    display: inline;
+    margin-left: 20px; /* use this because jstree-anchor has a negative text-indent value for comp menu */
+}
+
+.wfCreateFolderDiv {
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-bottom: 3px;
+    padding-right: 21px;
+    margin-top: 10px;
+    border: none;
+    display: inline-block;
+    font-size: 0.8em;
+    min-height: 36px;
+    color: #333333;
+}
+.wfCreateFolderDiv:hover {
+    cursor: pointer;
+    border: 1px solid #752663;
+    padding-top: 4px;
+    padding-left: 14px;
+    padding-bottom: 2px;
+    padding-right: 20px;
+}
+.wfListRootLabel {
+    color: #3c3d41;
+}
+.wfFolderRow, .wfNameRow, .wfName, .wfIconDiv {
+    display: inline-flex;
+    height: 3vh;
+}
+.wfFolderRow {
+    width: 90%;
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+.rootFolderLevel {
+    margin-left: 0px;
+}
+.wfFolderName {
+    padding: 5px;
+    font-weight: bold;
+    display: block;
+    background-color: transparent;
+}
+.wfNameRow div {
+     min-width: 30vw;
+     white-space: pre-wrap;
+}
+.wfLabel a {
+    float: left;
+    text-decoration: underline;
+}
+.wfName {
+
+}
+.wfIconDiv {
+    width: 70px;
+}
+.myWFContainer table tbody tr:hover .wfEdit{
+    visibility: visible;
+}
+.myWFContainer .updated, .globalWFContainer .updated {
+    opacity: 0.25;
+}
+.myWFContainer table .actionableIconColumn, .globalWFContainer table .actionableIconColumn {
+    text-align: right;
+    width: 35%;
+}
+.myWFContainer table .even, .globalWFContainer table .even {
+    background-color: transparent;
+}
+
+.workflows-page-table .wfEdit {
+    visibility: hidden;
+}
+
+#workflows-page-div table .evenHistory {
+    color: #42525A;
+    background-color: #ffffff;
+}
+
+.workflows-page-table a:link,
+.workflows-page-table a:visited,
+.workflows-page-table a:active {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+.workflows-page-table a:hover {}
+#global-workflows-label,#my-workflows-label {
+    font-size: 1em;
+    font-weight: 600;
+    color: #4e377f;
+    border-bottom: 2px solid #ebebeb;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.wfLegend {
+    float: right;
+    font-size: 0.8em;
+    color: #400040;
+    margin-right: 10vw;
+}
+
+.modifyAccessDiv .dead_link {
+    padding-left: 0;
+}
+
+#workflow-history {
+
+}
+
+#no-workflows-page {
+    width: 720px;
+    font-size: 13px;
+    font-style: italic;
+    padding: 12px 10px;
+    color: gray;
+}
+
+
+/* File upload buttons. */
+
+input[class="importDataFile"][type="file"] {
+    display: none;
+}
+
+.wfRadioButtonGroup {
+    margin-bottom: 8px;
+    margin-top: 9px;
+    font-size: 1.3em;
+    margin-left: 10px;
+    font-weight: bold;
+    color: #4a6177;
+}
+
+
+.wfRadioButtonGroup input {
+    margin-left: 7px;
+}
+
+.addDatasetLink {
+  cursor: pointer;
+}
+
+#datasetLinkButton {
+  width: 29px;
+  height: 29px;
+  margin: 0px;
+  margin-right: 10px;
+}
+#datasetLinkDiv {
+  width: 90%;
+}
+
+#datasetLinkDiv a:link,
+#datasetLinkDiv a:visited,
+#datasetLinkDiv a:active {
+  text-decoration: none;
+}
+
+.renameWorkflowIcon {
+    cursor: pointer;
+    display: inline;
+    padding-left: 4px;
+}
+.renameWorkflowIcon img {
+    vertical-align: top;
+    margin-top: 2px;
+}
+
+.humanReadableTextField.auto-hint, .dataFileFilter.auto-hint, .datasetFilter.auto-hint, .paperFilter.auto-hint {
+    color: #aaa;
+    padding: .5em;
+}
+
+.dataFileFilter, .datasetFilter {
+    width: 95%;
+}
+
+.custom-file-upload {
+    background-color: #407998;
+    color: #ffffff;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 4px 3px;
+    cursor: pointer;
+}
+
+.fileUploadDisplayText {
+    width: 90%;
+    background-color: #FAFACC;
+    cursor: default;
+}
+
+
+.ui-icon-wf-std-button {
+    width: 26px;
+    height: 26px;
+    border: 0;
+    display: inline-block;
+    left: 5px !important;
+    top: 13px !important;
+}
+
+#wfSaveConfirmationDialog {
+    font-size: 1.1em;
+    font-family: 'Open Sans', sans-serif;
+    white-space: pre-line;
+    text-align: left;
+}
+
+#wfSaveConfirmationDialog  img {
+    float: left;
+}
+
+
+#saveWorkflowButton, #cancelWorkflowButton, #saveAsWorkflowButton, #wfRunButton, #wfResults, #linkWorkflowButton, .wf-autosave-class {
+    position: relative;
+    width: 30px;
+    margin: 0;
+}
+
+#saveAsWorkflowButton .wfBtnText, #wfResults .wfBtnText {
+    left: -4px;
+}
+
+#saveWorkflowButton .wfBtnText {
+    left: 2px;
+}
+
+#wfRunButton .wfBtnText {
+    left: 4px;
+}
+
+.wfBtnText {
+    font-size: 0.65em;
+    color: #808080;
+    bottom: -0.8vw !important;
+    position: relative;
+    white-space: nowrap;
+}
+
+#cancelWorkflowButton .ui-icon-wf-cancel-button, #cancelWorkflowButton .ui-icon-wf-cancel-button-light {
+    background: url(../images/cancel.svg) center no-repeat !important;
+    margin: -18px 2px 0px -4px;
+}
+
+#saveWorkflowButton .ui-icon-wf-save-button, #saveWorkflowButton .ui-icon-wf-save-button-light {
+    background: url(../images/save.svg) center no-repeat !important;
+    transform: scale(1.05);
+    margin: -18px 2px 0px -4px;
+}
+
+#saveAsWorkflowButton .ui-icon-wf-save-as-button, #saveAsWorkflowButton .ui-icon-wf-save-as-button-light {
+    background: url(../images/save_as.svg) center no-repeat !important;
+    transform: scale(0.95);
+    margin: -18px 2px 0px -4px;
+}
+
+#wfRunButton .ui-icon-wf-run-button, #wfRunButton .ui-icon-wf-run-button-light {
+    background: url(../images/play.svg) center no-repeat !important;
+    transform: scale(1.05);
+    margin: -18px 2px 0px 4px;
+}
+
+#wfResults .ui-icon-wf-results-button, #wfResults .ui-icon-wf-results-button-light {
+    background: url(../images/results.svg) center no-repeat !important;
+    margin: -18px 2px 0px -5px;
+}
+
+#linkWorkflowButton .ui-icon-wf-link-button, #linkWorkflowButton .ui-icon-wf-link-button-light {
+    background: url(../../images/link_to_dataset.svg) center no-repeat !important;
+    margin: -18px 2px 0px -3px;
+    transform: scale(0.9);
+}
+
+#showPapers .ui-icon-wf-paper-button, #showPapers .ui-icon-wf-paper-button-light {
+    background: url(../images/download_dark.svg) center no-repeat !important;
+    margin: -40px -35px 0px 0px;
+    transform: scale(1.2);
+}
+#showPapers .wfBtnText {
+    bottom: -18px !important;
+}
+
+#wfExecutionDiv > div > .ui-button-icon {
+    width: 36px;
+    height: 36px;
+    padding: 0px;
+}
+
+.ui-icon-wf-option-specific-button {
+    width: 16px;
+    height: 16px;
+    background-image: url(../../images/wrench.png) !important;
+    border: 0;
+}
+
+.wfBlueButton.ui-state-default, .wfBlueButton.ui-widget-content .wfBlueButton.ui-state-default,
+    .wfBlueButton.ui-widget-header .wfBlueButton.ui-state-default
+    {
+    background: none;
+    border: none;
+}
+
+.wfBlueButton.ui-state-default a, .wfBlueButton.ui-state-default a:link,
+    .wfBlueButton.ui-state-default a:visited {
+    background: none;
+    border: none;
+}
+
+.wfBlueButton.ui-state-hover, .wfBlueButton.ui-widget-content .wfBlueButton.ui-state-hover,
+    .wfBlueButton.ui-widget-header .wfBlueButton.ui-state-hover,
+    .wfBlueButton.ui-state-focus, .wfBlueButton.ui-widget-content .wfBlueButton.ui-state-focus,
+    .wfBlueButton.ui-widget-header .wfBlueButton.ui-state-focus
+    {
+    background: none;
+    border: none;
+}
+
+.wfBlueButton.ui-state-hover a, .wfBlueButton.ui-state-hover a:hover
+    {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.wfBlueButton.ui-state-active, .wfBlueButton.ui-widget-content .wfBlueButton.ui-state-active,
+    .wfBlueButton.ui-widget-header .wfBlueButton.ui-state-active
+    {
+    background: none;
+    border: none;
+}
+
+.wfBlueButton.ui-state-active a, .wfBlueButton.ui-state-active a:link,
+    .wfBlueButton.ui-state-active a:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.wfBlueButton.ui-widget :active {
+    outline: none;
+}
+
+#workflowSubtabDivContainer {
+    height: auto;
+}
+
+#workflowSubtabDiv {
+    width: auto;
+    overflow:hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: #c9c9c9 1px solid;
+}
+
+#workflowSubtabDiv {
+    width: 97%;
+    margin-left: 2%;
+    z-index: 2;
+    display: inline;
+    overflow-x: auto;
+}
+
+/* Workflow results. */
+.wfSubtab {
+    background-color: #EFEFEF; /* selecting tab overrides bg to #FFFFFF */
+    height: inherit;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    border-left: 0;
+    border-right: 0;
+    cursor:pointer;
+    display: inline-block;
+    text-align: center;
+
+    border-right: black 1px solid;
+    border-bottom: black 1px solid;
+
+    white-space: nowrap;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 12px;
+    padding-bottom: 5px;
+
+}
+
+.wfSubtabHeading {
+    width: 210px;
+    border-top: 0;
+    border-bottom: 10px solid #ffffff;
+    font-weight: bold;
+    padding-top: 7px;
+    font-size: 26px;
+    display: table-cell
+}
+
+#workflowSubtabDiv .selected {
+    text-decoration:none;
+    font-weight: bold;
+    background: #fff;
+    color: #4e377f;
+}
+
+#workflowResultsDialog {
+    position: relative;
+}
+
+#workflowResultsDiv {
+    border-left: black 0;
+    float: left;
+    padding-left: 30px;
+    padding-top: 30px;
+    font-style : normal;
+    position: relative;
+    height: 80%;
+    width: 90%;
+    top: 45px;
+    left: 0;
+    margin: 0 0 60px 0;
+}
+
+#wfImageButtonDiv {
+    width: 80%;
+    text-align: center;
+    padding-left: 10%;
+    padding-top: 10px
+}
+#wfResultsPrev, #wfResultsFirst {
+    float: left;
+    width: 80px;
+}
+#wfResultsNext, #wfResultsLast {
+    float: left;
+    width: 80px;
+}
+#componentOutputDataPreview, .componentOutputDataPreviewDiv {
+    height: auto;
+}
+.textPreviewDiv {
+    border: 1px solid black;
+    padding: 5px;
+    height: 50vh;
+    scroll-behavior: auto;
+    overflow: scroll;
+    max-width: 80vw;
+}
+.ui-dialog .visFrame {
+    width: 98% !important;
+    height: 90% !important;
+}
+.wfSmallTable {
+    border-collapse: collapse;
+}
+
+.wfSmallTable a, .wfSmallTable a:link,
+        .wfSmallTable a:visited {
+    text-decoration: underline;
+}
+
+/* Zebra striping */
+.wfSmallTable tr:nth-of-type(odd) {
+        background: #eee;
+}
+.wfSmallTable th {
+        background: #4e377f;
+        color: white;
+        font-weight: bold;
+}
+.wfSmallTable td, .wfSmallTable th {
+        padding: 6px;
+        border: 1px solid #ccc;
+        text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    width: auto;
+}
+
+/* Miscellaneous formatting. */
+.wfIndent {
+    margin-left: 30px;
+}
+#timedPopup.ui-dialog, #timedPopup.ui-widget, #timedPopup.ui-widget-content, #timedPopup.ui-corner-all, #timedPopup.ui-draggable, #timedPopup.ui-resizable {
+    background: #FFCC66
+}
+.optionLabel, input[name=isSharedRadioButton] {
+    cursor: pointer;
+    margin-right: 5px;
+}
+#annotationTextDiv {
+    text-align: left;
+}
+#newWorkflowDescription, #newWorkflowName, {
+    width: 100%;
+}
+#newAnnotationText {
+    width: 85%;
+    font-size: 24px;
+    font-family: 'Open Sans',sans-serif;
+}
+.genericInputForm input[type=text] {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 400px;
+}
+
+
+
+.noSelect, ._jsPlumb_overlay,
+/* Sections needed for the selection rectangle. */
+  .process-component *, .jsplumb-overlay, #component-tree-div *, .feedback,
+  #wfStatusInfoDiv *, .jstreeWidgetLabels *, #component-lhs-search-label *,
+  #zoomLabel * {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                          supported by Chrome and Opera */
+}
+
+#wfHeader {
+    left: 30px;
+    top: 120px;
+}
+
+.wfHeader {
+    height: 25px;
+    vertical-align: top;
+}
+
+#wfStatusBar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 16.3%;
+    width: 83.7%;
+    height: auto;
+    min-height: 90px;
+    padding: 8px 2px;
+    background: #FFF;
+    white-space: nowrap;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#wfTitleBar {
+    font-size: 1.6vw;
+    line-height: 1.3em;
+    color: #454545;
+    word-wrap: break-word;
+    font-weight: 400;
+    margin: 0px 0 0 0.0em;
+    display: inline-block;
+    height: 100%;
+    width: auto;
+    min-width: 25%;
+    max-width: 40%;
+    white-space: normal;
+    float: left;
+    padding: 8px 0 8px 20px;
+}
+#wfTitleBar span {
+    display: table-cell;
+    vertical-align: top;
+}
+
+#wf_datasets_link {
+    float: left;
+}
+#wf_datasets_link a {
+    font-size: 1.0vw;
+    text-decoration: underline;
+}
+#wfDatasetsList td {
+    vertical-align: middle;
+    padding-left: 20px;
+}
+
+#wfDatasetsList td.wfUnlink {
+    padding-left: 15px;
+}
+
+.wfDataset a {
+    font-size: 1.2vw;
+    text-decoration: underline;
+}
+
+#wfStatusIndicator {
+    display: inline-block;
+    z-index: 5028;
+}
+
+
+.wfStatusIndicator {
+    display: inline-block;
+    z-index: 5028;
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+#miniWaitingIcon {
+    width: 13px;
+    height: 13px;
+    margin-bottom: 2px;
+}
+
+#statusIndicatorModal {
+    z-index: 5028;
+}
+
+#statusIndicatorModal img {
+    width: 84px;
+    height: 84px;
+}
+
+#componentStatusIndicator {
+    display: none;
+    z-index: 5028;
+    width: 10px;
+    height: 10px;
+    font-style : normal;
+    font-weight: bold;
+    font-size: 12px;
+    color: blue;
+    vertical-align: top;
+    padding: 5px;
+}
+
+#wfZoomDiv {
+    position: absolute;
+    z-index: 5028;
+    left: 95%;
+    top: 58%;
+}
+
+.workflowOptionIds {
+    width: 100px;
+}
+
+#wfExecutionDiv {
+    display: block;
+    padding: 0px;
+    margin-right: 0px;
+    width: auto;
+}
+
+#wfExecutionDiv > div {
+    border: solid 1px transparent;
+    white-space: pre-wrap;
+    margin: 0 0px;
+}
+
+#wfPrevResultsButton {
+    height: 35px;
+    width: 25px;
+}
+
+
+.wf-autosave-class {
+    float: left;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    width: 80px;
+}
+
+.wf-autosave-class #wf-autosave-checkbox {
+    margin: 4px;
+}
+
+
+
+.wfSortByColumn, .wfMySortByColumn {
+   /*text-decoration: underline;*/
+   cursor: pointer;
+}
+
+/* Override the default close icon */
+#closeWorkflowsButton {
+    position: absolute;
+    top: 3% !important;
+    left: 93vw !important;
+    width: 3vw !important;
+    cursor: pointer;
+}
+
+#closeWorkflowsButton:hover {
+    top: 3% !important;
+    left: 93vw !important;
+    width: 3vw !important;
+    opacity: 0.5;
+}
+
+#zoomLabel {
+    position: absolute;
+        font-size: 0.6em;
+        text-align: center;
+        width: 30px;
+        color: #542c66;
+        font-weight: 700;
+        left: -10px;
+        top: 110px;
+}
+.ui-slider-range { background: #4e377f; border-radius: 0px;}
+.ui-slider-vertical { width: 9px; border-radius: 0px; border: none;}
+.ui-slider-vertical .ui-slider-handle{
+    border-radius: 0px;
+    background: #ffd58b;
+    border: none;
+    box-shadow: 0px 0px 0px 2px #ffd58b;
+}
+/* Dialog Titlebar*/
+.uiTitleBar .ui-dialog-titlebar:first-child {
+    display: none;
+}
+/* Touts */
+#process-div .process-component{
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #dfdfdf;
+}
+
+/* New Jquery icon change
+.ui-widget-header .ui-icon {
+    background-image: url(../images/ui-icons_5706a2_256x240.png);
+}*/
+
+/* Right Pane */
+.advOptDialogClass {
+    background: #e3e9f2 !important;
+    width: 95%;
+}
+
+/*Annotation adding draggable object*/
+#process-selector-div .annotationAdder {
+    text-align: center;
+    margin: 10px;
+    border: 1px solid;
+    padding: 5px;
+    background: #343468 no-repeat;
+    width: auto;
+    border-radius:5px;
+    color: #FFF;
+    font-size: 1em;
+}
+.annotationAdder div {
+    padding: 10px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    font-size: 1.0vw;
+    font-weight: 300;
+    border: none;
+}
+
+.noteIcon {
+    max-height: 30px;
+    cursor: pointer;
+}
+#title_Annotation {
+    background: url(../../images/annotation_icon.svg) no-repeat;background-position: center;
+    background-size: auto;
+}
+
+.workflowAnnotation {
+    overflow: hidden;
+}
+.workflowAnnotation:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-width: 21px 21px 0 0;
+    border-style: solid;
+    border-color: #929292 #fff0;
+
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px -1px 4px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px -1px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px -1px 4px rgba(0,0,0,0.2);
+}
+.annotationBackgroundRight, .annotationBackgroundLeft {
+    position: absolute;
+    pointer-events: none;
+    background-color: #676767;
+}
+.annotationBackgroundLeft {
+    width: calc(100% - 21px);
+    height: 100%;
+}
+.annotationBackgroundRight {
+    right: 0;
+    top: 0px;
+    width: 25px; /*slightly wider than needs to be for zoom*/
+    height: calc(100% - 21px);
+}
+.annotationWfPreview {
+    position: absolute;
+    width: 160px;
+    height: 58px;
+    cursor: text;
+    font-size: 12px;
+    resize: none;
+    padding: 13px 10px;
+    border-width: 0px;
+    color: white;
+    overflow: hidden;
+    cursor: move;
+    word-break: break-all;
+    white-space: normal;
+}
+.editAnnotationIcon {
+    top: 2px;
+    left: 142px;
+    position: absolute;
+    width: 17px;
+    filter: brightness(70%);
+    display: none;
+    cursor: pointer;
+}
+.viewMoreAnnotation {
+    font-size: 12px;
+    left: 30px;
+    display: block;
+    top: 80px;
+    color: #ffffffff;
+    cursor: pointer
+}
+.linkInAnnotation {
+    color: #83c7fd !important;
+    text-decoration: underline !important;
+}
+
+/*Feedback button*/
+.feedback {
+    width: 90%;
+    text-align: center;
+    margin: 10px;
+    float: left;
+}
+.feedback a {
+    color: #fff;
+    padding: 10px;
+    display: block;
+    text-align: center;
+    background: #3a2c66;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    font-size: 16px;
+    font-weight: 300;
+}
+.feedbackTxt {
+    width: 98%;
+}
+#createFeedback p {
+    line-height: 1.5em;
+}
+#feedbackLen {
+    font-size: 75%;
+    padding-top: 4px;
+}
+#tyFeedback {
+    font-style: italic;
+    font-size: 90%;
+    padding-top: 5px;
+    margin-bottom: 0;
+    max-height: 400px;
+    word-wrap: break-word;
+}
+#tyDate {
+    font-size: 70%;
+}
+.infoDiv a {
+    text-decoration: underline;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #37567f;
+    font-size: 0.68em;
+}
+
+.infoBlock a.author-email {
+    font-size: 0.9em;
+    text-transform: none;
+}
+
+.infoBlock {
+    padding: 0px;
+}
+
+.workflowResultMetaHeader {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.7em;
+}
+
+.componentOptionFields {
+      width: 1px;
+      height: 1px;
+      z-index: 0;
+}
+
+.ui-resizable-sw { background:url(../../images/corner_resize.gif) no-repeat; }
+.ui-resizable-sw {
+    bottom: 3px !important;
+    left: 3px !important;
+    height: 12px;
+    width: 12px;
+}
+
+.ui-resizable-s {
+    height: 8px;
+    position: sticky;
+    bottom: -8px !important;
+    opacity: 0.0;
+    background: transparent;
+    -webkit-transition: opacity 0s;
+    transition: opacity 0s;
+}
+
+.ui-dialog .ui-resizable-se {
+    background-image: url("");
+    height: 0px;
+    width: 0px;
+}
+
+/* Use bigger resize handles for component option panels */
+.ui-resizable-handle {
+    border: 0px;
+    bottom: 0px;
+}
+
+.componentOptionsDiv, .componentOptionsPartition, .selectDatasetDiv, .wfSelList {
+    position: sticky;
+}
+
+.componentOptionsDiv, .componentOptionsPartition, .selectDatasetDiv, .wfSelList {
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #b1bfd1;
+    padding-left: 5px;
+    padding-top: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.81em;
+}
+.componentOptionsDiv, .wfSelList {
+    height: auto;
+    max-height: 80%;
+}
+.componentOptionsPartition {
+}
+
+.componentOptionsDiv td:first-child, .selectDatasetDiv td:first-child, .wfSelList td:first-child {
+    width: 60%;
+    padding-right: 5px;
+}
+.componentOptionsDiv td, .selectDatasetDiv td, ..wfSelList td {
+    padding-bottom: 5px;
+}
+.privOptLockIcon {
+    margin-left: 5px;
+    width: 1.7em;
+    height: 1.7em;
+}
+#displayPrivateOptionsBox {
+    margin: 2px 5px 6px 0px;
+}
+.privateOptionToolTip {
+    z-index: 2000;
+    width: 20em;
+}
+.infoBlock h1 {
+    font-size: 1.1em;
+}
+.infoBlock h2 {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 4px;
+    text-decoration: underline;
+}
+.infoBlock h3 {
+    font-size: 0.9em;
+}
+.infoBlock h1, .infoBlock h2, .infoBlock h3 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#workflowResultsDiv, .wfSubtab {
+    font-family: 'Open Sans', sans-serif;
+}
+.results_warning {
+    color: #03d;
+}
+.leftPadded {
+    padding-left: 8px;
+}
+.existingDataFile, .existingDataset, .datasetSelectBox {
+    width: 95%;
+    font-size: 0.9em;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 10px;
+    height: 35vh !important;
+}
+.datasetSelectBox {
+    height: 50vh;
+}
+.componentOptionsHeader, .componentInfoHeader {
+    margin-top: 25px;
+    margin-left: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #37567f;
+    font-size: 0.75em;
+}
+
+.componentOptionsHeader {
+    margin-top: 5px;
+}
+.componentInfoHeader {
+    margin-top: 25px;
+}
+
+.editWorkflowNameDiv, .editWorkflowDescDiv {
+    display: none;
+}
+#wfDescriptionMaxLen {
+    color: red;
+    font-size: 12px;
+}
+
+.linkInDescription {
+    color: #428bca !important;
+    text-decoration: underline !important;
+    word-break: break-all;
+    white-space: normal !important;
+}
+.linkInDescription:hover {
+    color: blue !important;
+}
+
+.ui-dialog-content {
+    height: auto;
+}
+
+/* Limiting this width means the tooltip is better placed */
+#isSharedOption {
+    width: 20%;
+    height: 22px;
+    padding-top: 2vh;
+}
+
+#isSharedOption .wfInfoLabel { margin-top: 5px;}
+.ui-dialog-title {
+    text-transform:capitalize;
+}
+
+#wf_login_href {
+    text-decoration: underline;
+}
+/* Information Pop-up */
+.wfDes {
+    position: relative;
+    display: inline-block;
+    top: -0.5em;
+}
+.wfDes .tooltiptext {
+    visibility: hidden;
+    width: 350px;
+    line-height: 1.7em;
+    background-color: #ebebeb;
+    color: #000;
+    text-align: left;
+    border-radius: 6px;
+    padding: 20px;
+    position: absolute;
+    font-weight: 100;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -175px;
+    white-space: normal;
+    word-break: break-all;
+}
+
+.wfDes:hover .tooltiptext {
+    visibility: visible;
+}
+
+#logged-in-user-div a, #logged-in-email-div a {
+    text-decoration: underline;
+    font-size: 0.8em;
+    float: right;
+}
+
+.wfTooltipDiv {
+    z-index: 2000;
+    width: 45em;
+}
+
+.wfTooltipDiv div div.infoBlock,
+.isPublicTooltip div div.infoBlock {
+    padding: 0px;
+}
+#projectTermsSelectBox {
+    width: 100%;
+}
+#termsTextArea {
+    width: 95%;
+    margin-left: 10px;
+    height: 150px;
+    display: block;
+    border: 1px solid #999;
+    overflow: scroll;
+    background-color: #FFF;
+}
+.wfRequestAccessElement {
+    width: 50%;
+    display: table-cell;
+    vertical-align: top;
+}
+#wfProjectAccessDiv {
+    display: table-cell;
+}
+.borderedDiv {
+    display: table-cell;
+    background-color: #EDEDED;
+    padding: 10px;
+    margin-top: 10px;
+    height: 45%;
+}
+.borderedDiv p #agreement, .requiredFormField {
+    font-weight: bold;
+}
+#termsAgree {
+    outline: 1px solid #106fda;
+}
+#agreement {
+    display: table;
+}
+#agreement input, #agreement label {
+    display: table-cell;
+}
+#agreement input {
+    margin: 5px;
+}
+
+.wfTransSpacer1 {
+    width: 20px;
+    height: 18px;
+}
+
+.workflows-page-table th, .workflows-page-table td {
+   padding-left: 0px;
+   padding-right: 22px;
+}
+
+.actionableIconsColumn, .actionableIconColumn {
+    width: inherit;
+}
+
+/* Workflow Landing Icons */
+.ls_wf-magnifier, .ls_wf-add,.ls_wf-delete, .ls_wf-edit, .ls_wf-info, .ls_wf-pencil, .ls_wf-cancel, .ls_wf-folder-delete {
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    margin-right: 5px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: 100%;
+    transition: all 0.2s ease;
+    position: relative;
+    left: 20px;
+}
+.ls_wf-magnifier:hover, .ls_wf-add:hover,.ls_wf-delete:hover, .ls_wf-edit:hover, .ls_wf-info:hover, .ls_wf-pencil:hover, .ls_wf-cancel:hover, .ls_wf-folder-delete:hover {
+    opacity: 1;
+}
+/* Define icon images */
+.ls_wf-edit {
+    background-image: url(../images/edit.svg);
+}
+.ls_wf-magnifier {
+    background-image: url(../images/results.svg);
+}
+.ls_wf-add {
+    background-image: url(../images/save_as.svg);
+}
+.ls_wf-delete, .ls_wf-folder-delete {
+    background-image: url(../images/delete.svg);
+    margin-right: 0px;
+}
+.ls_wf-pencil {
+    background-image: url(../images/pencil.svg);
+    height: 16px;
+}
+.wfFolderRow .ls_wf-pencil {
+    height: 26px !important;
+}
+.ls_wf-cancel {
+    background-image: url(../images/cancel.svg);
+    height: 30px;
+    width: 30px;
+    margin-bottom: -3px;
+}
+/* Workflow Access Buttons and Labels */
+
+.wfAccess {
+    width: 100%;
+    position: relative;
+    left: -10px;
+    display: block;
+    text-align: center;
+    font-size: 0.75em !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    padding: 0 10px;
+    border-radius: 2px;
+    border: transparent;
+}
+#search-workflows-page-table .wfAccess,
+#recommended-workflows-page-table .wfAccess {
+    width: 94%;
+}
+#wfStatusBar .wfAccess {
+    width: auto;
+    min-width: 90px;
+    height: 36px;
+    margin-left: 2%;
+}
+.wfAccess.request {
+    background: transparent;
+    color: #542c66;
+    border-color: #542c66;
+}
+.wfAccess.pending, .wfAccess.public, .wfAccess.granted  {
+    background: transparent;
+    color: #542c66;
+    cursor: default;
+}
+.wfAccess.pending {
+    width: 60px !important;
+}
+.wfAccess.private,
+.wfAccess.locked {
+    background: transparent;
+    color: #b3b3b3;
+}
+.wfAccess.request {
+    background: transparent;
+    color: #542c66;
+    padding: 8px 2px 0px 2px !important;
+    border-color: #542c66;
+    border-radius: 2px;
+    border: 1px solid;
+    width: 75px !important;
+    font-size: 0.65em !important;
+    margin: 0px 1px 0px -12px;
+}
+.wfAccess.mixed {
+    background: transparent;
+    color: #542c66;
+    border-color: #542c66;
+}
+
+.empty.alert {
+    text-align: center;
+    border: 2px solid #bcbcbc;
+    background: #bcbcbc;
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+}
+
+/* Scroll bar styling with jQuery enscroll plugin */
+
+.scroll-up1,
+.scroll-down1 {
+    width: 21px;
+    height: 21px;
+}
+
+.scroll-up1 {
+    background: url(../../images/learnsphere/learnsphere-vert-btns.png) no-repeat;
+}
+.scroll-up1:hover {
+    background-position: -21px 0;
+}
+
+.scroll-down1 {
+    background: url(../../images/learnsphere/learnsphere-vert-btns.png) no-repeat 0 -21px;
+}
+.scroll-down1:hover {
+    background-position: -21px -21px;
+}
+
+.track1 {
+    width: 20px;
+    background-color: #d4dcf5;
+    border-left: 1px solid #d6def7;
+}
+
+.handle1 {
+    width: 21px;
+    margin-left: -1px;
+    background: url(../../images/learnsphere/learnsphere-vert-handle.png) no-repeat 0 center;
+}
+.handle1:hover {
+    background-position: -21px center;
+}
+
+.handle1 .top,
+.handle1 .bottom {
+    position: absolute;
+    left: 0;
+    width: 21px;
+    height: 12px;
+    background: url(../../images/learnsphere/learnsphere-vert-handle.png) no-repeat;
+}
+
+.handle1 .top {
+    top: 0;
+}
+.handle1:hover .top {
+    background-position: -21px 0;
+}
+
+.handle1 .bottom {
+    bottom: 0;
+    width: 21px;
+    height: 12px;
+    background-position: 0 bottom;
+}
+.handle1:hover .bottom {
+    background-position: -21px bottom;
+}
+
+#selectDiv {
+    height: 90%;
+}
+
+#optionSearchLabel {
+    margin-right: 10px;
+    float: left;
+}
+
+#selectOptionFilter {
+    margin-bottom: 10px;
+}
+
+#selectOptionFilter.auto-hint {
+    color: #aaa;
+}
+
+div.wfAdvOptSelectDialog {
+    background-color: rgb(248, 248, 248);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(166, 166, 166);
+    border-image: initial;
+    border-radius: 5px;
+    -webkit-appearance: menulist;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    text-indent: 5px;
+    width: -webkit-fill-available;
+    cursor: pointer;
+    max-width: max-content;
+}
+
+div.wfAdvOptSelectDialog p {
+    padding-right: 15px;
+}
+
+select.wfAdvOptSelectDialog {
+    overflow-x: scroll;
+}
+
+#selectDiv { height: 90%; }
+.wfAdvOptSelectDialog { height: 100% !important; }
+.create-button-class { font-color: #FFFFFF ; }
+
+.jstree-drag-component {
+    color: #FFF;
+    width: 135px;
+    border-width: 1px;
+    border-color: #c600c6;
+    border-style: solid;
+    background: #4e377f;
+    border-radius: 5px;
+}
+
+li .jstree-anchor {
+    padding-left: 12px;
+}
+
+.jstree-default .jstree-anchor:hover {
+    font-size: 95%; /* Avoid the component names from wrapping on hover */
+}
+
+.compName {
+    display: none;
+}
+
+/* Setting the icon in front of every closed node */
+.tree .tree-classic li.open {
+    background:url("../images/search.svg") 2px 5px no-repeat;
+}
+
+
+/* Workflow Import / Upload radio checkboxes act like tabs. */
+.ui-checkboxradio-label {
+    background: #f2f2f2;
+}
+.wfRadioButtonGroup .ui-checkboxradio-icon {
+    display: none;
+}
+
+#component-lhs-search-label {
+    float: left;
+    width: auto;
+    margin-left: 5px;
+}
+
+
+#component-lhs-search-input {
+    margin-left: 5px;
+    margin-bottom: 1px;
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size: 0.6em;
+    height: 2em;
+    width: 11vw;
+    min-width: 160px;
+    padding-left: 0.4em;
+    float: left;
+    -moz-box-shadow: 0 0 1px #c0c0c0; -webkit-box-shadow: 0 0 1px #c0c0c0; box-shadow: 0 0 1px #c0c0c0;
+}
+#component-lhs-search-clear-button {
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    float: left;
+    cursor: pointer;
+    background: #4e377f url(../../images/eraser_default.png) no-repeat;
+}
+#component-lhs-search-clear-button:hover {
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    float: left;
+    cursor: pointer;
+    background: #4e377f url(../../images/eraser_hover.png) no-repeat;
+}
+
+#component-lhs-search-input:hover {
+    -moz-box-shadow: 0 0 1px #808080; -webkit-box-shadow: 0 0 1px #808080; box-shadow: 0 0 1px #808080;
+}
+
+#component-lhs-search-div {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+#component-lhs-search-div .auto-hint {
+    color: #aaa;
+}
+
+#component-lhs-search-div > span {
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size: 0.6em;
+    color: #ffffff;
+    padding-top: 3px;
+}
+.wfSearchPaperDiv {
+    margin-left: 10px;
+    font-size: small;
+}
+#componentsHeader {
+    float: left;
+    margin-left: 6px;
+    color: #FF7EDA;
+    cursor: default;
+    width: 90%;
+    font-weight: lighter;
+    display: none;
+}
+#component-tree-div {
+    float: left;
+    margin-top: 18px;
+    width: 100%;
+    height: calc(80vh - 200px);
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+#component-lhs-search-label label, #component-lhs-search-label input {
+    cursor: pointer;
+}
+
+.jstreeWidgetLabels {
+    font-size: 0.6em;
+    color: #ffffff;
+    margin-left: 2px;
+    cursor: pointer;
+    border: 0px;
+    padding: 1px;
+    background-color: #4e377f;
+    float: left;
+    clear: both;
+}
+
+.jstreeWidgetLabels:active, #component-lhs-search-label label:active {
+    opacity: 0.5;
+}
+
+.jstreeWidgetLabels:hover, #component-lhs-search-label label:hover {
+    opacity: 0.5;
+}
+
+.noComponentsMatchSearch {
+    color: white;
+    font-size: 11px;
+    margin: 0px 0px 10px 5px;
+}
+
+/* Workflows list */
+
+.boundingBox {
+    border: 0px;
+    background-color: #fffeef;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 3px;
+}
+
+.refreshWorkflowComponentDefinitions {
+    font-size: 0.9em;
+}
+
+/* Workflow Search... */
+
+#wfClearSearch, #wfSearch {
+    margin: 10px;
+    font-size: 1em;
+    padding: 5px;
+    margin-top: 10px;
+}
+.wfPaddedLeft {
+    padding-left: 2vw;
+}
+
+.wfSearchElement {
+    width: 94%;
+}
+.wfSearchHeader {
+    font-size: 1.2em;
+    color: #443369;
+    margin-top: 25px;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+.wfSearchElementSpacing {
+    margin-top: 7px;
+}
+
+
+
+
+/* Workflow Search. */
+.wfAdvancedSearchDiv {
+    display: inline-block;
+    float: left;
+    width: 20%;
+    padding: 10px 0px 10px 30px;
+    max-width: 400px;
+    min-width: 260px;
+    background-color: #fff;
+    margin-right: 30px;
+    border: 1px solid #e2e6ea;
+    height: 80%;
+    line-height: 2em;
+}
+.primaryInfo {
+    font-weight: bold;
+    padding-top: 5px;
+}
+.secondaryInfo {
+    color: #808080;
+    margin-bottom: 10px;
+}
+.wfSecondaryRow {
+    margin-left: 65px;
+}
+.searchInputDiv input {
+    padding: 0.3em 0em 0.3em 0.3em;
+    border: 2px solid #ebebeb;
+    font-size: 1em;
+    width: 85%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1px;
+    font-weight: bold;
+    color: purple;
+}
+
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+
+.dateRangeInputDiv {
+    width: 42%;
+}
+
+.ui-datepicker-header {
+    color: #FFF;
+}
+
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+    filter: brightness(0) invert(1);
+}
+.ui-datepicker-prev:hover, .ui-datepicker-next:hover {
+    background: #ffffff21;
+    border: 1px solid #ffffff4a;
+}
+
+#wf_search_by.auto-hint {
+    color: #aaa;
+}
+#wf_search_by_clear_button {
+    background: #fff;
+    color: #542c66;
+    width: 100%;
+    text-align: center;
+    font-size: 0.6em !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    border-radius: 2px;
+    border: 1px solid #542c66;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-decoration: none;
+}
+
+#search-workflows-label,
+#recommended-workflows-label {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+#search-workflows-empty-label {
+    text-align: center;
+}
+
+#recommendedWfsLabel {
+    padding-left: 5px;
+}
+
+#searchResultsLabel, #searchResultsEmpty, #recommendedWfsLabel {
+    font-size: 1.4em;
+    color: #4e377f;
+    margin-right: 20px;
+}
+
+#searchResultsLabel,
+#recommendedWfsLabel {
+    font-weight: 600;
+}
+
+#searchResultsEmpty {
+    font-weight: 300;
+}
+
+.searchWFContainer,
+.recommendedWFContainer {
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+#workflows-page-table th,
+#search-workflows-page-table th,
+#recommended-workflows-page-table th {
+    font-weight: normal;
+    color: #aaa;
+}
+
+.wfFormTable td {
+    /* white-space: nowrap !important; */
+    border: 1px solid #CCC;
+    padding: 5px;
+}
+
+.wfFormTable {
+    border-collapse: collapse;
+    width: 95%;
+}
+
+.wfNameCol {
+    padding-right: 0px !important;
+}
+
+.wfAccessCol {
+    width: 90px;
+}
+
+#searchFilters {
+    padding-top: 6px;
+    display: inline-flex;
+    padding-left: 10px;
+}
+
+.searchCheckbox {
+    padding-right: 10px;
+    font-size: 0.8em;
+}
+.searchCheckbox label {
+    font-weight: 800 !important;
+    color: #4e377f;
+}
+
+
+
+
+/* Workflow List Tabs (My, Public, Recommended) */
+
+.workflowListTabs {
+    display: inline-block;
+    width: 71%;
+    min-width: 650px;
+    margin-left: 0px;
+}
+.workflowTabDiv {
+    width: 100%;
+}
+.workflowTabDiv hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(204, 204,204, 0.8), rgba(0, 0, 0, 0));
+    margin: 10px 0 20px 0;
+}
+.workflowTabDiv ul {
+    list-style-type: none;
+    margin-bottom: 1em;
+    font-size: 0.95em;
+    /*border-bottom: 1px solid #CCCCCC;*/
+    padding-bottom: 10px;
+}
+#wfTabDiv ul {
+    border-bottom: none;
+}
+#wfTabDiv > ul > li:first-child {
+    margin-left: 10px;
+}
+#wfTabDiv .ui-tabs-anchor {
+    outline: none;
+    border-radius: 2px;
+}
+
+/* Workflows List pagination */
+.pageDiv {
+    text-align: center;
+    padding: 1vh;
+}
+.resultCountDiv {
+    margin-left: 2vw;
+    float: left;
+    font-color: #666666;
+}
+.highlightedPage {
+    text-decoration: none;
+    margin-left: 4px;
+    margin-right: 4px;
+    color: #4a3a7b;
+    font-weight: bold;
+}
+.pageLink {
+    border: none;
+    color: #aaa;
+    background: none;
+    text-decoration: none;
+}
+.wfCountSpan {
+    padding: 3px;
+    color: #37164e;
+}
+
+/* Per Workflow Action Menu. */
+.hamburgerSpan {
+    position: absolute;
+    left: 550px;
+    height: 45px !important;
+    height: 45px !important;
+}
+.wfHamburgerList {
+    position: absolute;
+    background-color: #444444;
+    z-index: 9999;
+    left: 66%;
+}
+.wfHamburgerList a:hover {
+    background-color: #DDDDDD;
+    border: 1px solid #EEEEEE;
+    color: #000000;
+}
+.wfHamburgerList a {
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #FFFFFF;
+    width: 100%;
+    display: block;
+}
+.wfFolderHamburgerList {
+    position: absolute;
+    background-color: #444444;
+    z-index: 9999;
+}
+.wfFolderHamburgerList a:hover {
+    background-color: #DDDDDD;
+    border: 1px solid #EEEEEE;
+    color: #000000;
+}
+.wfFolderHamburgerList a {
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #FFFFFF;
+    width: 100%;
+    display: block;
+}
+.folderHamburgerSpan img {
+    width: 25px;
+    height: 25px;
+    margin-top: -5px;
+}
+.lsShareLink {
+    position: absolute;
+    display: inline-block;
+    background-color: #FFFFFF;
+    z-index: 9999;
+    padding: 3vh;
+    border: 1px solid #000000;
+}
+#curlink {
+    color: #400040;
+}
+
+.shareIcon {
+    margin-top: -10px;
+}
+.shareIcon img {
+    height: 4vh;
+    width: 4vw;
+}
+
+/* Workflow List. */
+.workflowListClass {
+    list-style-type: none;
+    line-height: 100%;
+}
+.wfNameRow .wfAccess {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 45px;
+    height: 35px;
+}
+.globalDemarcation {
+    color: #400040;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: absolute;
+}
+.removeSearchFilter {
+    cursor: pointer;
+}
+#selectedDatasetDiv {
+    font-weight: 600;
+    font-size: 1em !important;
+}
+.emptyFolderDiv {
+    font-size: 0.7em;
+    color: #AAAAAA;
+    font-style: italic;
+}
+#workflowFolderDiv {
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+}
+
+#workflowTagsDiv {
+    padding-top: 2vh;
+}
+#wfTags, #wfTagsSearch {
+    display: inline;
+    white-space: normal;
+}
+.wfTag, .wfTagSearch {
+    display: inline-block;
+    color: rgb(53, 39, 105);
+    font-weight: bold;
+    border: solid 1px rgb(53, 39, 105);
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-top: 12px;
+    padding: 4px 8px;
+    white-space: nowrap;
+
+    /*box-shadow: 3px 2px 2px 0px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 3px 2px 2px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 3px 2px 2px 0px rgba(0,0,0,0.5);
+    -o-box-shadow: 3px 2px 2px 0px rgba(0,0,0,0.5);*/
+}
+.wfTagSearch {
+    font-size: 90%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 1px 7px;
+}
+.deleteTag, .deleteTagSearch {
+    cursor: pointer;
+    margin-left: 5px;
+}
+#addTagButton, #addTagButtonSearch {
+    margin-left: 10px;
+    font-size: 25px;
+    padding: 0px;
+    width: 36px;
+    height: 36px;
+    border-radius: 25px;
+}
+#searchTagsDiv {
+    margin-top: 15px;
+}
+#wfTagInputSearch {
+    width: 70%;
+}
+.tagsInTooltip {
+    min-width: auto !important;
+}
+.tagInTooltip {
+    font-weight: bold;
+    margin-right: 5px;
+    font-size: 0.9em;
+}
+.tagInTooltip:before,
+.commonTag:before,
+.commonTagSearch:before {
+    content: '#';
+    font-weight: normal;
+}
+.commonTag,
+.commonTagSearch {
+    overflow-x: hidden;
+    cursor: pointer;
+    line-height: normal;
+    margin-left: 5px;
+}
+.selectedCommonTag {
+    font-weight: bold;
+    color: rgb(53, 39, 105);
+}
+.hasPlaceholder::placeholder {
+    font-size: small;
+    font-style: italic;
+    opacity: 1;
+}
+#wfTagsEmpty {
+    font-size: small;
+    font-style: italic;
+}
+
+.wfListState {
+    height: 15px;
+    width: 15px;
+    margin-left: 1.2em;
+    position: absolute;
+    margin-top: -2px;
+}
+.wfAuthorName {
+    text-decoration: underline;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+/* IF you want to remove the orange, folder-based dividers from the workflow list, uncomment the following: */
+.wfListHr {
+    /*display: none !important;*/
+}
+
+.wfUnlink img {
+    cursor: pointer;
+}
+
+.workflowListClass li {
+    margin-left: -40px;
+}
+
+/* Component selection rectangle */
+#compSelectBorder {
+    position: absolute;
+    background-color: #BBBBBB;
+    border: 1px dotted #000000;
+    opacity: 0.4;
+    z-index: 9999;
+}
+
+.wfCompSelectList {
+    position: absolute;
+    background-color: #444444;
+    z-index: 9999;
+}
+.wfCompSelectList a:hover {
+    background-color: #DDDDDD;
+    border: 1px solid #EEEEEE;
+    color: #000000;
+    text-decoration: none;
+}
+.wfCompSelectList a {
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #FFFFFF;
+    display: block;
+}
+
+.wfCompSelectList > .disableRightClickContext:hover {
+    background-color: #4444444;
+    border: none;
+    color: #888888;
+    text-decoration: none;
+}
+.wfCompSelectList > .disableRightClickContext {
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #888888;
+    display: block;
+}
+
+.hotkeySpan {
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 2px;
+    font-size: small;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 0px;
+    float: right;
+    margin-left: 8px;
+}
+
+.linkMenu {
+    position: absolute;
+    background-color: #444444;
+    z-index: 9999;
+    margin-top: 10px;
+}
+.linkMenu a:hover {
+    background-color: #DDDDDD;
+    color: #000000;
+    text-decoration: none;
+}
+.linkMenu a {
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #FFFFFF;
+
+    display: block;
+}
+
+/** Link workflows and papers. */
+.wfPaperIcon {
+    margin-left: 50px;
+    margin-top: -0.8em;
+}
+.workflowPaperButtons, .wfPaperMiddleDivider {
+    display: inline;
+    white-space: nowrap;
+    text-align: left;
+    margin-top: 10vh;
+    vertical-align: middle;
+    font-size: 2vh;
+}
+.workflowPaperButtons span, .wfSubmitBtn, .wfCancelBtn {
+    padding: 4px;
+}
+.workflowPaperButtons div, .workflowPaperButtons input, .workflowPaperButtons textarea {
+    margin: 0 2vw;
+    margin-bottom: 0.5vw;
+    font-size: small;
+    float: right;
+}
+.workflowPaperButtons input, .workflowPaperButtons textarea {
+    float: right;
+    width: 70%;
+    border: 1px solid #ccc;
+    padding: .5em;
+}
+#wfPaperFinished, .wfSubmitBtn, .wfCancelBtn {
+    float: right;
+    display: inline-block;
+    text-align: center;
+}
+.wfPaperSubsection {
+    border: 1px solid #AAA;
+    padding: 2px;
+}
+.wfPaperMiddleDivider {
+    width: 10% !important;
+}
+.wfSelList {
+    margin-top: 1vh;
+    border: none;
+}
+.wfSelFilter {
+    margin: 1px;
+}
+#wfPaperBtnDiv {
+    white-space: nowrap;
+    text-align: left;
+}
+.wfPaperBtn, .custom-paper-upload {
+    text-align: center;
+    padding: 4px;
+    cursor: pointer;
+    font-size: 1.5vw;
+    width: 96%;
+}
+.custom-paper-upload input {
+    float: left;
+    width: auto;
+    margin: .5vw 1.5vw;
+    padding: .3em .5em;
+    color: white;
+    background-color: #4a3a7b;
+}
+.wfPaperBtn {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.wfButtonDisabled {
+    color: #999999;
+    cursor: not-allowed;
+    border-bottom: 1px solid #ccc;
+}
+.wfButtonDisabled:hover {
+    background-color: #FFFFFF !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #999999 !important;
+    border-bottom: 1px solid #ccc !important;
+}
+.wfPaperBtn:hover, .wfSubmitBtn, .wfCancelBtn {
+    background-color: #4a3a7b;
+    font-weight: bold;
+    border: 1px solid #4e377f;
+    box-shadow: 0 1px 0 #FFFFFF;
+    color: #FFFFFF;
+}
+.wfSubmitBtn, .wfCancelBtn {
+    width: 7vw;
+    margin-left: 2vw;
+    border: 1px solid #FFFFFF;
+    cursor: pointer;
+    float: left;
+}
+.wfSubmitBtn:hover, .wfCancelBtn:hover {
+    background-color: #612e92;
+    border: 1px solid #5c315c;
+    color: #FFFFFF;
+}
+.wfSubmitBtnDisabled {
+    background-color: #AAAAAA;
+}
+.wfSubmitBtnDisabled:hover {
+    background-color: #AAAAAA;
+    border: 1px solid #ccc;
+    color: #fff;
+}
+#wfUrlInput {
+    width: 80%;
+    font-size: small;
+    text-align: center;
+}
+.lhMenu {
+    float: left;
+    width: 20%;
+    line-height: 200%;
+    padding: 1em;
+    font-size: .75em;
+}
+.rhDiv {
+    float: right;
+    width: 70%;
+}
+.myPapersDiv {
+
+}
+.wfPaperBtnSelected {
+  background-color: #4e377f;
+  color: white;
+}
+.wfPaperRow, .existingWfPaperLinks {
+    width: 90%;
+    align-content: center;
+    display: inline-block;
+}
+.existingWfPaperLinks {
+    margin-top: 0.8vh;
+    margin-left: 1vw;
+    font-size: 2vh;
+    padding: 0.2em;
+    padding-left: 0.2em;
+    padding-left: 1em;
+}
+
+.existingWfPaperLinks .unlinkBtn, .existingWfPaperLinks .editBtn {
+    margin-left: 1vw;
+    width: 12px;
+}
+.existingWfPaperLinksOddRow {
+    background-color: #EEEEEE;
+}
+.wfPaperLink {
+
+}
+.wfPaperHeader {
+    color: #4e377f;
+    font-weight: bold;
+}
+.wfPaperUpper, .wfPaperLower {
+    margin-bottom: 2vh;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.existingPaper {
+    width: 90%;
+    margin: 2%;
+}
+.wfPaperLink b {
+    color: #4e377f;
+    font-weight: bold;
+}
+.reqSpan {
+    color: #da4141;
+}
+.paperFilter {
+    margin-right: 1vw;
+}
+
+#wfPaperLinkText .auto-hint {
+    color: #CCCCCC;
+}
+.wfPaperAttrib {
+    margin-left: 1vw;
+    font-style: italic;
+    color: #5f5f5f;
+    font-size: smaller;
+}
+/** End of link workflows and papers. */
+.warningDebugLine {
+    color: #0000FF;
+}
+.errorDebugLine {
+    color: #FF0000;
+}
+.componentDatasetOption {
+    cursor: pointer;
+}

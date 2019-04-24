@@ -1,0 +1,106 @@
+.openInlineEdtior * {
+	margin:2px;
+}
+
+#datasetDescription textarea, #notes textarea, #hypothesis textarea, #preferredPaperCitation textarea {
+	width:350px;
+	height:150px;
+}
+
+#acknowledgment textarea {
+	width:350px;
+	height:100px;
+}
+.inlineTextBox {
+	width:350px;
+}
+
+.inlineToolTip {
+	font-size:11px;
+	width:60px;
+	padding-bottom:5px;
+}
+
+.openInlineEdtior select {
+	width:200px;
+}
+
+.suggestionBox {
+	width:200px;	
+}
+
+#dates input, #dates.date_span, #dates img {
+    margin:2px;
+}
+
+#dates label {
+	position:absolute;
+	text-align:right;
+	width:6em;
+	padding-top:5px;
+}
+
+#dates #start_date, #dates #end_date { 
+	margin-left:6.5em;
+}
+
+#dateAutoSetButton {
+	margin-left:6.5em;
+}
+
+.inlineOther {
+	font-style: italic;
+}
+
+.undo_button {
+	float:right;
+	margin:0;
+	padding:0 0 0 18px;
+	background: url("../images/undo_grey.gif") top left no-repeat;
+	text-decoration: none;
+	cursor:default;
+        font-weight: normal;
+}
+
+.undo_button.hover {
+	background: url("../images/undo.gif") top left no-repeat;
+	text-decoration: underline;
+	cursor:pointer;
+}
+
+.redo_button {
+	float:right;
+	margin:0;
+	padding:0 18px 0 0;
+	background: url("../images/redo_grey.gif") top right no-repeat;
+	text-decoration: none;
+	cursor:default;
+        font-weight: normal;
+}
+
+.redo_button.hover {
+	background: url("../images/redo.gif") top right no-repeat;
+	text-decoration: underline;
+	cursor:pointer;
+}
+
+.editHover {
+    background-color:#EFEFEF;
+    cursor: pointer; 
+}
+
+.editRequired {
+    background-color:#EFEFEF;
+    font-weight: bold;
+}
+
+.edit_icon {
+    float:right;
+    padding:0 0 0 10px;
+    text-decoration: none;
+    cursor:default;
+}
+
+#dates_edit.edit_icon {
+    margin:0px;
+}

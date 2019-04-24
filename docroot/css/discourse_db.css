@@ -1,0 +1,29 @@
+#datasetInfo .dataset-box #discourse-parts,
+#datasetInfo .dataset-box #contributions,
+#datasetInfo .dataset-box #data-sources,
+#datasetInfo .dataset-box #annotations,
+#datasetInfo .dataset-box #relations {
+    padding-left: 0px;
+}
+#datasetInfo .dataset-box #discourse-parts-table td,
+#datasetInfo .dataset-box #contributions-table td,
+#datasetInfo .dataset-box #data-sources-table td,
+#datasetInfo .dataset-box #annotations-table td,
+#datasetInfo .dataset-box #relations-table td {
+    border: none;
+}
+#datasetInfo .dataset-box #discourse-parts-table,
+#datasetInfo .dataset-box #contributions-table,
+#datasetInfo .dataset-box #data-sources-table,
+#datasetInfo .dataset-box #annotations-table,
+#datasetInfo .dataset-box #relations-table {
+    margin-top: -25px;
+    margin-bottom: -25px;
+}
+
+#exportDiscourseLink {
+    padding: .5em 16px .5em 10px;
+    position: relative;
+    color: #636363;
+    text-decoration: none;
+}

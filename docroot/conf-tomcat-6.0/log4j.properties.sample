@@ -1,0 +1,42 @@
+#uses only FileAppender, no log messages outputed to Console
+#log4j.rootLogger=DEBUG, R
+
+#uses both FileAppender and ConsoleAppender
+log4j.rootLogger=ERROR, stdout, R
+
+#Configures the RollingFileAppender, comment this part if DailyRollingFileAppender is used
+
+log4j.appender.R=org.apache.log4j.RollingFileAppender 
+log4j.appender.R.File=c:/tomcat/logs/datashop.log
+log4j.appender.R.encoding=UTF-8
+log4j.appender.R.MaxFileSize=10MB 
+log4j.appender.R.MaxBackupIndex=10 
+log4j.appender.R.layout=org.apache.log4j.PatternLayout 
+log4j.appender.R.layout.ConversionPattern=%p: [%t] %c %d{dd MMM yyyy HH:mm:ss,SSS} - %m%n 
+
+#
+#Configures the DailyRollingFileAppender, comment this part if RollingFileAppender is used
+#
+#log4j.appender.R=org.apache.log4j.DailyRollingFileAppender
+#log4j.appender.R.File=datashop.log
+#log4j.appender.R.encoding=UTF-8
+#log file rolls every minute, backup files are created
+#log4j.appender.R.DatePattern='.'yyyy-MM-dd-HH-mm
+#log4j.appender.R.layout=org.apache.log4j.PatternLayout 
+#log4j.appender.R.layout.ConversionPattern=%p: [%t] %c %d{dd MMM yyyy HH:mm:ss,SSS} - %m%n 
+
+#Configures the ConsoleAppender, comment this part if only R is used
+
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%p: [%t] %c %d{dd MMM yyyy HH:mm:ss,SSS} - %m%n 
+
+
+#to set logging level for the datashop
+log4j.logger.edu.cmu.pslc.datashop=INFO
+log4j.logger.edu.cmu.pslc.datashop.auth.OliUserServices=INFO
+log4j.logger.edu.cmu.pslc.datashop.servlet.ProjectHelper=INFO
+log4j.logger.edu.cmu.pslc.datashop.servlet.ProjectServlet=INFO
+log4j.logger.edu.cmu.pslc.datashop.servlet=DEBUG
+log4j.logger.edu.cmu.learnsphere.servlet.webservices=INFO
+

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2011
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+<hibernate-mapping>
+    <class name="edu.cmu.pslc.datashop.item.AccessRequestHistoryItem" table="access_request_history">
+        <id name="id" type="integer">
+            <column name="access_request_history_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="accessRequestStatusItem" class="edu.cmu.pslc.datashop.item.AccessRequestStatusItem" >
+            <column name="access_request_status_id" length="32" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="edu.cmu.pslc.datashop.item.UserItem" >
+            <column name="user_id" length="250" not-null="true" />
+        </many-to-one>
+        <property name="role" type="string">
+            <column name="role" length="1" not-null="true" />
+        </property>
+        <property name="action" type="string">
+            <column name="action" length="1" not-null="true" />
+        </property>
+        <property name="level" type="string">
+            <column name="level" length="1" not-null="true" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" not-null="true" />
+        </property>
+        <property name="reason" type="string">
+            <column name="reason" length="255" not-null="false" />
+        </property>
+        <property name="isActive" type="boolean">
+            <column name="is_active" not-null="true" default="false" />
+        </property>
+            <property name="shareReasonFlag" type="boolean">
+            <column name="share_reason_flag" not-null="true" default="true" />
+        </property>
+    </class>
+</hibernate-mapping>

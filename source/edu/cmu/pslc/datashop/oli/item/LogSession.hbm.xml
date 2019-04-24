@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 2050 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2005-12-23 12:03:11 -0500 (Fri, 23 Dec 2005) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.oli.item.LogSessionItem" table="log_sess">
+        <meta attribute="class-description">OLI Log Session Table.</meta>
+        <id name="id" type="string">
+            <meta attribute="field-description">Database generated unique Id for this item.</meta>
+            <column name="guid" />
+            <generator class="assigned" />
+        </id>
+        <property name="userId" type="string">
+            <meta attribute="field-description">The session id of this action.</meta>
+            <column name="user_id" length="250"/>
+        </property>
+        <property name="sessionId" type="string">
+            <meta attribute="field-description">The session id of this action.</meta>
+            <column name="user_sess" length="250"/>
+        </property>
+        <property name="time" type="timestamp">
+            <meta attribute="field-description">The timestamp of this action.</meta>
+            <column name="date" length="19"/>
+        </property>
+        <property name="timeZone" type="string">
+            <meta attribute="field-description">The time zone the timestamp was taken in.</meta>
+            <column name="timezone" length="250" />
+        </property>
+    </class>
+</hibernate-mapping>

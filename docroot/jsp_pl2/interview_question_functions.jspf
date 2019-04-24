@@ -1,0 +1,80 @@
+<!--
+  Carnegie Mellon University, Human Computer Interaction Institute
+  Copyright 2019
+  All Rights Reserved
+-->
+<%
+// Author: Peter Schaldenbrand
+// Version: $Revision: 13213 $
+// Last modified by: $Author: ctipper $
+// Last modified on: $Date: 2016-05-02 16:48:45 -0400 (Mon, 02 May 2016) $
+// $KeyWordsOff: $
+//
+%>
+
+<!-- Load functions for processing interview questions -->
+
+
+<script>
+
+function replaceVars(text) {
+    return text.replace(/\%advisorFirstName\%/g, "<%= advisorFirstName%>")
+            .replace(/\%studentFirstName\%/g, "<%=studentFirstName%>")
+            .replace(/\%studentLastName\%/g, "<%=studentLastName%>");
+}
+
+function questionToHtml(questionContainer, question) {
+    let qDiv = jQuery('<div />').addClass('kickoffQuestion').attr('id', question.id);
+    qDiv.append(jQuery('<div />').addClass('questionText').text(replaceVars(question.question_text)));
+
+    if (question.type === "multiSelect") {
+        let multSelect = jQuery('<select />').attr('multiple', true)
+                .attr('size', Math.min(5, question.options.length));
+        question.options.forEach(function(op) {
+            multSelect.append(jQuery('<option />')
+                    .attr('value', op.id).attr('id', op.id)
+                    .addClass(op.open_ended ? "openEnded" : "")
+                    .text(replaceVars(op.text)));
+        });
+        qDiv.append(multSelect);
+    } else if (question.type === "textarea") {
+        let textarea = jQuery('<textarea />');
+        qDiv.append(textarea);
+    } else if (question.type === "number") {
+        let numberInput = jQuery('<input type="number" />');
+        qDiv.append(numberInput);
+    } else if (question.type === "multiCheckbox") {
+        let checkBoxContainer = jQuery('<div />').addClass('checkboxContainer');
+        question.options.forEach(function(op) {
+            checkBoxContainer.append(jQuery('<input />')
+                    .attr('type', 'checkbox')
+                    .attr('value', op.id).attr('id', op.id)
+                    .addClass(op.open_ended ? "openEnded" : "")
+                    .attr('name', op.id));
+            checkBoxContainer.append(jQuery('<label />')
+                    .text(replaceVars(op.text))
+                    .attr('for', op.id));
+            checkBoxContainer.append(jQuery('<br />'));
+        });
+        qDiv.append(checkBoxContainer);
+    }
+
+    questionContainer.append(qDiv);
+}
+
+function toggleOpenEndedInput() {
+    let id = jQuery(this).attr('id');
+    let el = jQuery(this);
+
+    if (el.is(':checked') && el.is('input')) {
+        el.parent().append(jQuery('<input />')
+                .attr('id', id + 'openEnded'));
+    } else if (el.is(':selected') && el.is('option') && jQuery('#' + id + 'openEnded').length == 0) {
+        el.parent().parent().append(jQuery('<input />')
+                .attr('id', id + 'openEnded'));
+    } else {
+        jQuery('#' + id + 'openEnded').remove();
+    }
+}
+
+</script>

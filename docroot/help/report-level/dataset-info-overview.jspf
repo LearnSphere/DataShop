@@ -1,0 +1,39 @@
+<div class="topic" id="help-dataset-info-overview">
+    <h2>Dataset Info / Overview</h2>
+    <p>This page provides both an overview and context for
+    the current dataset. It may answer questions such as:
+    </p>
+    <ul>
+    <li>How, when, and where were these data collected? 
+    <li>What's the scope of the dataset?</li>
+    <li>If this was an experiment, what were the research goals?</li>
+    <li>How should I cite this dataset for secondary analysis?</li>
+    </ul>
+
+    <p>If you are a project admin for this project, you can edit some of
+    the fields in the Overview table&mdash;click a field to edit
+    it. You can help other researchers by describing the dataset and 
+    the context in which it was created.</p>
+    
+    <p>Have you or someone you know published about these data? Attach a
+    paper to this dataset on the <span class="screen-item">Files</span> tab.
+    
+    <h3>Dataset statistics at a glance</h3>
+    <p>You can gauge the size of the dataset by looking at the numbers
+    in the <span class="screen-item">Statistics</span> table,
+    particularly the  <span class="screen-item">Total Number of
+    Students</span>, <span class="screen-item">Transactions</span>, and 
+    <span class="screen-item">Student Hours</span>.</p>
+    <p>The <span class="screen-item">Knowledge Component Models</span>,
+    or step-to-knowledge-component mappings, are listed at the bottom of 
+    the table. If you see a few Knowledge Component Models listed,
+    researchers have likely thought about different ways of attributing
+    skills to steps, and potentially new ways of categorizing knowledge in 
+    this domain. 
+    You can learn more about these models and create new ones by clicking the 
+    <span class="screen-item">KC Models</span> subtab.</p>
+    
+    <span class="helpTopicLink" style="display:none"><a href="help?page=datasetInfo"><img src="images/page_white_text.png" /> <span>Read more 
+    about Dataset Info / Overview</span></a></span>
+    
+</div>

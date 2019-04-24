@@ -1,0 +1,357 @@
+/****************************************
+*         SET DOMAIN/LEARNLAB
+****************************************/
+#admin-domain-learnlab-div h1 {    
+    margin-top:0;
+    font-size:1.2em;
+}
+#which_datasets_form {
+    font-size: .8em;
+}
+#excluded_datasets, #all_datasets {
+    vertical-align:sub
+}
+
+#admin-domain-learnlab-table {
+    margin-top: 10px;
+    font-size: 80%;
+    border-collapse: collapse;
+    border-width:thin medium thick 10px; 
+}
+#admin-domain-learnlab-div table th {
+    text-align:left;
+}
+#admin-domain-learnlab-div table td {
+    text-align: left;
+    vertical-align: middle;
+}
+
+#admin-domain-learnlab-div table .col-dataset-id { width:3em; }
+/**Don't know if we should set these values, and if so, what good values would be.
+#admin-domain-learnlab-div table .col-dataset-name { margin-left:50em; }
+#admin-domain-learnlab-div table .col-pi { width:50em; }
+#admin-domain-learnlab-div table .col-hours { width:50em; }
+#admin-domain-learnlab-div table .col-domain { width:50em; }
+#admin-domain-learnlab-div table .col-junk { width:50em; }
+**/
+
+/****************************************
+*             MANAGE TERMS
+****************************************/
+#manage-terms-div h1 {
+    margin-top: 15px;
+    font-size:1.2em;
+}
+#manage-terms-div p {
+    font-size:.9em;
+    margin-bottom: 6px;
+}
+#manage-terms-div table td {
+    vertical-align: middle;
+}
+#manage-terms-div label {
+    font-size:.9em;
+}
+#project_terms_select {
+    width: 161px;
+}
+#create_project_name_text {
+    margin-left: 0;
+}
+/****************************************
+*             EDIT TERMS
+****************************************/
+#edit-terms-div h1 {
+    font-size:1.4em;
+    font-weight:normal;
+}
+#edit-terms-div h1 a {
+    color:#37567F;
+    text-decoration:underline
+}
+#datashop-terms-text, #terms-text {
+    width:655px; 
+}
+#text-area-div {
+    width:700px;
+    float:left;
+}
+#versions-div {
+    width:120px;
+    float:left;
+}
+#versions-div h2 {
+    font-size:.9em;
+    margin-top: 0;
+}
+#versions-div table {
+    font-size: .9em;
+}
+#save-and-publish-div {
+    clear: left;
+    width: 660px;
+    text-align: right;
+}
+#assign-terms-div {
+    width:825px;
+    margin-top:1em;
+}
+#assign-terms-div p {
+    font-size:.9em;
+}
+#assign-terms-div select {
+    width:150px;
+}
+#assign-terms-div #project_table .col1 {
+    width:30px;
+    text-align:center;
+}
+#apply-clear-terms-div {
+    width:709px;
+}
+#apply-clear-terms-div div {
+    width:210px;
+    margin:0 auto;
+}
+#project_table {
+    margin-bottom:10px;
+    max-height:300px;
+    overflow:scroll;
+}
+#project_table td {
+    border-bottom:1px solid #cfcfcf;
+    vertical-align: middle;
+}
+.warning-text {
+    font-size:.9em;
+}
+#warning-div {
+    margin-top:1em;
+    font-size:.9em;
+    background-color: #FFF9D7;
+    border: 1px solid #E2C822;
+    padding:1em;
+    width:44em;
+}
+#save-and-publish-div a, #versions-div a {
+    text-decoration: underline; 
+    color: #37569F;
+}
+#versions-div a.disabled {
+    color:#333;
+    text-decoration:none;
+}
+
+/****************************************
+*            MANAGE USERS
+****************************************/
+#user-management h1 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+#user-management h1 a {
+    text-decoration: underline;
+    color: #37569F;
+}
+#UserFilterOptions {
+    font-size: 12px;
+}
+#UserFilterOptions table input {
+    margin: 0 7px 0 0;
+}
+#UserFilterOptions #createdFrom {
+    width: 88px;
+}
+#users td, #user-details td {
+    border-bottom: 1px solid gray;
+    font-size: 12px;
+}
+#manage-menu {
+    text-align: center;
+    font-size: 1.2em;
+}
+#passwdReset {
+    border: 1px solid gray;
+    background-color: #ADD6AD;
+    width: 147px;
+    margin: auto;
+}
+#susResAccount {
+    margin: 13px auto;
+    border: 1px solid gray;
+    background-color: pink;
+    width: 147px;
+}
+#user-management #passwdReset a, #user-management #susResAccount a {
+    text-decoration: none;
+    width: 139px;
+    display: block;
+    padding: 4px;
+    color: black;
+}
+#user-details th {
+    font-size: 12px;
+}
+a.suspend {
+    background-color: #C11B17 !important;
+}
+#operations {
+    float: left;
+}
+#user-management .link {
+    text-decoration: underline;
+    color: #37569F;
+}
+#user-details {
+    float: left;
+    margin-left: 16px;
+}
+.clear {
+    clear: both;
+}
+
+.error_message_div {
+    margin-bottom: 8px;
+}
+#user-management-note {
+    clear: left;
+    float: left;
+    margin-left: 16px;
+}
+
+/********************************************
+* Manage Problem Content Filter Box
+********************************************/
+#problem_content_filters_div fieldset  {
+    background-color: #EFEFEF;
+    border: 2px solid #bbb;
+    width: 800px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+#problem_content_filters_div fieldset legend {
+    font-size: 13px;
+}
+#problem_content_filters_div div {
+    float: left;
+    margin-left: 16px;
+    margin-bottom: 2px;
+}
+#problem_content_filters_div label {
+    font-size: 13px;
+    font-weight: normal;
+}
+#problem_content_filters_div .filter-div-first {
+    margin-left:0;
+    clear: left;
+}
+#manage_pc_cv_search_by.auto-hint,
+#manage_pc_ds_search_by.auto-hint {
+    color: #aaa;
+}
+.manage_pc_conversion_delete_areYouSure,
+.manage_pc_dataset_list {
+    display: none;
+}
+#manage_pc_conversions {
+    padding-top: 25px;
+}
+#manage_pc_conversions label {
+    font-size: 13px;
+    font-weight: bold;
+}
+.dataset_div {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#manage_pc_conversions_table {
+    clear: left;
+    margin: 1em 0 1.5em;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+#manage_pc_conversions_table td {
+    border-bottom: 1px solid #E0E0E0;
+    font-size: 12px;
+    padding: 8px 10px 8px 0;
+}
+#manage_pc_conversions_table th {
+    text-align: left;
+    padding-left: 0;
+    padding-right: 10px;
+}
+#manage_pc_conversions_table th img {
+    vertical-align: middle;
+}
+#manage_pc_conversions_table th a {
+    color: #37567F;
+    background-color: inherit;
+    font-size: 14px;
+    text-decoration: none;
+    border-bottom: 1px solid #37567F;;
+}
+#manage_pc_conversions_table td a {
+    color:#37567F;
+    background-color: inherit;
+    text-decoration: underline;
+}
+#manage_pc_conversions_table .pc_datasets_table {
+    margin-top: 0;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #cfcfcf;
+}
+#manage_pc_conversions_table .pc_datasets_table td {
+    color: #42525A;
+    border-right: 1px solid #cfcfcf;
+}
+#manage_pc_conversions_table .pc_datasets_table tr.odd td {
+    background-color: #efefef;
+}
+#manage_pc_conversions_table .pc_datasets_table th {
+    padding: 5px 14px 5px 14px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    color: #333;
+    background-color: #efefef;
+    border-bottom: 1px solid #cfcfcf;
+    border-right: 1px solid #cfcfcf;
+}
+#manage_pc_conversions_table .pc_datasets_table p {
+    margin: 0 0 0 5px;
+}
+#manage_pc_conversions_table .content_version {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+#manage_pc_conversions_table .content_date {
+    font-style: oblique;
+}
+
+#InstanceForm table {
+    width: 510px;
+}
+#InstanceForm input[type=text] {
+    width: 345px;
+}
+#instance-warning-div {
+    width: 395px;
+    font-size: 12px;
+    background-color: #FFF9D7;
+    border: 1px solid #E2C822;
+    margin-top: -5px;
+}
+#instance-warning-div p {
+    padding: 5px;
+    margin: 5px;
+}
+
+#submit-reset-div {
+    padding-top: 10px;
+}
+
+#instance-config-details.dataset-box td {
+    width: 350px;
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 14073 $
+ Last modified by - $Author: hcheng $
+ Last modified on - $Date: 2017-05-15 14:48:12 -0400 (Mon, 15 May 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.learnsphere.analysis.moocdb.item.LongitudinalFeatureItem" table="longitudinal_features">
+    <meta attribute="class-description">Represents a single longitudinal feature instance.</meta>
+        <id name="id" type="int">
+        <meta attribute="field-description">Database generated unique Id for this longitudinal feature.</meta>
+            <column name="longitudinal_feature_id" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="string">
+            <meta attribute="field-description">name.</meta>
+            <column name="longitudinal_feature_name" />
+        </property>
+        <property name="description" type="string">
+        <meta attribute="field-description">description.</meta>
+            <column name="longitudinal_feature_description" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

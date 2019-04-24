@@ -1,0 +1,34 @@
+<div class="topic" id="help-home-not-logged-in">
+    <h2 style="display:none">DataShop Home (not logged in)</h2>
+    <p>Welcome to Datashop!</p>
+
+    <p><a href="login">Log in</a> to get started. DataShop supports <a target="_blank" href="http://incommon.org">InCommon</a> and Google single sign-on (SSO) options. You will be able to link your DataShop account with your university id or Google account. The first time you log in you will be asked to create a DataShop account.</p>
+
+    <p>Datasets in DataShop are grouped into a few categories:</p>
+    <ul>
+        <li><span class="screen-item">Public Datasets</span> are datasets you
+        (or anyone) can access once you log in. You can use any of the DataShop tools 
+        on data in these datasets.</li>
+        <li><span class="screen-item">Private Datasets</span> are datasets that
+        can only be accessed once you've gotten permission from the Principal Investigator 
+        (PI) of the project.</li>
+    </ul>
+
+    <p><span class="screen-item">Projects</span> are groupings of datasets. Each
+    project name appears above its table.</p>
+    <ul>
+        <li><img src="images/users.gif" /> indicates a public project.</li>
+        <li><img src="images/star.png" /> indicates that papers that
+        reference these data have been published by members of this project. 
+        Mouse-over the star to see the number of papers.</li>
+    </ul>
+    <p>Dataset <span class="screen-item">status</span>, the last column of each
+    dataset table, is often one of the following:</p>
+    <ul>
+        <li><span class="screen-item">complete</span>: data collection is complete</li>
+        <li><span class="screen-item">on-going</span>: data collection is on-going</li>
+        <li><span class="screen-item">files-only</span>: there is no
+        tutor interaction data in this dataset, only files and
+        papers</li>
+    </ul>
+</div>

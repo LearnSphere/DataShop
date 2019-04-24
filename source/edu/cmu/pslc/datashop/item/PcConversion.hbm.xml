@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2014
+ All Rights Reserved
+
+ $Revision: 11123 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2014-06-05 11:00:50 -0400 (Thu, 05 Jun 2014) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.PcConversionItem" table="pc_conversion">
+        <id name="id" type="long">
+            <column name="pc_conversion_id" />
+            <generator class="native" />
+        </id>
+        <property name="conversionTool" type="string">
+            <column name="conversion_tool" />
+        </property>
+        <property name="toolVersion" type="string">
+            <column name="tool_version" />
+        </property>
+        <property name="datashopVersion" type="string">
+            <column name="datashop_version" />
+        </property>
+        <property name="conversionDate" type="timestamp">
+            <column name="conversion_date" length="19" />
+        </property> 
+        <property name="contentVersion" type="string">
+            <column name="content_version" />
+        </property>
+        <property name="contentDate" type="timestamp">
+            <column name="content_date" length="19" />
+        </property> 
+        <property name="contentDescription" type="string">
+            <column name="content_description" />
+        </property>
+        <property name="path" type="string">
+            <column name="path" />
+        </property>
+    </class>
+</hibernate-mapping>

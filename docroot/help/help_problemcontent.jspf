@@ -1,0 +1,36 @@
+<h2>Problem Content</h2>
+
+<p>Problem content refers to a representation (text, images, html, etc.) of the content that students
+interacted with in the system that generated the dataset's data. Note that the word "problem" is 
+used in the sense of any activity the user did that was named in the <a href="help?page=terms#problem">problem 
+column</a> of the data.</p>
+
+<p>When problem content is mapped to a dataset and its problems, users can jump from DataShop reports 
+to the problem content by clicking one of the "View Problem" buttons throughout the interface (often 
+in tooltips on problem or step name), allowing them to better understand the activities that 
+correspond with the data.</p>
+
+<p>With problem content, you can:</p>
+<ul class="concise">
+    <li>Learn more about the system that students used</li>
+    <li>Inspect the interface and problem to explain student difficulties suggested by data</li>
+    <li>Use machine learning on an export of problem content from the <a href="help?page=problemList">Problem List</a> page</li>
+</ul>
+
+<p>Datasets with problem content are noted on the list of datasets with a problem content icon 
+<img src="images/brick.png" style="border:none; vertical-align: middle" />.</p>
+
+<h3>Adding problem content to your dataset</h3>
+
+<p>Please contact us, and we will consult with you on the format DataShop expects for problem content. 
+For a faster solution, consider attaching files documenting your system on the Files tab of your dataset.</p>
+
+<p>If you are a project admin for a dataset with problem content that has already been uploaded to
+the DataShop server, you can use the <strong>Problem Content</strong> page to map problem content to 
+problems within the dataset. Select the <strong>Conversion Tool</strong> and <strong>Content Version</strong> 
+to see a list of content items that can be mapped to the dataset, then click add to perform the mapping.</p>
+
+<p>To see a list of all problems in dataset and which have problem content, or to download all problem
+content for a dataset, visit the <a href="help?page=problemList">Problem List</a> page.</p>
+
+<p class="clearFloat"></p>

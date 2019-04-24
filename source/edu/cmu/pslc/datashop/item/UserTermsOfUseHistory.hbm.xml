@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2011
+ All Rights Reserved
+
+ $Revision: 7202 $
+ Last modified by - $Author: shanwen $
+ Last modified on - $Date: 2011-11-03 11:37:46 -0400 (Thu, 03 Nov 2011) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.UserTermsOfUseHistoryItem" table="user_terms_of_use_history">
+        <meta attribute="class-description">A history data of user's association with a term of use.</meta>
+        <id name="id" type="integer">
+        	<meta attribute="field-description">Database generated unique Id for this term.</meta>
+            <column name="user_terms_of_use_history_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="termsOfUseVersion" class="edu.cmu.pslc.datashop.item.TermsOfUseVersionItem">
+                <meta attribute="field-description">Terms of Use associated with this terms of use version history.</meta>
+            <column name="terms_of_use_version_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="user" class="edu.cmu.pslc.datashop.item.UserItem">
+                <meta attribute="field-description">User associated with this terms of use version history.</meta>
+            <column name="user_id" not-null="true" />
+        </many-to-one> 
+        <property name="date" type="timestamp">
+            <meta attribute="field-description">The date for this UserTermsOfUse.</meta>
+            <column name="date"/>
+        </property>
+    </class>
+</hibernate-mapping>

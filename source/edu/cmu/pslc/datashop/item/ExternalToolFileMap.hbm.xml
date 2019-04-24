@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2012
+ All Rights Reserved
+
+ Author: Alida Skogsholm
+ $Revision: 7819 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2012-08-09 13:40:05 -0400 (Thu, 09 Aug 2012) $
+ $KeyWordsOff: $
+-->
+
+  <class name="edu.cmu.pslc.datashop.item.ExternalToolFileMapItem" table="external_tool_file_map">
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.ExternalToolFileMapId">
+            <key-property name="externalToolId" type="integer">
+                <column name="external_tool_id"/>
+            </key-property>
+            <key-property name="fileId" type="integer">
+                <column name="file_id"/>
+            </key-property>
+        </composite-id>
+        
+        <many-to-one name="externalTool" class="edu.cmu.pslc.datashop.item.ExternalToolItem"
+        	insert="false" update="false">
+            <column name="external_tool_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="file" class="edu.cmu.pslc.datashop.item.FileItem"
+        	insert="false" update="false">
+            <column name="file_id" not-null="true" />
+        </many-to-one>
+        
+        <property name="downloads" type="integer">
+            <column name="downloads"/>
+        </property>
+  </class>
+</hibernate-mapping>

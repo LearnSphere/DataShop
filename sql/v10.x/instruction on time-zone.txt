@@ -1,0 +1,12 @@
+--time zone needed for resource-use workflow component
+--populate timezone in mysql database: 
+--on windows, download: 
+instruction: http://dev.mysql.com/doc/refman/5.1/en/time-zone-support.html
+file download: http://dev.mysql.com/downloads/timezones.html
+upzip, then do:
+C:\data\OLI_courser_download\UMUC OLI data\sql\timezone_2015a_posix_sql>mysql -u root -pmysql mysql < timezone_posix.sql
+
+
+--on unix, zone info should be on the system
+shell> mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
+shell> mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u datashop -pdatashop mysql

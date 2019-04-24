@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.SkillModelItem" table="skill_model">
+    	<meta attribute="class-description">Knowledge Component (Skill) model creates
+an association between subgoals and skills.</meta>
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique Id for this skill model.</meta>
+            <column name="skill_model_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="owner" class="edu.cmu.pslc.datashop.item.UserItem">
+        	<meta attribute="field-description">Owner/Creator of this skill model.</meta>
+            <column name="owner" length="250" />
+        </many-to-one>
+        <property name="skillModelName" type="string">
+        	<meta attribute="field-description">The name of this skill model as a string.</meta>
+            <column name="skill_model_name" length="50" not-null="true" />
+        </property>
+        <property name="aic" type="double">
+        	<meta attribute="field-description">AIC score for this skill model.</meta>
+            <column name="aic" precision="22" scale="0" />
+        </property>
+        <property name="bic" type="double">
+        	<meta attribute="field-description">BIC score for this skill model.</meta>
+            <column name="bic" precision="22" scale="0" />
+        </property>
+        <property name="intercept" type="double">
+        	<meta attribute="field-description">Intercept for this skill model.</meta>
+            <column name="intercept" precision="22" scale="0" />
+        </property>
+        <property name="logLikelihood" type="double">
+        	<meta attribute="field-description">Log likelihood for this skill model.</meta>
+            <column name="log_likelihood" precision="22" scale="0" />
+        </property>
+        <property name="globalFlag" type="boolean">
+        	<meta attribute="field-description">Flag indicating whether users other than the owner can see this skill model.</meta>
+            <column name="global_flag" not-null="true" />
+        </property>
+        <property name="allowLFAFlag" type="boolean">
+            <meta attribute="field-description">Flag indicating whether to allow the LFA to run on this dataset.</meta>
+            <column name="allow_lfa_flag" not-null="true"/>
+        </property>
+        <property name="status" type="string">
+            <column name="status" not-null="false" length="100"/>
+        </property>
+        <property name="lfaStatus" type="string">
+            <column name="lfa_status" not-null="false" length="100"/>
+        </property>
+        <property name="lfaStatusDescription" type="string">
+            <column name="lfa_status_description" not-null="false" length="250"/>
+        </property>
+        <property name="source" type="string">
+            <column name="source" not-null="false" length="100"/>
+        </property>
+        <property name="mappingType" type="string">
+            <column name="mapping_type" not-null="false" length="100"/>
+        </property>
+        <property name="creationTime" type="timestamp">
+            <column name="creation_time" not-null="false" length="19" />
+        </property>
+        <property name="modifiedTime" type="timestamp">
+            <column name="modified_time" not-null="false" length="19" />
+        </property>
+        <property name="numObservations" type="integer">
+            <column name="num_observations" not-null="false" />
+        </property>
+	<property name="cvStudentStratifiedRmse" type="double">
+        	<meta attribute="field-description">Student stratified Cross Validation RMSE for this skill model.</meta>
+            <column name="cv_student_stratified_rmse" precision="22" scale="0" />
+        </property>
+        <property name="cvStepStratifiedRmse" type="double">
+        	<meta attribute="field-description">Step stratified Cross Validation RMSE for this skill model.</meta>
+            <column name="cv_step_stratified_rmse" precision="22" scale="0" />
+        </property>
+        <property name="cvUnstratifiedRmse" type="double">
+        	<meta attribute="field-description">Unstratified Cross Validation RMSE for this skill model.</meta>
+            <column name="cv_unstratified_rmse" precision="22" scale="0" />
+        </property>
+        <property name="unstratifiedNumObservations" type="integer">
+		<meta attribute="field-description">Number of observations used in unstratified cross validation.</meta>
+            <column name="cv_unstratified_num_observations" not-null="false" />
+        </property>
+	<property name="unstratifiedNumParameters" type="integer">
+		<meta attribute="field-description">Number of parameters used in unstratified cross validation.</meta>
+            <column name="cv_unstratified_num_parameters" not-null="false" />
+        </property>
+        <property name="cvStatus" type="string">
+            <column name="cv_status" not-null="false" length="100"/>
+        </property>
+	<property name="cvStatusDescription" type="string">
+            <column name="cv_status_description" not-null="false" length="250"/>
+        </property>
+        <property name="numSkills" type="integer">
+            <column name="num_skills" not-null="false" />
+        </property>
+
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+        	<meta attribute="field-description">Dataset associated with this item.</meta>
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+        
+        <set name="skills" inverse="true">
+        	<meta attribute="field-description">Collection of skills associated with this skill model.</meta>
+            <key>
+                <column name="skill_model_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SkillItem" />
+        </set>
+        <set name="alphaScores" inverse="true">
+        	<meta attribute="field-description">Collection of alpha scores for all students encompassed by the model.</meta>
+            <key>
+                <column name="skill_model_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.AlphaScoreItem" />
+        </set>
+    </class>
+</hibernate-mapping>

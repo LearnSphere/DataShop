@@ -1,0 +1,122 @@
+<div class="topic" id="help-learning-curve-line-graph">
+    <h2>Learning Curve / Line Graph</h2>
+    <p>A learning curve visualizes changes in student performance over time.
+    The line graph displays opportunities across the x-axis,
+    and a measure of student performance along the y-axis. A good learning curve
+    reveals improvement in student performance as opportunity count
+    (i.e., practice with a given knowledge component) increases.</p>
+    
+    <p>Load a learning curve by clicking a graph thumbnail.</p>
+
+    <p>Explore a single point on the curve by clicking it. Navigate
+    points on the curve by using the previous- and next-opportunity arrows 
+    (<img src="images/arrow-left.png" /> and 
+    <img src="images/arrow-right.png" />) beneath the graph.</p>
+
+    <p>To see values for observations composing a single point, first select a point, 
+    then choose a unit of analysis&mdash;KCs, problems, steps, or students. Values shown 
+    in the table are averaged by unit of analysis, and exclude dropped or null observations.</p>
+
+<h3>Learning Curve types</h3>
+    <p>You can view a learning curve <span class="screen-item">by student
+    </span>or <span class="screen-item">by knowledge component (KC)</span>.
+    <table>
+    <tbody>
+    <tr>
+        <th>By Knowledge Component</th>
+        <td>View an average across all selected KCs, or view a curve for an
+        individual KC. In the "all selected KCs" graph, each point 
+        is an average across data for all selected students and KCs.
+        In a graph for an individual KC, each point is an average across 
+        all selected students.</td>
+    </tr>
+    <tr>
+        <th>By Student</th>
+        <td>
+        View an average across all selected students, or view a curve for an
+        individual student. In the "all selected students" graph, each point 
+        is an average across data for all selected students and KCs.
+        In a graph for an individual student, each point is an average across 
+        all selected KCs.</td>
+    </tr>
+    </tbody>
+    </table>
+
+    <p>Toggle the inclusion of knowledge components or students by 
+    clicking their name in the navigation boxes on the left.</p>
+
+    <p>Change the measure of student performance by
+    hovering over the y-axis on the graph and clicking the new
+    measure.</p>
+    
+    <p>Measures of student performance are described below. Regardless
+    of metric, each point on the graph is an average across all selected
+    knowledge components and students.</p>
+    
+    <table>
+        <thead>
+            <tr><th>Measure</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Assistance Score</th>
+                <td>The number of incorrect attempts plus hint requests for a 
+                given opportunity</td>
+            </tr>
+            <tr>
+                <th>Error Rate</th>
+                <td>The percentage of students that asked for a hint or were incorrect <i>on their
+                first attempt</i>. For example, an error rate of 45% means that 45% of students
+                asked for a hint or performed an incorrect action on their first attempt. Error rate
+                differs from assistance score in that it provides data based only on the first
+                attempt. As such, an error rate provides no distinction between a student that made
+                multiple incorrect attempts and a student that made only one.</td>
+            </tr>
+            <tr>
+                <th>Number of Incorrects</th>
+                <td>The number of incorrect attempts for each opportunity</td>
+            </tr>
+            <tr>
+                <th>Number of Hints</th>
+                <td>The number of hints requested for each opportunity</td>
+            </tr>
+            <tr>
+                <th>Step Duration</th>
+                <td>The elapsed time of a step in seconds, calculated by adding all of the
+                durations for transactions that were attributed to the step.</td>
+            </tr>
+            <tr>
+                <th>Correct Step Duration</th>
+                <td>The step duration if the first attempt for the step was correct. 
+                The duration of time for which students are "silent", with
+                respect to their interaction with the tutor, before they complete the step
+                correctly. This is often called "reaction time" (on correct trials) in the 
+                psychology literature. If the first attempt is an error (incorrect attempt
+                or hint request), the observation is dropped.</td>
+            </tr>
+            <tr>
+                <th>Error Step Duration</th>
+                <td>The step duration if the first attempt for the step was an error (hint
+                request or incorrect attempt). If the first attempt is a correct attempt, 
+                the observation is dropped.</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h3>Learning curve categorization</h3>
+    <p>DataShop categorizes learning curves (KCs) into one of <a href="help?page=learningCurve#lc-cat">four 
+    categories</a>. To turn on categorization, select the checkbox <strong>Categorize Curves</strong>. 
+    Learning curve categorization is only available for Error Rate learning curves displayed by KC (not student) 
+    when only one sample is selected.</strong></p>
+    
+    <h3>Save a set of knowledge components</h3>
+    <p>Select/deselect knowledge components by clicking their titles in the navigation menu. Then
+    click the <span class="screen-item">wrench icon</span><img src="images/wrench.png"
+        alt="Manage KC Sets icon" /> button to open the dialog to save the set. It's automatically shared with
+    collaborators.</p>
+
+<!--<p>In any view, you can customize the students and knowledge
+    components that are included in the graph.</p>-->
+    <span style="display:none" class="helpTopicLink"><a href="help?page=learningCurve"><img src="images/page_white_text.png" /> <span>Read 
+    more about learning curves.</span></a></span>  
+</div>

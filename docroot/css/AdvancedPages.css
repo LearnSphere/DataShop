@@ -1,0 +1,159 @@
+#contents a:link {
+    text-decoration:underline;
+}
+#contents a:visited {
+    color: #333;    
+}
+#metrics-report h1, #web-services h1, #logging-activity h1 {
+    margin-top: 15px;
+    font-size:1.2em;
+}
+
+#metrics-report h2, #web-services h2, #logging-activity h2 {
+    font-size:1em;
+    margin-bottom:0;
+}
+
+#logging-activity h3 {
+    font-size:.9em;
+}
+#logging-activity p, #web-services p {
+    font-size:.8em
+}
+#logging-activity .description {
+    color:#666;
+}
+#logging-activity ul {
+    font-size:.8em;    
+    list-style-type: square;
+}
+#logging-activity table {
+    margin:0.6em 0 2em 0;
+    padding: 0;
+    border-collapse:collapse;
+}
+#logging-activity table th {
+    padding:6px 2px 5px 5px;
+    color:#333;
+    background-color:#e0e7ef;
+    font-size:70%;
+    font-weight:bold;
+    text-align:left;
+}
+#logging-activity table td {
+    width: 320px;
+    padding: 4px 10px;
+    color: #42525A;
+    font-size: 70%;
+    border-bottom:1px solid #cfcfcf;
+}
+#logging-activity table tr.odd td {
+    color: #42525A;
+    background-color: #efefef;
+}
+#usage-guidelines {
+    margin:1em 0 1em 2em;
+    padding:0 1em 0.4em;
+    width:52em;
+    font-size:1em;
+}
+#usage-guidelines h3 {
+    margin-top:1em;
+}
+#web-services-tos {
+    width: 40em;
+    height: 15em;
+    overflow: scroll;
+    border:1px solid gray;
+    margin-left: 1em;
+    padding: 12px;
+}
+#web-services-tos h1 {
+    font-size:1em;
+}
+#web-services-tos h2 {
+    font-size:;
+}
+#access-key-table {
+    font-size:80%;
+    margin:0 0 5px 10px;
+    padding: 0;
+    border-collapse:collapse;
+}
+#access-key-table th {
+    padding:6px 2px 5px 5px;
+    color:#333;
+    background-color:#e0e7ef;
+    font-weight:bold;
+    text-align:left;
+}
+#access-key-table td {
+    width: 15em;
+    padding: 4px 6px;
+    color: #42525A;
+    border-bottom:1px solid #cfcfcf;
+}
+#create_access_key_button {
+    margin-left:10px;
+}
+#request-button-div {
+    margin-left:1em;
+    margin-top:.5em;
+}
+#request-thank-you {
+    margin:1em 0 1em 2em;
+    padding:1em;
+    width:57em;
+}
+.note {
+    font-size:90%;
+    margin-top:0;
+    margin-bottom:0;
+    color:#666;
+}
+
+#metrics-report h3 {
+    font-size:.9em;
+}
+#metrics-report p, #web-services p {
+    font-size:.8em
+}
+#metrics-report .description {
+    color:#666;
+}
+#metrics-report ul {
+    font-size:.8em;    
+    list-style-type: square;
+}
+#metrics-report table {
+    margin:0.6em 0 2em 0;
+    padding: 0;
+    border-collapse:collapse;
+}
+#metrics-report table td {text-align:right}
+#metrics-report table tr .col1 {
+    width:10em;
+    text-align:left
+}
+#metrics-report table th {
+    padding:6px 2px 5px 5px;
+    color:#333;
+    background-color:#e0e7ef;
+    font-size:70%;
+    font-weight:bold;
+    text-align:right;
+}
+#metrics-report table td {
+    width: 320px;
+    padding: 4px 10px;
+    color: #42525A;
+    font-size: 70%;
+    border-bottom:1px solid #cfcfcf;
+}
+#metrics-report table tr .even {
+    color: #42525A;
+    background-color: #efefef;
+}
+#metrics-report table .total td {
+    font-weight:bold;
+}

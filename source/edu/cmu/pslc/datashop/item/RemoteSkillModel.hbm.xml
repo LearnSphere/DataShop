@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 12706 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2015-10-20 09:09:25 -0400 (Tue, 20 Oct 2015) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.RemoteSkillModelItem" table="remote_skill_model">
+        <id name="id" type="long">
+            <column name="remote_skill_model_id" />
+            <generator class="native" />
+        </id>
+        <property name="skillModelName" type="string">
+            <column name="skill_model_name" length="50" not-null="true" />
+        </property>
+        <property name="aic" type="double">
+            <column name="aic" precision="22" scale="0" />
+        </property>
+        <property name="bic" type="double">
+            <column name="bic" precision="22" scale="0" />
+        </property>
+        <property name="logLikelihood" type="double">
+            <column name="log_likelihood" precision="22" scale="0" />
+        </property>
+        <property name="lfaStatus" type="string">
+            <column name="lfa_status" not-null="false" length="100"/>
+        </property>
+        <property name="lfaStatusDescription" type="string">
+            <column name="lfa_status_description" not-null="false" length="250"/>
+        </property>
+        <property name="numObservations" type="integer">
+            <column name="num_observations" not-null="false" />
+        </property>
+	<property name="cvStudentStratifiedRmse" type="double">
+            <column name="cv_student_stratified_rmse" precision="22" scale="0" />
+        </property>
+        <property name="cvStepStratifiedRmse" type="double">
+            <column name="cv_step_stratified_rmse" precision="22" scale="0" />
+        </property>
+        <property name="cvUnstratifiedRmse" type="double">
+            <column name="cv_unstratified_rmse" precision="22" scale="0" />
+        </property>
+        <property name="unstratifiedNumObservations" type="integer">
+            <column name="cv_unstratified_num_observations" not-null="false" />
+        </property>
+	<property name="unstratifiedNumParameters" type="integer">
+            <column name="cv_unstratified_num_parameters" not-null="false" />
+        </property>
+        <property name="cvStatus" type="string">
+            <column name="cv_status" not-null="false" length="100"/>
+        </property>
+	<property name="cvStatusDescription" type="string">
+            <column name="cv_status_description" not-null="false" length="250"/>
+        </property>
+        <property name="numSkills" type="integer">
+            <column name="num_skills" not-null="false" />
+        </property>
+
+        <many-to-one name="remoteDatasetInfo" class="edu.cmu.pslc.datashop.item.RemoteDatasetInfoItem">
+            <column name="remote_dataset_info_id" not-null="true" />
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

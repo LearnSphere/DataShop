@@ -1,0 +1,4 @@
+/* paginator horizontal controls should be lower when the download info is displayed */
+.data_grid_container .horizontal_controls {
+	top:62px;
+}

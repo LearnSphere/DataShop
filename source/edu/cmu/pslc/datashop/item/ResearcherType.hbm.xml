@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2013
+ All Rights Reserved
+
+ $Revision: 12463 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2015-07-02 13:28:54 -0400 (Thu, 02 Jul 2015) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ResearcherTypeItem" table="researcher_type">
+        <id name="id" type="integer">
+            <column name="researcher_type_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="label" type="string">
+            <column name="label" length="255" unique="true" />
+        </property>
+
+        <property name="typeOrder" type="integer">
+            <column name="type_order" />
+        </property>
+
+        <property name="parentTypeId" type="integer">
+            <column name="parent_type_id" />
+        </property>
+
+        <set name="researcherTypeResearchGoalMaps" inverse="true">
+            <key>
+                <column name="researcher_type_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ResearcherTypeResearchGoalMapItem" />
+        </set>
+
+    </class>
+</hibernate-mapping>

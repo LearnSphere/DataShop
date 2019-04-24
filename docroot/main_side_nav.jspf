@@ -1,0 +1,92 @@
+<%@ include file="/doctype.jspf" %>
+<!--
+  Carnegie Mellon University, Human Computer Interaction Institute
+  Copyright 2012
+  All Rights Reserved
+-->
+<%
+// Author: Alida Skogsholm
+// Version: $Revision: 14736 $
+// Last modified by: $Author: mkomisin $
+// Last modified on: $Date: 2018-02-01 07:51:12 -0500 (Thu, 01 Feb 2018) $
+// $KeyWordsOff: $
+//
+%>
+<%@page contentType="text/html"%>
+
+<%
+    // For slaves, find FAQ locally, otherwise, go to production.
+    String datashopHrefStr = "http://pslcdatashop.org/";
+    if (DataShopInstance.isSlave()) {
+        datashopHrefStr = "";
+    }
+%>
+
+<td id="main-side-nav-cell">
+<div id="main-side-nav-box">
+    <% if (remoteUser != null) { %>
+    <h1>My Data</h1>
+        <ul>
+            <li><a href="index.jsp?datasets=mine" id="MyDatasets">My Datasets</a></li>
+            <li><a href="<%=uploadDatasetHref %>" id="upload-dataset-navlink">Upload a dataset</a></li>
+            <li><a href="<%=createProjectHref %>" id="create-project-navlink">Create a project</a></li>
+            <li id="accessRequestsTabHome">
+                <a href="AccessRequests" id="AccessRequests">Access Requests</a>
+                    <%=activityNotificationString %></li>
+            <li><a href="AccountProfile" id="AccountProfile">My Profile</a></li>
+        </ul>
+    <% } %>
+    <h1>Explore</h1>
+        <ul>
+            <li><a href="index.jsp?datasets=public" id="PublicDatasets">Public Datasets</a></li>
+            <li><a href="index.jsp?datasets=other" id="OtherDatasets">Private Datasets</a></li>
+            <li><a href="ExternalTools" id="ExternalTools">External Tools</a></li>
+            <li><a href="ResearchGoals" id="ResearchGoals">What can I do?</a></li>
+            <li><a href="<%=workflowsHref %>" id="ManageWorkflows" target="_blank">Workflows</a></li>
+
+        </ul>
+    <h1>Learn More</h1>
+        <ul>
+            <li><a href="help" id="doc-navlink">Documentation</a></li>
+            <li><a href="about" id="about-navlink">About DataShop</a></li>
+            <li><a href="<%=datashopHrefStr %>about/faq.html" id="faq-navlink">FAQ</a></li>
+        </ul>
+    <% if (remoteUser != null) { %>
+    <h1>Advanced</h1>
+        <ul>
+            <li><a href="MetricsReport" id="metrics-report-navlink">Metrics Report</a></li>
+            <li><a href="WebServicesCredentials" id="web-services-navlink">Web Services</a></li>
+            <li><a href="LoggingActivity" id="logging-activity-navlink">Logging Activity</a></li>
+            <% if (adminUserFlag || hasTermsManagerRole) { %>
+            <li><a href="ManageTerms" id="manage-terms-navlink">Manage Terms</a></li>
+            <% } %>
+            <% if (adminUserFlag || hasResearchGoalEditRole) { %>
+            <li><a href="ResearchGoalsEdit" id="edit-rg-navlink">Edit Research Goals</a></li>
+            <% } %>
+        </ul>
+    <% } %>
+    <% if (adminUserFlag || hasResearchManagerRole) { %>
+    <h1>Admin</h1>
+        <ul>
+            <% if (adminUserFlag) { %>
+               <li><a id="manage-users-navlink" href="ManageUsers">Manage Users</a></li>
+               <li><a id="manage-instance-navlink" href="ManageInstance">Manage Instance</a></li>
+               <li><a id="manage-components-navlink" href="ManageComponents">Tigris Components</a></li>
+               <li><a id="import-queue-navlink" href="ImportQueue">Import Queue</a></li>
+            <% } %>
+            <li><a id="irb-review-navlink"   href="IRBReview">IRB Review</a></li>
+            <li><a id="all-irbs-navlink"     href="IRBReview?all">All IRBs</a></li>
+            <% if (adminUserFlag) { %>
+               <li><a id="admin-domain-navlink"
+                      href="AdminDomainLearnLab">Set Domain/LearnLab</a></li>
+               <li><a id="manage-pc-navlink"
+                      href="ManageProblemContent">Manage Problem Content</a></li>
+            <% } %>
+        </ul>
+   <% } %>
+</div>
+</td>
+
+<!-- Un-populated div needed for modal windows using jQuery -->
+<div id="requestEditRoleDialog" class="requestEditRoleDialog"></div>
+<div id="requestPendingDialog" class="requestPendingDialog"></div>

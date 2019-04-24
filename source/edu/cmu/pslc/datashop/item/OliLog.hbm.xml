@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 7507 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2012-03-13 13:36:42 -0400 (Tue, 13 Mar 2012) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.OliLogItem" table="oli_log">
+    	<meta attribute="class-description">Represents a OLI Log item in the system.</meta>
+        <id name="id" type="string">
+            <column name="guid" length="32" /> 
+            <generator class="assigned" />
+        </id>
+        <property name="importedTime" type="timestamp">
+            <column name="imported_time" length="19" />
+        </property>
+        <property name="importedFlag" type="string">
+            <column name="imported_flag"  />
+        </property>
+        <property name="serverReceiptTime" type="timestamp">
+            <column name="server_receipt_time" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

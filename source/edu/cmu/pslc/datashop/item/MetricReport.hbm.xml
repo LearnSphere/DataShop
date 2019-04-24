@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2010
+ All Rights Reserved
+
+ $Revision: 12671 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2015-10-08 09:36:42 -0400 (Thu, 08 Oct 2015) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.MetricReportItem" table="metric_report">
+    	<meta attribute="class-description">A metric report object represents Metric_Report table in database.</meta>
+        <id name="id" type="integer">
+        	<meta attribute="field-description">Database generated unique Id for this report.</meta>
+            <column name="metric_report_id" />
+            <generator class="native" />
+        </id>        
+        <property name="time" type="timestamp">
+        	<meta attribute="field-description">Time when this report is generated.</meta>
+            <column name="time" not-null="true" />
+        </property>        
+
+        <many-to-one name="remoteInstance" class="edu.cmu.pslc.datashop.item.RemoteInstanceItem">
+            <meta attribute="field-description">Remote instance.</meta>
+            <column name="remote_instance_id" />
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

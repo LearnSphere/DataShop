@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 2960 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2006-06-19 16:21:21 -0400 (Mon, 19 Jun 2006) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.CogStepSeqItem" table="cog_step_seq">
+    	<meta attribute="class-description">Represents a single row in the cognitive step sequence table.</meta>
+
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique id for this item.</meta>
+            <column name="cog_step_seq_id" />
+            <generator class="native" />
+        </id>
+ 
+        <many-to-one name="cognitiveStep" class="edu.cmu.pslc.datashop.item.CognitiveStepItem">
+        	<meta attribute="field-description">Cognitive Step associated with this item.</meta>
+            <column name="cognitive_step_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="interpretation" class="edu.cmu.pslc.datashop.item.InterpretationItem">
+        	<meta attribute="field-description">Interpretation associated with this item.</meta>
+            <column name="interpretation_id" not-null="true" />
+        </many-to-one>
+
+        <property name="position" type="integer">
+        	<meta attribute="field-description">The position of this step within the sequence.</meta>
+            <column name="position" />
+        </property>
+        
+        <property name="correctFlag" type="boolean">
+       	    <meta attribute="field-description">Flag indicating whether this is a correct sequence.</meta>
+            <column name="correct_flag" not-null="true" />
+        </property>
+
+    </class>
+</hibernate-mapping>

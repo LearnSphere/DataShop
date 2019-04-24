@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 14214 $
+ Last modified by - $Author: hcheng $
+ Last modified on - $Date: 2017-07-06 14:48:39 -0400 (Thu, 06 Jul 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.learnsphere.analysis.moocdb.item.MOOCdbItem" table="moocdbs">
+    <meta attribute="class-description">Represents a single MOOCdb instance.</meta>
+        <id name="id" type="long">
+        <meta attribute="field-description">Database generated unique Id for this MOOCdb.</meta>
+            <column name="moocdb_id" />
+            <generator class="native" />
+        </id>
+        <property name="MOOCdbName" type="string">
+            <meta attribute="field-description">MOOCdb name.</meta>
+            <column name="moocdb_name" />
+        </property>
+        <property name="createdBy" type="string">
+            <meta attribute="field-description">User id of the creator.</meta>
+            <column name="created_by" />
+        </property>
+        <property name="username" type="string">
+            <meta attribute="field-description">Username to access db.</meta>
+            <column name="username" />
+        </property>
+        <property name="password" type="string">
+            <meta attribute="field-description">Password to access db.</meta>
+            <column name="password" />
+        </property>
+        <property name="currentProgress" type="string">
+            <meta attribute="field-description">current progress of this MOOCdb.</meta>
+            <column name="current_progress" />
+        </property>
+        <property name="hashMappingFile" type="string">
+            <meta attribute="field-description">hashing mapping sql backup file of this MOOCdb.</meta>
+            <column name="hash_mapping_file" />
+        </property>
+        <property name="hashMappingFileMd5HashValue" type="string">
+            <meta attribute="field-description">The md5 hash value of hashing mapping sql backup file of this MOOCdb.</meta>
+            <column name="hash_mapping_file_md5_hash_value" />
+        </property>
+        <property name="generalFile" type="string">
+            <meta attribute="field-description">general sql backup file of this MOOCdb.</meta>
+            <column name="general_file" />
+        </property>
+        <property name="generalFileMd5HashValue" type="string">
+            <meta attribute="field-description">the md5 hash value for general sql backup file of this MOOCdb.</meta>
+            <column name="general_file_md5_hash_value" />
+        </property>
+        <property name="forumFile" type="string">
+            <meta attribute="field-description">forum sql backup file of this MOOCdb.</meta>
+            <column name="forum_file" />
+        </property>
+        <property name="forumFileMd5HashValue" type="string">
+            <meta attribute="field-description">the md55 hash value for forum sql backup file of this MOOCdb.</meta>
+            <column name="forum_file_md5_hash_value" />
+        </property>
+        <property name="moocdbFile" type="string">
+            <meta attribute="field-description">moocdb sql backup file of this MOOCdb.</meta>
+            <column name="moocdb_file" />
+        </property>
+        <property name="moocdbFileMd5HashValue" type="string">
+            <meta attribute="field-description">the md55 hash value for moocdb sql backup file of this MOOCdb.</meta>
+            <column name="moocdb_file_md5_hash_value" />
+        </property>
+        <property name="lastProgress" type="string">
+            <meta attribute="field-description">the progress of last process of this MOOCdb.</meta>
+            <column name="last_progress" />
+        </property>
+        <property name="lastProgressEndTimestamp" type="timestamp">
+        <meta attribute="field-description">The timestamp of the last rocess of the MOOCdb.</meta>
+            <column name="last_progress_end_timestamp" length="19" />
+        </property>
+        <property name="earliestSubmissionTimestamp" type="timestamp">
+        <meta attribute="field-description">The earliet timestamp found in submission table of MOOCdb.</meta>
+            <column name="earliest_submission_timestamp" length="19" />
+        </property>
+        <property name="startTimestamp" type="timestamp">
+        <meta attribute="field-description">The timestamp for when this MOOCdb created.</meta>
+            <column name="start_timestamp" length="19" />
+        </property>
+        <property name="endTimestamp" type="timestamp">
+        <meta attribute="field-description">The timestamp for the end of processing for this MOOCdb.</meta>
+            <column name="end_timestamp" length="19" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

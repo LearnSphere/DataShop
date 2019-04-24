@@ -1,0 +1,31 @@
+<!--
+  Carnegie Mellon University, Human Computer Interaction Institute
+  Copyright 2019
+  All Rights Reserved
+-->
+<%
+// Author: Cindy Tipper
+// Version: $Revision: 13213 $
+// Last modified by: $Author: ctipper $
+// Last modified on: $Date: 2016-05-02 16:48:45 -0400 (Mon, 02 May 2016) $
+// $KeyWordsOff: $
+//
+%>
+
+<!-- Load an object that contains the questions for the session starting interview -->
+
+
+<script>
+
+
+let mathLearning_SessionStart = {
+        id: "mathLearning_SessionStart",
+        type: "textarea",
+        question_text: "How is %studentFirstName%\'s math learning going in school?",
+        is_background: false
+};
+
+
+
+var start_questions = [mathLearning_SessionStart];
+</script>

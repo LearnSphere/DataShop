@@ -1,0 +1,91 @@
+  /*
+   fix to bridle the table, prevents overflowing of the viewport
+   works in IE7b2, too. Special thanks to Ingo Chao (satzansatz.de) for the fix!
+  */
+#exportPreview {
+	float: left; 
+}
+#contents {
+	zoom: 1;
+}
+#sampleManager { 
+	zoom:1;
+}
+#dataPreview {
+	float:left;
+}
+/* paginator horizontal controls should be lower when the download info is displayed */
+.data_grid_container .horizontal_controls {
+	top:65px;
+}
+
+.data_grid_container {
+    height:100%;
+}
+
+/** VERTICAL CONTROLS **/
+.data_grid_container .vertical_controls {
+    height:200px;
+}
+
+
+
+/* LC page, Step Rollup Export */
+
+#learningCurves #exportPreviewTable {
+	width:800px;
+	border-top:none;
+	white-space:nowrap;
+	font-size:11px;
+}
+#learningCurves #exportPreviewTable span {
+	padding:0;
+	margin:0;
+	white-space: nowrap;
+}
+#learningCurves #exportPreviewTable td.cell {
+	padding:1px;
+	margin:0;
+}
+#learningCurves #viewPort {width:100%}
+#learningCurves #exportHeaderTable{
+	font-size:11px;
+}
+#learningCurves #exportPreviewTable_container {}
+#learningCurves #exportPreviewTable_viewport {}
+#exportPreviewTable th {
+	padding:0;
+	margin:0;
+}
+/* Performance Profiler 
+*  Make entire span clickable (not just text) by setting width
+*/
+#popMenuDomainSelection span {width:12em}
+#popMenuRangeSelection span {width:20em}
+#cutoffMins {zoom:1}
+
+/* Message popup positioning */
+#messagePopup {
+	position: absolute;
+}
+
+.infoDiv {
+	background:white;
+	border:1px solid #666;
+	padding:0;
+}
+
+ul.interfaceList li a.multiSelect {
+	background: white url(../images/checkboxes_web.png) no-repeat scroll bottom left;
+	padding-left:20px;
+	font-weight:normal;
+	zoom:1;
+}
+/* Content header. Double-margin bug. */
+#contentHeaderCol1, #contentHeaderCol2 {
+	display:inline;
+}
+#contentHeader1Col {
+	display:inline;
+}
+

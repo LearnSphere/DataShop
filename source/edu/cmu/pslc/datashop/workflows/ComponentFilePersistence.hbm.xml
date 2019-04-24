@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2016
+ All Rights Reserved
+
+ Author: Mike Komisin
+ $Revision:  $
+ Last modified by - $Author:  $
+ Last modified on - $Date:  $
+ $KeyWordsOff: $
+-->
+
+  <class name="edu.cmu.pslc.datashop.workflows.ComponentFilePersistenceItem" table="component_file_persistence">
+         <id name="id" type="long">
+                <meta attribute="field-description">Database generated unique Id for this class.</meta>
+            <column name="component_file_id" />
+            <generator class="native" />
+        </id>
+
+        <many-to-one name="workflow" class="edu.cmu.pslc.datashop.workflows.WorkflowItem">
+            <meta attribute="field-description">The workflow for this import.</meta>
+            <column name="workflow_id" not-null="true" />
+        </many-to-one>
+        <property name="componentId" type="string">
+            <meta attribute="field-description">The component id</meta>
+            <column name="component_id" length="32" not-null="false" />
+        </property>
+
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+            <meta attribute="field-description">The optional dataset for this import.</meta>
+            <column name="dataset_id" not-null="false" />
+        </many-to-one>
+
+        <many-to-one name="file" class="edu.cmu.pslc.datashop.workflows.WorkflowFileItem">
+            <meta attribute="field-description">The file for this import.</meta>
+            <column name="file_id" not-null="false" />
+        </many-to-one>
+
+
+
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<h2>Step List</h2>
+
+<p>The step list table describes all problems in a dataset. 
+It provides a detailed listing of
+problem hierarchy (the unit and section divisions that contain the
+problem) and composition (the steps that make up a problem). Rows in the
+step list table are ordered alphabetically by problem hierarchy, 
+problem name, and problem step.</p>
+
+<p>The column headings are described in detail below.</p>
+
+<dl>
+    <dt>Problem Hierarchy</dt>
+    <dd>The curriculum location in which the problem appears. The depth of the hierarchy can
+    vary between datasets. For example, some datasets specify only a unit and section curriculum,
+    while others specify a module, unit, and section. In terms of the DataShop logging format, the
+    "problem hierarchy" is the list of <code>type</code> - <code>name</code> values contained in the
+    dataset <code>level</code> element of each context message. (See the <a 
+        href="/dtd/guide/context_message.html">context_message</a>
+    element in the Tutor Message guide for a description of how this data is logged).</dd>
+    <dt>Problem Name</dt>
+        <dd>The name of the problem.</dd>
+    <dt>Step Name</dt>
+        <dd>The name of the step within the problem, described as a
+        interface selection and action. Multiple steps commonly appear 
+        within a problem.</dd>
+</dl>
+
+<h4>To export the step list table:</h4>
+<ol>
+    <li>Click the <strong>Export Step List</strong> button. Your browser will
+    prompt you to select a folder in which to save the file.</li>
+    <li>Choose a location to save the file. The file is saved as a 
+    tab-delimited text file, which you can open in a spreadsheet editor. 
+    </li>
+</ol>
+<p class="clearFloat"></p>

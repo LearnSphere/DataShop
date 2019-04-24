@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 13000 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2016-03-23 14:46:19 -0400 (Wed, 23 Mar 2016) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.discoursedb.item.DataSourceInstanceItem" table="data_source_instance">
+        <id name="id" type="long">
+          <column name="id_data_source_instance" />
+          <generator class="native" />
+        </id>
+        <property name="created" type="timestamp">
+          <column name="entity_created" length="19"/>
+        </property>
+        <property name="modified" type="timestamp">
+          <column name="entity_modified" length="19"/>
+        </property>
+        <property name="version" type="long">
+          <column name="entity_version" length="20"/>
+        </property>
+        <property name="datasetName" type="string">
+          <column name="dataset_name" length="255" />
+        </property>
+        <property name="entitySourceDescriptor" type="string">
+          <column name="entity_source_descriptor" length="255" />
+        </property>
+        <property name="entitySourceId" type="string">
+          <column name="entity_source_id" length="255" />
+        </property>
+        <property name="sourceType" type="string">
+          <column name="source_type" length="255" />
+        </property>
+        <property name="sourceId" type="long">
+          <column name="source_id" length="20"/>
+        </property>
+        <many-to-one name="dataSources" class="edu.cmu.pslc.datashop.discoursedb.item.DataSourcesItem">
+            <column name="fk_sources" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

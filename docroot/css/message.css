@@ -1,0 +1,39 @@
+.error_style {
+    padding:.8em;
+    margin-bottom: 1em;
+    border: 2px solid #ddd;
+    font-weight: bold;
+    font-size: 14px;
+    width: 400px;
+    text-align: center;
+    margin: auto;
+    background: #FBE3E4;
+    color: #8a1f11;
+    border-color: #FBC2C4;
+}
+.success_style {
+    padding:.8em;
+    margin-bottom: 10px;
+    border: 2px solid #ddd;
+    font-weight: bold;
+    font-size: 14px;
+    width: 400px;
+    text-align: center;
+    margin: auto;
+    background: #E6EFC2;
+    color: #264409;
+    border-color: #C6D880;
+}
+.warn_style {
+    padding:.8em;
+    margin-bottom: 1em;
+    border: 2px solid #ddd;
+    font-weight: bold;
+    font-size: 14px;
+    width: 400px;
+    text-align: center;
+    margin: auto;
+    background: #FFF6BF;
+    color: #514721;
+    border-color: #FFD324;
+}

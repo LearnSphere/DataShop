@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2013
+ All Rights Reserved
+
+ Author: Alida Skogsholm
+ $Revision: 13540 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2016-09-22 14:16:36 -0400 (Thu, 22 Sep 2016) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ImportQueueItem" table="import_queue">
+
+        <id name="id" type="integer">
+            <column name="import_queue_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="queueOrder" type="integer">
+            <column name="queue_order"/>
+        </property>
+
+        <property name="datasetName" type="string">
+            <column name="dataset_name" length="100" not-null="true" />
+        </property>
+
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+
+        <property name="uploadedTime" type="timestamp">
+            <column name="uploaded_time" length="19" not-null="true" />
+        </property>
+
+        <property name="format" type="string">
+            <column name="format" length="13"/>
+        </property>
+
+        <property name="status" type="string">
+            <column name="status" length="8" not-null="true" />
+        </property>
+
+        <property name="estImportDate" type="timestamp">
+            <column name="est_import_date"/>
+        </property>
+
+        <property name="numErrors" type="integer">
+            <column name="num_errors"/>
+        </property>
+
+        <property name="numIssues" type="integer">
+            <column name="num_issues"/>
+        </property>
+
+        <property name="verificationResults" type="string">
+            <column name="verification_results" length="65535" />
+        </property>
+
+        <property name="numTransactions" type="long">
+            <column name="num_transactions"/>
+        </property>
+
+        <property name="lastUpdatedTime" type="timestamp">
+            <column name="last_updated_time" length="19" not-null="true" />
+        </property>
+
+        <property name="anonFlag" type="boolean">
+            <column name="anon_flag" />
+        </property>
+
+        <property name="displayFlag" type="boolean">
+            <column name="display_flag" />
+        </property>
+
+        <property name="importStatusId" type="integer">
+            <column name="import_status_id" />
+        </property>
+
+        <property name="domainName" type="string">
+            <column name="domain_name" length="8"/>
+        </property>
+
+        <property name="learnlabName" type="string">
+            <column name="learnlab_name" length="10"/>
+        </property>
+
+        <property name="studyFlag" type="string">
+            <column name="study_flag" not-null="true" length="20"/>
+        </property>
+
+        <property name="fromExistingDatasetFlag" type="boolean">
+            <column name="from_existing_dataset_flag" />
+        </property>
+
+        <many-to-one name="project" class="edu.cmu.pslc.datashop.item.ProjectItem">
+            <column name="project_id" />
+        </many-to-one>
+
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+            <column name="dataset_id" />
+        </many-to-one>
+
+        <many-to-one name="file" class="edu.cmu.pslc.datashop.item.FileItem">
+            <column name="file_id" />
+        </many-to-one>
+
+        <many-to-one name="uploadedBy" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="uploaded_by" not-null="true" />
+        </many-to-one>
+
+
+        <!-- Sample to dataset convenience fields -->
+
+        <property name="includeUserKCMs" type="boolean">
+            <column name="s2d_include_user_kcms" />
+        </property>
+
+        <property name="adtlDatasetNotes" type="string">
+            <column name="dataset_notes" length="1024" />
+        </property>
+
+        <property name="srcDatasetId" type="integer">
+            <column name="s2d_src_dataset_id" />
+        </property>
+
+        <property name="srcDatasetName" type="string">
+            <column name="s2d_src_dataset_name" length="100" />
+        </property>
+
+        <property name="srcSampleId" type="integer">
+            <column name="s2d_src_sample_id" />
+        </property>
+
+        <property name="srcSampleName" type="string">
+            <column name="s2d_src_sample_name" length="100" />
+        </property>
+
+    </class>
+</hibernate-mapping>

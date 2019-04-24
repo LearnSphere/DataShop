@@ -1,0 +1,152 @@
+
+#samples-page {
+    min-width:920px;
+    width: 100%;
+}
+#samples-page-table {
+    width: 90%;
+    font-size: 80%;
+}
+#samples-page table {
+    border-collapse: collapse;
+}
+#samples-page table th {
+    padding: 4px 10px;
+    text-align:left;
+}
+#samples-page table td {
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+#samples-page table tr.history_row > td {
+    padding: 0;
+}
+#samples-page table tr.history_row .sample-history td {
+    padding: 3px 13px;
+    vertical-align: top;
+}
+#samples-page table tr.history_row .sample-history td.arFirstColumn,
+#samples-page table tr.history_row .sample-history td.arSecondColumn {
+    padding: 0;
+}
+#samples-page table tr.history_row .sample-history td.reason {
+    width: 400px;
+}
+#samples-page table td p {
+    margin: 0;
+}
+#samples-page-table tr .arFirstColumn {
+    width: 50px;
+    padding: 0px 0px;
+    text-align: center;
+}
+#samples-page-table th img {
+    vertical-align: text-top;
+}
+#samples-page table tr .arSecondColumn {
+    width: 60px;
+    padding: 0px 0px;
+    text-align:left;
+}
+#samples-page table tr .arSecondColumn img {
+    cursor: pointer;
+}
+#samples-page table .even {
+    background-color: #efefef;
+}
+#samples-page table .evenHistory {
+    color: #42525A;
+    background-color: #ffffff;
+}
+#samples-page-table a:link, #samples-page-table a:visited, #samples-page-table a:active {
+    text-decoration: underline;
+}
+.modifyAccessDiv .dead_link {
+    padding-left: 0;
+}
+.sample-history {
+}
+#no-samples-page {
+    width: 720px;
+    font-size: 13px;
+    font-style: italic;
+    padding: 12px 10px;
+    color: gray;
+}
+.charsLeft {
+    text-align:right;
+}
+.project-public-dialog-div {
+  text-decoration:none !important;
+}
+.boldface {
+    font-weight: bold;
+}
+.italicized {
+    font-style: italic;
+}
+.red {
+    color: #EE0000;
+    font-style: italic;
+}
+.termsDiv {
+    color: #666;
+    width: 505px;
+    height: 116px;
+    overflow-y: scroll;
+    background-color: whiteSmoke;
+    padding: 0px 6px 3px 6px;
+}
+
+
+.s2d-dialog-header {
+    font-weight: bold;
+    font-size: 16px;
+    color: #636363;
+}
+.s2d-dialog-bullet {
+    text-decoration: none;
+    font-size: 16px;
+    color: #636363;
+}
+
+.s2d-dialog-datasets a:link, .s2d-dialog-datasets a:visited, .s2d-dialog-datasets a:active {
+    padding-left: 5%;
+    font-size: 16px;
+    color: #37567f;
+    font-weight: bold;
+    outline: 0;
+    text-decoration: underline;
+}
+
+.project_public_link, .export_link, .request_link, .response_link, .newaccess_link, .dead_link {
+    padding: .4em 1em .4em 20px;
+    position: relative;
+}
+
+ul#icons {
+    margin: 0;
+    padding: 0;
+}
+ul#icons li {
+    margin: 1px;
+    position: relative;
+    padding: 4px 0;
+    cursor: pointer;
+    float: left;
+    list-style: none;
+}
+ul#icons span.ui-icon {
+    float: left;
+    margin: 0 4px;
+}
+.ui-state-default {
+    text-decoration: none;
+}
+#samples-page-table .hidden_td {
+    display: none
+}
+.historyHeader {
+    padding-left: 10%;
+}

@@ -1,0 +1,59 @@
+<div class="topic" id="help-profiler">
+    <h2>Performance Profiler</h2>
+    <p>The Performance Profiler is a multi-purpose report, something akin
+    to an educational researcher's Swiss Army Knife. With the Performance Profiler, 
+    you can view measures of:</p>
+    
+    <ul class="concise">
+        <li><a href="help?page=terms#error_rate" target="_blank">Error Rate (%)</a></li>
+        <li><a href="help?page=terms#assist_score" target="_blank">Assistance Score</a></li>
+        <li>Average Number of Incorrects</li>
+        <li>Average Number of Hints</li>
+        <li>Residual Error Rate Percentage (Predicted&minus;Actual)</li>
+        <li><a href="help?page=terms#step_duration">Step Duration (seconds)</a></li>
+        <li><a href="help?page=terms#correct_step_duration">Correct Step Duration (seconds)</a></li>
+        <li><a href="help?page=terms#error_step_duration">Error Step Duration (seconds)</a></li>
+    </ul>
+
+    <p>These measures can then be aggregated by:</p>
+    <ul class="concise">
+        <li>Problem</li>
+        <li>Step</li>
+        <li>Student</li>
+        <li>Knowledge Component</li>
+        <li>Problem hierarchy level (e.g., &ldquo;Unit&rdquo; or &ldquo;Section&rdquo;)</li>
+    </ul>
+    <p>Note that although these are aggregates, the measure (eg, Error Rate) is derived
+    at the step level. The aggregate is then just the mean of all values.</p>
+    
+    <h3>To change the measure (top axis):</h3>
+    <ol>
+        <li>Hover your cursor over the top axis label (the range selection). 
+        A pop-up menu will appear.</li>
+        <li>Select a new measure from the list.</li>
+    </ol>
+    <h3>To change the aggregation type (side axis):</h3>
+    <ol>
+        <li>Hover your cursor over the left-side axis label (the domain selection). 
+        A pop-up menu will appear.</li>
+        <li>Select a new aggregation type from the list. </li>
+    </ol>
+    <p>To see more detail on bars in the graph, hover over them with
+    your mouse.</p>
+    
+    <p>As with other reports in DataShop, your current view is based on
+    the selected sample, knowledge components, models, students, and problems.
+    Toggling any of these will cause the current view to update.</p>
+    
+    <h3>Comparing across samples</h3>
+    <p>If you select more than one sample, the Performance Profiler will render a graph for each
+    sample.</p>
+    <p>DataShop orders rows in the graphs based on the <span class="screen-item">Sort By</span> type
+    and the <span class="screen-item">Order</span> (ascending or descending), selected in the left-hand
+    navigation bar. <strong>Sorting occurs in each graph independently, so to compare the same
+    items across samples, select them in the navigation sidebar and/or create a <a
+        href="help?page=filteringData#kcsets">knowledge component set</a></strong>.</p>
+
+    <span class="helpTopicLink" style="display:none"><a href="help?page=perfProfiler"><img src="images/page_white_text.png" /> <span>Read 
+    more about the Performance Profiler</span></a></span>
+</div>

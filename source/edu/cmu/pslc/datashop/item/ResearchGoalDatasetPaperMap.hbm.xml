@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2013
+ All Rights Reserved
+
+ $Revision: 10435 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2013-12-19 10:07:17 -0500 (Thu, 19 Dec 2013) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ResearchGoalDatasetPaperMapItem"
+          table="research_goal_dataset_paper_map">
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.ResearchGoalDatasetPaperMapId">
+            <key-property name="researchGoalId" type="integer">
+                <column name="research_goal_id" />
+            </key-property>
+            <key-property name="datasetId" type="integer">
+                <column name="dataset_id" />
+            </key-property>
+            <key-property name="paperId" type="integer">
+                <column name="paper_id" />
+            </key-property>
+        </composite-id>
+
+        <many-to-one name="researchGoal" class="edu.cmu.pslc.datashop.item.ResearchGoalItem"
+                     update="false" insert="false">
+            <column name="research_goal_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem"
+                     update="false" insert="false">
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+
+        <many-to-one name="paper" class="edu.cmu.pslc.datashop.item.PaperItem"
+                     update="false" insert="false">
+            <column name="paper_id" not-null="true" />
+        </many-to-one>
+
+        <property name="paperOrder" type="integer">
+            <column name="paper_order" />
+        </property>
+    </class>
+</hibernate-mapping>

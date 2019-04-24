@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 10940 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2014-04-25 12:59:47 -0400 (Fri, 25 Apr 2014) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ProblemItem" table="problem">
+    	    	<meta attribute="class-description">A collections of subgoals that combine to make up a problem.</meta>
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique Id for this problem.</meta>
+            <column name="problem_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="datasetLevel" class="edu.cmu.pslc.datashop.item.DatasetLevelItem">
+        	<meta attribute="field-description">The Dataset Level that this problem exists in.</meta>
+            <column name="dataset_level_id" not-null="true" />
+        </many-to-one>
+        <property name="problemName" type="string">
+        	<meta attribute="field-description">Name of the problem as a string.</meta>
+            <column name="problem_name" />
+        </property>
+        <property name="problemDescription" type="string">
+        	<meta attribute="field-description">Description of the problem as a string.</meta>
+            <column name="problem_description" />
+        </property>
+        <property name="tutorFlag" type="string">
+            <meta attribute="field-description">Tutor, Test or Other.</meta>
+            <column name="tutor_flag" />
+        </property>
+        <property name="tutorOther" type="string">
+           <meta attribute="field-description">Description of where in between tutored and test this problem is.</meta>
+           <column name="tutor_other" />
+        </property>
+        <many-to-one name="pcProblem" class="edu.cmu.pslc.datashop.item.PcProblemItem">
+            <column name="pc_problem_id" />
+        </many-to-one>
+        <set name="subgoals" inverse="true">
+        	<meta attribute="field-description">Collection of Subgoals associated with this problem.</meta>
+            <key>
+                <column name="problem_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SubgoalItem" />
+        </set>
+        <set name="problemEvents" inverse="true">
+        	<meta attribute="field-description">Collection of problem events associated with this problem.</meta>
+            <key>
+                <column name="problem_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ProblemEventItem" />
+        </set>
+        <set name="cognitiveSteps" inverse="true">
+        	<meta attribute="field-description">Collection of cognitive steps associated with this problem.</meta>
+            <key>
+                <column name="problem_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.CognitiveStepItem" />
+        </set>
+    </class>
+</hibernate-mapping>

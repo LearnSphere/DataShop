@@ -1,0 +1,28 @@
+<div class="topic" id="help-kc-sets">
+    <h2>KC Sets</h2>
+    
+    <p>From the <span class="screen-item">Manage KC Sets</span> dialog, you can
+    save a set of currently selected KCs. (Selected KCs are indicated with checkmarks
+    next to their name in the navigation panel.) By saving a set, you'll be
+    able to load the set again at anytime, and share it with collaborators.</p>
+    
+    <p>You might create a set to:</p>
+    <ul>
+   <!-- <li>Remove a subset of students who didn't spend enough time with the
+        tutor</li>
+        <li>Remove test users who aren't really students</li>
+     -->
+        <li>Examine a subset of KCs across conditions</li>
+        <li>Remove KCs that aren't worth investigating or including in reports
+        because they are too easy or otherwise irrelevant.</li>
+        <li>Quickly toggle between sets of KCs</li>
+        <li>Isolate common KCs between study conditions</li>
+        <li>Examine only some KCs that appear in a single condition</li>
+        <li>Share your selected KCs with other researchers.</li>
+    </ul>
+        
+    <p>KC Sets are always shared with others who can access the dataset. If a
+    person doesn't own a set, however, he or she can only load the set, not
+    delete or rename it.</p>
+    
+</div>

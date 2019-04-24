@@ -1,0 +1,22 @@
+<% // start new namespace
+{
+%>
+
+        <% if (!released) { %>
+           <div id="unreleased_dataset_div">
+           <span><%=unreleasedDatasetStr %></span>
+
+           <% if (!isRemote) { %>
+                 <div class="release-dataset-div" id="<%=datasetItem.getId() %>">
+                      <input id="releaseDataset_<%=datasetItem.getId()%>"
+                             type="button" value="Release Dataset"></div>
+           <% } else {%>
+                 <div class="release-dataset-div" id="<%=datasetItem.getId() %>">
+                      <input id="releaseDataset_<%=datasetItem.getId()%>"
+                             type="button" value="Release Dataset" disabled></div>
+           <% } %>
+
+           </div>
+        <% } %>
+
+<% } // end new namespace %>

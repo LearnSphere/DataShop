@@ -1,0 +1,247 @@
+/*
+ * Research Goals Page
+ */
+#research-goals-page-div {
+    position: relative;
+    min-width: 900px;
+}
+#research-goals-page-div h1 {
+    margin-top: 15px;
+    font-size:1.2em;
+}
+#research-goals-page-div h2 {
+    margin-top: 23px;
+    margin-bottom: 9px;
+    font-size: 1.1em;
+}
+#research-goals-page-div p {
+    margin-top: 5px;
+    font-size: 13px;
+    max-width: 80%;
+}
+#research-goals-page-div p a, #research-goals-edit-page-div p a {
+    color: #37567F;
+    text-decoration: underline;
+}
+#researcher-types-txt, #research-goals-txt {
+    margin-right: 120px;
+    font-size: 0.9em;
+}
+#researcher-types-div {
+    position: relative;
+    width: 500px;
+    height: 50px;
+    margin-left: 0;
+}
+#researcher-types-div a {
+    color: #37567F;   
+}
+#show-all {
+    font-size: 12px;
+}
+#research-goals-div {
+    margin: 1em 0;
+}
+#research-goals-div ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 9px;
+}
+#research-goals-div ul li {
+    margin-left: 0;
+}
+#research-goals-div a {
+    color: #37567F;
+    text-decoration: underline;
+}
+#research-goals-page-div .rg_link {
+    color: #37567F;
+    text-decoration: underline;
+    font-size: 12px;
+}
+#dd {
+    position: absolute;
+    top: 4px;
+    left: 45px;
+    font-size: 15px;
+}
+#txt-1 {
+    font-size: 16px;
+    position: absolute;
+    color: #555;
+}
+#txt-2 {
+    font-size: 16px;
+    position: absolute;
+    top: 0;
+    left: 309px;
+    color: #555;
+}
+table.datasets_papers {
+    width: 650px;
+    font-size: 12px;
+    margin-top: 12px;
+}
+table.datasets_papers th {
+    text-align: left;
+    color: #666;
+    height: 14px;
+}
+table.datasets_papers p {
+    margin: 0 0 5px 0;
+}
+table.datasets_papers .c1 {
+    width: 300px;
+}
+table.datasets_papers .c2 {
+    width: 350px;
+}
+
+/*
+ * Fancy dropdown
+ */
+.wrapper-dropdown {
+    /* Size and position */
+    position: relative;
+    width: 233px;
+    margin: 0 auto;
+    padding: 10px;
+
+    /* Styles */
+    background: #fff;
+    border-radius: 7px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+    cursor: pointer;
+    outline: none;
+
+    /* Font settings */
+    font-weight: bold;
+    color: #8AA8BD;
+}
+
+.wrapper-dropdown:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: #8aa8bd transparent;
+}
+
+.wrapper-dropdown .dropdown {
+  /* Size & position */
+    position: absolute;
+    top: 140%;
+    left: 0;
+    right: 0;
+
+    /* Styles */
+    background: white;
+    border-radius: inherit;
+    border: 1px solid rgba(0,0,0,0.17);
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-weight: normal;
+    -webkit-transition: all 0.1s ease-in;
+    -moz-transition: all 0.1s ease-in;
+    -ms-transition: all 0.1s ease-in;
+    -o-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+    list-style: none;
+
+    /* Hiding */
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+    
+    padding: 0;
+    margin-top: 0;
+}
+
+.wrapper-dropdown .dropdown:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    right: 15px;
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: #fff transparent;    
+}
+
+.wrapper-dropdown .dropdown:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    right: 13px;
+    border-width: 0 8px 8px 8px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.1) transparent;    
+}
+
+.wrapper-dropdown .dropdown li {
+    display: block;
+    padding: 10px;
+    padding-left: 14px;
+    text-decoration: none;
+    color: #37567F;
+    border-bottom: 1px solid #e6e8ea;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+.wrapper-dropdown .dropdown li i {
+    float: right;
+    color: inherit;
+}
+
+.wrapper-dropdown .dropdown li:first-of-type {
+    border-radius: 7px 7px 0 0;
+}
+
+.wrapper-dropdown .dropdown li:last-of-type {
+    border: none;
+    border-radius: 0 0 7px 7px;
+}
+
+/* Hover state */
+
+.wrapper-dropdown .dropdown li:hover {
+    background: #f3f8f8;
+}
+
+/* Active state */
+
+.wrapper-dropdown.active .dropdown {
+    opacity: 1;
+	display: block;
+    pointer-events: auto;
+    padding: 0;
+}
+
+/* No CSS3 support - relies on modernizr library */
+
+.no-opacity       .wrapper-dropdown .dropdown,
+.no-pointerevents .wrapper-dropdown .dropdown {
+    display: none;
+    opacity: 1; /* If opacity support but no pointer-events support */
+    pointer-events: auto; /* If pointer-events support but no pointer-events support */
+}
+
+.no-opacity       .wrapper-dropdown.active .dropdown,
+.no-pointerevents .wrapper-dropdown.active .dropdown {
+    display: block;
+}

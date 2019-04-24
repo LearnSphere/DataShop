@@ -1,0 +1,17 @@
+#auth-level-desc-table {
+    width: 500px;
+    font-size: 80%;
+    border-collapse: collapse;
+}
+#auth-level-desc-table th {
+    padding: 4px 10px;
+    text-align:center;
+}
+#auth-level-desc-table td {
+    padding: 3px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+#auth-level-desc-table td:first-child {
+    text-align: left;
+}

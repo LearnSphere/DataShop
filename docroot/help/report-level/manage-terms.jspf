@@ -1,0 +1,24 @@
+<div class="topic" id="help-manage-terms">
+    <h2>Manage Terms</h2>
+    <p>This page allows you to assign a terms of use to projects for which you are the data
+    provider. The text of the terms of use, including any changes, must be agreed upon by you
+    and Carnegie Mellon University, outside of the DataShop application.</p>
+
+    <p>Once a terms of use has been approved, the DataShop staff will enter it into the system,
+    and you can then apply it to projects.</p>
+
+    <p>To apply a terms of use, first select it from the main Manage Terms page and click 
+    <strong>Manage</strong>. Then select the project(s) to apply the terms to, and click 
+    <strong>Apply Terms</strong>. You can remove the terms from a project by clicking 
+    <strong>Clear Terms</strong>.</p>
+
+    <p>Updates to your terms of use, once approved, can be applied to existing projects with those 
+    terms by the DataShop staff. For new projects, however, you should apply the terms yourself.</p>
+    
+    <p><strong>Adding a terms of use to a project or applying an update to a terms of use will 
+    trigger the system to require each user of the project to agree to the current terms before 
+    they can access the project through DataShop.</strong></p>
+    
+    <p>If you have any questions, please don't hesitate to <a href="help?page=contact">contact us</a>.
+    </p>
+</div>

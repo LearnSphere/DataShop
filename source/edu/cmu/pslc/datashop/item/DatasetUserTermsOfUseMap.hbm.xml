@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2013
+ All Rights Reserved
+
+ $Revision: 10435 $
+ Author: Cindy Tipper
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2013-12-19 10:07:17 -0500 (Thu, 19 Dec 2013) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.DatasetUserTermsOfUseMapItem"
+           table="dataset_user_terms_of_use_map">
+
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.DatasetUserTermsOfUseMapId">
+            <key-property name="termsOfUseId" type="integer">
+                <column name="terms_of_use_id"/>
+            </key-property>
+            <key-property name="userId" type="string">
+                <column name="user_id"/>
+            </key-property>
+            <key-property name="datasetId" type="integer">
+                <column name="dataset_id"/>
+            </key-property>
+        </composite-id>
+         
+        <many-to-one name="termsOfUse" 
+                     class="edu.cmu.pslc.datashop.item.TermsOfUseItem"
+        	     insert="false" update="false">
+            <column name="terms_of_use_id" not-null="true"/>
+        </many-to-one>
+        
+        <many-to-one name="user" 
+                     class="edu.cmu.pslc.datashop.item.UserItem"
+        	     insert="false" update="false">
+            <column name="user_id" not-null="true"/>
+        </many-to-one>
+
+        <many-to-one name="dataset" 
+                     class="edu.cmu.pslc.datashop.item.DatasetItem"
+        	     insert="false" update="false">
+            <column name="dataset_id" not-null="true"/>
+        </many-to-one>
+        
+        <many-to-one name="termsOfUseVersion" 
+                     class="edu.cmu.pslc.datashop.item.TermsOfUseVersionItem">
+            <column name="terms_of_use_version_id" not-null="true"/>
+        </many-to-one>
+        
+        <property name="date" type="timestamp">
+            <column name="date"/>
+        </property>	
+    </class>
+</hibernate-mapping>

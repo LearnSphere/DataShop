@@ -1,0 +1,176 @@
+<!--
+  Carnegie Mellon University, Human Computer Interaction Institute
+  Copyright 2014
+  All Rights Reserved
+-->
+<%
+// Author: Cindy Tipper
+// Version: $Revision: 13213 $
+// Last modified by: $Author: ctipper $
+// Last modified on: $Date: 2016-05-02 16:48:45 -0400 (Mon, 02 May 2016) $
+// $KeyWordsOff: $
+//
+%>
+<%@page contentType="text/html"%>
+<%@page import="java.io.StringWriter"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.util.*"%>
+
+<%@page import="edu.cmu.datalab.servlet.DatalabServlet"%>
+<%@page import="edu.cmu.datalab.servlet.HomeDto"%>
+
+<%@page import="edu.cmu.pslc.datashop.item.UserItem"%>
+
+<%@page import="java.text.DecimalFormat"%>
+
+<%
+    DecimalFormat df = new DecimalFormat("####.##");
+
+    String dragFileText = "Drop your gradebook file here to get started.";
+    String loadingFileText = "Loading your file...";
+
+    UserItem user = (UserItem)session.getAttribute("cmu.edu.pslc.datashop.item.UserItem");
+    String remoteUser = (user != null) ? (String)user.getId() : null;
+
+    Boolean homeTabActive = false;
+    if (remoteUser != null) {
+        homeTabActive = true;
+    }
+%>
+
+<html>
+<head>
+    <title>
+<%
+        out.print("DataLab Gradebook Calculator");
+%>
+    </title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="google-signin-client_id" content="757918974099-bfjl74l0a27t68mfk9v2pbu6rr3fh8qe.apps.googleusercontent.com"/>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/jquery-ui-1.8.18.custom.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/datalab/datalab.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/login.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/datalab/jquery.dataTables.min.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/datalab/dataTables.fixedColumns.min.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/datalab/bootstrap.min.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/datalab/bootstrap-theme.min.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/idpselect.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/print.css")%>" media="print" />
+    <!--[if IE 8]>
+        <link rel="stylesheet" href="css/ie8fix.css" type="text/css" />
+    <![endif]-->
+    <!--[if IE 9]>
+        <link rel="stylesheet" href="css/ie9fix.css" type="text/css" />
+    <![endif]-->
+
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/jquery-1.7.1.min.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/jquery-ui-1.8.17.custom.min.js")%>"></script>
+
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/prototype.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/scriptaculous.js?load=effects,dragdrop,controls")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/hint.js")%>"></script>
+
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/datalab/DataLab.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/datalab/jquery.dataTables.min.js")%>"></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/datalab/dataTables.fixedColumns.min.js")%>"></script>
+
+    <!-- for Google sign-in -->
+    <script src="https://apis.google.com/js/platform.js?onload=gapiOnload" async defer></script>
+    <script type="text/javascript" src="<%=response.encodeURL("/v/javascript/Authentication.js")%>"></script>
+
+<%@ include file="/google-analytics.jspf" %>
+</head>
+
+<%
+    String analysisIdStr = (String)request.getParameter(DatalabServlet.ANALYSIS_ID_ATTR);
+    Long sessionAnalysisId = (Long)session.getAttribute(DatalabServlet.ANALYSIS_ID_ATTR);
+
+    if (analysisIdStr == null) {
+        li1ClassStr = "class=\"disabled\"";
+        li2ClassStr = "class=\"disabled\"";
+    }
+
+    String navBarClass = "dl-navbar";
+    if (homeTabActive) {
+        navBarClass = "dl-navbar-wide";
+    }
+
+    Boolean showNavBar = false;
+    if (analysisIdStr != null) {
+        showNavBar = true;
+    } else if (remoteUser != null) {
+        // If user has any analyses, show NavigationBar.
+        HomeDto homeDto = (HomeDto)request.getAttribute(DatalabServlet.HOME_ATTR + remoteUser);
+        if (homeDto != null) {
+            if (!homeDto.getGradebookAnalyses().isEmpty() || !homeDto.getItemAnalyses().isEmpty()) {
+                showNavBar = true;
+            }
+        }
+    }
+%>
+
+<!-- make note of attrs needed by javascript -->
+<input type="hidden" id="analysisId" value="<%=analysisIdStr %>" />
+<input type="hidden" id="sessionAnalysisId" value="<%=sessionAnalysisId %>" />
+<input type="hidden" id="remoteUser" value="<%=remoteUser %>" />
+<input type="hidden" id="showNavBar" value="<%=showNavBar %>" />
+
+<!-- Un-populated divs needed for modal windows using jQuery -->
+<div id="fileRequirementsDialog" class="fileRequirementsDialog"></div>
+
+<% if (remoteUser == null) { %>
+<div id="login-div">
+     <form action="DataLabLogin" method="get">
+           <input name="Submit" value="Log in" class="super-emphasize" 
+                  type="submit" id="log_in_homepage">
+     </form>
+</div>
+<% } else if (remoteUser != null) { %>
+<div id="logged-in-user-div">Logged in as <%=remoteUser %> 
+     <a href="javascript:logout()">logout</a>
+</div>
+<% } %>
+
+<div id="datalab-content-div">
+<div id="dl-logo">
+  <a href="DataLab"><span>DataLab</span></a>
+</div>
+
+<div id="dl-content-wrapper-div">
+
+<% if (showNavBar) { %>
+<div id="dl-header">
+<div id="dl-navbar" class="<%=navBarClass %> navbar navbar-default" class="navbar navbar-default navbar-fixed-top" role="navigation">
+     <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul id="nav-tabs-div" class="nav navbar-nav">
+            <% if (homeTabActive) { %>
+              <li id="<%=DatalabServlet.HOME_SUBTAB %>" <%=liHomeClassStr %>>
+                  <a href="javascript:loadSubtab('<%=DatalabServlet.HOME_SUBTAB %>')"><%=DatalabServlet.HOME_SUBTAB %></a>
+              </li>
+            <% } %>
+              <li id="<%=DatalabServlet.OVERVIEW_SUBTAB %>" <%=li1ClassStr %>>
+                  <a href="javascript:loadSubtab('<%=DatalabServlet.OVERVIEW_SUBTAB %>')"><%=DatalabServlet.OVERVIEW_SUBTAB %></a>
+              </li>
+              <li id="<%=DatalabServlet.ADDITIONAL_ANALYSIS_SUBTAB %>" <%=li2ClassStr %>>
+                  <a href="javascript:loadSubtab('<%=DatalabServlet.ADDITIONAL_ANALYSIS_SUBTAB %>')"><%=DatalabServlet.ADDITIONAL_ANALYSIS_SUBTAB %></a>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+     </div>
+</div>
+
+</div>  <!-- dl-header -->
+
+<% } // if (analysisIdStr != null) %>
+
+

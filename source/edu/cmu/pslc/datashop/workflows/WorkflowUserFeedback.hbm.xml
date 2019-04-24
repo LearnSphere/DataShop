@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2016
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowUserFeedbackItem" table="workflow_user_feedback">
+        <id name="id" type="long">
+            <column name="workflow_user_feedback_id" />
+            <generator class="native" />
+        </id>
+        <property name="feedback" type="string">
+            <column name="feedback" not-null="true" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" not-null="true" />
+        </property>
+        <many-to-one name="user" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="user_id" length="250" not-null="true" />
+        </many-to-one>
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+            <column name="dataset_id" />
+        </many-to-one>
+        <many-to-one name="workflow" class="edu.cmu.pslc.datashop.workflows.WorkflowItem">
+            <column name="workflow_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

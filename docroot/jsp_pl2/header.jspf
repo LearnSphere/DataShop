@@ -1,0 +1,85 @@
+<!--
+  Carnegie Mellon University, Human Computer Interaction Institute
+  Copyright 2014
+  All Rights Reserved
+-->
+<%
+// Author: Cindy Tipper
+// Version: $Revision: 13213 $
+// Last modified by: $Author: ctipper $
+// Last modified on: $Date: 2016-05-02 16:48:45 -0400 (Mon, 02 May 2016) $
+// $KeyWordsOff: $
+//
+%>
+<%@page contentType="text/html"%>
+<%@page import="java.io.StringWriter"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.util.*"%>
+
+<%@page import="edu.cmu.pl2.servlet.AdvisorHomeDto"%>
+<%@page import="edu.cmu.pl2.servlet.PL2Servlet"%>
+
+<script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/jquery-1.7.1.min.js")%>"></script>
+<script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/jquery-ui-3.3.1.min.js")%>"></script>
+
+<script>jQuery.noConflict();</script>
+<script type="text/javascript" src="<%=response.encodeURL("/v/javascript/lib/prototype.js")%>"></script>
+
+<script type="text/javascript" src="<%=response.encodeURL("/v/javascript/pl2/pl2Helper.js")%>"></script>
+
+<link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/pl2/pl2.css")%>" />
+<link rel="stylesheet" type="text/css" href="<%=response.encodeURL("/v/css/jquery-ui-3.3.1.css")%>" />
+
+
+<title>Personalized Learning^2</title>
+
+<div class="header">
+    <div class="welcomeAdvisor">
+        Welcome <%= advisorFirstName %>!
+    </div>
+    <div class="classOrIndividualButtons">
+        <form id="classButton" method="post" action="PL2" title="Return to view all students"></form>
+        <div id="individualButton"></div>
+
+        <table class="logoutAndContact">
+            <tr><td>
+                <form class="logoutForm" method="post" action="PL2" >
+                    <input type="hidden" name="requestingMethod" value="PL2Servlet.logout" />
+                    <button type="submit">logout</button>
+                </form>
+            </td></tr><tr><td>
+                <div>
+                    <a href="mailto:learnsphere-help@lists.andrew.cmu.edu" class="contact_us">contact us</a>
+                </div>
+            </td></tr>
+        </table>
+    </div>
+</div>
+
+<script>
+jQuery(document).ready(function() {
+    // Go to the home page if you click the multiple student icon top right
+    jQuery('#classButton').click(function(){
+        jQuery(this).submit();
+    });
+
+    // body has a font-size in terms of vw.  Make sure it has a minimum value
+    jQuery(window).resize(function() {
+        ensureTextIsLargeEnough();
+    });
+    ensureTextIsLargeEnough();
+});
+
+function ensureTextIsLargeEnough() {
+    if (parseInt(jQuery(window).width()) < 1100) {
+        return; // This is mobile, font size is fine
+    }
+    jQuery('body').css({ "font-size": "1.2vw" })
+    if (parseInt(jQuery('body').css("fontSize")) < 16) {
+        jQuery('body').css({ "font-size": "16px" });
+    }
+}
+
+
+</script>
+

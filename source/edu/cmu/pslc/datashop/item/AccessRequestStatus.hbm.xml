@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2011
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+<hibernate-mapping>
+    <class name="edu.cmu.pslc.datashop.item.AccessRequestStatusItem" table="access_request_status">
+        <meta attribute="class-description">The status of an Access Request thread.</meta>
+        <id name="id" type="integer">
+                <meta attribute="field-description">Database generated unique Id for this class.</meta>
+            <column name="access_request_status_id" />
+            <generator class="native" />
+        </id>
+
+        <many-to-one name="user" class="edu.cmu.pslc.datashop.item.UserItem"  >
+            <meta attribute="field-description">(FK) The user associated with this status item.</meta>
+            <column name="user_id" length="250" not-null="true" />
+        </many-to-one>
+        <many-to-one name="project" class="edu.cmu.pslc.datashop.item.ProjectItem"  >
+            <meta attribute="field-description">(FK) The project associated with this status item.</meta>
+            <column name="project_id" not-null="true" />
+        </many-to-one>
+
+        <property name="status" type="string">
+            <meta attribute="field-description">The status.</meta>
+            <column name="status" length="12" not-null="true" />
+        </property>
+        <property name="lastActivityDate" type="timestamp">
+            <meta attribute="field-description">The last activity date.</meta>
+            <column name="last_activity_date" length="19" not-null="true" />
+        </property>
+        <property name="hasPiSeen" type="boolean">
+            <meta attribute="field-description">The activity notification for the PI.</meta>
+            <column name="has_pi_seen" not-null="true" default="false" />
+        </property>
+        <property name="hasDpSeen" type="boolean">
+            <meta attribute="field-description">The activity notification for the Data Provider.</meta>
+            <column name="has_dp_seen" not-null="true" default="false" />
+        </property>
+        <property name="hasAdminSeen" type="boolean">
+            <meta attribute="field-description">The activity notification for the Administrator.</meta>
+            <column name="has_admin_seen" not-null="true" default="false" />
+        </property>
+        <property name="hasRequestorSeen" type="boolean">
+            <meta attribute="field-description">The activity notification for the Requestor.</meta>
+            <column name="has_requestor_seen" not-null="true" default="false" />
+        </property>
+        <property name="emailStatus" type="string">
+            <meta attribute="field-description">The email status.</meta>
+            <column name="email_status" length="14" not-null="true" />
+        </property>
+        <set name="accessRequestHistory" >
+            <meta attribute="field-description">The set of history items associated with this Access Request Status.</meta>
+            <key>
+                <column name="access_request_status_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.AccessRequestHistoryItem" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,333 @@
+.data_grid_container { position:relative; }
+
+.data_grid_table {
+	margin-left:0;
+	white-space:nowrap;
+	border-spacing:0;
+	border-collapse:collapse;
+	border:1px solid #8194ae;
+	z-index: 1;
+	width:100%;
+}
+
+.data_grid_table caption {
+	border:medium none;
+	font-size:0.8em;
+	font-weight:bold;
+	text-align:left;
+	line-height: 1.3em;
+}
+
+.data_grid_table th {
+	background-color:#E0E7EF;
+	color:#333333;
+	font-weight:bold;
+	font-size:11px;
+	border:1px solid #8194AE;
+	padding:5px;
+	position: static;
+	height:1.5em;
+	vertical-align:middle;
+}
+
+.data_grid_table td {
+	font-size:12px;
+	margin:0;
+	padding:2px 3px;
+	border-right:1px solid #cfcfcf;
+	height:1.5em;
+	vertical-align:middle;
+}
+
+.data_grid_table tr.even td{
+	background-color:#efefef;
+}
+
+.data_grid_container .horizontal_controls {
+	font-size:12px;
+	/*width:425px;*/
+	width:auto;
+	font-weight: bold;
+	text-align: right;
+	position: absolute;
+	top:30px;
+	right:0;
+	z-index: 90;
+}
+
+.data_grid_container .ie_horizontal_controls {
+	font-size:12px;
+	/*width:425px;*/
+	width:auto;
+	font-weight: bold;
+	text-align: right;
+	position: absolute;
+	top:62px;
+	right:0;
+	z-index: 90;
+}
+
+/** EXTRA CONTROLS **/
+.data_grid_container .extra_controls {
+    position: relative;
+	width:40em;
+	z-index:90;
+	font-size:12px;
+	padding-bottom:2px;
+}
+
+.data_grid_container .extra_controls .native-button {
+    font-size:14px;
+}
+
+
+.data_grid_container .extra_controls label {
+	padding:0 .5em 0 1em;	
+}
+
+
+.data_grid_container .total_rows_wrapper {
+	padding-bottom:5px;
+	width:20em;
+	font-size:.8em;
+	font-weight:bold;
+}
+
+#ie_export_info {
+	margin-bottom:5px;
+	margin-top:5px;
+	width:35em;
+	padding-top:4px;
+	padding-bottom:4px;
+	padding-right:0
+}
+#ie_export_info p {
+	font-size:.8em;
+	margin:0 0 0 3em;
+}
+#ie_export_info .imagewrapper {
+	padding-top:0px
+}
+
+.data_grid_container .range_wrapper.span {
+	padding-left:20px;
+}
+
+.data_grid_container .range_wrapper {
+	margin-right: 20px;	
+}
+
+.data_grid_container .loading {
+	position:absolute;
+	left:30%;
+	margin-left:-5em;
+	text-align:center;
+	top:60px;
+	width:10em;
+	background-color: #E6EFC2;
+	color:#333;
+	font-weight:normal;
+    border: 1px solid #999;
+	padding:.5em;
+	font-size:14px;
+	z-index:90;
+}
+
+.horizontal_controls .hover, .vertical_controls .hover {
+	cursor: pointer;
+    text-decoration: underline;
+}
+
+/** HORIZONTAL CONTROLS **/
+.horizontal_controls .start {
+  padding:0 4px 0 20px;
+  background: url("../images/grid/backwards_grey.gif") left center no-repeat;
+}
+
+.horizontal_controls .start_hover {
+  padding:0 4px 0 20px;
+  background: url("../images/grid/backwards.gif") left center no-repeat;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.horizontal_controls .start_disabled {
+  padding:0 4px 0 20px;
+  background: url("../images/grid/backwards_light_grey.gif") left center no-repeat;
+  color: #cdcdcd;
+  text-decoration: none;
+}
+
+.horizontal_controls .back {
+  padding:0 4px 0 16px;
+  background: url("../images/grid/back_grey.gif") left center no-repeat;
+}
+
+.horizontal_controls .back_hover {
+  padding:0 4px 0 16px;
+  background: url("../images/grid/back.gif") left center no-repeat;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.horizontal_controls .back_disabled {
+  padding:0 4px 0 16px;
+  background: url("../images/grid/back_light_grey.gif") left center no-repeat;
+  color: #cdcdcd;
+  text-decoration: none;
+}
+
+.horizontal_controls .next {
+  padding:0 16px 0 4px;
+  background: url("../images/grid/next_grey.gif") right center no-repeat;
+}
+
+.horizontal_controls .next_hover {
+  padding:0 16px 0 4px;
+  background: url("../images/grid/next.gif") right center no-repeat;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.horizontal_controls .next_disabled {
+  padding:0 16px 0 4px;
+  background: url("../images/grid/next_light_grey.gif") right center no-repeat;
+  color: #cdcdcd;
+  text-decoration: none;
+}
+
+.horizontal_controls .end {
+  padding:0 20px 0 4px;
+  background: url("../images/grid/forward_grey.gif") right center no-repeat;
+}
+
+.horizontal_controls .end_hover {
+  padding:0 20px 0 4px;
+  background: url("../images/grid/forward.gif") right center no-repeat;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.horizontal_controls .end_disabled {
+  padding:0 20px 0 4px;
+  background: url("../images/grid/forward_light_grey.gif") right center no-repeat;
+  color:#cdcdcd;
+  text-decoration: none;
+}
+
+/** VERTICAL CONTROLS **/
+.vertical_controls {
+	position:absolute;
+	display:block;
+	top:0;
+	right:-20px;
+	width:20px;
+	height:100%;
+	z-index:90;
+}
+
+.vertical_controls .control {
+  position:absolute;
+  display:block;
+  width:16px;
+  height:16px;
+}
+
+
+.vertical_controls .start {
+  bottom:70px; right:0;
+  background: url("../images/grid/top_grey.gif") right center no-repeat;
+}
+
+.vertical_controls .start_hover {
+  bottom:70px; right:0;
+  background: url("../images/grid/top.gif") right center no-repeat;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.vertical_controls .start_disabled {
+  bottom:70px; right:0;
+  background: url("../images/grid/top_light_grey.gif") right center no-repeat;
+  color: #cdcdcd;
+  text-decoration: none;
+}
+
+.vertical_controls .back {
+  bottom:50px; right:0;
+  background: url("../images/grid/up_grey.gif") right center no-repeat;
+}
+
+.vertical_controls .back_hover {
+  bottom:50px; right:0;
+  background: url("../images/grid/up.gif") right center no-repeat;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.vertical_controls .back_disabled {
+  bottom:50px; right:0;
+  background: url("../images/grid/up_light_grey.gif") right center no-repeat;
+  color: #cdcdcd;
+  text-decoration: none;
+}
+
+.vertical_controls .next {
+  bottom:20px; right:0;
+  background: url("../images/grid/down_grey.gif") right center no-repeat;
+}
+
+.vertical_controls .next_hover {
+  bottom:20px; right:0;
+  background: url("../images/grid/down.gif") right center no-repeat;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.vertical_controls .next_disabled {
+  bottom:20px; right:0;
+  background: url("../images/grid/down_light_grey.gif") right center no-repeat;
+  color: #cdcdcd;
+  text-decoration: none;
+}
+
+.vertical_controls .end {
+  bottom:0; right:0;
+  background: url("../images/grid/bottom_grey.gif") right center no-repeat;
+}
+
+.vertical_controls .end_hover {
+  bottom:0; right:0;
+  background: url("../images/grid/bottom.gif") right center no-repeat;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.vertical_controls .end_disabled {
+  bottom:0; right:0;
+  background: url("../images/grid/bottom_light_grey.gif") right center no-repeat;
+  color:#cdcdcd;
+  text-decoration: none;
+}
+
+/** REPORT SPECIFIC WIDTHS */
+#step_list, #step_list .data_grid_table {
+	/*width:940px;*/
+}
+
+#step_list .col_1 {
+	width:210px;
+}
+
+#step_list .col_2 {
+	width:330px;
+}
+
+#step_list .col_3 {
+	width:50%;
+}
+
+.strictSpanSize {
+	width:35em;
+	max-width:35em;	
+}

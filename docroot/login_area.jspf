@@ -1,0 +1,37 @@
+<%@ include file="/doctype.jspf" %>
+<!--
+  Carnegie Mellon University, Human Computer Interaction Institute
+  Copyright 2012
+  All Rights Reserved
+-->
+<%
+// Author: Alida Skogsholm
+// Version: $Revision: 12987 $
+// Last modified by: $Author: ctipper $
+// Last modified on: $Date: 2016-03-17 15:51:16 -0400 (Thu, 17 Mar 2016) $
+// $KeyWordsOff: $
+//
+%>
+<%@page contentType="text/html"%>
+
+<% if (remoteUser == null) { %>
+    <div id="login-area">
+        <h1>Welcome to DataShop, the world's largest repository of learning interaction data.</h1>
+        <p>
+            <form action="login" 
+               method="get"><input name="Submit" value="Log in" class="super-emphasize" 
+               type="submit" id="log_in_homepage"></form>&nbsp;&nbsp;to start analyzing data.
+        </p>
+    </div>
+        
+    <h2 id="research_goals_heading" style="display:none">What can I do with DataShop?</h2>
+    <div id="research_goals_home_page" style="display:none">
+        <div id="researcher_types">
+        </div>
+        <div id="research_goals">
+        </div>
+    </div>
+
+    <p id="what_is_datashop"><img src="images/help.png" /> <a href="help">What is DataShop?</a></p>
+
+<% } %>

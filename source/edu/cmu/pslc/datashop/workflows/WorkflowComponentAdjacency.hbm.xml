@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision:  $
+ Last modified by - $Author:  $
+ Last modified on - $Date:  $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowComponentAdjacencyItem" table="workflow_component_adjacency">
+        <meta attribute="class-description">Workflow component.</meta>
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique Id for this workflow component adjacency.</meta>
+            <column name="workflow_component_adjacency_id" />
+            <generator class="native" />
+        </id>
+
+        <many-to-one name="workflow" class="edu.cmu.pslc.datashop.workflows.WorkflowItem">
+            <meta attribute="field-description">The workflow for this component adjacency.</meta>
+            <column name="workflow_id" not-null="true" />
+        </many-to-one>
+
+        <property name="componentId" type="string">
+            <meta attribute="field-description">The component id</meta>
+            <column name="component_id" length="100" not-null="true" />
+        </property>
+        <property name="componentIndex" type="integer">
+            <meta attribute="field-description">The component output index</meta>
+            <column name="component_index"  />
+        </property>
+        <property name="childId" type="string">
+            <meta attribute="field-description">The child id</meta>
+            <column name="child_id" length="100" not-null="false" default="null" />
+        </property>
+        <property name="childIndex" type="integer">
+            <meta attribute="field-description">The child input index</meta>
+            <column name="child_index"  />
+        </property>
+        <property name="depthLevel" type="integer">
+            <meta attribute="field-description">The depth of the node in the directed acyclic graph</meta>
+            <column name="depth_level" />
+        </property>
+    </class>
+</hibernate-mapping>

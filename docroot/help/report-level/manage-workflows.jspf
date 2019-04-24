@@ -1,0 +1,15 @@
+<div class="topic" id="help-manage-workflows">
+    <h2>Workflows</h2>
+    <p>A workflow is a component-based process model that can be used to analyze, manipulate, or visualize data.</p>
+
+    <p>This page provides a list of the user's workflows as well as shared workflows created by other users.</p>
+
+    <p>To view an existing workflow, click on the workflow name or the "Edit Workflow" icon <img src="images/edit.gif" /> if you own the workflow, or the "View Workflow" icon <img src="images/magnifier.png" /> if it's owned by another user.</p>    
+    <p>There are two ways to create a workflow. The "Create new workflow" button, with the <img src="images/add.png" /> icon, can be used to create a new, empty workflow, or an existing workflow can be copied by clicking on the "Save as new workflow" icon <img src="images/table_add.png" />.</p>
+
+    <p>Use either of the pencil icons <img src="images/pencil.png" /> to modify the workflow meta-data.</p>
+
+    <span class="helpTopicLink" style="display:none"><a href="help?page=workflows"><img src="images/page_white_text.png" /> <span>Read more 
+    about Workflows</span></a></span>
+
+</div>

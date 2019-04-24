@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2016
+ All Rights Reserved
+
+ Last modified by - $Author: ctipper $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.KCModelStepExportItem" table="kcm_step_export">
+        <id name="id" type="long">
+            <column name="kcm_step_export_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem">
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="step" class="edu.cmu.pslc.datashop.item.SubgoalItem">
+            <column name="step_id" not-null="true" />
+        </many-to-one>
+        <property name="stepGuid" type="string">
+            <column name="step_guid" length="32" />
+        </property>
+        <property name="problemHierarchy" type="string">
+            <column name="problem_hierarchy" />
+        </property>
+        <property name="problemName" type="string">
+            <column name="problem_name" length="255" />
+        </property>
+        <property name="stepName" type="string">
+            <column name="step_name" />
+        </property>
+        <property name="maxProblemView" type="double">
+            <column name="max_problem_view" />
+        </property>
+        <property name="avgIncorrects" type="double">
+            <column name="avg_incorrects" />
+        </property>
+        <property name="avgHints" type="double">
+            <column name="avg_hints" />
+        </property>
+        <property name="avgCorrects" type="double">
+            <column name="avg_corrects" />
+        </property>
+        <property name="pctIncorrectFirstAttempts" type="double">
+            <column name="pct_incorrect_first_attempts" />
+        </property>
+        <property name="pctHintFirstAttempts" type="double">
+            <column name="pct_hint_first_attempts" />
+        </property>
+        <property name="pctCorrectFirstAttempts" type="double">
+            <column name="pct_correct_first_attempts" />
+        </property>
+        <property name="avgStepDuration" type="double">
+            <column name="avg_step_duration" />
+        </property>
+        <property name="avgCorrectStepDuration" type="double">
+            <column name="avg_correct_step_duration" />
+        </property>
+        <property name="avgErrorStepDuration" type="double">
+            <column name="avg_error_step_duration" />
+        </property>
+        <property name="totalStudents" type="integer">
+            <column name="total_students" />
+        </property>
+        <property name="totalOpportunities" type="integer">
+            <column name="total_opportunities" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<%
+// Carnegie Mellon University, Human-Computer Interaction Institute
+// Copyright 2012
+// All Rights Reserved
+
+// Author: Alida Skogsholm
+// Version: $Revision: 7784 $
+// Last modified by: $Author: alida $
+// Last modified on: $Date: 2012-07-13 15:57:14 -0400 (Fri, 13 Jul 2012) $
+// $KeyWordsOff: $
+%>
+
+<%
+    //Get the access request notification total count for the user
+    long totalNotifications = 
+        session.getAttribute(AccessRequestStatusItem.STATE_COUNT_TOTAL) == 
+        null ? 0 : (Long)(session.getAttribute(AccessRequestStatusItem.STATE_COUNT_TOTAL));
+    String activityNotificationString = "";
+    
+    if (totalNotifications > 0) {
+        activityNotificationString = 
+        "<img src=\"images/flag.png\"  title=\"There is recent access-request activity for you to review.\" />";
+    }
+%>

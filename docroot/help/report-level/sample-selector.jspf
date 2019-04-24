@@ -1,0 +1,45 @@
+<div class="topic" id="help-sample-selector">
+    <h2>Sample Selector</h2>
+    <p>Sample Selector is a tool for creating and editing
+    <strong>samples</strong>, or groups of data you compare across&mdash;they're
+    not "samples" in the statistical sense, but more like filters.</p>
+    
+    <p>By default, a single sample exists: "All Data". With the Sample
+    Selector, you can create new samples to organize your data.</p>
+    
+    <p>You can use samples to:</p>
+    <ul>
+        <li>Compare across conditions</li>
+        <li>Narrow the scope of data analysis to a specific time range,
+        set of students, problem category, or unit of a curriculum (for example)
+        </li>
+    </ul>
+    
+    <p>A sample is composed of one or more <strong>filters</strong>, specific
+    conditions that narrow down your sample.</p>
+    
+    <h3>Creating a sample</h3>
+    <p>The general process for creating a sample is to:</p>
+    <ul>
+    	<li>Add a filter from the categories at the left to the composition
+        area at the right</li>
+        <li>Modify the filter to select the subset of data you're interested 
+        in, saving it when done</li>
+        <li>View the sample preview table to see the effect of adding your filter,
+        making sure you don't have an empty set (ie, a filter or combination
+        of filters that exclude all transactions).</li> 
+        <li>Name and describe the sample</li>
+        <li>Decide whether to share the sample with others who can view the
+        dataset</li>
+        <li>Save the sample</li>
+    </ul>
+    
+    <h3>The effect of multiple filters</h3>
+    <p>DataShop interprets each filter after the first as an additional
+    restriction on the data that is included in the sample. This is also known
+    as a logical "AND". You can see the results of multiple filters in the
+    sample preview as soon as all filters are "saved". </p>
+    
+    <span class="helpTopicLink" style="display:none"><a href="help?page=sampleSelector"><img src="images/page_white_text.png" /> <span>Read more 
+    about the Sample Selector</span></a></span>
+</div>

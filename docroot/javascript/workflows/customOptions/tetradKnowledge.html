@@ -1,0 +1,479 @@
+<html>
+<head>
+	<title>TetradKnowledge</title>
+	<script src="../../lib/jquery-1.7.1.min.js"></script>
+  <script src="../../lib/jquery-ui-1.8.17.custom.min.js"></script>
+  <link rel="stylesheet" href="../../../css/jquery-ui-1.8.18.custom.css">
+	<style>
+    html {
+      width : 100%;
+      height:100%;
+    }
+  	body {
+      //font: verdana;
+  	  font-size: 14px;
+      width:96%;
+      height:96%;
+      background-color: #d7e2f1;
+      font-family: sans-serif;
+  	}
+    #unusedVars {
+      min-height: 10%;
+      border-style: solid;
+      border-width: 1px;
+      background-color:white;
+      margin : 4px 4px;
+    }
+    .varBox {
+      width: auto;
+      padding: 2px 15px;
+      height:5%;
+      display : inline-block;
+      border-style: solid;
+      border-width: 1px;
+      background: lightblue;
+      margin : 1% 2%;
+      color : black;
+      font-family: sans-serif;
+      font-weight: bold;
+      border-color: black;
+      border-radius: 5px;
+    }
+    #selectNumTiers {
+      padding: 0% 1%;
+      font-size: 125%;
+      margin : 2% 2%;
+      border-style: solid;
+      border-width: 1px;
+      background-color:rgba(200,200,200,1);
+    }
+    #numTiers {
+      width: 50px;
+      text-align: right;
+      font-size: 125%;
+      margin: 1% 1%;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 2px;
+    }
+  	#tiers {
+      border-style: solid;
+      border-width: 1px;
+      background-color:rgba(200,200,200,1);
+      margin : 2% 2%;
+    }
+    .unusedContainer {
+      border-style: solid;
+      border-width: 1px;
+      background-color:rgba(200,200,200,1);
+      margin : 2% 2%;
+    }
+    .tier {
+      min-height: 50px;
+      border-style: solid;
+      border-width: 1px;
+      background-color: white;
+      margin : 4px 4px;
+    }
+    .containerLabel {
+      margin: 1% 1%;
+      font-size: 120%;
+      display: inline-block;
+    }
+    .forbidLabel {
+      position: absolute;
+      right: 5%;
+      margin-top: 1%;
+      font-size: 90%;
+    }
+	</style>
+</head>
+
+<body>
+
+<div id="selectNumTiers">
+  Number of Tiers: 
+  <input id="numTiers" type="number" value="2" min="1" max="10" autocomplete="off">
+  </input>
+</div>
+
+<div class="unusedContainer">
+  <div class="containerLabel">Unused variables:</div>
+  <div id="unusedVars" class="holder ui-helper-reset ui-helper-clearfix">
+  </div>
+</div>
+
+<div id="tiers">
+
+</div>
+
+
+
+<script>
+
+$(document).ready(function(){
+  $(".advancedOptionsTable", parent.document).hide();
+  $(".fileInputForm", parent.document).css("height","97%");
+  $(".fileInputForm", parent.document).css("width","97%");
+  $(".componentOptionsDiv", parent.document).css("height","80%");
+
+  //add ability to add and subtract tiers
+  $('#numTiers').bind('keyup mouseup', function () {
+    var newNumTiers = parseInt($("#numTiers").val());
+
+    //if you make less tiers
+    for (var i = newNumTiers; i < knowledge.numTiers; i++) {
+      var nowUnusedVars = knowledge.tiers[i];
+      if (nowUnusedVars === undefined || nowUnusedVars === null) {
+        continue;
+      }
+      for (var j = 0; j < nowUnusedVars.length; j++) {
+        knowledge.unusedVars.push(nowUnusedVars[j]);
+      }
+      knowledge.tiers[i] = [];
+    }
+
+    //if you make more tiers
+    for (var i = knowledge.numTiers; i < newNumTiers; i++) {
+      knowledge.tiers[i] = [];
+
+      if ($('#forbidWithinTier' + i).is(":checked")) {
+        knowledge.forbidWithinTier[i] = true;
+      } else {
+        knowledge.forbidWithinTier[i] = false;
+      }
+    }
+
+    knowledge.numTiers = newNumTiers;
+
+    $('#tiers').html('');
+    $('#unusedVars').html('');
+    saveData();
+    populateInterface();
+  });
+});
+
+
+
+getDataAndInitiate();
+
+/** 
+ * Getting the input to the component is asynchronous.  this allows the script to wait for 
+ * the data to be received from the server.
+ */
+function getDataAndInitiate() {
+  knowledge = getData();
+
+  parent.getComponentMetaDataInput(0,0);
+  var getComponentInputInterval = setInterval(function() {
+    if (parent.componentMetadataRequesting == false) {
+      // Data has been received.  Populate interface.
+      clearInterval(getComponentInputInterval);
+      initiateOptions();
+    }
+  },50);
+}
+
+/**
+ * Decide if this is the first time opening the options. Then populate the interface.
+ */
+function initiateOptions() {
+  knowledge = getData();
+
+  //If this is the first time opening the options, process the input metadata
+  if (knowledge == undefined || knowledge == null || knowledge === "0") {
+    //if (parent.componentInput !== null && parent.componentInput !== undefined) {
+    if (parent.componentMetadata !== null && parent.componentMetadata !== undefined) {
+      //firstTimeOpeningOptions(parent.componentInput); 
+      firstTimeOpeningOptions(parent.componentMetadata);
+    } 
+  } 
+
+  // If something has changed upstream from this component, handle the changes
+  var componentIdPreSplit = jQuery('.advOptDialogClass', parent.document).attr("id");
+  var componentId = componentIdPreSplit.split("_")[1];
+  if (parent.upstreamChange[componentId]) {
+    handleUpstreamChange();
+  }
+
+  populateInterface();
+}
+
+/**
+ * If something has changed upstream from this component, handle the changes.
+ * the new column headers should be added and ones that don't exist anymore should be 
+ * deleted
+ */
+function handleUpstreamChange() {
+  var newMetaData = parent.componentMetadata;
+
+  var currentHeaders = [];
+  if (newMetaData != null) {
+    if (Array.isArray(newMetaData.header)) {
+      currentHeaders = newMetaData.header;
+    } else {
+      currentHeaders = [newMetaData.header];
+    }
+  }
+
+  newVars = [];
+
+  for (var i = 0; i < currentHeaders.length; i++) {
+    if (currentHeaders[i].name != null) {
+      newVars.push(currentHeaders[i].name);
+    }
+  }
+
+  if (knowledge == null || knowledge == undefined || knowledge === "0") {
+    return;
+  }
+
+  //figure out if the current knowledge already uses the new set of variables.
+  //if a tier contains variable that aren't current, delete them
+  alreadyUsedNewVars = [];
+  if (knowledge.unusedVars != undefined && knowledge.unusedVars != null) {
+    for (var i = 0; i < knowledge.unusedVars.length; i++) {
+      if (newVars.includes(knowledge.unusedVars[i])) {
+        alreadyUsedNewVars.push(knowledge.unusedVars[i]);
+      } else {
+        knowledge.unusedVars.splice(i, 1);
+        i--;
+      }
+    }
+  } else {
+    knowledge.unusedVars = [];
+  }
+  
+  if (knowledge.numTiers != undefined && knowledge.numTiers != null) {
+    for (var i = 0; i < knowledge.numTiers; i++) {
+      for (var j = 0; j < knowledge.tiers[i].length; j++) {
+        if (newVars.includes(knowledge.tiers[i][j])) {
+          alreadyUsedNewVars.push(knowledge.tiers[i][j]);
+        } else {
+          knowledge.tiers[i].splice(j, 1);
+          j--;
+        }
+      }
+    }
+  } else {
+    knowledge.numTiers = 2;
+  }
+  
+  //new variables not already in there get put into unused vars
+  for (var i = 0; i < newVars.length; i++) {
+    if (!alreadyUsedNewVars.includes(newVars[i])) {
+      knowledge.unusedVars.push(newVars[i]);
+    }
+  }
+}
+
+/**
+ * Use the data in knowledge to populate the interface.  
+ */
+function populateInterface() {
+  if (knowledge == null || knowledge == undefined || knowledge === "0") {
+    /*$("#unusedVars").append("Connect input to this component, or run its parent to populate" + 
+        "this interface.");*/
+    noInputToComponent();
+    return;
+  }
+
+  var notifiedAboutSpacesOnce = false;
+
+  //add unused variables
+  for (var i = 0; i < knowledge.unusedVars.length; i++) {
+    var varBox = createVarBox(knowledge.unusedVars[i]);
+    $("#unusedVars").append(varBox);
+
+    if (knowledge.unusedVars[i].includes(' ') && !notifiedAboutSpacesOnce) {
+      notifiedAboutSpacesOnce = true;
+      notifyAboutSpacesInVarNames();
+    }
+  }
+
+  //add the variables already in tiers
+  for (var i = 0; i < knowledge.numTiers; i++) {
+    //create tier
+    $("#tiers").append(tierHtml(i));
+    
+    $('#forbidWithinTier' + i).prop('checked', knowledge.forbidWithinTier[i]);
+    
+
+    //add var boxes to the tier
+    var varsInTier = knowledge.tiers[i];
+    for (var j = 0; j < varsInTier.length; j++) {
+      var varBox = createVarBox(varsInTier[j]);
+      $("#tier" + i).append(varBox);
+
+      if (varsInTier[j].includes(' ') && !notifiedAboutSpacesOnce) {
+        notifiedAboutSpacesOnce = true;
+        notifyAboutSpacesInVarNames();
+      }
+    }
+  }
+
+  //set numTiers
+  if (knowledge.numTiers != undefined && knowledge.numTiers != null) {
+    $('#numTiers').val(knowledge.numTiers);
+  }
+
+  //saveData();
+  addJqueryFunctionality();
+}
+
+/**
+ * Make the interface objects moveable and saveable
+ */
+function addJqueryFunctionality() {
+  var $varContainers = $(".holder");
+
+  $(".holder").sortable();
+  $(".holder").disableSelection();
+
+  // Let the gallery be droppable as well, accepting items from the trash
+  $varContainers.droppable({
+    accept: "li",
+    classes: {
+      "ui-droppable-active": "custom-state-active"
+    },
+    drop: function( event, ui ) {
+
+      //move it in knowledge
+      var varName = null;
+      if (event.srcElement != undefined) {
+        varName = event.srcElement.id;
+      } else {
+        // Stupid support for firefox
+        varName = event.originalEvent.originalEvent.originalTarget.id;
+      }
+      var targTier = event.target.id;
+
+      makeChangeToKnowledge(varName, targTier);
+
+      $item = ui.draggable;
+      $item.fadeOut(20,function() {
+      $item.appendTo( $("#" + event.target.id) )
+        .fadeIn(20);
+    });
+    }
+  });
+
+  //functionality to the forbid tier checkboxes
+  $('input[type="checkbox"]').change(function() {
+    var id = $(this).attr('id');
+    var tierNum = parseInt(id.substring(id.length - 1, id.length));
+
+    if ($(this).is(":checked")) {
+      knowledge.forbidWithinTier[tierNum] = true;
+    } else {
+      knowledge.forbidWithinTier[tierNum] = false;
+    }
+    saveData();
+  });
+}
+
+function tierHtml(i) {
+  return '<div id="tier' + i + 'label" class="containerLabel">Tier ' + (i+1) + '</div>' + 
+      '<span class="forbidLabel">Forbid Edges Within Tier<input type="checkbox" id="forbidWithinTier' + i + '"></span>' +
+      '<div id="tier' + i + '" class="holder tier ui-helper-reset ui-helper-clearfix"></div>';
+}
+
+function createVarBox(varName) {
+  //return '<div class="varBox ui-widget-content" id="' + varName + '">' + varName + '</div>';
+  return '<li class="varBox ui-widget-content ui-corner-tr ui-state-default" id="' + varName +
+      '">' + varName + '</li>';
+}
+
+/**
+ * This is the first time opening the options, process the metadata
+ * and add it to the knowledge object
+ */
+function firstTimeOpeningOptions (metadataJson) {
+  var headers = [];
+  if (metadataJson != null) {
+    if (Array.isArray(metadataJson.header)) {
+      headers = metadataJson.header;
+    } else {
+      headers = [metadataJson.header];
+    }
+  }
+
+  //var headers = headerString.replace('\n','').split('\t');
+
+  //set up the knowledge data
+  knowledge = {};
+
+  knowledge.numTiers = parseInt($("#numTiers").val());
+  knowledge.tiers = [];
+  knowledge.forbidWithinTier = [];
+  knowledge.unusedVars = [];
+
+  for (var i = 0; i < headers.length; i++) {
+    if (headers[i].name != null) {
+      knowledge.unusedVars.push(headers[i].name);
+    }
+  }
+
+  for (var i = 0; i < knowledge.numTiers; i++) {
+    knowledge.tiers[i] = [];
+    knowledge.forbidWithinTier[i] = false;
+  }
+}
+
+function makeChangeToKnowledge(varName, targTier) {
+  for (var i = 0; i < knowledge.numTiers; i++) {
+    var ind = knowledge.tiers[i].indexOf(varName);
+    if (ind > -1) {
+      knowledge.tiers[i].splice(ind, 1);
+    }
+  }
+  var ind = knowledge.unusedVars.indexOf(varName);
+  if (ind > -1) {
+    knowledge.unusedVars.splice(ind, 1);
+  }
+  if (targTier === "unusedVars") {
+    knowledge.unusedVars.push(varName);
+  } else {
+    var tierNum = parseInt(targTier.substring(4,5));
+    knowledge.tiers[tierNum].push(varName);
+  }
+  saveData();
+}
+
+function getData() {
+  var knowledgeStr = parent.loadData("TetradKnowledge");
+  if (knowledgeStr != undefined && knowledgeStr != null && knowledgeStr != "0") {
+    return JSON.parse(knowledgeStr);
+  }
+  return knowledgeStr;
+}
+
+function saveData() {
+  parent.saveData("TetradKnowledge", JSON.stringify(knowledge));
+}
+
+/**
+ * The component doesn't have input or the previous component needs to be run
+ */
+function noInputToComponent() {
+  $("body").html('<div id="needsInput" style="width:60%;height:50%""></div>');
+  var div = $("#needsInput");
+  div.html("This component needs input.  Please connect a completed component's output to " + 
+      "this component."); 
+  div.css("font-size", "20px")
+      .css('margin-left', '20%')
+      .css('margin-top', '10%')
+      .css('color', '#a01313')
+      .css('text-align', 'center');
+}
+
+function notifyAboutSpacesInVarNames() {
+  alert('Tetrad does not work well with variable names that contain spaces.\n' +
+      'Please consider using underscores instead');
+}
+
+</script>
+
+</body>
+
+</html>

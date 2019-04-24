@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 4185 $
+ Last modified by - $Author: bkb $
+ Last modified on - $Date: 2007-08-28 12:55:42 -0400 (Tue, 28 Aug 2007) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.SubgoalAttemptItem" table="subgoal_attempt">
+        <meta attribute="class-description">An attempt at a subgoal.</meta>
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique id for this Subgoal Attempt.</meta>
+            <column name="subgoal_attempt_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="subgoal" class="edu.cmu.pslc.datashop.item.SubgoalItem">
+            <meta attribute="field-description">Subgoal this attempt is associated with.</meta>
+            <column name="subgoal_id" />
+        </many-to-one>
+
+        <property name="correctFlag" type="string">
+            <meta attribute="field-description">Flag indicating correctness of this attempt.</meta>
+            <column name="correct_flag" length="8" not-null="true" />
+        </property>
+        <set name="attemptSelections" inverse="true">
+            <meta attribute="field-description">Collection of selection attempts associated with this subgoal.</meta>
+            <key>
+                <column name="subgoal_attempt_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.AttemptSelectionItem" />
+        </set>
+        <set name="attemptActions" inverse="true">
+            <meta attribute="field-description">Collection of action attempts associated with this subgoal.</meta>
+            <key>
+                <column name="subgoal_attempt_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.AttemptActionItem" />
+        </set>
+        <set name="attemptInputs" inverse="true">
+            <meta attribute="field-description">Collection of input attempts associated with this subgoal.</meta>
+            <key>
+                <column name="subgoal_attempt_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.AttemptInputItem" />
+        </set>
+        <set name="feedbacks" inverse="true">
+            <meta attribute="field-description">Collection of feedbacks associated with this attempt.</meta>
+            <key>
+                <column name="subgoal_attempt_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.FeedbackItem" />
+        </set>
+        <set name="tutorTransactions" inverse="true">
+            <meta attribute="field-description">Collection of transactions associated with this attempt.</meta>
+            <key>
+                <column name="subgoal_attempt_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.TransactionItem" />
+        </set>
+
+        <set name="interpretationAttempts" inverse="true">
+            <meta attribute="field-description">Collection of interpretationAttempts associated with this user.</meta>
+            <key>
+                <column name="subgoal_attempt_id" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.InterpretationAttemptItem" />
+        </set>
+
+    </class>
+</hibernate-mapping>

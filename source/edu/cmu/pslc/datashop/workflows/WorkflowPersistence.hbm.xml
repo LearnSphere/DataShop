@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human-Computer Interaction Institute
+ Copyright 2016
+ All Rights Reserved
+
+ $Revision: 13459 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2016-08-26 12:05:41 -0400 (Fri, 26 Aug 2016) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowPersistenceItem" table="workflow_persistence">
+        <meta attribute="class-description">A workflow persistence object stores the previous workflow XML.</meta>
+
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique Id for this workflow persistence object.</meta>
+            <column name="workflow_persistence_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="workflowXml" type="string">
+            <meta attribute="field-description">The XML which defines the workflow.</meta>
+            <column name="workflow_xml" length="65535" />
+        </property>
+
+        <property name="lastUpdated" type="timestamp">
+            <meta attribute="field-description">The last update time.</meta>
+            <column name="last_updated" length="19" not-null="true" />
+        </property>
+
+        <many-to-one name="workflow" class="edu.cmu.pslc.datashop.workflows.WorkflowItem">
+            <meta attribute="field-description">The workflow for this component instance.</meta>
+            <column name="workflow_id" not-null="true" />
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 14923 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2018-03-13 12:38:51 -0400 (Tue, 13 Mar 2018) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.UserItem" table="user">
+    	<meta attribute="class-description">Represents a single user of the system.</meta>
+        <id name="id" type="string">
+        	<meta attribute="field-description">OLI formated user field from the oli authentication service. @see http://www.cmu.edu/oli/</meta>
+            <column name="user_id" length="250" /> 
+            <generator class="assigned" />
+        </id>
+        <property name="firstName" type="string">
+        	<meta attribute="field-description">First name of the user as a string</meta>
+            <column name="first_name" length="250" />
+        </property>
+        <property name="lastName" type="string">
+        	<meta attribute="field-description">Last name of the user as a string</meta>
+            <column name="last_name" length="250" />
+        </property>
+        <property name="email" type="string">
+        	<meta attribute="field-description">email of the user as a string</meta>
+            <column name="email" length="250" unique="true" />
+        </property>
+        <property name="institution" type="string">
+        	<meta attribute="field-description">institution of the user as a string (optional)</meta>
+            <column name="institution" length="250" unique="true" />
+        </property>        
+        <property name="secret" type="string">
+        	<meta attribute="field-description">The secret key for encrypting the authentication header.</meta>
+            <column name="secret" length="40" />
+        </property>
+        <property name="apiToken" type="string">
+        	<meta attribute="field-description">The public API token for web services.</meta>
+            <column name="api_token" length="40" />
+        </property>
+        <property name="adminFlag" type="boolean">
+        	<meta attribute="field-description">Flag indicating whether the user is a system administrator (true) or not (false)</meta>
+            <column name="admin_flag" not-null="true" />
+        </property>
+        <property name="creationTime" type="timestamp">
+       	    <meta attribute="field-description">Time this item was created.</meta>
+            <column name="creation_time" length="19" />
+        </property>
+        <property name="userAlias" type="string">
+            <column name="user_alias" length="250" />
+        </property>
+        <property name="loginType" type="string">
+            <column name="login_type" length="32" />
+        </property>
+        <property name="loginId" type="string">
+            <column name="login_id" length="250" />
+        </property>
+        
+        <set name="datasetUsages" inverse="true">
+        	<meta attribute="field-description">Collection of dataset usages associated with this user.</meta>
+            <key>
+                <column name="user_id" length="32" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.DatasetUsageItem" />
+        </set>
+        <set name="projectsByPrimaryInvestigator" inverse="true">
+        	<meta attribute="field-description">Collection of projects this user is the primary investigator of.</meta>
+            <key>
+                <column name="primary_investigator" length="32" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ProjectItem" />
+        </set>
+        <set name="projectsByDataProvider" inverse="true">
+                <meta attribute="field-description">Collection of projects this user is the data provider of.</meta>
+            <key>
+                <column name="data_provider" length="32" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ProjectItem" />
+        </set>
+        <set name="authorizations" inverse="true">
+        	<meta attribute="field-description">Collection of authorizations for this user on projects</meta>
+            <key>
+                <column name="user_id" length="32" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.AuthorizationItem" />
+        </set>
+        <set name="skillModels" inverse="true">
+        	<meta attribute="field-description">Collection of skill models owned by this user.</meta>
+            <key>
+                <column name="owner" length="32" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SkillModelItem" />
+        </set>
+        <set name="samples" inverse="true">
+        	<meta attribute="field-description">Collection of samples owned by this user.</meta>
+            <key>
+                <column name="owner" length="32" not-null="true" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.SampleItem" />
+        </set>
+        <set name="accessRequestStatus" inverse="true">
+                <meta attribute="field-description">Access Request statuses associated with this user.</meta>
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.AccessRequestStatusItem" />
+        </set>
+    </class>
+</hibernate-mapping>

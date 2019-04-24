@@ -1,0 +1,315 @@
+/********************************************
+* FILES INFO
+* 
+* Note: unfortunate naming... there are 
+* both 'filesInfo' and 'fileInfo' tags!
+********************************************/
+#filesInfo {
+	max-width:70%;
+	margin-top:0;
+	padding-top:0;
+	float:left;
+}
+#filesInfoStats {
+	margin-bottom:2em;	
+}
+
+#filesInfoOverview {
+	margin-bottom:0;	
+}
+
+#filesInfo #filesInfoOverview .bottomborder {
+	border-bottom: 2px solid #9f9f9f;
+}
+#filesInfo .dataset-box {
+	margin-top:0;
+	padding-top:0;
+	border:1px solid #dfdfdf;
+	border-collapse:collapse;
+
+}
+#filesInfo .dataset-box th {
+	padding:4px 10px;
+	border:1px solid #9f9f9f;
+	text-align:right;
+	width:17em;
+}
+#filesInfo .dataset-box td {
+	text-align: left;
+	width:35em;
+	border-bottom:1px solid #dfdfdf;
+	border-right:1px solid #dfdfdf;
+	color:#333;
+	white-space:pre-wrap; 
+	word-wrap:break-word
+}
+#fileInfo, #paperInfo, #externalAnalysesInfo {
+	text-align: left;
+	margin-top:0;
+	padding-top:0;
+	border:1px solid #cfdef2;
+	border-collapse:collapse;
+}
+#fileInfo th a, #paperInfo th a, #externalAnalysesInfo th a {
+    text-decoration: underline;
+    border-bottom: none;
+}
+#fileInfo th img, #paperInfo th img, #externalAnalysesInfo th img {
+    vertical-align: top;
+}
+#fileInfo th, #paperInfo th, #externalAnalysesInfo th {
+	padding:4px 10px;
+	border:1px solid #8194ae;
+	text-align:left;
+}
+#fileInfo td, #paperInfo td, #externalAnalysesInfo td {
+	border-bottom:1px solid #dfdfdf;
+	color:#333;
+	background-color:#fff;
+	font-size:.8em;
+}
+#fileInfo span.bTitle, #externalAnalysesInfo span.bTitle {
+    font-weight:bold;
+}
+#fileInfo td.even, #paperInfo td.even, #externalAnalysesInfo td.even {
+	background-color:#efefef;
+}
+#fileInfo caption, #paperInfo caption, #externalAnalysesInfo caption {
+	font-size:.8em;
+	text-align:left;
+	margin-bottom:.5em;
+	padding-bottom:0;
+	border:none;
+	font-weight:bold;
+}
+#paperInfo th.prefCit {
+	width:3em;
+}
+#paperInfo td.prefCit {
+	width:3em;
+        text-align: center;
+        vertical-align: top;
+}
+#fileInfo textarea, #paperInfo textarea, #externalAnalysesInfo textarea {
+	font-family:Arial;
+	font-size:.9em;
+	width:100%;
+}
+#fileInfo input.citation, #paperInfo input.citation, #externalAnalysesInfo input.citation {
+	width:100%;
+}
+#fileInfo input.title, #paperInfo input.title, #externalAnalysesInfo input.title {
+	width:100%;
+}
+#fileInfo .editButtons a, #paperInfo .editButtons a, #externalAnalysesInfo .editButtons a {
+	text-decoration:none;
+}
+
+#fileInfo td.updated, #paperInfo td.updated, #externalAnalysesInfo td.updated {
+	text-align: left;
+	width:5em;
+}
+
+#fileInfo td.updated span.date, #paperInfo td.updated span.date, #externalAnalysesInfo td.updated span.date {
+	font-size:90%;
+	color: #737373;
+}
+#layout #nav {
+	display:none;
+}
+#filesInfo .dataset-box caption {
+	font-size:.8em;
+	text-align:left;
+	margin-bottom:.5em;
+	padding-bottom:0;
+	border:none;
+	font-weight:bold;
+}
+#public-papers-info {
+    position: absolute;
+    top: -8px;
+    right: 107px;
+    width: 15em;
+    margin: 0;
+}
+#paperInfo.has-edit {
+    margin-top: 9px;
+}
+#data_grid {
+	height:15em;
+	float:left;
+	width:960px
+}
+#data_grid_header {
+	width:920px;
+	border-collapse:collapse;
+}
+#data_grid, #data_grid_header {
+	margin:0;
+	border-spacing:0;
+	border-collapse:collapse;
+	border:1px solid black;
+	padding:0;
+	margin-left:.2em;
+	table-layout:fixed;
+}
+#data_grid td, #data_grid_header th {
+	font-weight:normal;
+	font-size:11px !important;
+	padding:0;
+	margin:0;
+	padding-left:.2em;
+	overflow:hidden;
+}
+#data_grid_header th {
+	white-space:normal;	
+	color:#333;
+	font-weight:normal;
+	background-color:#e0e7ef;
+}
+#data_grid td {
+	vertical-align:middle;
+	white-space:nowrap;
+	border-right:1px solid #cfcfcf;
+	height:1.5em;
+}
+#data_grid td.even {
+	background-color:#efefef;
+}
+#viewPort {
+	border-left:1px solid gray;
+	border-bottom:1px solid grey;
+}
+.fileSaveDiv, .paperSaveDiv, .fileSureDiv, .paperSureDiv, .titleSureDiv, 
+.descriptionSureDiv, .showAbstractDiv, .extAnalysesSaveDiv, .extAnalysesSureDiv, 
+.kcModelDiv, .lessTitleDiv, .lessDescDiv, .externalAnalysisOutput {
+    display: none;
+}
+.error, .warn, .success {
+    padding:.8em;
+    margin-bottom: 1em;
+    border: 2px solid #ddd;
+    font-weight: bold;
+    font-size: 14px;
+    width: 400px;
+    text-align: center;
+    margin: auto;
+}
+.error {
+    background: #FBE3E4;
+    color: #8a1f11;
+    border-color: #FBC2C4;
+}
+.notice {
+    background: #FFF6BF;
+    color: #514721;
+    border-color: #FFD324;
+}
+.success {
+    background: #E6EFC2;
+    color: #264409;
+    border-color: #C6D880;
+}
+.error a {
+    color: #8a1f11;
+}
+.notice a {
+    color: #514721;
+}
+.success a {
+    color: #264409;
+}
+#fileUploadButton {
+    position: absolute;
+    top: -18px;
+    right: 0;
+}
+#fileUploadLink {
+    padding: .5em 16px .5em 30px;
+    position: relative;
+    color: #636363;
+    background-image: url('../images/add.png');
+    background-repeat: no-repeat;
+    background-position: 7px center ;
+}
+#fileUploadLink:hover {
+    text-decoration: none;
+    border: 1px solid #999999;
+    color: #212121;
+}
+#main_content_div {
+    position: relative
+}
+#externalAnalysisOutput td.eaDownload {
+    font-size:.9em;
+    text-align:center;
+    vertical-align: middle;
+    width: 12em;
+}
+#externalAnalysisOutput td.eaBackLink {
+    font-size:.8em;
+    text-align: left;
+    padding-bottom: 2em;
+}
+#externalAnalysisOutput a {
+    text-decoration: underline;
+}
+#externalAnalysisOutput p.eaText {
+    white-space: pre-wrap;
+    background-color:#efefef;
+    font-family: Monaco,Courier,monospace;
+    font-size: 12px;
+    padding: 1.5em;
+}
+#fileSizeWarning {
+    margin-top:0.5em;
+    margin-bottom:0;
+}
+#eaFileTitleTable {
+    margin-top:1em;
+}
+#eaFileTitleTable span {
+    font-weight: bold;
+}
+
+/*
+ * Upload dialogs
+ */
+ 
+#uploadPaperDialog p, #uploadExternalAnalysisDialog p, #uploadFileDialog p {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
+}
+#uploadPaperForm textarea, #uploadExternalAnalysisDialog textarea, #uploadFileDialog textarea {
+    width: 99%;
+    height: 100px;
+    font-family: Arial, Verdana, sans-serif;
+}
+#uploadPaperDialog #public-paper-upload-info {
+    float: none;
+    margin: 10px auto 0 auto;
+    font-size: 15px;
+    width: 214px;
+}
+#uploadPaperDialog label, #uploadExternalAnalysisDialog label, #uploadFileDialog label {
+    font-size: 0.8em;
+}
+#preferredCitation {
+    vertical-align: text-top;
+}
+#paperAbstract {
+    margin-bottom: 10px;
+}
+#externalAnalysisStatModel {
+    width: 99%;
+}
+#uploadExternalAnalysisDialog #fileTitle {
+    height: 50px;
+}
+#uploadExternalAnalysisDialog .maxlen, #uploadFileDialog .maxlen {
+    font-size: 12px;
+    color: gray;
+    margin: 3px 1px;
+}

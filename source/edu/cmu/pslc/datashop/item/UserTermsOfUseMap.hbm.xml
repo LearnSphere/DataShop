@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2011
+ All Rights Reserved
+
+ $Revision: 7277 $
+ Author: Shanwen Yu
+ Last modified by - $Author: shanwen $
+ Last modified on - $Date: 2011-11-14 15:30:11 -0500 (Mon, 14 Nov 2011) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.UserTermsOfUseMapItem" table="user_terms_of_use_map">
+        <meta attribute="class-description">Represents a UserTermsOfUseVersion in the system.
+            This class is essentially a mapping table with additional properties, so in order
+            to get Hibernate to play nicely, we create a surrogate id object, called
+            UserTermsOfUseItemId.  It holds the two members that form the composite key.
+            This item is then used to access UserTermsOfUse Items, as opposed to passing
+            a termsOfUse and user item.
+        </meta>
+
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.UserTermsOfUseMapId">
+            <key-property name="termsOfUseId" type="integer">
+                <column name="terms_of_use_id"/>
+            </key-property>
+            <key-property name="userId" type="string">
+                <column name="user_id"/>
+            </key-property>
+        </composite-id>
+         
+        <many-to-one name="termsOfUse" 
+                     class="edu.cmu.pslc.datashop.item.TermsOfUseItem"
+        	     insert="false" update="false">
+            <column name="terms_of_use_id" not-null="true"/>
+        </many-to-one>
+        
+        <many-to-one name="user" 
+                     class="edu.cmu.pslc.datashop.item.UserItem"
+        	     insert="false" update="false">
+            <column name="user_id" not-null="true"/>
+        </many-to-one>
+        
+        <many-to-one name="termsOfUseVersion" 
+                     class="edu.cmu.pslc.datashop.item.TermsOfUseVersionItem">
+            <column name="terms_of_use_version_id" not-null="true"/>
+        </many-to-one>
+        
+        <property name="date" type="timestamp">
+            <column name="date"/>
+        </property>	
+    </class>
+</hibernate-mapping>

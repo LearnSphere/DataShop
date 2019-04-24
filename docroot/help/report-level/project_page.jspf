@@ -1,0 +1,14 @@
+<div class="topic" id="help-project-page">
+    <h2>Project Page</h2>
+    <p>A project is primarily a group of related datasets. Each project has a principal 
+    investigator (PI) and potentially a data provider, as well as one or more project 
+    admins. If you are a project admin for this project, you can edit its metadata. The
+    difference between PI and project admin is described <a href="help?page=administration">here</a>.</p>
+    
+    <p>Access to datasets is granted by project. To gain access to a private project, click
+    the <strong>Request Access</strong> button and provide a brief reason why you would like
+    access. The status of your request will be shown on the <strong>Access Requests</strong> page.</p>
+    
+    <span style="display:none" class="helpTopicLink"><a href="help?page=administration"><img src="images/page_white_text.png" /> <span>Read 
+    more about project / dataset administration</span></a></span>
+</div>

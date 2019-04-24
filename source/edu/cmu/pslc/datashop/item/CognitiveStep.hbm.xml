@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 2960 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2006-06-19 16:21:21 -0400 (Mon, 19 Jun 2006) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.CognitiveStepItem" table="cognitive_step">
+    	<meta attribute="class-description">This represents a single row in the cognitive step table.</meta>
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique Id for this cognitive step</meta>
+            <column name="cognitive_step_id" />
+            <generator class="native" />
+        </id>
+        
+        <many-to-one name="problem" class="edu.cmu.pslc.datashop.item.ProblemItem">
+            <meta attribute="field-description">(FK) Problem associated with this cognitive step</meta>
+            <column name="problem_id" not-null="true"/>
+        </many-to-one>
+        
+        <property name="stepInfo" type="string">
+        	<meta attribute="field-description">Information about this step as a string.</meta>
+            <column name="step_info" length="65535" not-null="true" />
+        </property>
+        
+        <set name="skills" table="cog_step_skill_map">
+        	<meta attribute="field-description">Collection of skills associated with this cognitive step.</meta>
+            <key>
+                <column name="cognitive_step_id" not-null="true" />
+            </key>
+            <many-to-many column="skill_id" class="edu.cmu.pslc.datashop.item.SkillItem" />
+        </set>
+        
+        <set name="cogStepSeqs" inverse="true">
+        	<meta attribute="field-description">Collection of cognitive step sequences associated with this item.</meta>
+            <key>
+                <column name="cognitive_step_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.CogStepSeqItem" />
+        </set>
+        
+    </class>
+</hibernate-mapping>

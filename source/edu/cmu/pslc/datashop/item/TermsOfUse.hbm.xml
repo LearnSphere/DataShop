@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2011
+ All Rights Reserved
+
+ $Revision: 7235 $
+ Last modified by - $Author: mkomi $
+ Last modified on - $Date: 2011-11-07 14:10:23 -0500 (Mon, 07 Nov 2011) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.TermsOfUseItem" table="terms_of_use">
+        <meta attribute="class-description">A term of use.</meta>
+        <id name="id" type="integer">
+                <meta attribute="field-description">Database generated unique Id for this term.</meta>
+            <column name="terms_of_use_id" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="string">
+                <meta attribute="field-description">The name of the term.</meta>
+            <column name="name" not-null="true" />
+        </property>        
+        <property name="createdDate" type="timestamp">
+                <meta attribute="field-description">The timestamp for when this term was created.</meta>
+            <column name="created_date" length="19" not-null="true" />
+        </property>
+        <property name="retiredFlag" type="boolean">
+                <meta attribute="field-description">Indicates whether this terms is retired.</meta>
+            <column name="retired_flag" not-null="true" default="false" />
+        </property>
+        <set name="projectTermsOfUseMap" inverse="true">
+                <meta attribute="field-description">Collection of projects associated with this terms of use.</meta>
+            <key>
+                <column name="terms_of_use_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ProjectTermsOfUseMapItem" />
+        </set>
+        <set name="termsOfUseVersions" inverse="true">
+                <meta attribute="field-description">Collection of termsOfUseVersions for this termsOfUse.</meta>
+            <key>
+                <column name="terms_of_use_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.TermsOfUseVersionItem" />
+        </set>
+    </class>
+</hibernate-mapping>

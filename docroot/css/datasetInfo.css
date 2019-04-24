@@ -1,0 +1,244 @@
+/********************************************
+* DATASET INFO
+********************************************/
+#datasetInfo {
+    min-width: 48em;
+    max-width: 60em;
+}
+#datasetInfoTables {
+	max-width: 64%;
+	margin-top: 0;
+	padding-top: 0;
+	float: left;
+}
+#datasetInfoStats {
+	margin-bottom:2em;
+}
+#datasetInfoOverview {
+	margin-bottom:0;	
+}
+#datasetInfo #datasetInfoOverview .bottomborder {
+	border-bottom: 2px solid #9f9f9f;
+}
+#datasetInfo .dataset-box {
+	margin-top:0;
+	padding-top:0;
+	border:1px solid #dfdfdf;
+	border-collapse:collapse;
+}
+#datasetInfo .dataset-box th {
+	padding:4px 10px;
+	border:1px solid #9f9f9f;
+	text-align:right;
+	width:17em;
+}
+#datasetInfo .dataset-box td {
+	text-align: left;
+	width:35em;
+	border-bottom:1px solid #dfdfdf;
+	border-right:1px solid #dfdfdf;
+	color:#333;
+	white-space:pre-wrap; 
+	word-wrap:break-word
+}
+#datasetInfo td.dates {
+	white-space:normal;	
+}
+
+#layout #nav {
+	display:none;
+}
+#datasetInfo .dataset-box caption {
+	font-size:.8em;
+	text-align:left;
+	margin-bottom:.5em;
+	padding-bottom:0;
+	border:none;
+	font-weight:bold;
+}
+#datasetInfo #accessRequestButtonDiv,
+#datasetInfo #remoteAccessButtonDiv {
+	float: left;
+	margin-left: 23px;
+	margin-top: 19px;
+}
+
+#remoteAccessButtonDiv a {
+    text-decoration: none;
+    font-size: 13px;
+    color: #636363;
+}
+
+.remote_link {
+    padding: .4em 1em .4em 20px;
+    position: relative;
+}
+.remote_link  span.ui-icon {
+    margin: 0 5px 0 0;
+    position: absolute;
+    left: .2em;
+    top: 50%;
+    margin-top: -8px;
+}
+
+#data_grid {
+	height:15em;
+	float:left;
+	width:960px
+}
+#data_grid_header {
+	width:920px;
+	border-collapse:collapse;
+}
+#data_grid, #data_grid_header {
+	margin:0;
+	border-spacing:0;
+	border-collapse:collapse;
+	border:1px solid black;
+	padding:0;
+	margin-left:.2em;
+	table-layout:fixed;
+}
+#data_grid td, #data_grid_header th {
+	font-weight:normal;
+	font-size:11px !important;
+	padding:0;
+	margin:0;
+	padding-left:.2em;
+	overflow:hidden;
+}
+#data_grid_header th {
+	white-space:normal;	
+	color:#333;
+	font-weight:normal;
+	background-color:#e0e7ef;
+}
+#data_grid td {
+	vertical-align:middle;
+	white-space:nowrap;
+	border-right:1px solid #cfcfcf;
+	height:1.5em;
+}
+#data_grid td.even {
+	background-color:#efefef;
+}
+#viewPort {
+	border-left:1px solid gray;
+	border-bottom:1px solid grey;
+}
+.fileSaveDiv, .paperSaveDiv, .fileSureDiv, .paperSureDiv, .titleSureDiv {
+    display: none;
+}
+.error {
+	width:400px;
+	text-align:center;
+	margin:3px auto;
+	padding:3px;
+	font-size:14px;
+	font-weight:bold;
+	background-color:#FFCCCC;
+	border:2px solid black;
+}
+.success {
+	width:400px;
+	text-align:center;
+	margin:3px auto;
+	padding:3px;
+	font-size:14px;
+	font-weight:bold;
+	background-color:#CCFFD3;
+	border:2px solid black;
+}
+.warn {
+	width:400px;
+	text-align:center;
+	margin:3px auto;
+	padding:3px;
+	font-size:14px;
+	font-weight:bold;
+	background-color:#FFFFCC;
+	border:2px solid black;
+}
+
+/* 
+/* Preferred Citation 
+*/
+
+#datasetInfo .dataset-box #preferredPaperCitation {
+    white-space: normal;
+}
+#paper_select_div {
+    font-weight: bold;
+    margin:3px 0 4px 0;
+}
+#file_name_size_select {
+    width:80%
+}
+#attach_a_paper {
+    margin:4px 0 5px;
+    cursor:pointer
+}
+#paper_citation_div {
+    line-height:1.2em;
+    margin: 0 0 3px;
+}
+#edit_citation_link {
+    margin: 0 0 3px;
+}
+#edit_citation_link a {
+    cursor:pointer
+}
+#citationSaveButton {
+    margin-left:0;    
+}
+
+/* 
+/* Citation page 
+*/
+
+#citationInfo ul.toc, #termsOfUse ul.toc {
+    list-style:none;
+    font-size:.85em;
+    padding-left:0;
+}
+#citationInfo ul.toc a, #citationInfo a, #termsOfUse ul.toc a, #termsOfUse a {
+    text-decoration: underline;
+}
+#citationInfo ul.toc a:visited, #citationInfo a:visited,
+#termsOfUse ul.toc a:visited, #termsOfUse a:visited {
+    color:#333;
+}
+#citationInfo p, #termsOfUse p {font-size:.9em}
+#citationInfo h3, #termsOfUse h3 {font-size:1em}
+#citationInfo h4, #termsOfUse h4 {font-size:.9em}
+#citationInfo p.acknowledgment, #citationInfo p.citation {
+    width:80%;
+    margin-left:.5em;
+    padding:1em;
+    background-color:whiteSmoke;
+    color:#666;
+    text-shadow:white 0px 1px 0px;
+    line-height:1.1em;
+}
+
+/*
+/* Terms of Use page
+*/
+#termsOfUse .effectivedate {
+    font-style: oblique;
+    margin-left:.5em;
+}
+#datashop-terms-text, #project-terms-text {
+    width:75%;
+    margin-left:.5em;
+    
+}
+#datashop-terms-text li, #project-terms-text li{
+    font-size:.9em;
+    margin-bottom: .2em;
+    list-style-type: square;
+}
+
+#datasetInfo .dataset-box #studyFlag {
+    white-space: normal;
+}

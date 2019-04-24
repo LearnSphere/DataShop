@@ -1,0 +1,27 @@
+<div class="topic" id="help-sample-to-dataset">
+
+    <h2>Save Sample as Dataset </h2>
+    <p>Creating a dataset from an existing sample will place the new dataset
+    into the same project as the source dataset, thus, inheriting the same permissions, IRB attributes,
+    Principal Investigator, and Data Provider as the parent project.</p>
+    <p>The general process for creating a new dataset from an existing sample is to:</p>
+    <ul>
+        <li>Choose a unique name for the new dataset</li>
+        <li>Decide whether or not to include user-created KC models in your new dataset. If you choose to include them,
+        they will be copied to the new dataset. If you choose to exclude them, your new dataset will still contain
+        the 'default' KC model, if one was included in the original data.</li>
+        <li>Save the Dataset</li>
+        <li>After the initial verification completes, the dataset will appear in your <a
+            href="index.jsp?datasets=mine">Import Queue</a> as <strong>Queued for Verification</strong>,
+        where a separate process will verify the dataset in its entirety.*</li>
+        <li>When verification is complete, you will receive an email with the verification results. The status
+        for your dataset will update in your <a href="index.jsp?datasets=mine">Import Queue</a>. DataShop staff
+        will also enter an <strong>estimated import date</strong>. When your dataset is loaded, you will be
+        notified via email.</li>
+        <li>After your dataset is loaded, we ask that you examine the dataset and then <strong>release it</strong>.
+        When you release a dataset, it inherits the permissions of its project (those who can access the project can then access
+            this dataset) and becomes visible in the main index of datasets.</li>
+    </ul>
+
+
+</div>

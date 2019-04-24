@@ -1,0 +1,8 @@
+<%
+	ArrayList cssIncludes = new ArrayList();
+	ArrayList jsIncludes = new ArrayList();
+	String pageTitle = "";
+	boolean showHelpButton = true;
+
+        boolean showWfShareIcon = false;
+%>

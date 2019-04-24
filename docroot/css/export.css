@@ -1,0 +1,69 @@
+/********************************************
+* EXPORT PAGE
+********************************************/
+#exportPreview {
+	width:100%;
+	overflow-x:scroll;
+	margin:1em 0;
+	padding-bottom:.25em;
+}
+#exportButton {
+	margin-top:.2em;
+	font-family:"MS Shell Dlg",Arial,Helvetica,sans-serif;
+	font-size:.9em;
+	font-weight: bold;
+}
+
+#exportPreviewTable, #exportHeaderTable {
+	border-spacing:0;
+	border-collapse:collapse;
+	border:1px solid #cfcfcf;
+	margin-left:.2em;
+}
+#exportHeaderTable {
+	white-space:normal;
+	font-size:11px;
+}
+#exportPreviewTable caption {
+	text-align:left;
+	margin-bottom:.4em;
+	font-size:.9em;
+}
+#exportHeaderTable th {
+	color:#333;
+	font-weight:normal;
+	background-color:#cfdef2;
+}
+#exportPreviewTable td {
+	font-size:11px;
+}
+#exportPreviewTable td.even {
+	background-color:#efefef;
+}
+
+.cell {
+	overflow:hidden;
+}
+p.note {
+	font-size:.9em;
+}
+.cf_header {
+    border-bottom: 1px dotted gray;
+}
+
+/* Export page, which is different than Step Rollup export */
+#exportPreview #exportPreviewTable td {
+	color:#333;
+	font-size:.8em;
+	border-left:1px solid #cfcfcf;
+	padding:.2em .3em;
+}
+#exportPreview #exportPreviewTable caption {
+	margin-top:1em;
+}
+#exportPreview #exportPreviewTable td, #exportPreview #exportPreviewTable th {
+	white-space:nowrap
+}
+#exportOptionsWrapper {
+	padding:0 .2em .4em .3em;
+}

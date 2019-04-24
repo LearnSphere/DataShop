@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.workflows.WorkflowPaperItem" table="workflow_paper">
+        <meta attribute="class-description">An academic publication.</meta>
+        <id name="id" type="integer">
+            <meta attribute="field-description">Database generated unique Id for this workflow paper.</meta>
+            <column name="workflow_paper_id" />
+            <generator class="native" />
+        </id>
+        <property name="title" type="string">
+            <meta attribute="field-description">The title of this publication.</meta>
+            <column name="title" not-null="true" />
+        </property>
+
+        <many-to-one name="owner" class="edu.cmu.pslc.datashop.item.UserItem">
+            <meta attribute="field-description">The id of the user that is the owner of this entry.</meta>
+            <column name="owner" length="250" not-null="true" />
+        </many-to-one>
+
+        <property name="authorNames" type="string">
+            <meta attribute="field-description">The names of the authors for this publication as a string.</meta>
+            <column name="author_names" not-null="false" />
+        </property>
+        <property name="publication" type="string">
+            <meta attribute="field-description">The publication.</meta>
+            <column name="publication" not-null="false" />
+        </property>
+        <property name="citation" type="string">
+            <meta attribute="field-description">The full citation of the paper (includes HTML).</meta>
+            <column name="citation" not-null="false" />
+        </property>
+        <property name="publishDate" type="timestamp">
+            <meta attribute="field-description">Publish date.</meta>
+            <column name="publish_date" not-null="false" />
+        </property>
+        <property name="paperAbstract" type="string">
+            <meta attribute="field-description">Abstract of the paper.</meta>
+            <column name="abstract" />
+        </property>
+        <property name="addedTime" type="timestamp">
+            <meta attribute="field-description">The time-stamp for when this paper was added.</meta>
+            <column name="added_time" length="19" not-null="false" />
+        </property>
+        <property name="filePath" type="string">
+            <meta attribute="field-description">Path to the paper.</meta>
+            <column name="file_path" />
+        </property>
+        <property name="url" type="string">
+            <meta attribute="field-description">The external URL for the paper.</meta>
+            <column name="url" />
+        </property>
+
+        <set name="workflows" table="workflow_paper_map">
+            <meta attribute="field-description">Collection of workflows contained in this paper.</meta>
+            <key>
+                <column name="workflow_paper_id" not-null="true" />
+            </key>
+            <many-to-many column="workflow_id" class="edu.cmu.pslc.datashop.workflows.WorkflowItem" />
+        </set>
+    </class>
+</hibernate-mapping>

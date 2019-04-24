@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>DataShop - Dataset Import Tools</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+
+	<h1>DataShop - Dataset Import Tools</h1>
+	<p>
+	   The DataShop Dataset Import Toolset can be used to verify and import tab-delimited
+	   data from text files into the DataShop repository.
+	</p>
+	
+	<h2>The Dataset Verification Tool (DVT)</h2>
+	<p>
+	   The Dataset Verification Tool can be used by researchers to check the format of dataset 
+	   files they wish to import into the DataShop respository.  
+	</p>
+	
+	<h3>Specifications</h3>
+	<p>
+	   The DVT accepts tab-delimited text files as input.  The format of the file mimics that of 
+	   the files produces through a DataShop export, with a few differences.  	
+	</p>
+	<p>
+	   The following column headings are required in the dataset import text file:
+	   <ul>
+	      <li>Anon Student Id</li>
+	      <li>Session Id</li>
+	      <li>Time</li>
+	      <li>Student Response Type</li>
+	      <li>Tutor Response Type</li>
+	      <li>Level</li>
+	      <li>Problem Name</li>
+	      <li>Step Name</li>
+	      <li>Outcome</li>
+	      <li>Selection</li>
+	      <li>Action</li>
+	      <li>Input</li>
+	   </ul>
+	   <br>
+	   Optional column headings include:
+	   <ul>
+	      <li>Time Zone</li>
+	      <li>Student Response Subtype</li>
+	      <li>Tutor Response Subtype</li>
+	      <li>Attempt At Step</li>
+	      <li>Feedback Text</li>
+	      <li>Feedback Classification</li>
+	      <li>Help Level</li>
+	      <li>Total # Hints</li>
+	      <li>Tutor Response Subtype</li>
+	      <li>Condition Name</li>
+	      <li>Condition Type</li>
+	      <li>KC</li>
+	      <li>KC Category</li>
+	      <li>School</li>
+	      <li>Class</li>
+	      <li>CF</li>
+	   </ul>
+	</p>   
+	<h4>Column Heading Descriptions</h4>
+	<p>
+	   While most of the column headings listed above are self-explanatory, some require additional description.
+	</p>   
+	<p>
+	   'Level' represents a Dataset Level.  An example of the correct use of this column heading could be 'Level(Unit)',
+	   where 'Unit' is the dataset leve name.  The Level column should always be of the format Level(dataset_level_name). 
+	   If a dataset level name is not included, the name will default to "Default".
+	</p>   
+	<p>
+	   Condition Name and Condition Type should always be paired with each other, even if a condition does not have a condition
+	   type.  The DVT will produce and error if these two columns are not paired together.
+	</p>   
+	<p>
+	   KC represents a Knowledge Component.  An example of the correct use of this column heading could be 'KC(Area)', 
+	   where 'Area' is the skill model name for that knowledge component.  The KC column should always be of the format 
+	   KC(skill_model_name).  If a skill model name is not included, the name will default to "Default".
+	</p>
+	<p>   
+	   KC Category represents a Knowledge Component Category.  An example of the correct use of this columnd heading could be
+	   'KC Category(Area)', where 'Area' is the skill model name for that knowledge component.  The KC Category column should
+	   always be of the format KC Category(skill_model_name).  If a skill model name is not included, the name will default
+	   to "Default".
+	</p>
+	<p>   
+	   Additionally, KC and KC Category must always be paired with each other, in the same way that Condition Name and Type must
+	   be paired together.
+	</p>
+	<p>  
+	   CF represents a Custom Field.  An example of the correct use of this column heading could be 'CF(Factor or add-m)', where
+	   'Factor or add-m' is the name for that custom field.  The CF column should always be of the format CF(custom_field_name).
+	   If a custom field name is not included, the name will default to "Default".
+	</p>
+	
+	<h4>Additional Requirements</h4>
+	<p>
+	   The DVT expects the dataset column headings to be in a particular order.  Placing columns in unexpected locations can cause
+	   the DVT to fail during processing.  The expected order of column headings is listed below:
+	   <ol>
+	      <li>Anon Student Id</li>
+	      <li>Session Id</li>
+	      <li>Time</li>
+	      <li>Time Zone</li>
+	      <li>Student Response Type</li>
+	      <li>Student Response Subtype</li>
+	      <li>Tutor Response Type</li>
+	      <li>Tutor Response Subtype</li>
+	      <li>Level()</li>
+	      <li>Problem Name</li>
+	      <li>Step Name</li>
+	      <li>Attempt At Step</li>
+	      <li>Outcome</li>
+	      <li>Selection</li>
+	      <li>Action</li>
+	      <li>Input</li>
+	      <li>Feedback Text</li>
+	      <li>Feedback Classification</li>
+	      <li>Help Level</li>
+	      <li>Total # Hints</li>
+	      <li>Condition Name</li>
+	      <li>Condition Type</li>
+	      <li>KC()</li>
+	      <li>KC Category()</li>
+	      <li>School</li>
+	      <li>Class</li>
+	      <li>CF()</li>
+	   </ol>
+	 </p>
+	 <p>
+	   <strong>Multiple Columns</strong>
+	   <br>
+	   The DVT allows for multiple columns for the following column headings:
+	   <ul>
+	      <li>Anon Student Id</li>
+	      <li>Level()</li>
+	      <li>Selection</li>
+	      <li>Action</li>
+	      <li>Input</li>
+	      <li>Condition Name</li>
+	      <li>Condition Type</li>
+	      <li>KC()</li>
+	      <li>KC Category()</li>
+	      <li>CF()</li>
+	   </ul>
+	   <br>
+	   For example, if a dataset file had multiple students, the correct column format would be:
+	   "Anon Student Id" [tab] "Anon Student Id".  "Level()", "Selection", "Action", "Input", and "CF()" follow this specification
+	   as well.  If a dataset file has multiple conditions, the column format would be: 
+	   "Condition Name" [tab] "Condition Type" [tab] "Condition Name" <tab> "Condition Type".  KC and KC Category follow
+	   this model as well.
+	</p>
+	<h3>Running the Dataset Verification Tool</h3>
+	<p>
+	   The only input required for the DVT is the dataset file name you wish to process.  Your input file should contain ALL SAMPLES you
+	   wish to import into the repository.  Results from the DVT processing are printed to the console and to an output text file called
+	   "results.txt".
+	</p>
+	<p>
+	   [should be run from a .bat file, which has not been created yet.]
+	</p>
+	<p>
+	   Java version: [not sure if dependent upon 1.5 or not.]
+	</p>
+	
+	<h2>The Dataset Import Tool (DIT)</h2>
+	<p>
+	   The Dataset Import Tool can be used to easily import tab-delimited data into the DataShop respository.
+	   This tool is currently available only to DataShop technical staff.  
+	</p>
+	
+	<h3>Specifications</h3>
+	<p>
+	   The DIT accepts tab-delimited text files as input.  The format of the file mimics that of 
+	   the files produces through a DataShop export, with a few differences.  The DIT relies on the DVT to
+	   check the formatting of the input file.  If the DVT finds any errors during processing the DIT exits.  
+	   Errors from processing are printed to the console as well as "results.txt".    	
+	</p>
+	
+	<h3>Running the Dataset Impor Tool</h3>
+	<p>
+	   Use of the Dataset Import Tool requires a filename argument from build.properties called "importdata.filename" and a 
+	   dataset name argument called "importdata.dataset.name".  After setting this up, run the ant target "runImportTool".  If you 
+	   wish to run the DatasetVerificationTool standalone, use "runImportVerify".  This ant target requires the same build.properties
+	   arguements as runImportTool.
+	</p>
+	<p>
+	   Java version: [not sure if dependent upon 1.5 or not.]
+	</p>
+	
+</body>
+</html>

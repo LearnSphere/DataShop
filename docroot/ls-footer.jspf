@@ -1,0 +1,30 @@
+<%@page import="edu.cmu.pslc.datashop.util.VersionInformation"%>
+<tr>
+<td colspan="2">
+<table id="footerTable">
+<tr>
+    <td id="versionNumber" class="versionNumberTD">
+         <%=VersionInformation.getReleaseString()%>
+    </td>
+    <td id="footerLinks">
+        <a href="index.jsp">home</a>
+	| <a href="/about" target="_blank">about</a> 
+	| <a href="Terms">terms</a> 
+	| <a href="help?page=contact">contact us</a><br>
+	<%
+        String helpHrefStringFooter = "help";
+        if (datasetId != null) {
+            helpHrefStringFooter += "?datasetId=" + datasetId;
+        }
+    
+        if (helpPageFlag) {
+            out.print("documentation");
+        } else {
+            out.print("<a href=\"" + helpHrefStringFooter + "\">documentation</a>");
+        }
+	%>
+    </td>
+</tr>
+</table>
+</td>
+</tr>

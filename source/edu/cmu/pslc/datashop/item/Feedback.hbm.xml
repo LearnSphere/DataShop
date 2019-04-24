@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 2716 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2006-04-13 13:56:24 -0400 (Thu, 13 Apr 2006) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.FeedbackItem" table="feedback">
+    	<meta attribute="class-description">Feedback that the tutor gave the student on a given attempt.</meta>
+        <id name="id" type="long">
+        	<meta attribute="field-description">Database generated unique Id for this feedback.</meta>
+            <column name="feedback_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="subgoalAttempt" class="edu.cmu.pslc.datashop.item.SubgoalAttemptItem">
+        	<meta attribute="field-description">The attempt that this feedback occured with.</meta>
+            <column name="subgoal_attempt_id" />
+        </many-to-one>
+        <property name="feedbackText" type="string">
+        	<meta attribute="field-description">The text of the feedback as a string.</meta>
+            <column name="feedback_text" not-null="true" />
+        </property>
+        <property name="classification" type="string">
+        	<meta attribute="field-description">Classification of this feedback as a string.</meta>
+            <column name="classification" />
+        </property>
+        <property name="templateTag" type="string">
+        	<meta attribute="field-description">The a tag of this feedback as a string.</meta>
+            <column name="template_tag" />
+        </property>
+        <set name="tutorTransactions" inverse="true">
+        	<meta attribute="field-description">Collection of tutor transactions associated with this feedback.</meta>
+            <key>
+                <column name="feedback_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.TransactionItem" />
+        </set>
+    </class>
+</hibernate-mapping>

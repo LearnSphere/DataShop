@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2015
+ All Rights Reserved
+
+ $Revision: 13000 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2016-03-23 14:46:19 -0400 (Wed, 23 Mar 2016) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.discoursedb.item.ContributionItem" table="contribution">
+        <id name="id" type="long">
+          <column name="id_contribution" />
+          <generator class="native" />
+        </id>
+        <property name="created" type="timestamp">
+          <column name="entity_created" length="19"/>
+        </property>
+        <property name="modified" type="timestamp">
+          <column name="entity_modified" length="19"/>
+        </property>
+        <property name="contributionType" type="string">
+          <column name="type" length="255" />
+        </property>
+        <property name="endTime" type="timestamp">
+          <column name="end_time" length="19"/>
+        </property>
+        <property name="startTime" type="timestamp">
+          <column name="start_time" length="19"/>
+        </property>
+        <property name="version" type="long">
+          <column name="entity_version" length="20"/>
+        </property>
+        <property name="downVotes" type="integer">
+          <column name="downvotes" />
+        </property>
+        <property name="upVotes" type="integer">
+          <column name="upvotes" />
+        </property>
+        <property name="sourceId" type="long">
+          <column name="source_id" length="20"/>
+        </property>
+        <many-to-one name="dataSources" class="edu.cmu.pslc.datashop.discoursedb.item.DataSourcesItem">
+            <column name="fk_data_sources" />
+        </many-to-one>
+        <many-to-one name="currentRevision" class="edu.cmu.pslc.datashop.discoursedb.item.ContentItem">
+            <column name="fk_current_revision" />
+        </many-to-one>
+        <many-to-one name="firstRevision" class="edu.cmu.pslc.datashop.discoursedb.item.ContentItem">
+            <column name="fk_first_revision" />
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

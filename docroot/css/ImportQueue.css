@@ -1,0 +1,352 @@
+#import-queue-div {
+    position: relative;
+}
+#import-queue-div h1 {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+#import-queue-admin-div #import-queue-div h1:first-child {
+    margin-bottom: 22px;
+}
+#queueModeDiv {
+    font-size: 13px;
+    position: absolute;
+    top: 0;
+    left: 110px;
+}
+#queueModeDiv a {
+    color: #37567F;
+    text-decoration: underline;
+}
+#queueModeDiv .status {
+    position: absolute;
+    top: 0;
+    left: 19px;
+    width: 400px;
+}
+#queueModeDiv .by {
+    position: relative;
+    margin-left: 24px;
+}
+
+/* Import Queue Table */
+
+.importQueueTableClass {
+    clear: left;
+    margin: 10px 0 15px 19px;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+#project_content_div .importQueueTableClass,
+#import-queue-admin-div .importQueueTableClass {
+    margin: 0
+}
+.importQueueTableClass td {
+    border-bottom: 1px solid #E0E0E0;
+    font-size: 12px;
+    padding: 8px 10px 8px 0;
+}
+.importQueueTableClass .resultsRow td {
+    padding-left: 17px;
+}
+#import-queue-div .importQueueTableClass .resultsRow td p {
+    white-space: pre;
+    font-size: 12px;
+}
+#import-queue-div .importQueueTableClass .resultsRow td h4 {
+    margin-top: 0;
+    font-size: 12px;
+}
+#import-queue-div .uploadVerifyResults {
+    font-size: 13px;
+    line-height: 18px;
+}
+.importQueueTableClass .resultsRow td > div {
+    border: 1px solid #ccc;
+    padding: 14px;
+    border-radius: 2px;
+    background-color: rgb(248, 248, 248);
+    max-height: 500px;
+    overflow: scroll;
+}
+.importQueueTableClass td span {
+    /*font-size: 80%;*/
+}
+.importQueueTableClass span.bTitle {
+    font-weight:bold;
+}
+.importQueueTableClass th {
+    text-align: left;
+    padding-left: 0;
+    font-size: 13px;
+    color: #666;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 3px;
+}
+.importQueueTableClass th img {
+    vertical-align: middle;
+}
+.importQueueTableClass th a {
+    color: #37567F;
+    background-color: inherit;
+    font-size: 90%;
+    text-decoration: none;
+    border-bottom: 1px solid #37567F;;
+}
+.importQueueTableClass td a,
+#datasetNameCheckLink {
+    color:#37567F;
+    background-color: inherit;
+    text-decoration: underline;
+}
+#datasetNameCheckLink {
+    padding-left: 10px;
+    font-size: 90%;
+    cursor: pointer;
+}
+.importQueueTableClass caption {
+    font-size:.8em;
+    text-align:left;
+    margin-bottom:.5em;
+    padding-bottom:0;
+    border:none;
+    font-weight:bold;
+}
+.importQueueTableClass .dataset-name {
+    font-weight: bold;
+    font-size: 13px;
+}
+.importQueueTableClass .status-description {
+    margin-left: 20px;
+}
+p.show-items {
+    font-size: 13px;
+}
+.fatButtonDiv {
+    margin-bottom: 20px
+}
+#uploadDatasetButtonDiv, #createProjectButtonDiv {
+    float: left;
+}
+#uploadDatasetButtonDiv {
+    margin-left: 3px;
+}
+#createProjectButtonDiv {
+    margin-left: 15px;
+}
+#uploadDatasetButtonDiv #uploadDatasetButtonLink,
+#createProjectButtonDiv #createProjectButtonLink {
+    padding: .5em 16px .5em 30px;
+    color: #636363;
+    background-image: url('../images/add.png');
+    background-repeat: no-repeat;
+    background-position: 7px center ;
+    text-decoration: none;
+}
+#uploadDatasetButtonLink:hover, #createProjectButtonLink:hover {
+    text-decoration: none;
+    border: 1px solid #999999;
+    color: #212121;
+}
+
+.boldface {
+    font-weight: bold;
+}
+.hidden {
+    display: none;
+}
+
+#iqEditStatusDialog #datasetName,
+#iqEditStatusDialog #userName {
+    font-size: 14px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+#iqEditStatusDialog #actualDatasetName {
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+#iqEditStatusDialog #userName,
+#iqEditStatusDialog #actualDatasetName {
+    margin-bottom: 4px;
+}
+#iqEditStatusDialog #fileName,
+#iqEditStatusDialog #projectName,
+#iqEditStatusDialog #format {
+    font-size: 12px;
+    margin: 0;
+}
+#iqEditStatusDialog #format {
+    margin-bottom: 10px;
+}
+#iqEditStatusDialog label {
+    font-size: 13px;
+    padding-right: 5px;
+}
+#iqEditStatusDialog textarea {
+    width: 98%
+}
+#iqEditStatusDialog .errorMessage {
+    margin-top: 0
+}
+#projectComboBox {
+    width: 580px;
+}
+#projectMetaDataTable {
+    width: 480px;
+    border-spacing: 5px;
+    margin-top: 7px;
+    margin-left: 5px
+}
+/* Move Dataset Dialog */
+#moveDatasetDialog {
+    font-size: 13px
+}
+#moveDatasetDialog #newProjectNote {
+    width: 580px;
+    font-style: italic;
+    color: gray;
+    margin-top: 25px;
+}
+#moveDatasetDialog #moveDatasetNotes {
+    width: 580px;
+    font-style: italic;
+    margin-left: 13px;
+    color: gray;
+}
+#moveDatasetDialog #newProjectInputText {
+    font-weight: bold;
+}
+#moveDatasetDialog #existingProjectComboBox p {
+    font-weight: bold;
+    margin-bottom: 5px
+}
+#projectMetaDataTable th {
+    font-weight: bold;
+    width: 110px;
+    text-align: right;
+    padding-right: 8px
+}
+
+/* Gear Drop Down Menu */
+.gearDropdown {
+    color: #555;
+    position: relative;
+    width: 58px;
+    height: 24px;
+    text-align: left;
+}
+.gearSubmenu {
+    background: #fff;
+    position: absolute;
+    top: 25px;
+    left: -126px;
+    width: 167px;
+    margin-left: 10px;
+    padding: 9px 0 5px;
+    /*border-radius: 6px;*/
+    -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    display: none;
+    /* for ie8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#88000000')";
+    /* for ie9 */
+    border-collapse: separate;
+}
+#import-queue-div .gearDropdown li a,
+#project-page .gearDropdown li a,
+#my-data-sets .gearDropdown li a,
+#public-data-sets .gearDropdown li a,
+#private-data-sets .gearDropdown li a,
+#available-data-sets .gearDropdown li a {
+    color: #555555;
+    display: block;
+    font-family: arial;
+    font-weight: bold;
+    padding: 6px 15px;
+    cursor: pointer;
+    text-decoration:none;
+}
+#import-queue-div .gearDropdown li a:hover,
+#project-page .gearDropdown li a:hover,
+#my-data-sets .gearDropdown li a:hover,
+#private-data-sets .gearDropdown li a:hover,
+#available-data-sets .gearDropdown li a:hover {
+    background:#155FB0;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+a.gearAnchor {
+    font-size: 11px;
+    line-height: 16px;
+    color: #555;
+    position: absolute;
+    display: block;
+    padding: 11px 0 0 20px;
+    width: 58px;
+    height: 24px;
+    margin: -11px 0 0 -10px;
+    text-decoration: none;
+    cursor:pointer;
+}
+.gearUl {
+    list-style:none;
+    margin:0px;
+    padding:0px;
+    font-size: 11px;
+}
+
+.disabledGear {
+    margin: -11px 0 0 -10px;
+    padding: 11px 0 0 20px;
+}
+
+#import-queue-div .gearDropdown li a.disabledLink,
+#project-page .gearDropdown li a.disabledLink,
+#my-data-sets .gearDropdown li a.disabledLink,
+#private-data-sets .gearDropdown li a.disabledLink,
+#available-data-sets .gearDropdown li a.disabledLink {
+    color: #bbb;
+}
+#import-queue-div .gearDropdown li a.disabledLink:hover,
+#project-page .gearDropdown li a.disabledLink:hover,
+#my-data-sets .gearDropdown li a.disabledLink:hover,
+#private-data-sets .gearDropdown li a.disabledLink:hover,
+#available-data-sets .gearDropdown li a.disabledLink:hover {
+    background:#fff;
+    color: #bbb;
+}
+
+#accessListTable {
+    border-top: 0px ;
+    border-bottom: 0px ;
+    font-size: 0.85em;
+    padding: 8px 10px 8px 10px;
+}
+
+#accessListTable td {
+    padding: 0px 20px 0px 30px;
+}
+
+#additionalInfoTable {
+    border-top: 0px ;
+    border-bottom: 0px ;
+    font-size: 0.85em;
+    padding: 0px 0px 0px 10px;
+}
+#accessList a, #additionalInfoTable a {
+    text-decoration: underline;
+}
+#additionalInfoTable td {
+    padding: 0px 20px 0px 10px;
+}
+#additionalInfoTable img {
+    border:2px solid #888888;
+    height: 10px;
+}
+
+

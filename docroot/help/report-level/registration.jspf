@@ -1,0 +1,22 @@
+<div class="topic" id="help-registration">
+<h2>Create a new DataShop account</h2>
+
+<p>If you have logged into DataShop before but forgotten your password, do not create a new
+account! <a href="ForgotPassword">Click here to reset your password</a>.</p>
+
+<h3>I'm a Carnegie Mellon University student, staff, or faculty member</h3>
+<p><strong>You don't need to register here.</strong> Instead, <a
+    href="<%=webIsoHref%>">click here to log in with WebISO</a>.
+You will be asked to authenticate with WebISO, the CMU-standard authentication system. After
+authenticating with CMU, you will be asked to create a DataShop account. Complete the registration
+form to link your CMU identity with the DataShop system. Next time you log in, you will only need to
+authenticate with CMU (WebISO).</p>
+
+<h3>I'm NOT a Carnegie Mellon University student, staff, or faculty member</h3>
+<p>Complete the form on this page to create your DataShop account. While there are no
+requirements for your username, your password must be 6-12 characters, and may contain only
+letters, numbers, underscores, and hyphens (spaces are not allowed). Your password cannot contain
+the username you've chosen. <strong>Passwords are case-sensitive</strong>. Your email address is
+important: we will use it to help you reset your password if you ever forget it.</p>
+
+</div>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2016
+ All Rights Reserved
+
+ Author: Mike Komisin
+ $Revision: 15470 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2018-09-12 11:19:05 -0400 (Wed, 12 Sep 2018) $
+ $KeyWordsOff: $
+-->
+
+  <class name="edu.cmu.pslc.datashop.workflows.WorkflowTagMapItem" table="workflow_tag_map">
+        <composite-id name="id" class="edu.cmu.pslc.datashop.workflows.WorkflowTagMapId">
+            <key-property name="workflowId" type="long">
+                <column name="workflow_id"/>
+            </key-property>
+            <key-property name="workflowTagId" type="long">
+                <column name="workflow_tag_id"/>
+            </key-property>
+        </composite-id>
+
+        <many-to-one name="workflow" class="edu.cmu.pslc.datashop.workflows.WorkflowItem"
+                insert="false" update="false">
+            <column name="workflow_id" not-null="true" />
+        </many-to-one>
+
+        <many-to-one name="tag" class="edu.cmu.pslc.datashop.workflows.WorkflowTagItem"
+                insert="false" update="false">
+            <column name="workflow_tag_id" not-null="true" />
+        </many-to-one>
+
+  </class>
+</hibernate-mapping>

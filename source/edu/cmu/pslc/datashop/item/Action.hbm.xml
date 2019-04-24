@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 4185 $
+ Last modified by - $Author: bkb $
+ Last modified on - $Date: 2007-08-28 12:55:42 -0400 (Tue, 28 Aug 2007) $
+ $KeyWordsOff: $
+-->
+<hibernate-mapping>
+
+    <class name="edu.cmu.pslc.datashop.item.ActionItem" table="action" >
+        <meta attribute="class-description">This is the action of a subgoal.</meta>
+        <id name="id" type="long">
+            <meta attribute="field-description">Database generated unique id.</meta>
+            <column name="action_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="subgoal" class="edu.cmu.pslc.datashop.item.SubgoalItem">
+        	<meta attribute="field-description">The subgoal that this action is part of.</meta>
+            <column name="subgoal_id" not-null="true" />
+        </many-to-one>
+        <property name="action" type="string">
+        	<meta attribute="field-description">The action logged by the tutor.</meta>
+            <column name="action" not-null="true" />
+        </property>
+        <property name="type" type="string">
+        	<meta attribute="field-description">The type as a string.</meta>
+            <column name="type" length="50" />
+        </property>
+        <property name="xmlId" type="string">
+        	<meta attribute="field-description">The xml_id as a string.</meta>
+            <column name="xml_id" length="50" />
+        </property>
+    </class>
+
+</hibernate-mapping>

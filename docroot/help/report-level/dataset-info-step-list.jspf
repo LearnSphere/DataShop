@@ -1,0 +1,13 @@
+<div class="topic" id="help-dataset-info-step-list">
+    <h2>Dataset Info / Step List</h2>
+    <p>The Step List table lists and decomposes all of the problems in the
+    dataset. It details the problem hierarchy (the unit, section, or other divisions that 
+    contain the problem) and composition (the steps that make up a problem).</p>
+    <p>A unique problem-solving step is shown on each row.</p>
+    
+    <p>Export the step list table by clicking the <span
+    class="button">Export</span> button.</p>
+    
+    <span class="helpTopicLink" style="display:none"><a href="help?page=stepList"><img src="images/page_white_text.png" /> <span>Read more 
+    about the Step List</span></a></span>
+</div>

@@ -1,0 +1,105 @@
+<!--
+  Carnegie Mellon University, Human Computer Interaction Institute
+  Copyright 2014
+  All Rights Reserved
+-->
+<%
+// Author: Cindy Tipper
+// Version: $Revision: 13213 $
+// Last modified by: $Author: ctipper $
+// Last modified on: $Date: 2016-05-02 16:48:45 -0400 (Mon, 02 May 2016) $
+// $KeyWordsOff: $
+//
+%>
+<%
+String mostRecent = "";
+if (sessCount == 0) {
+    mostRecent = " mostRecentSession ";
+}
+%>
+
+<div class="sessionBlock">
+    <div class="progressReport">
+        <div class="lightBlueText reportTitle">
+            <%if (sessCount == 0) { %>
+                This week's progress report:
+            <%} else {
+                int weekNum = numSess - sessCount;%>
+                Week <%=weekNum %> Progress Report:
+            <%} %>
+        </div>
+        <div>
+            <span class="lightBlueText">Last Update: </span> <%=sessInfoDto.getProgress() %>
+        </div>
+        <div>
+            <%if (sessInfoDto.getObjective() != null) { %>
+                <span class="lightBlueText"><%=advisorFirstName %>'s Next Objective: </span> <%=sessInfoDto.getObjective() %>
+                <%if (sessCount == 0) {%>
+                    <div class="editObjective greenText">[edit]</div>
+                <%}%>
+            <%} %>
+        </div>
+        <div>
+            <span class="lightBlueText">Notes and Reflections: </span>
+            <%=PL2Servlet.listToCommaSeparatedString(sessInfoDto.getReflections()) %>
+            <%if (sessCount == 0) {
+                // Set session Id's for the background/reflection add boxes
+                %> <script>jQuery('.addBackground').attr('sessionId', '<%=sessInfoDto.getSessionId() %>');</script>
+                <div class="addReflection greenText" sessionId="<%=sessInfoDto.getSessionId()%>">[add]</div> <%
+            }%>
+        </div>
+
+    </div>
+    <div class="plan">
+        <div class="lightBlueText reportTitle">
+            <%if (sessCount == 0) { %>
+                Next Week's Plan:
+            <%} else {
+                int weekNum = numSess - sessCount + 1;%>
+                Week <%=weekNum %> Plan:
+            <%} %>
+        </div>
+        <div class="selectedPlanResources <%=mostRecent%>">
+            <%
+            Map<Long, String> systemResources = sessInfoDto.getSystemResources();
+            if (systemResources != null) {
+                Iterator it = systemResources.entrySet().iterator();
+                while(it.hasNext()) {
+                    Map.Entry pair = (Map.Entry)it.next();
+                    %><div resourceType="systemResource" class="selectedResource resource" value="<%=pair.getKey() %>"><%=pair.getValue() %></div> <br/> <%
+                }
+            }
+            Map<Long, String> advisorResources = sessInfoDto.getAdvisorResources();
+            if (advisorResources != null) {
+                Iterator it = advisorResources.entrySet().iterator();
+                while(it.hasNext()) {
+                    Map.Entry pair = (Map.Entry)it.next();
+                    %><div resourceType="advisorResource" class="selectedResource resource" value="<%=pair.getKey() %>"><%=pair.getValue() %></div> <br/> <%
+                }
+            }
+            Map<Long, String> strategyOptions = sessInfoDto.getStrategyOptions();
+            if (sessCount == 0 && strategyOptions != null) {
+                // It's the most recent session, display the strategy options
+                Iterator it = strategyOptions.entrySet().iterator();
+                while(it.hasNext()) {
+                    Map.Entry pair = (Map.Entry)it.next();
+
+                    %><form class="strategyOptionAdd greenText" method="post" action="PL2">
+                        <input type="hidden" name="requestingMethod" value="PL2Servlet.resourceLibrary">
+                        <input type="hidden" name="studentId" value="<%=studentId %>">
+                        <input type="hidden" name="advisorId" value="<%=advisorId %>">
+                        <input type="hidden" name="planId" value="<%=sessInfoDto.getPlanId() %>">
+                        <input type="hidden" name="sessionId" value="<%=sessInfoDto.getSessionId() %>">
+                        <input type="hidden" name="strategyOptionId" value="<%=pair.getKey() %>">
+                        <%=pair.getValue() %>
+                    </form>  <br/> <%
+                }
+                %><!-- <div id="customStrategy" class="strategyOptionAdd greenText"> Custom Strategy</div> --><%
+            }
+            %>
+        </div>
+    </div>
+</div>
+
+<div class="horizontalDivider"></div>
+

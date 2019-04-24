@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2012
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ExternalAnalysisItem" table="external_analysis">
+        <meta attribute="class-description">Output of an analysis done outside of DataShop.</meta>
+        <id name="id" type="integer">
+            <meta attribute="field-description">Database generated unique Id for this external analysis.</meta>
+            <column name="external_analysis_id" />
+            <generator class="native" />
+        </id>
+        <property name="skillModelName" type="string">
+            <meta attribute="field-description">The name of the corresponding KC (skill) model.</meta>
+            <column name="skill_model_name" length="50" />
+        </property>
+        <property name="skillModelId" type="long">
+            <meta attribute="field-description">The id of the corresponding KC (skill) model.</meta>
+            <column name="skill_model_id" />
+        </property>
+        <property name="statisticalModel" type="string">
+            <meta attribute="field-description">The name of the statistical model.</meta>
+            <column name="statistical_model" length="100" />
+        </property>
+
+        <many-to-one name="owner" class="edu.cmu.pslc.datashop.item.UserItem">
+            <meta attribute="field-description">The id of the user that is the owner of this entry.</meta>
+            <column name="owner" length="250" not-null="true" />
+        </many-to-one>
+
+        <many-to-one name="file" class="edu.cmu.pslc.datashop.item.FileItem">
+            <meta attribute="field-description">The id of the file associated with this analysis.</meta>
+            <column name="file_id" />
+        </many-to-one>
+
+        <set name="datasets" table="external_analysis_dataset_map">
+            <meta attribute="field-description">Collection of datasets this analysis is associated with.</meta>
+            <key>
+                <column name="external_analysis_id"/>
+            </key>
+            <many-to-many column="dataset_id" class="edu.cmu.pslc.datashop.item.DatasetItem" />
+        </set>
+    </class>
+</hibernate-mapping>

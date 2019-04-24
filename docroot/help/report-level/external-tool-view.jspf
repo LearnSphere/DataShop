@@ -1,0 +1,10 @@
+<div class="topic" id="help-external-tool-view">
+    <h2>External Tools</h2>
+    <p>This page displays more information about an external tool submitted by another
+    DataShop user.</p>
+    <p>Note that many tools already have a homepage on the web, so you might need to 
+    visit the tool's homepage to download it.</p> 
+    
+    <span style="display:none" class="helpTopicLink"><a href="help?page=externalTools">
+    <img src="images/page_white_text.png" /> <span>Read more about External Tools</span></a></span>
+</div>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 14073 $
+ Last modified by - $Author: hcheng $
+ Last modified on - $Date: 2017-05-15 14:48:12 -0400 (Mon, 15 May 2017) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.learnsphere.analysis.moocdb.item.FeatureExtractionItem" table="feature_extractions">
+    <meta attribute="class-description">Represents a single feature extraction instance.</meta>
+        <id name="id" type="long">
+        <meta attribute="field-description">Database generated unique Id for this feature extraction.</meta>
+            <column name="feature_extraction_id" />
+            <generator class="native" />
+        </id>
+        <property name="createdBy" type="string">
+            <meta attribute="field-description">User id of the creator.</meta>
+            <column name="created_by" />
+        </property>
+        <property name="startTimestamp" type="timestamp">
+        <meta attribute="field-description">The timestamp for when this feature extraction created.</meta>
+            <column name="start_timestamp" length="19" />
+        </property>
+        <property name="endTimestamp" type="timestamp">
+        <meta attribute="field-description">The timestamp for the end of processing for this feature extraction.</meta>
+            <column name="end_timestamp" length="19" />
+        </property>
+        <property name="startDate" type="timestamp">
+        <meta attribute="field-description">The start date for this feature extraction configuration.</meta>
+            <column name="start_date" length="19" />
+        </property>
+        <property name="numOfWeek" type="int">
+        <meta attribute="field-description">The num of week for this feature extraction configuration.</meta>
+            <column name="num_of_week" />
+        </property>
+        <property name="featuresList" type="string">
+            <meta attribute="field-description">The feature list for this feature extraction configuration.</meta>
+            <column name="features_list" />
+        </property>
+    </class>
+</hibernate-mapping>

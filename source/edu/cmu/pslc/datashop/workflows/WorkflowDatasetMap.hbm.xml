@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2016
+ All Rights Reserved
+
+ Author: Mike Komisin
+ $Revision: 10435 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2013-12-19 10:07:17 -0500 (Thu, 19 Dec 2013) $
+ $KeyWordsOff: $
+-->
+
+  <class name="edu.cmu.pslc.datashop.workflows.WorkflowDatasetMapItem" table="workflow_dataset_map">
+        <composite-id name="id" class="edu.cmu.pslc.datashop.workflows.WorkflowDatasetMapId">
+            <key-property name="workflowId" type="long">
+                <column name="workflow_id"/>
+            </key-property>
+            <key-property name="datasetId" type="integer">
+                <column name="dataset_id"/>
+            </key-property>
+        </composite-id>
+
+        <many-to-one name="workflow" class="edu.cmu.pslc.datashop.workflows.WorkflowItem"
+                insert="false" update="false">
+            <column name="workflow_id" not-null="true" />
+        </many-to-one>
+
+        <many-to-one name="dataset" class="edu.cmu.pslc.datashop.item.DatasetItem"
+                insert="false" update="false">
+            <column name="dataset_id" not-null="true" />
+        </many-to-one>
+
+        <many-to-one name="addedBy" class="edu.cmu.pslc.datashop.item.UserItem">
+            <column name="added_by" length="250" />
+        </many-to-one>
+
+        <property name="addedTime" type="timestamp">
+            <column name="added_time" length="19" />
+        </property>
+
+        <property name="autoDisplayFlag" type="boolean" >
+            <column name="auto_display_flag" default="true" />
+        </property>
+  </class>
+</hibernate-mapping>

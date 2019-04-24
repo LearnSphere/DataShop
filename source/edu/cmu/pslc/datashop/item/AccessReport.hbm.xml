@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2013
+ All Rights Reserved
+
+ Author: Young Suk Ahn
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+<hibernate-mapping>
+    <class name="edu.cmu.pslc.datashop.item.AccessReportItem" table="access_report">
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.AuthorizationId">
+            <key-property name="userId" type="string">
+                <column name="user_id" length="250" />
+            </key-property>
+            <key-property name="projectId" type="integer">
+                <column name="project_id" />
+            </key-property>
+        </composite-id>
+        <property name="firstAccess" type="timestamp">
+            <column name="first_access" not-null="false" />
+        </property>
+        <property name="lastAccess" type="timestamp">
+            <column name="last_access" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>

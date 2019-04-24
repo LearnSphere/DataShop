@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon Univerity, Human Computer Interaction Institute
+ Copyright 2005
+ All Rights Reserved
+
+ $Revision: 2960 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2006-06-19 16:21:21 -0400 (Mon, 19 Jun 2006) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.InterpretationAttemptItem"
+            table="interpretation_attempt_map">
+    	<meta attribute="class-description">A mapping between interpretations and subgoal attempts.</meta>
+        <composite-id name="id" class="edu.cmu.pslc.datashop.item.InterpretationAttemptId">
+            <key-property name="interpretationId" type="long">
+                <column name="interpretation_id" />
+            </key-property>
+            <key-property name="subgoalAttemptId" type="long">
+                <column name="subgoal_attempt_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="interpretation" class="edu.cmu.pslc.datashop.item.InterpretationItem" update="false" insert="false">
+            <meta attribute="field-description">The interpretation of the subgoal_attempt.</meta>
+            <column name="interpretation_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="subgoalAttempt" class="edu.cmu.pslc.datashop.item.SubgoalAttemptItem" update="false" insert="false">
+       	    <meta attribute="field-description">SubgoalAttempt being used.</meta>
+            <column name="subgoal_attempt_id" not-null="true" />
+        </many-to-one>
+        <property name="chosenFlag" type="boolean">
+       	    <meta attribute="field-description">Indicates whether this is the interpretation chosen by the tutor during student's interaction.</meta>
+            <column name="chosen_flag" />
+        </property>
+    </class>
+</hibernate-mapping>

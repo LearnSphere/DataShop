@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2008
+ All Rights Reserved
+
+ $Revision: 13816 $
+ Last modified by - $Author: ctipper $
+ Last modified on - $Date: 2017-02-03 10:48:30 -0500 (Fri, 03 Feb 2017) $
+ $KeyWordsOff: $
+-->
+<hibernate-mapping>
+    <class name="edu.cmu.pslc.datashop.item.SetItem" table="ds_set" batch-size="100">
+
+        <meta attribute="class-description">A group of selected items, skills, problems or students.</meta>
+
+        <id name="id" type="integer">
+            <meta attribute="field-description">Database generated unique id for this item.</meta>
+            <column name="ds_set_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="type" type="string">
+        	<meta attribute="field-description">Type of item for this set.</meta>
+            <column name="type" length="50" not-null="true" />
+        </property>
+
+        <property name="name" type="string">
+            <meta attribute="field-description">The name of the item.</meta>
+            <column name="name" not-null="true" />
+        </property>
+
+        <property name="description" type="string">
+            <meta attribute="field-description">The description of the item.</meta>
+            <column name="description" not-null="false" />
+        </property>
+
+        <many-to-one name="owner" class="edu.cmu.pslc.datashop.item.UserItem">
+            <meta attribute="field-description">The id of the user that is the owner of this set.</meta>
+            <column name="owner" length="250" not-null="true" />
+        </many-to-one>
+
+        <set name="skills" table="ds_set_skill_map" batch-size="10">
+            <meta attribute="field-description">Collection of skills associated with this set.</meta>
+            <key>
+                <column name="ds_set_id" not-null="true" />
+            </key>
+            <many-to-many column="skill_id" class="edu.cmu.pslc.datashop.item.SkillItem" />
+        </set>
+
+    </class>
+</hibernate-mapping>

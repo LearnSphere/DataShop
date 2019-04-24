@@ -1,0 +1,635 @@
+div.navigationBoxHeader {
+  position:relative;
+
+}
+.nav_header {
+  font-size:10px;
+  font-weight: bold;
+}
+#innerNavDiv {
+  background-color:#37567f;
+}
+#navdiv {
+  padding:0;
+  font-size:smaller;
+  margin-top: 33px;
+  margin-left: 3px;
+  background-color:#fff;
+  color:#333;
+  width:15em;
+}
+#nav {
+  width: 12em;
+  padding: 2px 5px 0 0;
+}
+
+#nav .icon {
+  display: block;
+  height: 16px;
+  width: 16px;
+  position:absolute;
+  cursor: default;
+  top:3px;
+  right:2px;
+  margin:0;
+}
+/* Confusion arises for IE6 and IE7 when the last class of a multiple class
+   selection is the same as the last class of another multiple class selection.
+   To fix, make the last class unique among multi-class selectors.
+*/
+#nav .icon.collapse {
+  background: url(../images/collapsed_grey.gif) top left no-repeat;
+}
+
+#nav .icon.expand {
+  background: url(../images/expanded_grey.gif) top left no-repeat;
+}
+
+#nav .icon.collapse.hover {
+  background: url(../images/collapsed.gif) top left no-repeat;
+  cursor: pointer;
+}
+
+#nav .icon.hover.expand {
+  background: url(../images/expanded.gif) top left no-repeat;
+  cursor: pointer;
+}
+
+#navManageKCsetsButton {
+  display: block;
+  height: 16px;
+  width: 16px;
+  position:absolute;
+  top:3px;
+  right:22px;
+  cursor: pointer;
+  background: url(../images/wrench.png) top left no-repeat;
+}
+
+#samples p, #skills p, #students p, #problems p {
+  font-size:.9em;
+  margin:0 0 .2em;
+  padding:0 0 .25em .7em;
+}
+#samples p a, #skills p a, #students p a, #problems p a {
+  text-decoration:none;
+  cursor: default;
+}
+
+#samples p a.hover, #skills p a.hover, #students p a.hover, #problems p a.hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#samples a:visited {
+  color:#333;
+}
+
+#nav h1{
+  font-size:10px;
+  font-weight: bold;
+  margin-bottom:0;
+  padding-bottom:0;
+}
+#nav h2, #stepRollupHeader, #learningCurveHeader {
+  font-size:1em;
+  font-weight:normal;
+  padding:.3em 0 .3em .5em;
+  margin:.2em 0 .4em 0;
+  color:#333;
+  letter-spacing:0em;
+  background-color:#e0e7ef;
+  border-bottom:1px solid gray;
+}
+
+#nav h2 span {
+  font-size:.9em;
+}
+#nav h2 img {
+  vertical-align:top;
+}
+#nav h3 {
+  padding-left:.6em;
+  margin-top:.3em;
+}
+/* Properties for all nav panels */
+#skills, #students, #problems, #er_nav, #models, #samples, #pp_nav,
+#txExportNav, #lfaValuesNav, #skillModels, #stepRollupNav, #learningCurveNav, #problemExportNav, #stepExportNav, #kcModelsSamplesDiv, #modelValuesSamplesText  {
+  padding:0;
+  background-color:#fff;
+  margin:0 0 .5em 0;
+}
+#skills p.itemCount, #students p.itemCount, #problems p.itemCount {
+  margin-top:.5em;
+}
+#skillModels table {
+  margin-left:.5em;
+}
+#skillModels td {
+  vertical-align:middle;
+}
+#skillModels p {
+  margin-left:.6em;
+  padding-bottom:.6em;
+}
+ul.interfaceList, #models ul{
+  margin-top:1em;
+}
+ul.interfaceList {
+  height:12em;
+  overflow:scroll;
+  overflow:-moz-scrollbars-horizontal;
+  overflow-x:hidden;
+  overflow-y:scroll;
+  padding-left:.6em;
+  margin:0 .3em 0 auto;
+  list-style-type:none;
+  color:#333;
+}
+#kcModelsLinkLink {
+        position: absolute;
+        top: 4px;
+        right: 24px;
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: .9em;
+}
+#kcModelsLinkLink a {
+        color: #37567F;
+}
+#learningCurveNav {
+  padding:0;
+  color:#333;
+}
+#learningCurveNav form {
+  margin-left:.5em;
+}
+#stepRollupNav, #lfaValuesNav {
+  padding-bottom:.5em;
+}
+#stepRollupNav input, #lfaValuesNav input {
+  margin-left:.7em;
+}
+#learningCurveContent {
+  background-color:#fff;
+  color:#333;
+  margin:0;
+  padding:0;
+}
+#learningCurveHeader {
+  font-family:"MS Shell Dlg",Arial,Helvetica,sans-serif;
+  font-size:1.1em;
+  font-weight:normal;
+  color:#333;
+}
+
+#skills img, #students img, #problems img, #models img, #samples img {
+  border:none;
+}
+
+/* Is this declaration necessary? */
+ul.interfaceList a, ul.interfaceList a:visited {
+  text-decoration:none;
+  background-color:transparent;
+  color:#333;
+}
+
+ul.interfaceList li.hover{
+  cursor: pointer;
+}
+
+ul.interfaceList li.hover a{
+  text-decoration: underline;
+}
+
+#skill_model_select, #secondary_skill_model_select {
+  width: 100%;
+  font-size:.9em;
+  margin:.2em;
+}
+#nav .selected{
+  font-weight:bold;
+  background-color:white;
+}
+#samples h2 {
+  margin-top:0;
+  border-top:none;
+}
+#samples ul {
+  list-style-type:none;
+  padding:0 0 .5em .5em;
+  margin:0;
+}
+#samples ul li {
+  padding-left:0;
+  width:100%;
+  position:relative;
+}
+#samples ul li a:hover {
+  text-decoration:underline;
+}
+#samples ul li .sampleName {
+  padding-right:48px;
+  display:block;
+}
+#samples ul ul {
+  padding-left:.1em;
+}
+#samples ul ul li {
+  font-size:1em;
+  margin:0;
+}
+#samples ul ul li a {
+  padding-top:1px;
+}
+#samples ul li .icons {
+  width:70px;
+  position:absolute;
+  right:3px;
+  top:0;
+}
+#samples ul span {
+  font-size:1em;
+  font-weight:bold;
+}
+#mySamples {
+  margin-bottom:.6em;
+}
+#er_nav form {
+  padding-bottom:.5em;
+  margin-bottom:0;
+  margin-left:.3em;
+  margin-top:0;
+}
+#er_nav form label{
+  vertical-align:top;
+  font-size:1em;
+}
+#er_nav p, #txExportNav p {
+  margin-left:.5em;
+  margin-top:.5em;
+  margin-bottom:.4em;
+  font-style: oblique;
+}
+#learningCurveNav h3, #er_nav h3, #pp_nav h3, #exportNav h3 {
+  font-size:.9em;
+  color:#333;
+  margin-bottom:4px;
+}
+#learningCurveNav input {
+  vertical-align:top;
+}
+#learningCurveNav form {
+  margin-bottom:0;
+  margin-top:0;
+}
+#learningCurveNav #viewSkills {
+  margin-top:8px;
+  padding-top:0;
+}
+#learningCurveNav #maxOpp {
+  margin-top:8px;
+  padding-top:0;
+}
+#pp_nav div.wrapper, #exportNav div.wrapper h3 {
+  margin-left:.5em;
+  padding-bottom:.5em;
+}
+#pp_nav div.wrapper h3, #exportNav div.wrapper h3 {
+  padding-left:0;
+}
+#includeStepsWithoutKCsCheckbox {
+    margin-left: 3px;
+    padding-bottom: 2px;
+}
+#problemExportSkillModel {
+    margin-left: 2px;
+}
+#cached_export_selection_div {
+    margin: 12px 2px;
+    font-size: 13px;
+}
+#cached_export_selection_div h4 {
+    margin: 0 0 3px 0;
+}
+
+/* Learning Curve */
+#maxOpp label,
+#includeHighStakes label {
+  font-weight:bold;
+  font-size:.9em;
+}
+
+#maxOpp #minOpportunities, #maxOpp #maxOpportunities {
+   margin: 3px 3px 3px 5px;
+   float:left;
+}
+#maxOpp #stdDevCutoff {
+  margin-left:3.4em
+}
+#maxOpp .oppLabel {
+  width:3em;
+  display:block;
+  float:left;
+  margin:5px 0 0 0;
+  text-align: right;
+}
+
+#maxOpp br {
+  clear:both;
+}
+
+#maxOpp input {
+  margin:3px 0;
+}
+
+#maxOpp #minOppsSet, #classify_lcs_div #updateClassify {
+  margin:.4em 0 .6em 1.8em;
+  font-size:1em;
+}
+
+#classify_lcs_div {
+  margin-left: 4px;
+}
+
+#classify_lcs_div #classify_lcs_label {
+  font-weight:bold;
+  font-size: 13px;
+}
+.classified_label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.toolTip.lcNavToolTip div {
+    padding: 8px 12px;
+}
+.lcNavToolTip div ul {
+    padding-left: 15px;
+}
+
+#cutoffMins {
+  margin:5px 0 0 0;
+}
+
+#cutoffMins label {
+  font-weight:bold;
+  font-size:.9em;
+}
+
+#cutoffMins .valueInput {
+  float:left;
+   margin: 3px 3px 3px 5px;
+   width:3em;
+   text-align:right;
+}
+
+#cutoffMins .oppLabel {
+  float: left;
+  display:block;
+  width: 5em;
+  margin:5px 0 0 0;
+}
+
+#cutoffMins br {
+  clear:both;
+}
+
+#cutoffMins #cutoffMinsSet {
+  font-size:1em;
+  margin:.4em 0 .4em 1.6em;
+}
+
+#cutoffMins .clearButton {
+  margin-top:3px;
+}
+
+#ppPerformanceMetric {
+  width: 165px;
+}
+
+#classify_thresholds_div input[type="text"] {
+  width: 42px;
+}
+#classify_thresholds {
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: 3px;
+}
+#classify_thresholds .col1 {
+    width: 40px;
+}
+#classify_thresholds .col2 {
+    width: 150px;
+    vertical-align: middle;
+    padding-left: 4px;
+}
+#classify_lcs_info {
+    vertical-align: middle
+}
+#viewSkills label {
+  font-weight:bold;
+  font-size:.9em;
+}
+#learningCurveNav #display_predicted, #display_error_bars, #select_error_bar_type, #classify_lcs {
+  margin-left: 5px;
+}
+#include_high_stakes {
+  margin-left: 2px;
+}
+#select_error_bar_type {
+  margin-bottom: 4px;
+  margin-left: 25px;
+}
+#learningCurveNav label {
+  vertical-align: middle;
+}
+#learningCurveNav #maxOpp img {
+  vertical-align: bottom;
+}
+.selectedSkill{
+  font-weight:bold;
+}
+.selectedSkill img{
+  vertical-align:top;
+}
+ul.interfaceList li {
+  overflow:hidden;
+  max-height:30px;
+  margin: 0px;
+     padding:0px;
+     list-style-type:none;
+}
+ul.interfaceList li a.multiSelect, #samples ul li a.sampleName {
+  background: white url(../images/checkboxes_web.png) 0px -20px no-repeat;
+  padding-left:20px;
+  font-weight:normal;
+}
+ul.interfaceList li.selectedItem a.multiSelect, #samples ul li.selectedSkill a {
+  font-weight:bold;
+  background-position:0px 0px;
+}
+ul.interfaceList li a.singleSelect {
+  background: white url(../images/radiobuttons_web.png) 0px -19px no-repeat;
+  padding-left:20px;
+  font-weight:normal;
+}
+ul.interfaceList li.selectedItem a.singleSelect {
+  font-weight:bold;
+  background-position:0px 0px;
+}
+
+/*.infoDiv * {
+  list-style:none;
+  margin: 0;
+  padding-left:5px;
+  width:250px;
+}*/
+
+.overlibInfoDiv{
+  color: #333333;
+  background-color:white;
+  border:1px solid #666;
+  padding:5px;
+  overflow:visible;
+}
+.overlibInfoDiv * {
+  list-style:none;
+  margin: 0;
+  padding-left:5px;
+}
+
+.overlibInfoDiv table {
+  border:1px solid #CFCFCF;
+  border-collapse:collapse;
+  border-spacing:0pt;
+  margin-left:0.2em;
+}
+
+
+.overlibInfoDiv th {
+  text-align:right;
+  border:1px solid #CFCFCF;
+}
+
+.overlibInfoDiv td {
+  border:1px solid #CFCFCF;
+  text-align:center;
+}
+
+/****************************************
+* BREAD CRUMB NAV STYLES
+****************************************/
+
+#bread_crumb{
+  margin:0;
+  padding:5px;
+  height:1em;
+  font-size:smaller;
+  color:white;
+}
+#bread_crumb ul{
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  display:block;
+}
+#bread_crumb li{
+  display:inline;
+  float:left;
+  margin:0 0 0 .3em;
+  padding:0;
+}
+#bread_crumb a {
+  color:white;
+  margin:0 .5em;
+  font-weight:bold;
+  text-decoration:underline;
+}
+/**************************************
+*           POPUP MENU STYLES (transient notifications and PP selector)
+***************************************/
+/* Affects all popups, so don't specify positioning in this selector */
+.popupMenu {
+  display:block;
+  background-color:white;
+  border:1px solid gray;
+  border-right:2px solid #4f4f4f;
+  border-bottom:2px solid #4f4f4f;
+  padding:0;
+  font-size:12px;
+}
+#popMenuDomainSelection {
+}
+#popMenuRangeSelection {
+}
+#messagePopup {
+  position: fixed;
+    top: 30%;
+    left: 50%;
+    margin-left: -150px;
+  width:300px;
+  z-index: 10000;
+}
+.popupMenu span {padding:2px 15px 2px 4px}
+.popupMenu h1 {
+  margin:0;
+  padding:3px;
+  font-size:1.1em;
+  font-weight:bold;
+  background-color:#e0e7ef;
+  border-bottom:1px solid gray;
+}
+.selectedPopupItem {
+  color:black;
+  background-color:#efefef;
+  display:block;
+  text-decoration:none;
+  padding-left:4px;
+}
+.nonSelectedPopupItem {
+  background-color:white;
+  display:block;
+  padding-left:4px;
+  padding-right:6px;
+}
+.currentSelectionPopupItem {
+  background-color:white;
+  display:block;
+  padding-right:0;
+  padding-left:4px;
+  text-decoration:underline;
+}
+.errorPopupContent, .successPopupContent, .warningPopupContent, .messagePopupContent {
+    margin: 0;
+    padding: 7px;
+    font-size: 13px;
+    font-weight: normal;
+}
+.errorPopupContent {
+  background-color: #FBE3E4;
+}
+.successPopupContent {
+    background: #E6EFC2;
+}
+.warningPopupContent {
+    background-color: #FFF6BF;
+}
+.messagePopupContent {
+  background-color: white;
+}
+.resize_bar{
+  background:#efefef url(/images/drag_texture.gif) center center no-repeat;
+  display:block;
+  height:7px;
+}
+#kcModelsSamplesDiv {
+    display: none;
+}
+#kcModelsSamplesDiv p, #modelValuesSamplesText p {
+    font-style: italic;
+    padding: 0px 10px 0px 13px;
+    margin-bottom: 0;
+}
+#modalMessageDialogImg {
+    padding-right: 10px;
+}

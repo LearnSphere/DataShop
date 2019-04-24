@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!--
+ Carnegie Mellon University, Human Computer Interaction Institute
+ Copyright 2013
+ All Rights Reserved
+
+ $Revision: 10435 $
+ Last modified by - $Author: alida $
+ Last modified on - $Date: 2013-12-19 10:07:17 -0500 (Thu, 19 Dec 2013) $
+ $KeyWordsOff: $
+-->
+    <class name="edu.cmu.pslc.datashop.item.ResearchGoalItem" table="research_goal">
+        <id name="id" type="integer">
+            <column name="research_goal_id" />
+            <generator class="native" />
+        </id>
+
+        <property name="title" type="string">
+            <column name="title" length="255" unique="true" />
+        </property>
+
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+
+        <property name="goalOrder" type="integer">
+            <column name="goal_order" />
+        </property>
+
+        <set name="researcherTypeResearchGoalMaps" inverse="true">
+            <key>
+                <column name="research_goal_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ResearcherTypeResearchGoalMapItem" />
+        </set>
+
+        <set name="researchGoalDatasetPaperMaps" inverse="true">
+            <key>
+                <column name="research_goal_id" />
+            </key>
+            <one-to-many class="edu.cmu.pslc.datashop.item.ResearchGoalDatasetPaperMapItem" />
+        </set>
+    </class>
+</hibernate-mapping>
